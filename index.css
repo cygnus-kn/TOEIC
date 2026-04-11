@@ -1313,3 +1313,139 @@ body.dark-theme .dropdown-menu {
   80% { transform: translate3d(4px, 0, 0); }
   100% { opacity: 1; transform: translate3d(0, 0, 0); }
 }
+/* ============================
+   Mobile Responsiveness
+   ============================ */
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  /* Hide sidebar by default on mobile */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 280px !important;
+    height: 100vh;
+    margin: 0;
+    z-index: 5000;
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0 20px 20px 0;
+    box-shadow: 20px 0 50px rgba(0,0,0,0.3);
+  }
+
+  .sidebar.mobile-open {
+    left: 0;
+  }
+
+  .main {
+    flex: 1;
+    margin: 0;
+    height: 100vh;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .theme-toggle-wrapper {
+    top: 16px;
+    right: 16px;
+  }
+
+  .viewer-header {
+    padding: 16px;
+    padding-top: 60px; /* Space for theme toggle and mobile button */
+    justify-content: center;
+  }
+
+  .date-badge {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  .part-card {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .card-track {
+    gap: 0;
+  }
+
+  .part-card-body {
+    padding: 24px 20px;
+  }
+
+  .part-card-header {
+    padding: 20px;
+  }
+
+  .part-card-title {
+    font-size: 18px;
+  }
+
+  .part-card-content {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .player-footer {
+    padding: 20px;
+  }
+
+  .controls-group {
+    gap: 16px;
+  }
+
+  /* Mobile sidebar toggle button */
+  .mobile-menu-btn {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 4000;
+    width: 44px;
+    height: 44px;
+    background: var(--color-surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+  }
+
+  .mobile-menu-btn:active {
+    transform: scale(0.95);
+  }
+
+  /* Adjust notifications for mobile */
+  .notification-container {
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    align-items: center;
+  }
+
+  .toast {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Ensure video container scales */
+  .video-container {
+    aspect-ratio: 16/9;
+    height: auto;
+  }
+}
+
+/* Hide mobile button on desktop */
+@media (min-width: 769px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}

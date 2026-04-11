@@ -70,6 +70,30 @@
     }
   });
   // -------------------
+  // Mobile Sidebar Handling
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle('mobile-open');
+    });
+  }
+
+  function handleMobileSelection() {
+    if (window.innerWidth <= 768) {
+      sidebar.classList.remove('mobile-open');
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768 && 
+        sidebar.classList.contains('mobile-open') && 
+        !sidebar.contains(e.target) && 
+        (mobileMenuBtn && !mobileMenuBtn.contains(e.target))) {
+      sidebar.classList.remove('mobile-open');
+    }
+  });
+  // -------------------
 
   // State
   let currentPart = 0;
