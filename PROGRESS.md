@@ -107,6 +107,64 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 
 ---
 
+## 📐 Mobile Layout Alignment Guide (< 600px)
+
+> **Why this section exists:** During the Apr 13 mobile refinement session, we hit several alignment bugs that each took multiple attempts to diagnose. This section documents what actually controls each element's position, so future changes can be made in one shot.
+
+### Element Hierarchy (top → bottom)
+
+```
+body / .app
+  └── .main              ← The rounded white card that holds everything
+       ├── .main-top-bar  ← Absolute-positioned bar holding the sidebar button
+       │    └── .sidebar-toggle-btn  (38px circle)
+       ├── .theme-toggle-wrapper     ← Absolute-positioned, separate from top-bar
+       │    └── .theme-toggle        (32px pill)
+       ├── .welcome-state            ← Only visible when no HW is selected
+       └── .homework-viewer          ← Flex column: badge → card → pagination
+            ├── .viewer-header       ← Contains the date badge
+            ├── .card-container      ← Contains .card-track → .part-card(s)
+            └── .pagination          ← The dots
+```
+
+### Key Lessons Learned
+
+| Problem | Root Cause | Fix |
+|---------|-----------|-----|
+| Sidebar button and theme toggle not vertically aligned | Sidebar button is a **flex child** inside `.main-top-bar` — setting `top` on the button itself does nothing. Its vertical position is controlled by `.main-top-bar { top }`. The theme toggle IS independently `position: absolute`. | Set `.main-top-bar { top: 20px }`. Calculate toggle top so both share the same vertical center: `toggle-top = (bar-top + button-height/2) - toggle-height/2`. |
+| Badge too far from card | `.homework-viewer` has `gap: var(--space-xl)` (~24px) in the base CSS. `margin-bottom` on `.viewer-header` was fighting the flex gap. | Override `.homework-viewer { gap: 16px }` in the mobile media query. |
+| Two `.homework-viewer` rules in the same `@media` block | An earlier fix added `gap: 6px`, then a later fix added `gap: 14px` in a separate rule above. The 6px rule appeared later in the file and silently won. | **Always consolidate** — search for duplicates before adding a new rule. One rule per selector per media query. |
+| Card vertically centered (should be top-aligned) | `.main { justify-content: center }` in the base CSS centers everything vertically. | Override to `justify-content: flex-start` on mobile. |
+| Welcome state ("Select a homework...") also got top-aligned | `.welcome-state` is inside `.main`, so `flex-start` pulled it up too. | Give `.welcome-state { flex: 1; min-height: 60vh; justify-content: center }` on mobile so it fills remaining space and self-centers. |
+| Card height was constrained / cut off | `.part-card { max-height: 100% }` in the base CSS, combined with flex containers, capped card height. | Override to `max-height: none` on mobile. Also set `height: auto` and `flex: none` on `.card-container`, `.card-track`, and `.homework-viewer`. |
+| Card lost rounded top corners | Setting `overflow: visible` on `.part-card` broke `border-radius` clipping. | `overflow` must stay `hidden` on `.part-card`. Height growth is controlled by `max-height: none`, not overflow. |
+| Body didn't scroll on mobile | `body { overflow: hidden; height: 100dvh }` in the base CSS. | Override on mobile: `body, .app { overflow: unset; height: auto; min-height: 100dvh }`. |
+
+### Quick Reference: What Controls What
+
+| What you want to move | Change this property | On this selector |
+|-----------------------|---------------------|-----------------|
+| Sidebar button vertical position | `top` | `.main-top-bar` (mobile override) |
+| Theme toggle vertical position | `top` | `.theme-toggle-wrapper` (mobile override) |
+| Badge ↔ Card gap | `gap` | `.homework-viewer` (mobile override) |
+| Badge ↔ Top icons gap | `margin-top` | `.viewer-header` (mobile override) |
+| Card top alignment | `justify-content` | `.main` (mobile override) |
+| Pagination position | `position: fixed; bottom` | `.pagination` (mobile override) |
+| Card scales proportionally | `zoom` | `.part-card` (mobile override) |
+
+### Current Mobile Values (Apr 13)
+
+```css
+.main-top-bar        { top: 20px }
+.theme-toggle-wrapper { top: 23px }       /* Centers with 38px button */
+.viewer-header       { margin-top: 100px } /* Pushes badge below icons */
+.homework-viewer     { gap: 16px }         /* Badge ↔ Card spacing */
+.part-card           { zoom: 0.88 }        /* Proportional scaling */
+.pagination          { position: fixed; bottom: 28px } /* Thumb zone */
+```
+
+---
+
 ## 🐛 Known Issues / Watch List
 
 - Audio poller (`setInterval`) is not explicitly cancelled when a non-audio card is rendered — low impact but worth cleaning up
