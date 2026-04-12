@@ -8,7 +8,7 @@
 
 A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking & Writing homework and class notes. Built with vanilla HTML, CSS, and JavaScript — no frameworks.
 
-**Stack:** `index.html` · `index.css` · `app.js` · `data.js`  
+**Stack:** `index.html` · `index.css` · `app.js` · `sidebar.js` · `viewer.js` · `audio.js` · `data.js`  
 **Hosted at:** GitHub (`/Users/cygnus/Documents/GitHub/Homework`)
 
 ---
@@ -19,9 +19,10 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 - [x] ~~Student ID login system~~ — **removed** (open access)
 
 ### 🗂 Sidebar
-- [x] Collapsible sidebar with toggle button
-- [x] Drag-to-resize handle (180px – 400px range), snaps to collapsed if dragged too narrow
-- [x] Persistent width + collapsed state via `localStorage`
+- [x] Collapsible sidebar with identically scaled circular toggle buttons
+- [x] Drag-to-resize handle (180px – 400px range) with smooth, instant resizing with transitions disabled
+- [x] Sub-pixel boundary fixes utilizing 100dvh responsiveness constraints
+- [x] Persistent width + collapsed state via `localStorage` (instantly applies on load without jumpy CSS animations)
 - [x] Hierarchical navigation: Class → Homework / Lesson → Date entries
 - [x] Expand/collapse per class group and category
 - [x] Mobile hamburger menu with tap-outside-to-close
@@ -118,6 +119,7 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 | Apr 11 | Login system implemented, glassmorphism dropdown, sidebar density polished |
 | Apr 12 | HW Day 03 data added with YouTube audio, image references finalized |
 | Apr 12 | Authentication feature removed — platform is now open access |
+| Apr 12 | Refactored architecture into multi-file modules (`sidebar.js`, `viewer.js`, `audio.js`). Refined layout alignments, dropdown scaling, and `100dvh` layout adjustments. |
 
 ---
 
