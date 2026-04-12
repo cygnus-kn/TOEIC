@@ -1,6 +1,6 @@
 # TOEIC Homework Platform — Progress Tracker
 
-> Last updated: 2026-04-12
+> Last updated: 2026-04-13
 
 ---
 
@@ -8,7 +8,7 @@
 
 A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking & Writing homework and class notes. Built with vanilla HTML, CSS, and JavaScript — no frameworks.
 
-**Stack:** `index.html` · `index.css` · `app.js` · `sidebar.js` · `viewer.js` · `audio.js` · `data.js`  
+**Stack:** `index.html` · `index.css` · `core.js` · `data.js` · `data/` (JSON)  
 **Hosted at:** GitHub (`/Users/cygnus/Documents/GitHub/Homework`)
 
 ---
@@ -72,6 +72,12 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 - [x] Toast notification system (e.g., "This is not your class")
 - [x] Auto-dismiss with fade-out animation
 
+### ⚡ Optimization & Performance
+- [x] **Lazy-Loaded Audio**: YouTube IFrame API now only loads when a task requiring audio is active.
+- [x] **Modular Data Architecture**: Monolithic `data.js` split into a lightweight manifest + per-class JSON files.
+- [x] **Demand-Driven Loading**: Assignment details are fetched via `fetch()` only when the student selects them.
+- [x] **Script Consolidation**: Merged multiple JS files into a single `core.js` to reduce HTTP requests.
+
 ---
 
 ## 🗄 Data (`data.js`)
@@ -120,6 +126,7 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 | Apr 12 | HW Day 03 data added with YouTube audio, image references finalized |
 | Apr 12 | Authentication feature removed — platform is now open access |
 | Apr 12 | Refactored architecture into multi-file modules (`sidebar.js`, `viewer.js`, `audio.js`). Refined layout alignments, dropdown scaling, and `100dvh` layout adjustments. |
+| Apr 13 | **Performance Sprint**: Consolidated separate JS files into `core.js`. Modularized the data system into JSON files for on-demand loading. Implemented lazy-loading for the YouTube API. Pushed major performance and cleanliness updates. |
 
 ---
 
