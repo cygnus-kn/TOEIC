@@ -3,6 +3,7 @@
    ============================ */
 :root {
   /* Colors */
+  --color-page-bg: #FEF9E7;
   --color-bg: #ffffff;
   --color-surface: #f5f5f7;
   --color-surface-hover: #e8e8ed;
@@ -49,17 +50,18 @@
 }
 
 body.dark-theme {
-  --color-bg: #1c1c1e;
-  --color-surface: #2c2c2e;
-  --color-surface-hover: #3a3a3c;
-  --color-surface-active: #48484a;
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-strong: rgba(255, 255, 255, 0.15);
-  --color-text-primary: #f5f5f7;
-  --color-text-secondary: #aeaeb2;
-  --color-text-tertiary: #6e6e73;
-  --color-accent: #0a84ff;
-  --color-accent-light: rgba(10, 132, 255, 0.15);
+  --color-page-bg: #0F1219;
+  --color-bg: #181C26;
+  --color-surface: #242938;
+  --color-surface-hover: #2F354A;
+  --color-surface-active: #3B425C;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.12);
+  --color-text-primary: #ECECF1;
+  --color-text-secondary: #94A3B8;
+  --color-text-tertiary: #64748B;
+  --color-accent: #38BDF8;
+  --color-accent-light: rgba(56, 189, 248, 0.15);
 
   --sidebar-bg: rgba(44, 44, 46, 0.85);
   --sidebar-border: rgba(255, 255, 255, 0.08);
@@ -85,7 +87,7 @@ html {
 
 body {
   font-family: var(--font-family);
-  background: var(--color-bg);
+  background: var(--color-page-bg);
   color: var(--color-text-primary);
   line-height: 1.5;
   overflow: hidden;
@@ -513,7 +515,7 @@ body.dark-theme .date-entry.active {
   overflow: hidden;
   padding: var(--space-3xl);
   margin: 16px;
-  background: var(--color-bg);
+  background: var(--color-page-bg);
   border-radius: 20px;
   position: relative;
   width: 100%;
@@ -709,7 +711,7 @@ body.dark-theme .dropdown-menu {
 
 /* Card body — white content area */
 .card-body {
-  padding: 24px;
+  padding: 16px;
   background: var(--color-bg);
   overflow-y: auto;
 }
@@ -840,15 +842,23 @@ body.dark-theme .dropdown-menu {
   padding: 0;
 }
 
+.sentence-words {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.5px;
+  padding: 8px 0;
+}
+
 /* Describe a Picture preset */
 .picture-container {
   width: 100%;
-  max-height: 65vh; /* Increased to avoid cutting off tall tables */
+  max-height: 65vh;
   border-radius: var(--radius-md);
   overflow: hidden;
-  margin-bottom: var(--space-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-sm);
+  background: var(--color-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1017,10 +1027,8 @@ body.dark-theme .dropdown-menu {
 
 .email-meta {
   margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--color-border);
   font-size: 13px;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .email-meta strong {
@@ -1034,8 +1042,8 @@ body.dark-theme .dropdown-menu {
 .email-instruction {
   margin-top: var(--space-lg);
   font-size: 14px;
-  color: var(--color-text-secondary);
-  font-style: italic;
+  color: var(--color-text-primary);
+  font-style: normal;
 }
 
 /* ============================

@@ -28,7 +28,7 @@ const CLASSES_DATA = {
             type: "describe-picture",
             label: "Describe a Picture",
             content: {
-              imageUrl: "Test Data/Pictures/GwenTV-02-2023-picture-1.png",
+              imageUrl: "test-data/speaking-pictures/GwenTV-02-2023-picture-1.png",
               imagePlaceholder: "🖼️ Picture 1",
               prompt: "Describe the picture in as much detail as you can."
             }
@@ -37,7 +37,7 @@ const CLASSES_DATA = {
             type: "describe-picture",
             label: "Describe a Picture",
             content: {
-              imageUrl: "Test Data/Pictures/GwenTV-02-2023-picture-2.png",
+              imageUrl: "test-data/speaking-pictures/GwenTV-02-2023-picture-2.png",
               imagePlaceholder: "🖼️ Picture 2",
               prompt: "Describe the picture in as much detail as you can."
             }
@@ -74,7 +74,7 @@ const CLASSES_DATA = {
             label: "Questions 8-10: Respond to Information",
             questionLabel: "Questions 8-10",
             content: {
-              imageUrl: "Test Data/Pictures/GwenTV-02-2023-picture-3.png",
+              imageUrl: "test-data/speaking-pictures/GwenTV-02-2023-picture-3.png",
               videoUrl: "https://www.youtube.com/embed/kmHuOysUsyM?start=628&enablejsapi=1",
               question: "Question 8: Where will the interviews take place what time will the first interview start?\n\nQuestion 9: I was told that there are two applicants who are applying for the product manager position. Is that right?\n\nQuestion 10: Can you tell me about the applicants who are applying for the receptionist position?"
             }
@@ -112,7 +112,7 @@ const CLASSES_DATA = {
             type: "describe-picture",
             label: "Describe a Picture",
             content: {
-              imageUrl: "Test Data/Pictures/GwenTV-01-2023-picture-1.png",
+              imageUrl: "test-data/speaking-pictures/GwenTV-01-2023-picture-1.png",
               imagePlaceholder: "🖼️ Picture 1",
               prompt: "Describe the picture in as much detail as you can."
             }
@@ -121,7 +121,7 @@ const CLASSES_DATA = {
             type: "describe-picture",
             label: "Describe a Picture",
             content: {
-              imageUrl: "Test Data/Pictures/GwenTV-01-2023-picture-2.png",
+              imageUrl: "test-data/speaking-pictures/GwenTV-01-2023-picture-2.png",
               imagePlaceholder: "🖼️ Picture 2",
               prompt: "Describe the picture in as much detail as you can."
             }
@@ -158,7 +158,7 @@ const CLASSES_DATA = {
             label: "Questions 8-10: Respond to Information",
             questionLabel: "Questions 8-10",
             content: {
-              imageUrl: "Test Data/Pictures/GwenTV-01-2023-picture-3.png",
+              imageUrl: "test-data/speaking-pictures/GwenTV-01-2023-picture-3.png",
               videoUrl: "https://www.youtube.com/embed/3jmaksYCoxQ?start=618&enablejsapi=1",
               question: "Question 8: What time will the orientation start and end?\n\nQuestion 9: Will I have to bring my own lunch?\n\nQuestion 10: Can you tell me the details of the session that I will be leading?"
             }
@@ -205,6 +205,91 @@ const CLASSES_DATA = {
   },
   S128: {
     homework: [
+      {
+        date: "[HW Day 03] 04/13",
+        parts: [
+          {
+            type: "sentence-picture",
+            label: "Write a Sentence Based on a Picture",
+            questionLabel: "Questions 1-5",
+            content: {
+              imageUrl: "test-data/writing-pictures/test-1-2025-pic-1.jpg",
+              words: ["sit", "on"]
+            }
+          },
+          {
+            type: "sentence-picture",
+            label: "Write a Sentence Based on a Picture",
+            questionLabel: "Questions 1-5",
+            content: {
+              imageUrl: "test-data/writing-pictures/test-1-2025-pic-2.jpg",
+              words: ["wind", "hard"]
+            }
+          },
+          {
+            type: "sentence-picture",
+            label: "Write a Sentence Based on a Picture",
+            questionLabel: "Questions 1-5",
+            content: {
+              imageUrl: "test-data/writing-pictures/test-1-2025-pic-3.jpg",
+              words: ["if", "fit"]
+            }
+          },
+          {
+            type: "sentence-picture",
+            label: "Write a Sentence Based on a Picture",
+            questionLabel: "Questions 1-5",
+            content: {
+              imageUrl: "test-data/writing-pictures/test-1-2025-pic-4.jpg",
+              words: ["while", "phone"]
+            }
+          },
+          {
+            type: "sentence-picture",
+            label: "Write a Sentence Based on a Picture",
+            questionLabel: "Questions 1-5",
+            content: {
+              imageUrl: "test-data/writing-pictures/test-1-2025-pic-05.jpg",
+              words: ["box", "heavy"]
+            }
+          },
+          {
+            type: "email-response",
+            label: "Respond to a Written Request",
+            questionLabel: "Questions 6-7",
+            content: {
+              from: "Sandra Smith",
+              to: "White Appliances",
+              subject: "Unsatisfactory service",
+              sent: "March 17th, 2:10 P.M.",
+              body: "I'm writing to complain about the unsatisfactory service I received at your store. Two weeks ago, I purchased a newly launched model of washing machine. But I found when I unpacked it that it had been damaged on the right side of the door. Also, when I was doing my laundry it automatically stopped and I couldn't get it to start again. So, I tried to call the repair center over 5 times, but I still haven't received any repair service. I think this is not a good way to treat customers. Please write back soon and let's discuss this matter.",
+              instruction: "Respond to the e-mail as if you are a worker at White Appliances. In your e-mail, give at least ONE explanation and make TWO compensations."
+            }
+          },
+          {
+            type: "email-response",
+            label: "Respond to a Written Request",
+            questionLabel: "Questions 6-7",
+            content: {
+              from: "Kangaroo Travel Agency",
+              to: "Potential traveler",
+              subject: "It's time to travel!!!",
+              sent: "November 3rd, 10:05 A.M.",
+              body: "We do Australia because we know Australia. Now it's time to talk to the Australia specialist and book your Christmas and New Year's holidays. Also, we're offering special deals to Sydney, Melbourne, and many more tourist attractions in Australia. Call 24 hours a day, 7 days a week. Please visit our Web site www.kangaroo.co.au. We hope to hear from you soon!",
+              instruction: "Respond to the e-mail as if you are a customer. In your e-mail, ask TWO questions about the travel packages and make ONE request."
+            }
+          },
+          {
+            type: "opinion",
+            label: "Write an Opinion Essay",
+            questionLabel: "Question 8",
+            responseTime: 1800,
+            content: {
+              prompt: "When it comes to workplace, we normally think we have to go there to work. A lot of us commute to work every day. However, there are some people who work remotely at their homes or away from their offices. What do you think is the reason why some companies permit their employees to work this way?"
+            }
+          }
+        ]
+      },
       {
         date: "[HW Day 01] 04/10",
         parts: [

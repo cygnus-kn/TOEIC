@@ -11,6 +11,17 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
+  <script>
+    (function() {
+      try {
+        var currentTheme = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+          document.body.classList.add('dark-theme');
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <div class="app">
     <!-- Sidebar -->
@@ -30,6 +41,19 @@
       </nav>
       <div class="sidebar-resize-handle" id="sidebarResizeHandle"></div>
     </aside>
+    <script>
+      (function() {
+        try {
+          var sidebar = document.getElementById('sidebar');
+          var savedWidth = localStorage.getItem('sidebarWidth');
+          if (savedWidth) sidebar.style.width = savedWidth;
+          if (localStorage.getItem('sidebarCollapsed') === 'true') {
+            sidebar.classList.add('collapsed');
+          }
+          sidebar.style.transition = 'none';
+        } catch (e) {}
+      })();
+    </script>
 
     <!-- Main Content -->
     <main class="main" id="main">

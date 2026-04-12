@@ -5,17 +5,7 @@ const sidebar = document.getElementById('sidebar');
 const resizeHandle = document.getElementById('sidebarResizeHandle');
 const collapseBtn = document.getElementById('sidebarCollapseBtn');
 
-// Temporarily disable transition to prevent animation on load
-sidebar.style.transition = 'none';
-
-// Restore saved width
-const savedWidth = localStorage.getItem('sidebarWidth');
-if (savedWidth) sidebar.style.width = savedWidth;
-
-// Restore collapsed state
-if (localStorage.getItem('sidebarCollapsed') === 'true') {
-  sidebar.classList.add('collapsed');
-}
+// Initial width and collapsed state are set via inline script in index.html to prevent FOUC
 
 // Force a browser reflow to apply the instant changes
 sidebar.offsetHeight;
