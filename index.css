@@ -255,10 +255,10 @@ body:not(.dark-theme) .sidebar-toggle-btn:hover {
 }
 
 .sidebar-control-btn {
-  background: none;
-  border: none;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   color: var(--color-text-primary);
-  opacity: 0.8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   cursor: pointer;
   width: 38px;
   height: 38px;
@@ -267,12 +267,19 @@ body:not(.dark-theme) .sidebar-toggle-btn:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-smooth);
 }
 
 .sidebar-control-btn:hover {
-  background: rgba(0, 0, 0, 0.05);
-  opacity: 1;
+  background: var(--color-surface-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+body.dark-theme .sidebar-control-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 body.dark-theme .sidebar-control-btn:hover {
@@ -373,6 +380,7 @@ body.dark-theme .moon-icon { opacity: 1; }
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--color-accent) !important;
 }
 
 body.dark-theme .date-entry:hover {
@@ -397,18 +405,34 @@ body.dark-theme .date-entry.active {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 14px; /* Matches date-entry */
-  margin: 12px 8px 2px;
+  padding: 8px 16px;
+  margin: 8px 8px 4px;
   border-radius: 9999px;
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
   color: var(--color-text-secondary);
-  transition: background var(--transition-fast);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all var(--transition-smooth);
 }
 
 .class-header:hover {
-  background: rgba(0, 0, 0, 0.03);
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+body.dark-theme .class-header {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-theme .class-header:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .class-chevron {
