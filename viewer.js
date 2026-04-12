@@ -237,7 +237,8 @@ function renderPartContent(part) {
       `;
 
     case 'opinion':
-      return `<div class="opinion-prompt"><strong>Essay:</strong> ${part.content.prompt.replace(/\n/g, '<br>')}</div>`;
+      const isEssay = part.label === 'Write an Opinion Essay';
+      return `<div class="opinion-prompt">${isEssay ? '<strong>Essay:</strong> ' : ''}${part.content.prompt.replace(/\n/g, '<br>')}</div>`;
 
     case 'email-response':
       return `
