@@ -174,67 +174,6 @@ const CLASSES_DATA = {
           }
         ]
       },
-      {
-        date: "[HW Day 02] 04/11",
-        parts: [
-          {
-            type: "read-aloud",
-            label: "Read a Text Aloud",
-            content: {
-              passage: "Good morning, everyone. Thank you for coming to today's meeting. I'd like to start by going over the quarterly sales report. As you can see from the charts, our revenue has increased by fifteen percent compared to the same period last year. This growth was primarily driven by our new product line, which was launched in January. However, I should also mention that our expenses have risen slightly due to increased marketing costs."
-            }
-          },
-          {
-            type: "read-aloud",
-            label: "Read a Text Aloud",
-            content: {
-              passage: "Attention all passengers. Due to scheduled maintenance work, the express train to Central Station will be delayed by approximately twenty minutes. We apologize for any inconvenience this may cause. Passengers traveling to the downtown area may wish to consider taking the local bus service, which departs from Platform B every ten minutes. Thank you for your patience and understanding."
-            }
-          },
-          {
-            type: "describe-picture",
-            label: "Describe a Picture",
-            content: {
-              imageUrl: "",
-              imagePlaceholder: "🏢 Office meeting scene",
-              prompt: "Describe the picture in as much detail as you can."
-            }
-          },
-          {
-            type: "opinion",
-            label: "Express an Opinion",
-            content: {
-              prompt: "Do you agree or disagree with the following statement? Companies should allow employees to work from home at least two days a week. Give specific reasons and examples to support your opinion."
-            }
-          }
-        ]
-      },
-      {
-        date: "[HW Day 01] 04/08",
-        parts: [
-          {
-            type: "read-aloud",
-            label: "Read a Text Aloud",
-            content: {
-              passage: "Welcome to the grand opening of our newest branch location. We're thrilled to bring our services closer to the residents of this wonderful community. To celebrate, we're offering special opening week discounts of up to thirty percent on all products. Please feel free to explore our store and don't hesitate to ask any of our friendly staff members if you need assistance."
-            }
-          },
-          {
-            type: "respond-questions",
-            label: "Respond to Questions",
-            content: {
-              question: "Imagine that a marketing firm is doing research in your area. You have agreed to participate in a telephone interview about shopping habits.\n\nQuestion: How often do you go shopping, and where do you usually shop?"
-            }
-          },
-          {
-            type: "opinion",
-            label: "Express an Opinion",
-            content: {
-              prompt: "Some people prefer to shop at large department stores, while others prefer small local shops. Which do you prefer and why? Use specific reasons and details to support your answer."
-            }
-          }
-        ]
-      }
     ],
     lesson: [
       {

@@ -8,7 +8,7 @@
   // --- Theme Logic ---
   const themeToggle = document.getElementById('themeToggle');
   const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-  
+
   const currentTheme = localStorage.getItem('theme');
   if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
     document.body.classList.add('dark-theme');
@@ -80,117 +80,6 @@
   let audioPlayers = {}; // { partIndex: playerInstance }
   let audioPoller = null;
 
-  // ============================
-  //  Auth Logic
-  // ============================
-  const VALID_USER_IDS = Array.from({ length: 16 }, (_, i) => `S129-${String(i + 1).padStart(2, '0')}`);
-  const SESSION_DURATION = 15 * 60 * 1000; // 15 minutes
-
-  function getSessionData() {
-    return JSON.parse(localStorage.getItem('toeic_session'));
-  }
-
-  function showNotification(message) {
-    const container = document.getElementById('notificationContainer');
-    if (!container) return;
-    
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.innerHTML = `
-      <div class="toast-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-        </svg>
-      </div>
-      <div class="toast-message">${message}</div>
-    `;
-    
-    container.appendChild(toast);
-    
-    // Auto remove
-    setTimeout(() => {
-      toast.classList.add('fade-out');
-      setTimeout(() => toast.remove(), 500);
-    }, 2500);
-  }
-
-  function checkAuth(shouldPrompt = false, requiredClass = null) {
-    const session = getSessionData();
-    const loginOverlay = document.getElementById('loginOverlay');
-    const app = document.querySelector('.app');
-    
-    if (!loginOverlay || !app) return false;
-
-    const isValid = session && (Date.now() - session.timestamp < SESSION_DURATION);
-
-    if (isValid) {
-      if (requiredClass) {
-        const userPrefix = session.userId.split('-')[0];
-        if (userPrefix !== requiredClass) {
-          showNotification("This is not your class");
-          return false;
-        }
-      }
-      loginOverlay.classList.add('hidden');
-      app.classList.remove('is-blurred');
-      return true;
-    } else {
-      if (shouldPrompt) {
-        loginOverlay.classList.remove('hidden');
-        app.classList.add('is-blurred');
-      } else {
-        loginOverlay.classList.add('hidden');
-        app.classList.remove('is-blurred');
-      }
-      localStorage.removeItem('toeic_session');
-      return false;
-    }
-  }
-
-  const UNLOCKED_SVG = `
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-    <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
-  `;
-
-  window.handleLogin = function() {
-    const input = document.getElementById('passwordInput');
-    const error = document.getElementById('loginError');
-    const btn = document.getElementById('loginBtn');
-    const lockIcon = document.getElementById('lockIcon');
-    const userId = input.value.trim().toUpperCase();
-
-    // Reset states
-    btn.classList.remove('error', 'success');
-    error.style.display = 'none';
-
-    if (VALID_USER_IDS.includes(userId)) {
-      localStorage.setItem('toeic_session', JSON.stringify({
-        userId: userId,
-        timestamp: Date.now()
-      }));
-      
-      // Visual feedback
-      btn.classList.add('success');
-      lockIcon.innerHTML = UNLOCKED_SVG;
-      
-      setTimeout(() => {
-        checkAuth();
-        input.value = '';
-        if (window.pendingRender) {
-          window.pendingRender();
-          window.pendingRender = null;
-        }
-      }, 600);
-    } else {
-      // Error feedback
-      btn.classList.add('error');
-      error.style.display = 'block';
-      setTimeout(() => btn.classList.remove('error'), 400);
-    }
-  };
-
-  // Check auth periodically
-  setInterval(checkAuth, 60000); // Every minute
 
   // Response times per question type (in seconds)
   const RESPONSE_TIMES = {
@@ -317,7 +206,7 @@
   function clearAllTimers() {
     for (const key in timers) {
       if (timers[key].interval) clearInterval(timers[key].interval);
-      
+
       const display = document.getElementById(`timer-display-${key}`);
       const valueEl = document.getElementById(`timer-value-${key}`);
       if (display && valueEl && currentParts[key]) {
@@ -356,10 +245,6 @@
   //  Homework Selection
   // ============================
   window.selectHomework = function (className, date) {
-    if (!checkAuth(true, className)) {
-      window.pendingRender = () => selectHomework(className, date);
-      return;
-    }
     clearActiveEntries();
     clearAllTimers();
     const entry = document.getElementById(`entry-${className}-homework-${date}`);
@@ -384,10 +269,6 @@
   //  Lesson Selection
   // ============================
   window.selectLesson = function (className, date) {
-    if (!checkAuth(true, className)) {
-      window.pendingRender = () => selectLesson(className, date);
-      return;
-    }
     clearActiveEntries();
     clearAllTimers();
     const entry = document.getElementById(`entry-${className}-lesson-${date}`);
@@ -580,9 +461,9 @@
         return `
           <div class="picture-container">
             ${part.content.imageUrl
-              ? `<img src="${part.content.imageUrl}" alt="Write about this picture">`
-              : `<div style="display:flex;align-items:center;justify-content:center;height:200px;font-size:48px;">${part.content.imagePlaceholder || '🖼️'}</div>`
-            }
+            ? `<img src="${part.content.imageUrl}" alt="Write about this picture">`
+            : `<div style="display:flex;align-items:center;justify-content:center;height:200px;font-size:48px;">${part.content.imagePlaceholder || '🖼️'}</div>`
+          }
           </div>
           ${part.content.words ? `<div class="reading-passage"><strong>Words to use:</strong> ${part.content.words.join(', ')}</div>` : ''}
         `;
@@ -638,14 +519,14 @@
   function startPrepTimer(index, prepTime, responseTime) {
     const display = document.getElementById(`timer-display-${index}`);
     const valueEl = document.getElementById(`timer-value-${index}`);
-    
-    timers[index] = { 
-      remaining: prepTime, 
-      running: true, 
-      interval: null, 
-      stage: 'prep' 
+
+    timers[index] = {
+      remaining: prepTime,
+      running: true,
+      interval: null,
+      stage: 'prep'
     };
-    
+
     display.classList.add('running', 'prep-stage');
     display.classList.remove('finished');
     display.style.setProperty('--progress', '100%');
@@ -668,7 +549,7 @@
   function resumePrepTimer(index, prepTime, responseTime) {
     const display = document.getElementById(`timer-display-${index}`);
     const valueEl = document.getElementById(`timer-value-${index}`);
-    
+
     timers[index].running = true;
     display.classList.add('running', 'prep-stage');
 
@@ -689,14 +570,14 @@
   function startResponseTimer(index, responseTime, totalResponseTime) {
     const display = document.getElementById(`timer-display-${index}`);
     const valueEl = document.getElementById(`timer-value-${index}`);
-    
-    timers[index] = { 
-      remaining: responseTime, 
-      running: true, 
-      interval: null, 
-      stage: 'response' 
+
+    timers[index] = {
+      remaining: responseTime,
+      running: true,
+      interval: null,
+      stage: 'response'
     };
-    
+
     display.classList.add('running');
     display.classList.remove('prep-stage', 'finished');
     display.style.setProperty('--progress', '100%');
@@ -721,7 +602,7 @@
   function resumeResponseTimer(index, totalResponseTime) {
     const display = document.getElementById(`timer-display-${index}`);
     const valueEl = document.getElementById(`timer-value-${index}`);
-    
+
     timers[index].running = true;
     display.classList.add('running');
 
@@ -759,7 +640,7 @@
     currentPart = index;
     cardTrack.style.transform = `translateX(calc(-${index * 100}% - ${index * 32}px))`;
     updatePaginationDots();
-    
+
     // Pause all audio when moving away from a part
     Object.values(audioPlayers).forEach(p => {
       if (p && p.pauseVideo) p.pauseVideo();
@@ -890,7 +771,7 @@
     const dropdown = type === 'homework' ? homeworkDropdown : lessonDropdown;
     const items = CLASSES_DATA[activeClass][type];
     const currentDate = type === 'homework' ? dateBadge.textContent : lessonDateBadge.textContent;
-    
+
     let html = '';
     items.forEach(item => {
       html += `
@@ -903,7 +784,7 @@
     dropdown.innerHTML = html;
   }
 
-  window.handleDropdownSelect = function(className, type, date) {
+  window.handleDropdownSelect = function (className, type, date) {
     if (type === 'homework') selectHomework(className, date);
     else selectLesson(className, date);
     closeAllDropdowns();
@@ -937,7 +818,7 @@
   document.addEventListener('click', () => {
     closeAllDropdowns();
   });
-  
+
   // ============================
   //  Audio Control Logic (Enhanced)
   // ============================
@@ -986,7 +867,7 @@
     return match ? parseInt(match[1]) : 0;
   }
 
-  window.toggleAudio = function(index) {
+  window.toggleAudio = function (index) {
     const player = audioPlayers[index];
     if (!player) return;
 
@@ -998,7 +879,7 @@
     }
   };
 
-  window.seekAudio = function(index, value) {
+  window.seekAudio = function (index, value) {
     const player = audioPlayers[index];
     if (!player) return;
     const duration = player.getDuration();
@@ -1046,12 +927,6 @@
   // ============================
   //  Initialize
   // ============================
-  checkAuth();
-  document.getElementById('loginBtn').addEventListener('click', handleLogin);
-  document.getElementById('passwordInput').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') handleLogin();
-  });
-
   renderSidebar();
 
 })();
