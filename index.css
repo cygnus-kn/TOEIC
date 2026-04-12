@@ -1273,9 +1273,10 @@ body.dark-theme .dropdown-menu {
   }
 
   .sidebar:not(.collapsed) {
-    width: 85% !important;
+    width: fit-content !important;
+    min-width: 160px !important;
+    max-width: 80% !important;
     z-index: 2005;
-    box-shadow: 20px 0 50px rgba(0,0,0,0.3);
   }
 }
 
