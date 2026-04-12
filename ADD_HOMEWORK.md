@@ -117,6 +117,9 @@ A full speaking homework day has **9 parts** in this fixed order:
 ```
 > Use `\n- ` to create bullet list items. They render as `<ul><li>` in the app.
 
+> [!IMPORTANT]
+> Q5-7 questions in the workbook are often preceded by an intro scenario (e.g. *"Imagine that a company is doing research..."*). **Always remove this intro sentence.** Only include the actual question text itself in the `question` field.
+
 #### `respond-info-q`
 ```js
 {
@@ -288,6 +291,8 @@ A full writing homework day has **8 parts** in this fixed order:
   }
 }
 ```
+> The app automatically prepends a bold **"Essay:"** label when the `label` is `"Write an Opinion Essay"`.  
+> **Never add "Essay:" manually to the `prompt` text.** For Speaking Q11 (`"Express an Opinion"`), no label is shown.
 
 ---
 
