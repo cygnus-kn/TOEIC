@@ -231,13 +231,13 @@ function renderPartContent(part) {
         ${part.content.question ? `
           <div class="reveal-section">
             <button class="reveal-btn" onclick="const q = this.nextElementSibling; q.classList.toggle('visible'); this.textContent = q.classList.contains('visible') ? 'Hide Questions' : 'Reveal Questions'">Reveal Questions</button>
-            <div class="question-text reveal-content" style="text-align:left; font-size:16px;">${part.content.question.replace(/\\n/g, '<br>')}</div>
+            <div class="question-text reveal-content" style="text-align:left; font-size:16px;">${part.content.question.replace(/\n/g, '<br>')}</div>
           </div>
         ` : ''}
       `;
 
     case 'opinion':
-      return `<div class="opinion-prompt">${part.content.prompt.replace(/\\n/g, '<br>')}</div>`;
+      return `<div class="opinion-prompt">${part.content.prompt.replace(/\n/g, '<br>')}</div>`;
 
     case 'email-response':
       return `
@@ -247,7 +247,7 @@ function renderPartContent(part) {
             <div><strong>To:</strong> ${part.content.to}</div>
             <div><strong>Subject:</strong> ${part.content.subject}</div>
           </div>
-          <div class="email-body">${part.content.body.replace(/\\n/g, '<br>')}</div>
+          <div class="email-body">${part.content.body.replace(/\n/g, '<br>')}</div>
         </div>
         <p class="email-instruction">${part.content.instruction}</p>
       `;
@@ -352,7 +352,7 @@ function renderLesson(lesson) {
       html += `
         <li class="structure-item">
           <div class="structure-pattern">${s.pattern}</div>
-          <div class="structure-example">${s.example.replace(/\\n/g, '<br>')}</div>
+          <div class="structure-example">${s.example.replace(/\n/g, '<br>')}</div>
         </li>
       `;
     });

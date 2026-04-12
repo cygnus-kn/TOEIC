@@ -90,10 +90,10 @@ function updateAudioProgress() {
     const seeker = document.getElementById(`seeker-${index}`);
     const timeDisplay = document.getElementById(`time-${index}`);
 
-    if (player && player.getPlayerState && player.getPlayerState() === YT.PlayerState.PLAYING) {
-      const current = player.getCurrentTime();
+    if (player && typeof player.getDuration === 'function') {
       const duration = player.getDuration();
       if (duration > 0) {
+        const current = player.getCurrentTime();
         const percent = (current / duration) * 100;
         if (seeker) seeker.value = percent;
         if (timeDisplay) {
