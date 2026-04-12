@@ -594,8 +594,9 @@ body.dark-theme .class-header:hover {
   padding: 5px 14px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: 24px;
   font-size: 13px;
+
   font-weight: 600;
   color: var(--color-text-primary);
   letter-spacing: 0.3px;
@@ -683,7 +684,7 @@ body.dark-theme .dropdown-menu {
   display: flex;
   align-items: center;
   gap: 32px;
-  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 400ms cubic-bezier(0.25, 0.1, 0.1, 1);
   will-change: transform;
   height: 100%;
 }
@@ -1247,30 +1248,143 @@ body.dark-theme .dropdown-menu {
 @media (max-width: 600px) {
   .main {
     padding: var(--space-lg);
+    padding-top: 20px;
     margin: 12px;
     width: calc(100% - 24px);
-    /* Keep a bit of top padding to avoid icons covering card text since main padding is reduced */
-    padding-top: 60px; 
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Allow body/app to scroll on mobile */
+  body, .app {
+    overflow: unset;
+    height: auto;
+    min-height: 100dvh;
   }
 
   .card-container {
     padding: 0;
     max-width: 100%;
+    flex: none;      /* Don't stretch to fill remaining height */
+    height: auto;    /* Let card grow naturally */
+    overflow: visible;
+  }
+
+  .card-track {
+    height: auto;    /* Allow track to be as tall as the card */
+    align-items: flex-start;
   }
 
   .part-card {
-    zoom: 0.88; 
+    zoom: 0.88;
     border-radius: 20px;
+    max-height: none; /* Card grows freely */
+    overflow: hidden; /* Must stay hidden to clip the header and preserve rounded corners */
   }
+
+  .homework-viewer {
+    width: 100%;
+    flex: none;
+    min-height: 0;
+    gap: 16px; /* Space between badge and card */
+  }
+
+
 
   .card-header-bar { padding: 10px 16px; }
   .card-body { padding: 14px; }
   .card-footer { padding: 0 16px 16px; }
 
+  /* Welcome state: fill remaining space and center itself,
+     independent of the parent's flex-start alignment */
+  .welcome-state {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh; /* Fallback: always center vertically in viewport */
+  }
+
   .reading-passage, .question-text {
     font-size: 16px;
     line-height: 1.5;
   }
+
+  /* Align the date badge to the top-left of the card on mobile */
+  .viewer-header {
+    justify-content: flex-start;
+    margin-bottom: 0;
+    margin-top: 70px;
+    padding-left: 2px;
+  }
+
+
+  .date-badge {
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 20px;
+  }
+
+  /* Fix top bar layout — sidebar button position is set by .main-top-bar */
+  .main-top-bar {
+    top: 20px;
+  }
+
+  /* Theme toggle center must match sidebar button center:
+     Sidebar center = 20 + 38/2 = 39px from screen top
+     Toggle top = 39 - 32/2 = 23px  */
+  .theme-toggle-wrapper {
+    top: 23px;
+  }
+
+  /* Match internal sidebar button to same 38px size */
+  .sidebar-control-btn {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+
+  .sidebar-toggle-btn svg,
+  .sidebar-control-btn svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .theme-toggle {
+    height: 32px !important;
+    width: 60px !important;
+  }
+
+  .toggle-knob {
+    width: 26px !important;
+    height: 26px !important;
+    top: 3px !important;
+    left: 3px !important;
+  }
+
+  body.dark-theme .toggle-knob {
+    transform: translateX(28px) !important; /* Move to (60 - 26 - 3) - 3 = 28px */
+  }
+
+  /* Fix pagination dots to bottom of screen — thumb zone */
+  .pagination {
+    position: fixed;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    padding: 12px 0;
+    z-index: 100;
+    /* Slight frosted glass so it stays readable over any content */
+    background: transparent;
+  }
+
+  /* Dots: keep original 8px size, just fix to bottom */
 
   .sidebar:not(.collapsed) {
     width: fit-content !important;
