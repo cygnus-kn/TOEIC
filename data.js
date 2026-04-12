@@ -6,27 +6,29 @@ const CLASSES_DATA = {
   S129: {
     homework: [
       {
-        date: "[HW Day 03] 04/12",
+        date: "[HW Day 04] 04/13",
         parts: [
           {
             type: "read-aloud",
             label: "Read a Text Aloud",
+            questionLabel: "Questions 1-2",
             content: {
-              passage: "Thank you for joining the number one source for your local weather forecast. It seems like Richmond will be having a rainy weekend. Make sure to gear up with an umbrella, a rain coat or rainboots when going outdoors this weekend. Stay tuned for sports news after hearing a word from our sponsor."
+              passage: "Thank you for tuning into the Daily Cup of Tea podcast. It’s Friday, and as always, we have invited a special guest on our show to spill the tea on what has happened this week. Please welcome a veteran journalist, a published author and a marketing specialist, Cindy Wagner, who is joining us live at the studio today."
             }
           },
           {
             type: "read-aloud",
             label: "Read a Text Aloud",
+            questionLabel: "Questions 1-2",
             content: {
-              passage: "Ladies and gentlemen, welcome to the grand opening of The Taco Joint. We started off as a food truck in Fresno in 2011. Thanks to all of you, we now have a store here on the Fifth Street. I just hope that we could provide locals with good food, drinks and snacks for years to come. Make sure to come by The Taco Joint when you feel like having some authentic Mexican food."
+              passage: "You are watching the Evening Traffic Updates on Channel Eleven. There has been a crash on Turnpike Avenue near Danes Boulevard causing extreme rush hour traffic. It is reported that a large truck, a sedan and a bus are involved in this accident so it might take a while to clear out the roads. Drivers are advised to take a detour to avoid traffic."
             }
           },
           {
             type: "describe-picture",
             label: "Describe a Picture",
             content: {
-              imageUrl: "1.png",
+              imageUrl: "Test Data/Pictures/GwenTV-02-2023-picture-1.png",
               imagePlaceholder: "🖼️ Picture 1",
               prompt: "Describe the picture in as much detail as you can."
             }
@@ -35,7 +37,7 @@ const CLASSES_DATA = {
             type: "describe-picture",
             label: "Describe a Picture",
             content: {
-              imageUrl: "2.png",
+              imageUrl: "Test Data/Pictures/GwenTV-02-2023-picture-2.png",
               imagePlaceholder: "🖼️ Picture 2",
               prompt: "Describe the picture in as much detail as you can."
             }
@@ -43,6 +45,91 @@ const CLASSES_DATA = {
           {
             type: "respond-questions",
             label: "Respond to Questions",
+            questionLabel: "Questions 5-7",
+            responseTime: 15,
+            content: {
+              question: "When was the last time you visited a new city who did you go there with?"
+            }
+          },
+          {
+            type: "respond-questions",
+            label: "Respond to Questions",
+            questionLabel: "Questions 5-7",
+            responseTime: 15,
+            content: {
+              question: "When you visit a new city would you prefer to stay at a hotel or find a place where you could stay with your friends and family?"
+            }
+          },
+          {
+            type: "respond-questions",
+            label: "Respond to Questions",
+            questionLabel: "Questions 5-7",
+            responseTime: 30,
+            content: {
+              question: "Which of the following activities do you think you must try when visiting a new city?\n- Eating at a local restaurant\n- Shopping in the neighborhood\n- Going on a guided tour"
+            }
+          },
+          {
+            type: "respond-info-q",
+            label: "Questions 8-10: Respond to Information",
+            questionLabel: "Questions 8-10",
+            content: {
+              imageUrl: "Test Data/Pictures/GwenTV-02-2023-picture-3.png",
+              videoUrl: "https://www.youtube.com/embed/kmHuOysUsyM?start=628&enablejsapi=1",
+              question: "Question 8: Where will the interviews take place what time will the first interview start?\n\nQuestion 9: I was told that there are two applicants who are applying for the product manager position. Is that right?\n\nQuestion 10: Can you tell me about the applicants who are applying for the receptionist position?"
+            }
+          },
+          {
+            type: "opinion",
+            label: "Express an Opinion",
+            questionLabel: "Question 11",
+            content: {
+              prompt: "Do you prefer to keep your old clothes or books that you don't use anymore instead of getting rid of them? Why?"
+            }
+          }
+        ]
+      },
+      {
+        date: "[HW Day 03] 04/12",
+        parts: [
+          {
+            type: "read-aloud",
+            label: "Read a Text Aloud",
+            questionLabel: "Questions 1-2",
+            content: {
+              passage: "Thank you for joining the number one source for your local weather forecast. It seems like Richmond will be having a rainy weekend. Make sure to gear up with an umbrella, a rain coat or rainboots when going outdoors this weekend. Stay tuned for sports news after hearing a word from our sponsor."
+            }
+          },
+          {
+            type: "read-aloud",
+            label: "Read a Text Aloud",
+            questionLabel: "Questions 1-2",
+            content: {
+              passage: "Ladies and gentlemen, welcome to the grand opening of The Taco Joint. We started off as a food truck in Fresno in 2011. Thanks to all of you, we now have a store here on the Fifth Street. I just hope that we could provide locals with good food, drinks and snacks for years to come. Make sure to come by The Taco Joint when you feel like having some authentic Mexican food."
+            }
+          },
+          {
+            type: "describe-picture",
+            label: "Describe a Picture",
+            content: {
+              imageUrl: "Test Data/Pictures/GwenTV-01-2023-picture-1.png",
+              imagePlaceholder: "🖼️ Picture 1",
+              prompt: "Describe the picture in as much detail as you can."
+            }
+          },
+          {
+            type: "describe-picture",
+            label: "Describe a Picture",
+            content: {
+              imageUrl: "Test Data/Pictures/GwenTV-01-2023-picture-2.png",
+              imagePlaceholder: "🖼️ Picture 2",
+              prompt: "Describe the picture in as much detail as you can."
+            }
+          },
+          {
+            type: "respond-questions",
+            label: "Respond to Questions",
+            questionLabel: "Questions 5-7",
             responseTime: 15,
             content: {
               question: "What was your first ever job how long did you do it for?"
@@ -51,6 +138,7 @@ const CLASSES_DATA = {
           {
             type: "respond-questions",
             label: "Respond to Questions",
+            questionLabel: "Questions 5-7",
             responseTime: 15,
             content: {
               question: "Do you prefer to work during the daytime or during the night time? Why?"
@@ -59,6 +147,8 @@ const CLASSES_DATA = {
           {
             type: "respond-questions",
             label: "Respond to Questions",
+            questionLabel: "Questions 5-7",
+            responseTime: 30,
             content: {
               question: "What are some advantages of working in a busy city rather than working in a quiet area?"
             }
@@ -68,7 +158,7 @@ const CLASSES_DATA = {
             label: "Questions 8-10: Respond to Information",
             questionLabel: "Questions 8-10",
             content: {
-              imageUrl: "3.png",
+              imageUrl: "Test Data/Pictures/GwenTV-01-2023-picture-3.png",
               videoUrl: "https://www.youtube.com/embed/3jmaksYCoxQ?start=618&enablejsapi=1",
               question: "Question 8: What time will the orientation start and end?\n\nQuestion 9: Will I have to bring my own lunch?\n\nQuestion 10: Can you tell me the details of the session that I will be leading?"
             }

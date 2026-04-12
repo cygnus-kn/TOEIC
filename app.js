@@ -70,30 +70,6 @@
     }
   });
   // -------------------
-  // Mobile Sidebar Handling
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      sidebar.classList.toggle('mobile-open');
-    });
-  }
-
-  function handleMobileSelection() {
-    if (window.innerWidth <= 768) {
-      sidebar.classList.remove('mobile-open');
-    }
-  }
-
-  document.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768 && 
-        sidebar.classList.contains('mobile-open') && 
-        !sidebar.contains(e.target) && 
-        (mobileMenuBtn && !mobileMenuBtn.contains(e.target))) {
-      sidebar.classList.remove('mobile-open');
-    }
-  });
-  // -------------------
 
   // State
   let currentPart = 0;
@@ -521,7 +497,34 @@
         `;
 
       case 'respond-questions':
-        return `<div class="question-text">${part.content.question.replace(/\n/g, '<br>')}</div>`;
+        const qText = part.content.question;
+        const lines = qText.split('\n');
+        let htmlContent = '';
+        let inList = false;
+
+        lines.forEach(line => {
+          const trimmedLine = line.trim();
+          if (trimmedLine.startsWith('- ')) {
+            if (!inList) {
+              htmlContent += '<ul>';
+              inList = true;
+            }
+            htmlContent += `<li>${trimmedLine.substring(2)}</li>`;
+          } else {
+            if (inList) {
+              htmlContent += '</ul>';
+              inList = false;
+            }
+            if (trimmedLine === '') {
+              htmlContent += '<br>';
+            } else {
+              htmlContent += `<div>${trimmedLine}</div>`;
+            }
+          }
+        });
+
+        if (inList) htmlContent += '</ul>';
+        return `<div class="question-text">${htmlContent}</div>`;
 
       case 'respond-info':
         let tableHtml = '<table class="info-block"><thead><tr>';
