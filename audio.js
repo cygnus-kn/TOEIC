@@ -68,6 +68,13 @@ window.seekAudio = function (index, value) {
   player.seekTo(seekTo, true);
 };
 
+window.seekBy = function (index, seconds) {
+  const player = audioPlayers[index];
+  if (!player || typeof player.getCurrentTime !== 'function') return;
+  const currentTime = player.getCurrentTime();
+  player.seekTo(currentTime + seconds, true);
+};
+
 function onPlayerStateChange(index, event) {
   const btn = document.getElementById(`audio-btn-${index}`);
   if (!btn) return;

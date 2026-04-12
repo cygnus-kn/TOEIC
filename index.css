@@ -897,6 +897,7 @@ body.dark-theme .dropdown-menu {
   border-radius: 50%;
   transition: all var(--transition-fast);
   flex-shrink: 0;
+  align-self: center;
   margin-bottom: 14px;
 }
 

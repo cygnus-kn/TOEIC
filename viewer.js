@@ -301,31 +301,7 @@ function updatePaginationDots() {
   });
 }
 
-// ============================
-//  Trackpad Swipe Navigation
-// ============================
-let swipeCooldown = false;
-
-cardContainer.addEventListener('wheel', (e) => {
-  if (e.ctrlKey) return; // Allow trackpad pinch-to-zoom shortcuts
-  if (swipeCooldown || currentParts.length <= 1) return;
-
-  // Use deltaX (horizontal scroll) primarily, fall back to deltaY
-  const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-
-  if (Math.abs(delta) < 15) return; // ignore tiny movements
-
-  e.preventDefault();
-  swipeCooldown = true;
-
-  if (delta > 0 && currentPart < currentParts.length - 1) {
-    window.goToPart(currentPart + 1);
-  } else if (delta < 0 && currentPart > 0) {
-    window.goToPart(currentPart - 1);
-  }
-
-  setTimeout(() => { swipeCooldown = false; }, 400);
-}, { passive: false });
+// Trackpad Swipe Navigation removed per user request to only allow arrow keys.
 
 // ============================
 //  Lesson Rendering
@@ -368,6 +344,20 @@ function renderLesson(lesson) {
 // ============================
 document.addEventListener('keydown', (e) => {
   if (homeworkViewer.style.display !== 'none') {
+    // Handle Shift + Arrows for seeking audio
+    if (e.shiftKey) {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (typeof window.seekBy === 'function') window.seekBy(currentPart, 1);
+        return;
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (typeof window.seekBy === 'function') window.seekBy(currentPart, -1);
+        return;
+      }
+    }
+
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       e.preventDefault();
       if (currentPart < currentParts.length - 1) goToPart(currentPart + 1);
