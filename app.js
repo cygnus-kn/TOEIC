@@ -5,9 +5,8 @@ const themeToggle = document.getElementById('themeToggle');
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
 const currentTheme = localStorage.getItem('theme');
-if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
-  document.body.classList.add('dark-theme');
-}
+
+// Initial theme application is now handled by an inline script in index.html to prevent FOUC
 
 themeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-theme');

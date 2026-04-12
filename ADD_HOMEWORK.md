@@ -1,0 +1,381 @@
+# How to Add Homework to data.js
+
+This guide explains how to add a new homework day for **any class** to `data.js`.
+Read the user's prompt to determine: the **class ID**, the **test type** (Speaking or Writing), and the **content** for each question.
+
+---
+
+## 1. Where to Add It
+
+Open `data.js`. Find the class entry by its ID inside `CLASSES_DATA`:
+
+```js
+const CLASSES_DATA = {
+  CLASS_ID: {
+    homework: [
+      // ← INSERT NEW ENTRY HERE (newest first)
+    ],
+    lesson: [ ... ]
+  }
+}
+```
+
+> If the class ID does not exist yet, create a new entry following the same shape as an existing one.  
+> New homework entries always go at the **top** of the `homework` array.
+
+---
+
+## 2. Date Format
+
+```js
+date: "[HW Day XX] MM/DD"
+```
+
+Example: `"[HW Day 05] 04/15"`
+
+---
+
+## 3. Two Test Types
+
+TOEIC homework comes in two types. Identify which one the user is providing:
+
+| Test Type    | Parts per Day | Question Numbers             |
+| ------------ | ------------- | ---------------------------- |
+| **Speaking** | 9 parts       | Q1–2, Q3–4, Q5–7, Q8–10, Q11 |
+| **Writing**  | 8 parts       | Q1–5, Q6–7, Q8               |
+
+---
+
+## ══════════════════════════
+## SPEAKING HOMEWORK
+## ══════════════════════════
+
+A full speaking homework day has **9 parts** in this fixed order:
+
+| #   | Type                | Label                                  | questionLabel      | responseTime    |
+| --- | ------------------- | -------------------------------------- | ------------------ | --------------- |
+| 1   | `read-aloud`        | Read a Text Aloud                      | `"Questions 1-2"`  | —               |
+| 2   | `read-aloud`        | Read a Text Aloud                      | `"Questions 1-2"`  | —               |
+| 3   | `describe-picture`  | Describe a Picture                     | —                  | —               |
+| 4   | `describe-picture`  | Describe a Picture                     | —                  | —               |
+| 5   | `respond-questions` | Respond to Questions                   | `"Questions 5-7"`  | `15`            |
+| 6   | `respond-questions` | Respond to Questions                   | `"Questions 5-7"`  | `15`            |
+| 7   | `respond-questions` | Respond to Questions                   | `"Questions 5-7"`  | `30`            |
+| 8   | `respond-info-q`    | Questions 8-10: Respond to Information | `"Questions 8-10"` | —               |
+| 9   | `opinion`           | Express an Opinion                     | `"Question 11"`    | `60` (optional) |
+
+---
+
+### Speaking Part Schemas
+
+#### `read-aloud`
+```js
+{
+  type: "read-aloud",
+  label: "Read a Text Aloud",
+  questionLabel: "Questions 1-2",
+  content: {
+    passage: "Full passage text here."
+  }
+}
+```
+
+#### `describe-picture`
+```js
+{
+  type: "describe-picture",
+  label: "Describe a Picture",
+  content: {
+    imageUrl: "test-data/speaking-pictures/FILENAME.png",  // path relative to project root
+    imagePlaceholder: "🖼️ Picture 1",            // fallback label if image missing
+    prompt: "Describe the picture in as much detail as you can."
+  }
+}
+```
+
+#### `respond-questions`
+```js
+// Parts 5 & 6 — short answer
+{
+  type: "respond-questions",
+  label: "Respond to Questions",
+  questionLabel: "Questions 5-7",
+  responseTime: 15,
+  content: { question: "Question text here." }
+}
+
+// Part 7 — longer answer, may have bullet options
+{
+  type: "respond-questions",
+  label: "Respond to Questions",
+  questionLabel: "Questions 5-7",
+  responseTime: 30,
+  content: {
+    question: "Which of the following do you prefer?\n- Option A\n- Option B\n- Option C"
+  }
+}
+```
+> Use `\n- ` to create bullet list items. They render as `<ul><li>` in the app.
+
+#### `respond-info-q`
+```js
+{
+  type: "respond-info-q",
+  label: "Questions 8-10: Respond to Information",
+  questionLabel: "Questions 8-10",
+  content: {
+    imageUrl: "Test Data/Pictures/FILENAME.png",
+    videoUrl: "https://www.youtube.com/embed/VIDEO_ID?start=SECONDS&enablejsapi=1",
+    question: "Question 8: ...\n\nQuestion 9: ...\n\nQuestion 10: ..."
+  }
+}
+```
+> `start=` is in **seconds**. Convert from `m:ss` → `(minutes × 60) + seconds`.
+
+#### `opinion` (Speaking)
+```js
+{
+  type: "opinion",
+  label: "Express an Opinion",
+  questionLabel: "Question 11",
+  responseTime: 60,  // optional
+  content: {
+    prompt: "Opinion question goes here."
+  }
+}
+```
+
+---
+
+### Full Speaking Day Template
+
+```js
+{
+  date: "[HW Day XX] MM/DD",
+  parts: [
+    {
+      type: "read-aloud",
+      label: "Read a Text Aloud",
+      questionLabel: "Questions 1-2",
+      content: { passage: "PASSAGE 1" }
+    },
+    {
+      type: "read-aloud",
+      label: "Read a Text Aloud",
+      questionLabel: "Questions 1-2",
+      content: { passage: "PASSAGE 2" }
+    },
+    {
+      type: "describe-picture",
+      label: "Describe a Picture",
+      content: {
+        imageUrl: "test-data/speaking-pictures/FILENAME-picture-1.png",
+        imagePlaceholder: "🖼️ Picture 1",
+        prompt: "Describe the picture in as much detail as you can."
+      }
+    },
+    {
+      type: "describe-picture",
+      label: "Describe a Picture",
+      content: {
+        imageUrl: "test-data/speaking-pictures/FILENAME-picture-2.png",
+        imagePlaceholder: "🖼️ Picture 2",
+        prompt: "Describe the picture in as much detail as you can."
+      }
+    },
+    {
+      type: "respond-questions",
+      label: "Respond to Questions",
+      questionLabel: "Questions 5-7",
+      responseTime: 15,
+      content: { question: "Q5 TEXT" }
+    },
+    {
+      type: "respond-questions",
+      label: "Respond to Questions",
+      questionLabel: "Questions 5-7",
+      responseTime: 15,
+      content: { question: "Q6 TEXT" }
+    },
+    {
+      type: "respond-questions",
+      label: "Respond to Questions",
+      questionLabel: "Questions 5-7",
+      responseTime: 30,
+      content: { question: "Q7 TEXT\n- Option A\n- Option B\n- Option C" }
+    },
+    {
+      type: "respond-info-q",
+      label: "Questions 8-10: Respond to Information",
+      questionLabel: "Questions 8-10",
+      content: {
+        imageUrl: "test-data/speaking-pictures/FILENAME-picture-3.png",
+        videoUrl: "https://www.youtube.com/embed/VIDEO_ID?start=SECONDS&enablejsapi=1",
+        question: "Question 8: ...\n\nQuestion 9: ...\n\nQuestion 10: ..."
+      }
+    },
+    {
+      type: "opinion",
+      label: "Express an Opinion",
+      questionLabel: "Question 11",
+      responseTime: 60,
+      content: { prompt: "Q11 OPINION PROMPT" }
+    }
+  ]
+}
+```
+
+---
+
+## ══════════════════════════
+## WRITING HOMEWORK
+## ══════════════════════════
+
+A full writing homework day has **8 parts** in this fixed order:
+
+| #   | Type               | Label                               | questionLabel     | responseTime |
+| --- | ------------------ | ----------------------------------- | ----------------- | ------------ |
+| 1–5 | `sentence-picture` | Write a Sentence Based on a Picture | `"Questions 1-5"` | —            |
+| 6–7 | `email-response`   | Respond to a Written Request        | `"Questions 6-7"` | —            |
+| 8   | `opinion`          | Write an Opinion Essay              | `"Question 8"`    | `1800`       |
+
+---
+
+### Writing Part Schemas
+
+#### `sentence-picture` (×5, one per picture/word pair)
+```js
+{
+  type: "sentence-picture",
+  label: "Write a Sentence Based on a Picture",
+  questionLabel: "Questions 1-5",
+  content: {
+    imageUrl: "test-data/writing-pictures/FILENAME.jpg",  // path relative to project root
+    words: ["word1", "word2"]                              // two words students must use
+  }
+}
+```
+> No `responseTime`. No timer is shown for this type.
+
+#### `email-response` (×2, one per email prompt)
+```js
+{
+  type: "email-response",
+  label: "Respond to a Written Request",
+  questionLabel: "Questions 6-7",
+  content: {
+    from: "Sender Name",
+    to: "Recipient",
+    subject: "Subject Line",
+    sent: "Month DDth, H:MM A.M./P.M.",   // e.g. "March 17th, 2:10 P.M."
+    body: "Full email body text.",
+    instruction: "Respond to the e-mail as if you are X. In your e-mail, do Y and Z."
+  }
+}
+```
+> `sent` is optional but include it when provided.  
+> `instruction` renders below the email with a bold **"Direction:"** prefix automatically.
+
+#### `opinion` (Writing)
+```js
+{
+  type: "opinion",
+  label: "Write an Opinion Essay",
+  questionLabel: "Question 8",
+  responseTime: 1800,   // 30 minutes
+  content: {
+    prompt: "Essay topic/question here."
+  }
+}
+```
+
+---
+
+### Full Writing Day Template
+
+```js
+{
+  date: "[HW Day XX] MM/DD",
+  parts: [
+    {
+      type: "sentence-picture",
+      label: "Write a Sentence Based on a Picture",
+      questionLabel: "Questions 1-5",
+      content: { imageUrl: "test-data/writing-pictures/FILENAME-pic-1.jpg", words: ["word1", "word2"] }
+    },
+    {
+      type: "sentence-picture",
+      label: "Write a Sentence Based on a Picture",
+      questionLabel: "Questions 1-5",
+      content: { imageUrl: "test-data/writing-pictures/FILENAME-pic-2.jpg", words: ["word3", "word4"] }
+    },
+    {
+      type: "sentence-picture",
+      label: "Write a Sentence Based on a Picture",
+      questionLabel: "Questions 1-5",
+      content: { imageUrl: "test-data/writing-pictures/FILENAME-pic-3.jpg", words: ["word5", "word6"] }
+    },
+    {
+      type: "sentence-picture",
+      label: "Write a Sentence Based on a Picture",
+      questionLabel: "Questions 1-5",
+      content: { imageUrl: "test-data/writing-pictures/FILENAME-pic-4.jpg", words: ["word7", "word8"] }
+    },
+    {
+      type: "sentence-picture",
+      label: "Write a Sentence Based on a Picture",
+      questionLabel: "Questions 1-5",
+      content: { imageUrl: "test-data/writing-pictures/FILENAME-pic-5.jpg", words: ["word9", "word10"] }
+    },
+    {
+      type: "email-response",
+      label: "Respond to a Written Request",
+      questionLabel: "Questions 6-7",
+      content: {
+        from: "SENDER",
+        to: "RECIPIENT",
+        subject: "SUBJECT",
+        sent: "DATE, TIME",
+        body: "EMAIL BODY",
+        instruction: "Respond to the e-mail as if you are X. In your e-mail, do Y and Z."
+      }
+    },
+    {
+      type: "email-response",
+      label: "Respond to a Written Request",
+      questionLabel: "Questions 6-7",
+      content: {
+        from: "SENDER",
+        to: "RECIPIENT",
+        subject: "SUBJECT",
+        sent: "DATE, TIME",
+        body: "EMAIL BODY",
+        instruction: "Respond to the e-mail as if you are X. In your e-mail, ask TWO questions and make ONE request."
+      }
+    },
+    {
+      type: "opinion",
+      label: "Write an Opinion Essay",
+      questionLabel: "Question 8",
+      responseTime: 1800,
+      content: { prompt: "ESSAY TOPIC" }
+    }
+  ]
+}
+```
+
+---
+
+## Quick Reference
+
+| Need                     | Rule                                                                    |
+| ------------------------ | ----------------------------------------------------------------------- |
+| Where to insert          | Top of `homework: []` array (newest first)                              |
+| New class doesn't exist  | Create a new key in `CLASSES_DATA` with `homework: []` and `lesson: []` |
+| Image paths — Speaking   | `Test Data/Pictures/*.png`                                              |
+| Image paths — Writing    | `test-data/writing-pictures/*.jpg`                                      |
+| YouTube `start=`         | In seconds: `(minutes × 60) + seconds`                                  |
+| `responseTime` unit      | Always in **seconds**                                                   |
+| Bullet list in questions | Use `\n- Item` in the question string                                   |
+| Speaking opinion label   | `"Express an Opinion"`                                                  |
+| Writing opinion label    | `"Write an Opinion Essay"`                                              |

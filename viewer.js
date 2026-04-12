@@ -109,7 +109,7 @@ function renderCards() {
 
     // Footer with response timer or audio control
     const hasAudio = part.content && part.content.videoUrl;
-    const hasTimer = part.prepTime || part.responseTime || (part.type !== 'respond-info-q' && RESPONSE_TIMES[part.type]);
+    const hasTimer = part.type !== 'sentence-picture' && (part.prepTime || part.responseTime || (part.type !== 'respond-info-q' && RESPONSE_TIMES[part.type]));
 
     if (hasAudio || hasTimer) {
       html += `<div class="card-footer">`;
@@ -237,7 +237,7 @@ function renderPartContent(part) {
       `;
 
     case 'opinion':
-      return `<div class="opinion-prompt">${part.content.prompt.replace(/\n/g, '<br>')}</div>`;
+      return `<div class="opinion-prompt"><strong>Essay:</strong> ${part.content.prompt.replace(/\n/g, '<br>')}</div>`;
 
     case 'email-response':
       return `
@@ -246,10 +246,11 @@ function renderPartContent(part) {
             <div><strong>From:</strong> ${part.content.from}</div>
             <div><strong>To:</strong> ${part.content.to}</div>
             <div><strong>Subject:</strong> ${part.content.subject}</div>
+            ${part.content.sent ? `<div><strong>Sent:</strong> ${part.content.sent}</div>` : ''}
           </div>
           <div class="email-body">${part.content.body.replace(/\n/g, '<br>')}</div>
         </div>
-        <p class="email-instruction">${part.content.instruction}</p>
+        <p class="email-instruction"><strong>Direction:</strong> ${part.content.instruction}</p>
       `;
 
     case 'sentence-picture':
@@ -260,7 +261,7 @@ function renderPartContent(part) {
           : `<div style="display:flex;align-items:center;justify-content:center;height:200px;font-size:48px;">${part.content.imagePlaceholder || '🖼️'}</div>`
         }
         </div>
-        ${part.content.words ? `<div class="reading-passage"><strong>Words to use:</strong> ${part.content.words.join(', ')}</div>` : ''}
+        ${part.content.words ? `<div class="sentence-words">${part.content.words[0]} / ${part.content.words[1]}</div>` : ''}
       `;
 
     default:
