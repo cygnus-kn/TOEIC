@@ -35,22 +35,21 @@ Example: `"[HW Day 05] 04/15"`
 
 ---
 
-## 3. Two Test Types
+## 3. Test Types & Flexibility
 
-TOEIC homework comes in two types. Identify which one the user is providing:
+TOEIC homework usually follows one of two formats. However, **homework days are flexible**: you can provide partial sets (e.g., just Q1–2), mixed Speaking and Writing tasks, or even just a single part.
 
-| Test Type    | Parts per Day | Question Numbers             |
-| ------------ | ------------- | ---------------------------- |
-| **Speaking** | 9 parts       | Q1–2, Q3–4, Q5–7, Q8–10, Q11 |
-| **Writing**  | 8 parts       | Q1–5, Q6–7, Q8               |
+| test format  | standard Full Day | Question Numbers             |
+| ------------ | ----------------- | ---------------------------- |
+| **Speaking** | 9 parts           | Q1–2, Q3–4, Q5–7, Q8–10, Q11 |
+| **Writing**  | 8 parts           | Q1–5, Q6–7, Q8               |
 
 ---
 
 ## ══════════════════════════
 ## SPEAKING HOMEWORK
-## ══════════════════════════
 
-A full speaking homework day has **9 parts** in this fixed order:
+A standard speaking session typically follows this order, but can be customized with any number of parts (e.g., just Part 1 or a mix of Parts 1-4):
 
 | #   | Type                | Label                                  | questionLabel      | responseTime    |
 | --- | ------------------- | -------------------------------------- | ------------------ | --------------- |
@@ -127,7 +126,7 @@ A full speaking homework day has **9 parts** in this fixed order:
   label: "Questions 8-10: Respond to Information",
   questionLabel: "Questions 8-10",
   content: {
-    imageUrl: "Test Data/Pictures/FILENAME.png",
+    imageUrl: "test-data/speaking-pictures/FILENAME.png",
     videoUrl: "https://www.youtube.com/embed/VIDEO_ID?start=SECONDS&enablejsapi=1",
     question: "Question 8: ...\n\nQuestion 9: ...\n\nQuestion 10: ..."
   }
@@ -232,9 +231,8 @@ A full speaking homework day has **9 parts** in this fixed order:
 
 ## ══════════════════════════
 ## WRITING HOMEWORK
-## ══════════════════════════
 
-A full writing homework day has **8 parts** in this fixed order:
+A standard writing session typically follows this order (individual parts or mixed sets are also allowed):
 
 | #   | Type               | Label                               | questionLabel     | responseTime |
 | --- | ------------------ | ----------------------------------- | ----------------- | ------------ |
@@ -276,7 +274,7 @@ A full writing homework day has **8 parts** in this fixed order:
   }
 }
 ```
-> `sent` is optional but include it when provided.  
+> All metadata fields (`from`, `to`, `subject`, `sent`) are optional. Only include the fields that are provided in the test prompt.  
 > `instruction` renders below the email with a bold **"Direction:"** prefix automatically.
 
 #### `opinion` (Writing)
@@ -377,7 +375,7 @@ A full writing homework day has **8 parts** in this fixed order:
 | ------------------------ | ----------------------------------------------------------------------- |
 | Where to insert          | Top of `homework: []` array (newest first)                              |
 | New class doesn't exist  | Create a new key in `CLASSES_DATA` with `homework: []` and `lesson: []` |
-| Image paths — Speaking   | `Test Data/Pictures/*.png`                                              |
+| Image paths — Speaking   | `test-data/speaking-pictures/*.png`                                    |
 | Image paths — Writing    | `test-data/writing-pictures/*.jpg`                                      |
 | YouTube `start=`         | In seconds: `(minutes × 60) + seconds`                                  |
 | `responseTime` unit      | Always in **seconds**                                                   |
