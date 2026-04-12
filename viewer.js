@@ -249,9 +249,9 @@ function renderPartContent(part) {
       return `
         <div class="email-block">
           <div class="email-meta">
-            <div><strong>From:</strong> ${part.content.from}</div>
-            <div><strong>To:</strong> ${part.content.to}</div>
-            <div><strong>Subject:</strong> ${part.content.subject}</div>
+            ${part.content.from ? `<div><strong>From:</strong> ${part.content.from}</div>` : ''}
+            ${part.content.to ? `<div><strong>To:</strong> ${part.content.to}</div>` : ''}
+            ${part.content.subject ? `<div><strong>Subject:</strong> ${part.content.subject}</div>` : ''}
             ${part.content.sent ? `<div><strong>Sent:</strong> ${part.content.sent}</div>` : ''}
           </div>
           <div class="email-body">${part.content.body.replace(/\n/g, '<br>')}</div>
