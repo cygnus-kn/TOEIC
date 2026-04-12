@@ -1241,3 +1241,51 @@ body.dark-theme .dropdown-menu {
   opacity: 0.3;
 }
 
+/* ============================
+   Mobile Responsiveness
+   ============================ */
+@media (max-width: 600px) {
+  .main {
+    padding: var(--space-lg);
+    margin: 12px;
+    width: calc(100% - 24px);
+    /* Keep a bit of top padding to avoid icons covering card text since main padding is reduced */
+    padding-top: 60px; 
+  }
+
+  .card-container {
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .part-card {
+    zoom: 0.88; 
+    border-radius: 20px;
+  }
+
+  .card-header-bar { padding: 10px 16px; }
+  .card-body { padding: 14px; }
+  .card-footer { padding: 0 16px 16px; }
+
+  .reading-passage, .question-text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .sidebar:not(.collapsed) {
+    width: 85% !important;
+    z-index: 2005;
+    box-shadow: 20px 0 50px rgba(0,0,0,0.3);
+  }
+}
+
+@supports not (zoom: 1) {
+  @media (max-width: 600px) {
+    .part-card {
+       transform: scale(0.88);
+       transform-origin: center top;
+       margin-bottom: -15%;
+    }
+  }
+}
+
