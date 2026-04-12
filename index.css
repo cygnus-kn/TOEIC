@@ -109,17 +109,33 @@ body {
   width: var(--sidebar-width);
   min-width: 180px;
   max-width: 400px;
-  background: var(--sidebar-bg);
-  border: 1px solid var(--sidebar-border);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(50px) saturate(200%);
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
   margin: 16px;
-  margin-right: 0;
   height: calc(100vh - 32px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  position: relative;
-  transition: width var(--transition-smooth), min-width var(--transition-smooth);
+  position: absolute; /* Changed to overlay */
+  top: 0;
+  left: 0;
+  transition: all var(--transition-smooth);
+  z-index: 2000; /* Higher than main top bar */
+}
+
+body.dark-theme .sidebar {
+  background: rgba(20, 20, 20, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar.collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  transform: translateX(-100%);
+  opacity: 0;
 }
 
 .sidebar.resizing {
@@ -182,64 +198,128 @@ body {
   background: var(--color-text-tertiary);
 }
 
-/* Collapse button */
-.sidebar-collapse-btn {
-  background: none;
-  border: none;
-  color: var(--color-text-secondary);
+/* Main Top Bar */
+.main-top-bar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.sidebar-toggle-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
   cursor: pointer;
-  padding: 6px;
-  margin-left: -6px;
-  border-radius: var(--radius-sm);
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-smooth);
+  padding: 0;
   flex-shrink: 0;
-  transition: all var(--transition-fast);
 }
 
-.sidebar-collapse-btn svg {
-  width: 20px;
-  height: 20px;
+body:not(.dark-theme) .sidebar-toggle-btn {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: #000000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-.sidebar-collapse-btn:hover {
-  background: var(--color-surface-hover);
-  color: var(--color-text-primary);
+.sidebar-toggle-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.8;
+}
+
+.sidebar-toggle-btn:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+body:not(.dark-theme) .sidebar-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.sidebar-toggle-btn.inside {
+  /* Ensure identical to external */
+}
+
+/* Logic to show/hide buttons based on sidebar state */
+.sidebar.collapsed ~ .main .sidebar-toggle-btn {
+  display: flex !important;
+}
+
+.sidebar:not(.collapsed) ~ .main .sidebar-toggle-btn {
+  display: none !important;
+}
+
+.sidebar.collapsed .sidebar-toggle-btn.inside {
+  display: none !important;
+}
+
+.sidebar:not(.collapsed) .sidebar-toggle-btn.inside {
+  display: flex !important;
+}
+
+.theme-toggle-wrapper {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1001;
 }
 
 .sidebar-header {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-lg) var(--space-xl);
-  padding-top: var(--space-xl);
+  justify-content: flex-end; /* Moved back to right */
+  padding: 16px 16px 8px;
   flex-shrink: 0;
-  transition: all var(--transition-smooth);
 }
 
-.sidebar.collapsed .sidebar-header {
-  justify-content: flex-start;
-  padding: var(--space-lg) var(--space-xl);
-  padding-top: var(--space-xl);
-  gap: 0;
+.sidebar-controls {
+  display: flex;
+  gap: 8px;
 }
 
-.sidebar-title {
-  flex: 1;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.sidebar-control-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  opacity: 0.8;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
 }
 
-.theme-toggle-wrapper {
-  position: absolute;
-  top: var(--space-xl);
-  right: var(--space-xl);
-  z-index: 100;
+.sidebar-control-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  opacity: 1;
 }
+
+body.dark-theme .sidebar-control-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 
 .theme-toggle {
   position: relative;
@@ -313,24 +393,63 @@ body.dark-theme .moon-icon { opacity: 1; }
   margin-bottom: var(--space-xs);
 }
 
+.date-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px; /* Reduced from 18px to align with class-header more vertically */
+  margin: 1px 8px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--color-text-primary);
+  transition: all var(--transition-fast);
+}
+
+.date-entry svg,
+.class-header svg:first-child {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark-theme .date-entry:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.date-entry.active {
+  background: rgba(0, 0, 0, 0.08);
+  color: #007aff;
+  font-weight: 500;
+}
+
+body.dark-theme .date-entry.active {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.date-entry.active svg {
+  color: #007aff !important;
+}
+
 .class-header {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
-  padding: 6px 10px;
-  margin: 2px 8px;
-  border-radius: 8px;
+  justify-content: space-between;
+  padding: 10px 14px; /* Matches date-entry */
+  margin: 12px 8px 2px;
+  border-radius: 9999px;
   cursor: pointer;
-  user-select: none;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   transition: background var(--transition-fast);
-  white-space: nowrap;
 }
 
 .class-header:hover {
-  background: var(--color-surface-hover);
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .class-chevron {
@@ -436,7 +555,12 @@ body.dark-theme .moon-icon { opacity: 1; }
   justify-content: center;
   overflow: hidden;
   padding: var(--space-3xl);
+  margin: 16px;
+  background: var(--color-bg);
+  /* border and box-shadow removed */
+  border-radius: 20px;
   position: relative;
+  width: 100%;
 }
 
 /* Welcome state */

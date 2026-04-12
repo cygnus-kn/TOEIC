@@ -36,10 +36,16 @@
   }
 
   // Collapse toggle
-  collapseBtn.addEventListener('click', () => {
+  const toggleSidebar = () => {
     sidebar.classList.toggle('collapsed');
     localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
-  });
+  };
+
+  collapseBtn.addEventListener('click', toggleSidebar);
+  const collapseBtnInternal = document.getElementById('sidebarCollapseBtnInternal');
+  if (collapseBtnInternal) {
+    collapseBtnInternal.addEventListener('click', toggleSidebar);
+  }
 
   // Drag to resize
   let isResizing = false;
@@ -124,53 +130,39 @@
 
     for (const [className, classData] of Object.entries(CLASSES_DATA)) {
       html += `
-        <div class="class-group" data-class="${className}">
+        <div class="class-group expanded" data-class="${className}">
           <div class="class-header" onclick="toggleClass('${className}')">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--color-text-tertiary);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span style="flex:1;">${className}</span>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-tertiary);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              <span>${className}</span>
+            </div>
             <svg class="class-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"/>
+              <polyline points="6 9 12 15 18 9"/>
             </svg>
           </div>
           <div class="class-children">
       `;
 
-      if (classData.homework && classData.homework.length > 0) {
-        html += `
-          <div class="category-group" data-category="homework">
-            <div class="category-header" onclick="toggleCategory('${className}', 'homework')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: #a2a2a7;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-              <span>Homework</span>
-            </div>
-            <div class="category-children">
-        `;
+      if (classData.homework) {
         for (const hw of classData.homework) {
+          const hwLabel = hw.date.split(']')[0].replace('[', '') + ' ' + hw.date.split(']')[1].trim();
           html += `
             <div class="date-entry" id="entry-${className}-homework-${hw.date}" onclick="selectHomework('${className}', '${hw.date}')">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.7;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-              <span>${hw.date}</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-tertiary);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line></svg>
+              <span>${hwLabel}</span>
             </div>`;
         }
-        html += `</div></div>`;
       }
 
-      if (classData.lesson && classData.lesson.length > 0) {
-        html += `
-          <div class="category-group" data-category="lesson">
-            <div class="category-header" onclick="toggleCategory('${className}', 'lesson')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: #a2a2a7;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-              <span>Lesson</span>
-            </div>
-            <div class="category-children">
-        `;
+      if (classData.lesson) {
         for (const lesson of classData.lesson) {
+          const lessonLabel = lesson.date.split(']')[0].replace('[', '') + ' ' + lesson.date.split(']')[1].trim();
           html += `
             <div class="date-entry" id="entry-${className}-lesson-${lesson.date}" onclick="selectLesson('${className}', '${lesson.date}')">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; opacity: 0.7;"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-              <span>${lesson.date}</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-tertiary);"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <span>${lessonLabel}</span>
             </div>`;
         }
-        html += `</div></div>`;
       }
 
       html += `</div></div>`;
