@@ -79,8 +79,13 @@ function renderCards() {
   let html = '';
 
   currentParts.forEach((part, index) => {
-    const typeCategory = TYPE_LABELS[part.type] || 'TOEIC';
+    let typeCategory = TYPE_LABELS[part.type] || 'TOEIC';
     const responseTime = part.responseTime || RESPONSE_TIMES[part.type] || 45;
+
+    // Fix: If it's an Opinion Essay (Writing Q8), label it as Writing instead of Speaking
+    if (part.type === 'opinion' && part.label === 'Write an Opinion Essay') {
+      typeCategory = 'TOEIC Writing';
+    }
 
     html += `<div class="part-card">`;
 
