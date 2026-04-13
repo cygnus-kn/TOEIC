@@ -126,7 +126,7 @@ body {
   border: 1px solid var(--sidebar-border);
   border-radius: 20px;
   margin: 16px;
-  height: calc(100dvh - 32px);
+  height: calc(100dvh - 64px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -134,7 +134,7 @@ body {
   /* Overlay on top of content */
   top: 16px;
   left: 16px;
-  height: calc(100dvh - 32px);
+  height: calc(100dvh - 64px);
   transition: all var(--transition-smooth);
   z-index: 2000;
   box-shadow:
