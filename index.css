@@ -118,7 +118,7 @@ body {
 /* Sidebar */
 .sidebar {
   width: var(--sidebar-width);
-  min-width: 180px;
+  min-width: 240px;
   max-width: 400px;
   background: rgba(235, 243, 255, 0.35);
   backdrop-filter: blur(50px) saturate(200%);

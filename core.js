@@ -438,10 +438,12 @@ window.selectHomework = async function (className, date) {
 
   activeClass = className;
   activeType = 'homework';
+  const activeDate = date; // Local reference for clarity
   dateBadge.textContent = date;
   renderCards();
   renderPagination();
   showHomeworkViewer();
+  saveAppState(className, 'homework', date, currentPart);
 };
 
 // ============================
@@ -461,9 +463,11 @@ window.selectLesson = async function (className, date) {
 
   activeClass = className;
   activeType = 'lesson';
+  const activeDate = date; // Local reference for clarity
   lessonDateBadge.textContent = date;
   renderLesson(lesson);
   showLessonViewer();
+  saveAppState(className, 'lesson', date, 0);
 };
 
 // ============================
@@ -688,6 +692,10 @@ window.goToPart = function (index) {
   cardTrack.style.transform = `translateX(calc(-${index * 100}% - ${index * 32}px))`;
   updatePaginationDots();
 
+  // Save current part
+  const activeDate = activeType === 'homework' ? dateBadge.textContent : lessonDateBadge.textContent;
+  saveAppState(activeClass, activeType, activeDate, currentPart);
+
   // Pause all audio when moving away from a part
   Object.values(audioPlayers).forEach(p => {
     if (p && p.pauseVideo) p.pauseVideo();
@@ -876,11 +884,16 @@ if (collapseBtnInternal) {
   collapseBtnInternal.addEventListener('click', toggleSidebar);
 }
 
-// Click outside to collapse
+// Click outside to collapse (Mobile only)
 document.addEventListener('click', (e) => {
+  // Only auto-collapse on mobile/tablet (less than 1024px)
+  if (window.innerWidth > 1024) return;
+
   const isSidebarOpen = !sidebar.classList.contains('collapsed');
-  // Check if click was outside sidebar AND not on the primary toggle button
-  if (isSidebarOpen && !sidebar.contains(e.target) && !collapseBtn.contains(e.target)) {
+  const isToggleButton = collapseBtn.contains(e.target) || (collapseBtnInternal && collapseBtnInternal.contains(e.target));
+  
+  // Check if click was outside sidebar AND not on the toggle buttons
+  if (isSidebarOpen && !sidebar.contains(e.target) && !isToggleButton) {
     toggleSidebar();
   }
 });
@@ -897,7 +910,7 @@ resizeHandle.addEventListener('mousedown', (e) => {
 
 document.addEventListener('mousemove', (e) => {
   if (!isResizing) return;
-  const newWidth = Math.min(400, Math.max(180, e.clientX));
+  const newWidth = Math.min(400, Math.max(240, e.clientX));
   sidebar.style.width = newWidth + 'px';
 });
 
@@ -977,5 +990,31 @@ window.toggleCategory = function (className, category) {
   catGroup.classList.toggle('expanded');
 };
 
+// ============================
+//  State Persistence
+// ============================
+function saveAppState(className, type, date, partIndex) {
+  const state = { className, type, date, partIndex };
+  localStorage.setItem('toeicAppState', JSON.stringify(state));
+}
+
+async function restoreAppState() {
+  const saved = localStorage.getItem('toeicAppState');
+  if (!saved) return;
+
+  try {
+    const { className, type, date, partIndex } = JSON.parse(saved);
+    if (type === 'homework') {
+      await selectHomework(className, date);
+      goToPart(partIndex);
+    } else if (type === 'lesson') {
+      await selectLesson(className, date);
+    }
+  } catch (e) {
+    console.error('Failed to restore app state:', e);
+  }
+}
+
 // Initialize
 renderSidebar();
+restoreAppState();
