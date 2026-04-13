@@ -756,10 +756,10 @@ document.addEventListener('keydown', (e) => {
       }
     }
 
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    if (e.key === 'ArrowRight') {
       e.preventDefault();
       if (currentPart < currentParts.length - 1) goToPart(currentPart + 1);
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    } else if (e.key === 'ArrowLeft') {
       e.preventDefault();
       if (currentPart > 0) goToPart(currentPart - 1);
     }
