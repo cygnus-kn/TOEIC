@@ -73,7 +73,9 @@ body.dark-theme {
 /* ============================
    Reset & Base
    ============================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -90,9 +92,12 @@ body {
   background: var(--color-page-bg);
   color: var(--color-text-primary);
   line-height: 1.5;
-  overflow: hidden;
-  height: 100dvh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100dvh;
   transition: background-color var(--transition-smooth), color var(--transition-smooth);
+  scroll-behavior: smooth;
 }
 
 /* ============================
@@ -100,10 +105,11 @@ body {
    ============================ */
 .app {
   display: flex;
-  height: 100dvh;
   width: 100vw;
   position: relative;
-  overflow: hidden;
+  min-height: 100dvh;
+  align-items: flex-start;
+  /* Important for sticky children */
 }
 
 /* ============================
@@ -124,21 +130,30 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
+  /* Overlay on top of content */
+  top: 16px;
+  left: 16px;
+  height: calc(100dvh - 32px);
   transition: all var(--transition-smooth);
   z-index: 2000;
-  box-shadow: 
+  box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.3),
     inset 0 10px 20px -5px rgba(255, 255, 255, 0.2),
-    0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    0 10px 40px -10px rgba(0, 0, 0, 0.2);
+  /* Deep shadow since it's an overlay */
+}
+
+.sidebar.collapsed {
+  transform: translateX(calc(-100% - 32px));
+  opacity: 0;
+  pointer-events: none;
 }
 
 body.dark-theme .sidebar {
   background: rgba(22, 28, 48, 0.35);
   border: 1px solid var(--sidebar-border);
-  box-shadow: 
+  box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.05),
     inset 0 10px 20px -5px rgba(255, 255, 255, 0.02),
     0 10px 40px -10px rgba(0, 0, 0, 0.5);
@@ -163,19 +178,18 @@ body.dark-theme .sidebar {
   height: 100%;
   cursor: col-resize;
   z-index: 10;
-  opacity: 0; /* Invisible but functional */
+  opacity: 0;
+  /* Invisible but functional */
 }
 
 /* Sidebar Toggle on Main */
 .main-top-bar {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  right: 16px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  position: fixed;
+  /* Keep toggle button fixed */
+  top: 48px;
+  /* Aligned with theme toggle baseline */
+  left: 32px;
+  /* Consistent margin */
   z-index: 1001;
   pointer-events: none;
 }
@@ -225,9 +239,11 @@ body:not(.dark-theme) .sidebar-toggle-btn:hover {
 }
 
 .theme-toggle-wrapper {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+  position: fixed;
+  /* Keep theme toggle fixed */
+  top: 58px;
+  /* Bottom-aligned with sidebar button at top: 32px + 38px height */
+  right: 32px;
   z-index: 1001;
 }
 
@@ -244,7 +260,8 @@ body:not(.dark-theme) .sidebar-toggle-btn:hover {
 .sidebar-header {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Moved back to right */
+  justify-content: flex-end;
+  /* Moved back to right */
   padding: 16px 16px 8px;
   flex-shrink: 0;
 }
@@ -338,10 +355,21 @@ body.dark-theme .toggle-knob {
   color: #8e8e93;
 }
 
-body:not(.dark-theme) .sun-icon { opacity: 1; }
-body:not(.dark-theme) .moon-icon { opacity: 0; }
-body.dark-theme .sun-icon { opacity: 0; }
-body.dark-theme .moon-icon { opacity: 1; }
+body:not(.dark-theme) .sun-icon {
+  opacity: 1;
+}
+
+body:not(.dark-theme) .moon-icon {
+  opacity: 0;
+}
+
+body.dark-theme .sun-icon {
+  opacity: 0;
+}
+
+body.dark-theme .moon-icon {
+  opacity: 1;
+}
 
 .sidebar-nav {
   flex: 1;
@@ -363,7 +391,8 @@ body.dark-theme .moon-icon { opacity: 1; }
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 14px; /* Reduced from 18px to align with class-header more vertically */
+  padding: 8px 14px;
+  /* Reduced from 18px to align with class-header more vertically */
   margin: 1px 8px;
   border-radius: 9999px;
   cursor: pointer;
@@ -535,22 +564,34 @@ body.dark-theme .class-header:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: var(--space-3xl);
-  margin: 16px;
+  justify-content: flex-start;
+  padding: 80px var(--space-lg) 100px;
+  margin: 30px 16px 16px;
+  /* Balanced top margin */
   background: var(--color-page-bg);
   border-radius: 20px;
   position: relative;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .main {
+    margin: 12px;
+    padding: 20px var(--space-lg) 100px;
+  }
 }
 
 /* Welcome state */
 .welcome-state {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: var(--space-lg);
+  padding-top: 10vh;
+  /* Nudge down to center visually */
   animation: fadeIn 600ms ease;
 }
 
@@ -570,18 +611,22 @@ body.dark-theme .class-header:hover {
 .homework-viewer {
   width: 100%;
   max-width: 720px;
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
+  gap: var(--space-md);
+  /* Tightened gap between badge and card */
   animation: fadeInUp 400ms ease;
   min-height: 0;
+  overflow-x: clip;
+  /* Clip horizontal only where possible */
 }
 
 .viewer-header {
   display: flex;
   align-items: center;
   gap: var(--space-md);
+  padding: 0 4px;
+  /* Give badge room */
 }
 
 .badge-dropdown {
@@ -591,14 +636,14 @@ body.dark-theme .class-header:hover {
 .date-badge {
   display: inline-flex;
   align-items: center;
-  padding: 5px 14px;
+  padding: 7px 16px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 24px;
-  font-size: 13px;
-
-  font-weight: 600;
+  font-size: 13.5px;
+  font-weight: 700;
   color: var(--color-text-primary);
+  box-shadow: var(--shadow-sm);
   letter-spacing: 0.3px;
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -662,8 +707,15 @@ body.dark-theme .dropdown-menu {
 }
 
 @keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .question-type-label {
@@ -672,21 +724,38 @@ body.dark-theme .dropdown-menu {
   color: var(--color-text-tertiary);
 }
 
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none; /* Hide for Firefox */
+  -ms-overflow-style: none; /* Hide for IE/Edge */
+}
+
+/* Hide for Chrome, Safari, and newer Edge */
+::-webkit-scrollbar {
+  display: none;
+}
+
 /* Card container & track */
 .card-container {
   width: 100%;
-  overflow: hidden;
-  flex: 1;
+  overflow: visible;
+  /* Allow vertical growth and shadows */
   min-height: 0;
+  padding: 4px 0 40px;
+  /* Minimized top padding to pull badge closer */
 }
 
 .card-track {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  /* Align cards to top of viewer */
   gap: 32px;
   transition: transform 400ms cubic-bezier(0.25, 0.1, 0.1, 1);
   will-change: transform;
-  height: 100%;
+  height: auto;
 }
 
 /* ============================
@@ -704,7 +773,6 @@ body.dark-theme .dropdown-menu {
   border: 1px solid var(--color-border-strong);
   display: flex;
   flex-direction: column;
-  max-height: 100%;
 }
 
 .part-card:hover {
@@ -738,7 +806,8 @@ body.dark-theme .dropdown-menu {
 .card-body {
   padding: 16px;
   background: var(--color-bg);
-  overflow-y: auto;
+  overflow-y: visible !important;
+  /* Force card to expand naturally */
 }
 
 /* Card footer — response timer area */
@@ -790,7 +859,8 @@ body.dark-theme .dropdown-menu {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08); /* Apple-like glass rim lift */
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
+  /* Apple-like glass rim lift */
 }
 
 .timer-display span {
@@ -825,7 +895,7 @@ body.dark-theme .dropdown-menu {
   color: var(--color-text-secondary);
   cursor: pointer;
   transition: all var(--transition-fast);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .reveal-btn:hover {
@@ -895,7 +965,8 @@ body.dark-theme .dropdown-menu {
   width: auto;
   height: auto;
   display: block;
-  object-fit: contain; /* Show the whole image */
+  object-fit: contain;
+  /* Show the whole image */
 }
 
 .audio-standalone {
@@ -904,9 +975,12 @@ body.dark-theme .dropdown-menu {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  padding: 0; /* Remove padding */
-  background: none; /* Remove background */
-  border: none; /* Remove border */
+  padding: 0;
+  /* Remove padding */
+  background: none;
+  /* Remove background */
+  border: none;
+  /* Remove border */
   margin: 0 auto;
 }
 
@@ -957,7 +1031,7 @@ body.dark-theme .dropdown-menu {
   background: var(--color-accent);
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .audio-time {
@@ -1076,11 +1150,21 @@ body.dark-theme .dropdown-menu {
    Pagination
    ============================ */
 .pagination {
+  position: fixed;
+  bottom: 32px;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   gap: var(--space-sm);
-  padding: var(--space-lg) 0 var(--space-xs);
-  flex-shrink: 0;
+  z-index: 1000;
+  pointer-events: none;
+  /* Allow interaction with content behind the gaps */
+  transition: all var(--transition-smooth);
+}
+
+.pagination-dot {
+  pointer-events: auto; /* Allow clicking the dots themselves */
 }
 
 .pagination-dot {
@@ -1210,8 +1294,13 @@ body.dark-theme .dropdown-menu {
    Animations
    ============================ */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeInUp {
@@ -1219,6 +1308,7 @@ body.dark-theme .dropdown-menu {
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1247,8 +1337,7 @@ body.dark-theme .dropdown-menu {
    ============================ */
 @media (max-width: 600px) {
   .main {
-    padding: var(--space-lg);
-    padding-top: 20px;
+    padding: 45px var(--space-lg) 100px;
     margin: 12px;
     width: calc(100% - 24px);
     justify-content: flex-start;
@@ -1258,7 +1347,8 @@ body.dark-theme .dropdown-menu {
   }
 
   /* Allow body/app to scroll on mobile */
-  body, .app {
+  body,
+  .app {
     overflow: unset;
     height: auto;
     min-height: 100dvh;
@@ -1267,35 +1357,49 @@ body.dark-theme .dropdown-menu {
   .card-container {
     padding: 0;
     max-width: 100%;
-    flex: none;      /* Don't stretch to fill remaining height */
-    height: auto;    /* Let card grow naturally */
+    flex: none;
+    /* Don't stretch to fill remaining height */
+    height: auto;
+    /* Let card grow naturally */
     overflow: visible;
   }
 
   .card-track {
-    height: auto;    /* Allow track to be as tall as the card */
+    height: auto;
+    /* Allow track to be as tall as the card */
     align-items: flex-start;
   }
 
   .part-card {
     zoom: 0.88;
     border-radius: 20px;
-    max-height: none; /* Card grows freely */
-    overflow: hidden; /* Must stay hidden to clip the header and preserve rounded corners */
+    max-height: none;
+    /* Card grows freely */
+    overflow: hidden;
+    /* Must stay hidden to clip the header and preserve rounded corners */
   }
 
   .homework-viewer {
     width: 100%;
     flex: none;
     min-height: 0;
-    gap: 16px; /* Space between badge and card */
+    gap: 16px;
+    /* Space between badge and card */
   }
 
 
 
-  .card-header-bar { padding: 10px 16px; }
-  .card-body { padding: 14px; }
-  .card-footer { padding: 0 16px 16px; }
+  .card-header-bar {
+    padding: 10px 16px;
+  }
+
+  .card-body {
+    padding: 14px;
+  }
+
+  .card-footer {
+    padding: 0 16px 16px;
+  }
 
   /* Welcome state: fill remaining space and center itself,
      independent of the parent's flex-start alignment */
@@ -1306,10 +1410,12 @@ body.dark-theme .dropdown-menu {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 60vh; /* Fallback: always center vertically in viewport */
+    min-height: 60vh;
+    /* Fallback: always center vertically in viewport */
   }
 
-  .reading-passage, .question-text {
+  .reading-passage,
+  .question-text {
     font-size: 16px;
     line-height: 1.5;
   }
@@ -1329,16 +1435,31 @@ body.dark-theme .dropdown-menu {
     border-radius: 20px;
   }
 
-  /* Fix top bar layout — sidebar button position is set by .main-top-bar */
-  .main-top-bar {
-    top: 20px;
+  /* Fluid floating sidebar on mobile */
+  .sidebar {
+    top: 16px !important;
+    /* Move down slightly for floating look */
+    height: calc(100dvh - 32px) !important;
+    border-radius: 24px !important;
+    margin: 16px !important;
+    left: 0 !important;
   }
 
-  /* Theme toggle center must match sidebar button center:
-     Sidebar center = 20 + 38/2 = 39px from screen top
-     Toggle top = 39 - 32/2 = 23px  */
+  .sidebar-header {
+    padding-top: 16px !important;
+    /* Reset padding since sidebar moved down */
+  }
+
+  /* Fix top bar layout — moved down to align with sidebar's internal button
+     Sidebar: top 16px + margin 16px = 32px. Header padding: 16px. Button center: 32+16+19=67px
+     Page button center at top:48px = 48 + 19 = 67px ✓ */
+  .main-top-bar {
+    top: 48px;
+  }
+
+  /* Toggle center: 51 + 16 (half of 32px height) = 67px — matches sidebar button ✓ */
   .theme-toggle-wrapper {
-    top: 23px;
+    top: 51px;
   }
 
   /* Match internal sidebar button to same 38px size */
@@ -1368,7 +1489,8 @@ body.dark-theme .dropdown-menu {
   }
 
   body.dark-theme .toggle-knob {
-    transform: translateX(28px) !important; /* Move to (60 - 26 - 3) - 3 = 28px */
+    transform: translateX(28px) !important;
+    /* Move to (60 - 26 - 3) - 3 = 28px */
   }
 
   /* Fix pagination dots to bottom of screen — thumb zone */
@@ -1397,10 +1519,9 @@ body.dark-theme .dropdown-menu {
 @supports not (zoom: 1) {
   @media (max-width: 600px) {
     .part-card {
-       transform: scale(0.88);
-       transform-origin: center top;
-       margin-bottom: -15%;
+      transform: scale(0.88);
+      transform-origin: center top;
+      margin-bottom: -15%;
     }
   }
 }
-
