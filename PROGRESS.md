@@ -20,19 +20,22 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 
 ### 🗂 Sidebar
 - [x] Collapsible sidebar with identically scaled circular toggle buttons
-- [x] Drag-to-resize handle (180px – 400px range) with smooth, instant resizing with transitions disabled
-- [x] Sub-pixel boundary fixes utilizing 100dvh responsiveness constraints
-- [x] Persistent width + collapsed state via `localStorage` (instantly applies on load without jumpy CSS animations)
+- [x] Drag-to-resize handle with enforced 240px minimum width for desktop readability
+- [x] Floating "Island" design: symmetrical 16px/32px gaps for a balanced desktop and mobile appearance
+- [x] Auto-collapse behavior disabled on desktop to prevent unintentional UI shifts
+- [x] Persistent width + collapsed state via `localStorage` (instantly applies on load)
 - [x] Hierarchical navigation: Class → Homework / Lesson → Date entries
 - [x] Expand/collapse per class group and category
-- [x] Mobile hamburger menu with tap-outside-to-close
+- [x] Mobile hamburger menu with tap-outside-to-close restriction for desktop
 
 ### 📄 Homework Viewer
 - [x] Card-based layout with horizontal slide navigation
 - [x] Swipe / trackpad scroll to navigate between parts
-- [x] Pagination dots (clickable)
-- [x] Glassmorphism date badge with dropdown to switch between homework dates
+- [x] Pagination dots with increased touch hit targets for mobile and fixed clickability for desktop
+- [x] Glassmorphism date badge using synchronized "Class Button" design language (13.5px font, pill-shape)
+- [x] Dropdown to switch between homework dates
 - [x] All timers reset when switching parts or homework dates
+- [x] State Persistence: App remembers the last viewed class, assignment, and specific part/page on reload
 
 ### 🃏 Question Card Types
 | Type | Status |
@@ -56,12 +59,14 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 - [x] Hidden YouTube player for `respond-info-q` type
 - [x] Custom play/pause button
 - [x] Seekbar with live time display (`MM:SS / MM:SS`)
-- [x] Audio paused automatically when navigating to another part
+- [x] Audio paused automatically when navigating to another part or assignment
+- [x] Audio player now supports Shift + Arrow keys for global seeking
 
 ### 📚 Lesson Viewer
 - [x] Vocabulary section with word, definition, and example
 - [x] Sentence structure section with pattern + examples
 - [x] Glassmorphism date badge with dropdown to switch between lesson dates
+- [x] Unified Scrolling: Lesson page migrated to root-level scrolling (on body) to match homework view
 
 ### 🌙 Theme
 - [x] Light / Dark mode toggle
@@ -155,9 +160,9 @@ body / .app
 ### Current Mobile Values (Apr 13)
 
 ```css
-.main-top-bar        { top: 20px }
-.theme-toggle-wrapper { top: 23px }       /* Centers with 38px button */
-.viewer-header       { margin-top: 100px } /* Pushes badge below icons */
+.main-top-bar        { top: 48px } /* Aligned to sidebar button center (67px) */
+.theme-toggle-wrapper { top: 51px } /* Aligned to sidebar button center (67px) */
+.viewer-header       { margin-top: 70px } /* Baseline alignment with icons */
 .homework-viewer     { gap: 16px }         /* Badge ↔ Card spacing */
 .part-card           { zoom: 0.88 }        /* Proportional scaling */
 .pagination          { position: fixed; bottom: 28px } /* Thumb zone */
@@ -184,7 +189,8 @@ body / .app
 | Apr 12 | HW Day 03 data added with YouTube audio, image references finalized |
 | Apr 12 | Authentication feature removed — platform is now open access |
 | Apr 12 | Refactored architecture into multi-file modules (`sidebar.js`, `viewer.js`, `audio.js`). Refined layout alignments, dropdown scaling, and `100dvh` layout adjustments. |
-| Apr 13 | **Performance Sprint**: Consolidated separate JS files into `core.js`. Modularized the data system into JSON files for on-demand loading. Implemented lazy-loading for the YouTube API. Pushed major performance and cleanliness updates. |
+| Apr 13 | **Architecture & Persistence**: Consolidated separate JS files into `core.js`. Modularized data system into JSON files. Implemented `localStorage` state persistence (remembers last class/hw/part). |
+| Apr 13 | **Layout & Aesthetic Polish**: Pixel-perfect vertical alignment of navigation icons. Refined date badge to match class-button aesthetics. Symmetrical floating sidebar. Unified root-level scrolling across all views. |
 
 ---
 
