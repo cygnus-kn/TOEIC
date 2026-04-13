@@ -1199,8 +1199,6 @@ body {
   flex-direction: column;
   gap: var(--space-xl);
   animation: fadeInUp 400ms ease;
-  overflow-y: auto;
-  max-height: calc(100dvh - 96px);
 }
 
 .lesson-content {
@@ -1314,22 +1312,7 @@ body {
   }
 }
 
-/* ============================
-   Scrollbar (for lesson content)
-   ============================ */
-.lesson-viewer::-webkit-scrollbar {
-  width: 6px;
-}
 
-.lesson-viewer::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.lesson-viewer::-webkit-scrollbar-thumb {
-  background: var(--color-text-tertiary);
-  border-radius: 3px;
-  opacity: 0.3;
-}
 
 /* ============================
    Mobile Responsiveness
