@@ -79,6 +79,7 @@ body.dark-theme {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -192,6 +193,7 @@ body.dark-theme .sidebar {
   /* Consistent margin */
   z-index: 1001;
   pointer-events: none;
+  transition: opacity var(--transition-smooth), transform var(--transition-smooth);
 }
 
 .sidebar-toggle-btn {
@@ -245,6 +247,17 @@ body:not(.dark-theme) .sidebar-toggle-btn:hover {
   /* Bottom-aligned with sidebar button at top: 32px + 38px height */
   right: 32px;
   z-index: 1001;
+  transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+}
+
+/* Mobile auto-hide styles */
+@media (max-width: 1024px) {
+  body.mobile-controls-hidden .main-top-bar,
+  body.mobile-controls-hidden .theme-toggle-wrapper {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-15px);
+  }
 }
 
 /* Logic to show/hide buttons based on sidebar state (simplified for top-bar) */
