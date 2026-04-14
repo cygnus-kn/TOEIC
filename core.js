@@ -342,6 +342,14 @@ window.seekBy = function (index, seconds) {
   player.seekTo(currentTime + seconds, true);
 };
 
+window.setActiveBookmark = function (btn, index) {
+  const container = document.getElementById(`bookmarks-${index}`);
+  if (!container) return;
+  const dots = container.querySelectorAll('.bookmark-dot:not(.out-link-icon)');
+  dots.forEach(d => d.classList.remove('active-bookmark'));
+  btn.classList.add('active-bookmark');
+};
+
 function onPlayerStateChange(index, event) {
   const btn = document.getElementById(`audio-btn-${index}`);
   if (!btn) return;
@@ -551,12 +559,15 @@ function renderCards() {
                        oninput="event.stopPropagation(); seekAudio(${index}, this.value)">
               </div>
               <div class="audio-time" id="time-${index}" style="white-space: nowrap;">00:00 / 00:00</div>
-              <div class="audio-bookmarks">
-                <button class="bookmark-dot" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q8Time})" title="Jump to Question 8">8</button>
-                <button class="bookmark-dot" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q9Time})" title="Jump to Question 9">9</button>
-                <button class="bookmark-dot" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q10Time})" title="Jump to Question 10">10</button>
-                <a class="bookmark-dot out-link-icon" href="${watchLink}" target="_blank" rel="noopener noreferrer" title="Watch on YouTube">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              <div class="audio-bookmarks" id="bookmarks-${index}">
+                <button class="bookmark-dot" data-time="${q8Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q8Time}); setActiveBookmark(this, ${index})" title="Jump to Question 8">8</button>
+                <button class="bookmark-dot" data-time="${q9Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q9Time}); setActiveBookmark(this, ${index})" title="Jump to Question 9">9</button>
+                <button class="bookmark-dot" data-time="${q10Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q10Time}); setActiveBookmark(this, ${index})" title="Jump to Question 10">10</button>
+                <a class="bookmark-dot out-link-icon" href="${watchLink}" target="_blank" rel="noopener noreferrer" title="Watch on YouTube" onclick="if(!confirm('You are about to be redirected to YouTube.')) { event.preventDefault(); }">
+                  <svg width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.582 6.186a2.665 2.665 0 0 0-1.884-1.898C18.035 3.8 12 3.8 12 3.8s-6.035 0-7.698.488a2.665 2.665 0 0 0-1.884 1.898C1.916 8.07 1.916 12 1.916 12s0 3.93.502 5.814a2.665 2.665 0 0 0 1.884 1.898c1.663.488 7.698.488 7.698.488s6.035 0 7.698-.488a2.665 2.665 0 0 0 1.884-1.898c.502-1.884.502-5.814.502-5.814s0-3.93-.502-5.814z" fill="#FF0000"/>
+                    <path d="M9.9 15.568V8.432L16.173 12l-6.273 3.568z" fill="#FFFFFF"/>
+                  </svg>
                 </a>
               </div>
             <div id="yt-player-${index}" class="hidden-player"></div>
@@ -661,7 +672,7 @@ function renderPartContent(part) {
         ` : ''}
         ${part.content.question ? `
           <div class="reveal-section">
-            <button class="reveal-btn" onclick="const q = this.nextElementSibling; q.classList.toggle('visible'); this.textContent = q.classList.contains('visible') ? 'Hide Questions' : 'Reveal Questions'">Reveal Questions</button>
+            <button class="reveal-btn" onclick="const q = this.nextElementSibling; q.classList.toggle('visible')">Transcript</button>
             <div class="question-text reveal-content" style="text-align:left; font-size:16px;">${part.content.question.replace(/\n/g, '<br>')}</div>
           </div>
         ` : ''}
