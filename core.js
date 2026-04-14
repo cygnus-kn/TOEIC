@@ -1064,6 +1064,9 @@ function hideMobileControls() {
   if (window.innerWidth <= 1024 && sidebar && sidebar.classList.contains('collapsed')) {
     document.body.classList.add('mobile-controls-hidden');
   }
+  // Reset memory whenever UI disappears so partial scrolls don't trigger it later
+  accumulatedScrollUp = 0;
+  accumulatedScrollDown = 0;
 }
 
 function resetControlTimer() {
@@ -1083,8 +1086,8 @@ window.addEventListener('scroll', () => {
     return;
   }
   
-  if (currentScrollY <= 50) {
-    // Always show when near the absolute top
+  // Only auto-show if we hit the absolute top 0 mark (prevents random shows in top 50px)
+  if (currentScrollY <= 0) {
     showMobileControls();
     accumulatedScrollUp = 0;
     accumulatedScrollDown = 0;
@@ -1092,14 +1095,14 @@ window.addEventListener('scroll', () => {
     // Scrolling upwards
     accumulatedScrollUp += (lastScrollY - currentScrollY);
     accumulatedScrollDown = 0;
-    if (accumulatedScrollUp > 350) { // Require a very deliberate swipe up
+    if (accumulatedScrollUp > 300) { // Firm upward intent
       showMobileControls();
     }
-  } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+  } else if (currentScrollY > lastScrollY) {
     // Scrolling downwards
     accumulatedScrollDown += (currentScrollY - lastScrollY);
     accumulatedScrollUp = 0;
-    if (accumulatedScrollDown > 30) { // When user scrolls down a bit, hide controls
+    if (accumulatedScrollDown > 30) { // Slight scroll down hides layout
       hideMobileControls();
     }
   }
@@ -1108,6 +1111,18 @@ window.addEventListener('scroll', () => {
   resetControlTimer();
 }, { passive: true });
 
+// Any interaction specifically on the nav buttons should reset the 3-second disappear timer
+document.body.addEventListener('click', (e) => {
+  if (e.target.closest('.sidebar-toggle-btn') || e.target.closest('.theme-toggle-wrapper')) {
+    resetControlTimer();
+  }
+}, { passive: true });
+
+document.body.addEventListener('touchstart', (e) => {
+  if (e.target.closest('.sidebar-toggle-btn') || e.target.closest('.theme-toggle-wrapper')) {
+    resetControlTimer();
+  }
+}, { passive: true });
+
 // Initialize auto-hide check globally
-resetControlTimer();
 resetControlTimer();
