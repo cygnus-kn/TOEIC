@@ -329,6 +329,12 @@ window.seekAudio = function (index, value) {
   player.seekTo(seekTo, true);
 };
 
+window.seekAudioToTime = function (index, seconds) {
+  const player = audioPlayers[index];
+  if (!player || typeof player.seekTo !== 'function') return;
+  player.seekTo(seconds, true);
+};
+
 window.seekBy = function (index, seconds) {
   const player = audioPlayers[index];
   if (!player || typeof player.getCurrentTime !== 'function') return;
@@ -408,7 +414,8 @@ async function getClassData(className) {
   if (dataCache[className]) return dataCache[className];
   
   try {
-    const response = await fetch(`data/${className}.json`);
+    const timestamp = new Date().getTime();
+    const response = await fetch(`data/${className}.json?t=${timestamp}`);
     const data = await response.json();
     dataCache[className] = data;
     return data;
@@ -515,9 +522,22 @@ function renderCards() {
     const hasTimer = part.type !== 'sentence-picture' && (part.prepTime || part.responseTime || (part.type !== 'respond-info-q' && RESPONSE_TIMES[part.type]));
 
     if (hasAudio || hasTimer) {
-      html += `<div class="card-footer">`;
+      if (hasAudio && part.type === 'respond-info-q') {
+        html += `<div class="card-footer" style="flex-direction: column; align-items: center; gap: 4px;">`;
+      } else {
+        html += `<div class="card-footer">`;
+      }
 
       if (hasAudio && part.type === 'respond-info-q') {
+        const baseTime = extractStartTime(part.content.videoUrl) || 0;
+        const timestamps = part.content.timestamps || {};
+        const q8Time = timestamps.q8 !== undefined ? timestamps.q8 : baseTime;
+        const q9Time = timestamps.q9 !== undefined ? timestamps.q9 : baseTime;
+        const q10Time = timestamps.q10 !== undefined ? timestamps.q10 : baseTime;
+
+        const videoId = extractVideoId(part.content.videoUrl);
+        const watchLink = videoId ? `https://www.youtube.com/watch?v=${videoId}` : part.content.videoUrl;
+
         // Standalone Audio control without pill
         html += `
           <div class="audio-standalone" id="audio-ctrl-${index}">
@@ -529,7 +549,15 @@ function renderCards() {
                        onmousedown="event.stopPropagation(); isUserSeeking = true;" 
                        onmouseup="event.stopPropagation(); isUserSeeking = false;"
                        oninput="event.stopPropagation(); seekAudio(${index}, this.value)">
-                <div class="audio-time" id="time-${index}">00:00 / 00:00</div>
+              </div>
+              <div class="audio-time" id="time-${index}" style="white-space: nowrap;">00:00 / 00:00</div>
+              <div class="audio-bookmarks">
+                <button class="bookmark-dot" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q8Time})" title="Jump to Question 8">8</button>
+                <button class="bookmark-dot" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q9Time})" title="Jump to Question 9">9</button>
+                <button class="bookmark-dot" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q10Time})" title="Jump to Question 10">10</button>
+                <a class="bookmark-dot out-link-icon" href="${watchLink}" target="_blank" rel="noopener noreferrer" title="Watch on YouTube">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
               </div>
             <div id="yt-player-${index}" class="hidden-player"></div>
           </div>

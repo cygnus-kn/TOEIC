@@ -71,6 +71,11 @@
           "content": {
             "imageUrl": "test-data/speaking-pictures/GwenTV-02-2023-picture-3.png",
             "videoUrl": "https://www.youtube.com/embed/kmHuOysUsyM?start=628&enablejsapi=1",
+            "timestamps": {
+              "q8": 628,
+              "q9": 675,
+              "q10": 706
+            },
             "question": "Question 8: Where will the interviews take place what time will the first interview start?\n\nQuestion 9: I was told that there are two applicants who are applying for the product manager position. Is that right?\n\nQuestion 10: Can you tell me about the applicants who are applying for the receptionist position?"
           }
         },
@@ -155,7 +160,12 @@
           "content": {
             "imageUrl": "test-data/speaking-pictures/GwenTV-01-2023-picture-3.png",
             "videoUrl": "https://www.youtube.com/embed/3jmaksYCoxQ?start=618&enablejsapi=1",
-            "question": "Question 8: What time will the orientation start and end?\n\nQuestion 9: Will I have to bring my own lunch?\n\nQuestion 10: Can you tell me the details of the session that I will be leading?"
+            "timestamps": {
+              "q8": 632,
+              "q9": 660,
+              "q10": 688
+            },
+            "question": "Question 8: What time will the orientation start and end?\n\nQuestion 9: Will I have to bring my own lunch?\n\nQuestion 10: I was told that I will be leading an education session in the afternoon. Can you tell me the details of the session that I will be leading?"
           }
         },
         {

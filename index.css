@@ -885,6 +885,7 @@ body {
 }
 
 .reveal-btn {
+  width: 145px;
   padding: 8px 16px;
   background: var(--color-surface);
   border: 1px solid var(--color-border-strong);
@@ -895,6 +896,8 @@ body {
   cursor: pointer;
   transition: all var(--transition-fast);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: center;
 }
 
 .reveal-btn:hover {
@@ -984,25 +987,38 @@ body {
 }
 
 .audio-toggle-btn {
-  background: none;
-  border: none;
-  color: var(--color-text-primary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-secondary);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   transition: all var(--transition-fast);
   flex-shrink: 0;
   align-self: center;
-  margin-bottom: 14px;
 }
 
 .audio-toggle-btn:hover {
   background: var(--color-surface-hover);
   color: var(--color-accent);
+  border-color: var(--color-accent);
   transform: scale(1.05);
+}
+
+body.dark-theme .audio-toggle-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-tertiary);
+}
+
+body.dark-theme .audio-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .audio-seeker-container {
@@ -1020,7 +1036,6 @@ body {
   border-radius: 3px;
   outline: none;
   cursor: pointer;
-  margin: 4px 0;
 }
 
 .audio-seeker::-webkit-slider-thumb {
@@ -1040,6 +1055,76 @@ body {
   opacity: 0.8;
   letter-spacing: 0.3px;
   font-variant-numeric: tabular-nums;
+}
+
+.audio-bookmarks {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  align-self: center;
+}
+
+.bookmark-dot {
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bookmark-dot:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: scale(1.1);
+}
+
+body.dark-theme .bookmark-dot {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-tertiary);
+}
+
+body.dark-theme .bookmark-dot:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.bookmark-divider {
+  width: 1px;
+  height: 14px;
+  background: var(--color-border-strong);
+  margin: 0 4px;
+}
+
+.out-link-icon {
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+}
+
+.out-link-icon:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+body.dark-theme .out-link-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--color-text-primary);
 }
 
 .hidden-player {
