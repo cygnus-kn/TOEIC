@@ -142,8 +142,9 @@ A standard speaking session typically follows this order, but can be customized 
 > 1. Run this exact terminal command to download the transcript JSON (replace `<VIDEO_ID>`):
 >    `/Users/cygnus/Library/Python/3.9/bin/youtube_transcript_api <VIDEO_ID> > transcript.json`
 > 2. Read the `transcript.json` using the `grep_search` or `view_file` tool to find the exact timestamps and scenario phrasing for questions 8, 9, and 10.
+>    - **CRITICAL FORMATTING RULE**: For Question 8, the `timestamp` MUST map to the very beginning of the caller's overarching scenario introduction (e.g. "Hello my name is..."), NOT just the specific moment they ask Q8!
 > 3. Inject the `timestamps` property into your JSON construction.
-> 4. In the `question` string, ensure you include any contextual scenario/intro spoken by the speaker immediately *before* the specific questions themselves (e.g. for Q9 or Q10). However, DO NOT include the general overarching introduction to the call (e.g. "Hello my name is...") in the reveal text string. Only include the text for Q8, Q9, and Q10.
+> 4. In the `question` string, ensure you include any contextual scenario/intro spoken by the speaker immediately *before* the specific questions themselves (e.g. for Q9 or Q10). However, DO NOT include the general overarching introduction to the call (e.g. "Hello my name is...") in the reveal text string. Only include the exact text for Q8, Q9, and Q10.
 > 5. **CRITICAL:** Run `rm -f transcript.json` to delete your temporary file once you are finished.
 ```js
 {
