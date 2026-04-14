@@ -1,6 +1,6 @@
 # TOEIC Homework Platform — Progress Tracker
 
-> Last updated: 2026-04-13
+> Last updated: 2026-04-14
 
 ---
 
@@ -57,10 +57,14 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 
 ### 🎵 Audio Player (YouTube IFrame API)
 - [x] Hidden YouTube player for `respond-info-q` type
-- [x] Custom play/pause button
-- [x] Seekbar with live time display (`MM:SS / MM:SS`)
+- [x] Custom play/pause button (circular mirrored bookmark-dot design)
+- [x] Seekbar with live horizontal time display (`MM:SS / MM:SS`)
 - [x] Audio paused automatically when navigating to another part or assignment
 - [x] Audio player now supports Shift + Arrow keys for global seeking
+- [x] Interactive bookmark dots (8, 9, 10) for rapid navigation to specific question starts
+- [x] Integrated "Watch on YouTube" button styled as a matched circular action dot
+- [x] Automated Transcript extraction protocol: AI can now auto-extract question starts and scenario contexts from YouTube links
+- [x] Perfectly aligned horizontal layout for all audio controls (Play → Seeker → Time → Bookmarks)
 
 ### 📚 Lesson Viewer
 - [x] Vocabulary section with word, definition, and example
@@ -144,6 +148,10 @@ body / .app
 | Card height was constrained / cut off | `.part-card { max-height: 100% }` in the base CSS, combined with flex containers, capped card height. | Override to `max-height: none` on mobile. Also set `height: auto` and `flex: none` on `.card-container`, `.card-track`, and `.homework-viewer`. |
 | Card lost rounded top corners | Setting `overflow: visible` on `.part-card` broke `border-radius` clipping. | `overflow` must stay `hidden` on `.part-card`. Height growth is controlled by `max-height: none`, not overflow. |
 | Body didn't scroll on mobile | `body { overflow: hidden; height: 100dvh }` in the base CSS. | Override on mobile: `body, .app { overflow: unset; height: auto; min-height: 100dvh }`. |
+| Audio controls misaligned | Timestamp was below seeker, shifting the buttons container height. | Moved timestamp inline (horizontal) and removed vertical margin hacks. Now all controls share a common flex baseline. |
+| YouTube icon missing circle | Applied `transparent` border/background in light mode. | Inherited base `.bookmark-dot` styles for a consistent circular look. |
+| Part 4 text missing scenario | Only question text was being added during construction. | Protocol updated to extract and include speaker scenarios (e.g., "I was told...") in the reveal text string. |
+| Reveal button layout shift | Button width changed based on text length. | Enforced fixed `145px` width for ".reveal-btn". |
 
 ### Quick Reference: What Controls What
 
@@ -189,8 +197,8 @@ body / .app
 | Apr 12 | HW Day 03 data added with YouTube audio, image references finalized |
 | Apr 12 | Authentication feature removed — platform is now open access |
 | Apr 12 | Refactored architecture into multi-file modules (`sidebar.js`, `viewer.js`, `audio.js`). Refined layout alignments, dropdown scaling, and `100dvh` layout adjustments. |
-| Apr 13 | **Architecture & Persistence**: Consolidated separate JS files into `core.js`. Modularized data system into JSON files. Implemented `localStorage` state persistence (remembers last class/hw/part). |
 | Apr 13 | **Layout & Aesthetic Polish**: Pixel-perfect vertical alignment of navigation icons. Refined date badge to match class-button aesthetics. Symmetrical floating sidebar. Unified root-level scrolling across all views. |
+| Apr 14 | **Part 4 UI & Automation**: Redesigned audio footer for horizontal alignment. Implemented 36px circular play button and 26px bookmark dots. Refined "Watch on YouTube" icon. Established automated extraction protocol for YouTube transcripts and scenarios. Formally documented extraction workflow in `ADD_HOMEWORK.md`. Cleaned up data for S129 Day 03. |
 
 ---
 
