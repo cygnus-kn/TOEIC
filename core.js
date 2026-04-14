@@ -1046,3 +1046,68 @@ async function restoreAppState() {
 // Initialize
 renderSidebar();
 restoreAppState();
+
+// ============================
+//  Mobile UI Auto-Hide
+// ============================
+let lastScrollY = window.scrollY;
+let accumulatedScrollUp = 0;
+let accumulatedScrollDown = 0;
+let controlHideTimeout = null;
+
+function showMobileControls() {
+  document.body.classList.remove('mobile-controls-hidden');
+  resetControlTimer();
+}
+
+function hideMobileControls() {
+  if (window.innerWidth <= 1024 && sidebar && sidebar.classList.contains('collapsed')) {
+    document.body.classList.add('mobile-controls-hidden');
+  }
+}
+
+function resetControlTimer() {
+  if (controlHideTimeout) clearTimeout(controlHideTimeout);
+  if (window.innerWidth > 1024) return;
+  controlHideTimeout = setTimeout(() => {
+    hideMobileControls();
+  }, 3000);
+}
+
+// Listen to scroll to detect intent
+window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY || document.documentElement.scrollTop;
+  
+  if (window.innerWidth > 1024) {
+    showMobileControls();
+    return;
+  }
+  
+  if (currentScrollY <= 50) {
+    // Always show when near the absolute top
+    showMobileControls();
+    accumulatedScrollUp = 0;
+    accumulatedScrollDown = 0;
+  } else if (currentScrollY < lastScrollY) {
+    // Scrolling upwards
+    accumulatedScrollUp += (lastScrollY - currentScrollY);
+    accumulatedScrollDown = 0;
+    if (accumulatedScrollUp > 350) { // Require a very deliberate swipe up
+      showMobileControls();
+    }
+  } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+    // Scrolling downwards
+    accumulatedScrollDown += (currentScrollY - lastScrollY);
+    accumulatedScrollUp = 0;
+    if (accumulatedScrollDown > 30) { // When user scrolls down a bit, hide controls
+      hideMobileControls();
+    }
+  }
+  
+  lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY; // Handle mobile scroll bouncing
+  resetControlTimer();
+}, { passive: true });
+
+// Initialize auto-hide check globally
+resetControlTimer();
+resetControlTimer();

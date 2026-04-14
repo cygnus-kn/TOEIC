@@ -76,6 +76,7 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 - [x] Light / Dark mode toggle
 - [x] Respects `prefers-color-scheme` on first load
 - [x] Theme persisted in `localStorage`
+- [x] JPEG schedule glare reduced in dark mode using CSS brightness filters
 
 ### 🔔 Notifications
 - [x] Toast notification system (e.g., "This is not your class")
@@ -86,6 +87,7 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 - [x] **Modular Data Architecture**: Monolithic `data.js` split into a lightweight manifest + per-class JSON files.
 - [x] **Demand-Driven Loading**: Assignment details are fetched via `fetch()` only when the student selects them.
 - [x] **Script Consolidation**: Merged multiple JS files into a single `core.js` to reduce HTTP requests.
+- [x] **Mobile UX Polish**: Eliminated phantom tap-highlight boxes globally and implemented a hybrid scroll-directional auto-hiding navigation bar.
 
 ---
 
@@ -199,6 +201,7 @@ body / .app
 | Apr 12 | Refactored architecture into multi-file modules (`sidebar.js`, `viewer.js`, `audio.js`). Refined layout alignments, dropdown scaling, and `100dvh` layout adjustments. |
 | Apr 13 | **Layout & Aesthetic Polish**: Pixel-perfect vertical alignment of navigation icons. Refined date badge to match class-button aesthetics. Symmetrical floating sidebar. Unified root-level scrolling across all views. |
 | Apr 14 | **Part 4 UI & Automation**: Redesigned audio footer for horizontal alignment. Implemented 36px circular play button and 26px bookmark dots. Refined "Watch on YouTube" icon. Established automated extraction protocol for YouTube transcripts and scenarios. Formally documented extraction workflow in `ADD_HOMEWORK.md`. Cleaned up data for S129 Day 03. |
+| Apr 14 | **UI/UX Polish**: Investigated UI flows with visual bot. Fixed dark mode image glare via filters. Handled mobile phantom tap highlights. Replaced basic time-hide logic with a hybrid scroll-directional mechanism for the top nav. |
 
 ---
 
