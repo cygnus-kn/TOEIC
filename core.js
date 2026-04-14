@@ -61,9 +61,25 @@ const lessonContent = document.getElementById('lessonContent');
 const cardContainer = document.getElementById('cardContainer');
 
 // ============================
-//  Clear all timers
+//  Clear all timers and audio
 // ============================
+function stopAllAudio() {
+  if (audioPoller) {
+    clearInterval(audioPoller);
+    audioPoller = null;
+  }
+  Object.values(audioPlayers).forEach(p => {
+    if (p && typeof p.destroy === 'function') {
+      try {
+        p.destroy();
+      } catch (e) {}
+    }
+  });
+  audioPlayers = {};
+}
+
 function clearAllTimers() {
+  stopAllAudio();
   for (const key in timers) {
     if (timers[key].interval) clearInterval(timers[key].interval);
 
@@ -262,41 +278,46 @@ function loadYouTubeAPI() {
 }
 
 async function initAudioPlayers() {
-  // Clear old players
-  audioPlayers = {};
-  if (audioPoller) clearInterval(audioPoller);
-
+  // We no longer instantiate <iframe> elements eagerly here.
+  // Instead, we merely ensure the YT API is loaded if the homework has video.
   const needsYT = currentParts.some(part => part.type === 'respond-info-q' && part.content.videoUrl);
   if (needsYT) {
     await loadYouTubeAPI();
   }
+}
 
-  currentParts.forEach((part, index) => {
-    if (part.type === 'respond-info-q' && part.content.videoUrl) {
-      const videoId = extractVideoId(part.content.videoUrl);
-      const startTime = extractStartTime(part.content.videoUrl);
+// Instantiate a single player strictly when the card becomes visible
+function initSinglePlayer(index) {
+  const part = currentParts[index];
+  if (!part || part.type !== 'respond-info-q' || !part.content.videoUrl) return;
 
-      if (window.YT && window.YT.Player) {
-        audioPlayers[index] = new YT.Player(`yt-player-${index}`, {
-          height: '0',
-          width: '0',
-          videoId: videoId,
-          playerVars: {
-            'autoplay': 0,
-            'controls': 0,
-            'start': startTime,
-            'enablejsapi': 1
-          },
-          events: {
-            'onStateChange': (event) => onPlayerStateChange(index, event)
-          }
-        });
+  // Wait if the YT API is not yet loaded, but should theoretically be by now
+  if (!window.YT || !window.YT.Player) return;
+
+  if (!audioPlayers[index]) {
+    const videoId = extractVideoId(part.content.videoUrl);
+    const startTime = extractStartTime(part.content.videoUrl);
+
+    audioPlayers[index] = new YT.Player(`yt-player-${index}`, {
+      height: '0',
+      width: '0',
+      videoId: videoId,
+      playerVars: {
+        'autoplay': 0,
+        'controls': 0,
+        'start': startTime,
+        'enablejsapi': 1
+      },
+      events: {
+        'onStateChange': (event) => onPlayerStateChange(index, event)
       }
-    }
-  });
+    });
 
-  // Start polling for progress (high frequency for smooth movement)
-  audioPoller = setInterval(updateAudioProgress, 30);
+    // Make sure poller is running if we have an active player
+    if (!audioPoller) {
+      audioPoller = setInterval(updateAudioProgress, 50); // Relaxed to 50ms (20fps) for better battery
+    }
+  }
 }
 
 function extractVideoId(url) {
@@ -390,6 +411,7 @@ function clearActiveEntries() {
 //  Show / Hide Viewers
 // ============================
 function showHomeworkViewer() {
+  stopAllAudio(); // Safety bounds
   welcomeState.style.display = 'none';
   lessonViewer.style.display = 'none';
   homeworkViewer.style.display = 'flex';
@@ -399,6 +421,7 @@ function showHomeworkViewer() {
 }
 
 function showLessonViewer() {
+  stopAllAudio(); // Safety bounds
   welcomeState.style.display = 'none';
   homeworkViewer.style.display = 'none';
   lessonViewer.style.display = 'flex';
@@ -726,8 +749,11 @@ window.goToPart = function (index) {
 
   // Pause all audio when moving away from a part
   Object.values(audioPlayers).forEach(p => {
-    if (p && p.pauseVideo) p.pauseVideo();
+    if (p && typeof p.pauseVideo === 'function') p.pauseVideo();
   });
+
+  // Lazy load current player if it holds audio
+  initSinglePlayer(index);
 };
 
 function updatePaginationDots() {
