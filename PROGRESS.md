@@ -61,10 +61,12 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 - [x] Seekbar with live horizontal time display (`MM:SS / MM:SS`)
 - [x] Audio paused automatically when navigating to another part or assignment
 - [x] Audio player now supports Shift + Arrow keys for global seeking
-- [x] Interactive bookmark dots (8, 9, 10) for rapid navigation to specific question starts
-- [x] Integrated "Watch on YouTube" button styled as a matched circular action dot
+- [x] Interactive bookmark dots (8, 9, 10) for rapid navigation to specific question starts with manual active state highlighting
+- [x] Integrated "Watch on YouTube" button with custom red SVG branding and redirection confirmation prompt
+- [x] Glassy Finish: Translucent Apple-inspired design for all player controls (Play, Bookmarks, YouTube) with sub-pixel optimization for mobile.
 - [x] Automated Transcript extraction protocol: AI can now auto-extract question starts and scenario contexts from YouTube links
 - [x] Perfectly aligned horizontal layout for all audio controls (Play → Seeker → Time → Bookmarks)
+- [x] Redesigned "Transcript" toggle (replacing Reveal/Hide) with optimized auto-width glassy buttons.
 
 ### 📚 Lesson Viewer
 - [x] Vocabulary section with word, definition, and example
@@ -154,6 +156,7 @@ body / .app
 | YouTube icon missing circle | Applied `transparent` border/background in light mode. | Inherited base `.bookmark-dot` styles for a consistent circular look. |
 | Part 4 text missing scenario | Only question text was being added during construction. | Protocol updated to extract and include speaker scenarios (e.g., "I was told...") in the reveal text string. |
 | Reveal button layout shift | Button width changed based on text length. | Enforced fixed `145px` width for ".reveal-btn". |
+| Glassy button borders look thick on mobile | Sub-pixel scaling combined `border` + `inset-shadow` into a heavy 2px band. | Re-engineered glassy styles to use razor-thin 1px borders with NO inset shadows on mobile (`@media max-width: 600px`). |
 
 ### Quick Reference: What Controls What
 
@@ -202,6 +205,7 @@ body / .app
 | Apr 13 | **Layout & Aesthetic Polish**: Pixel-perfect vertical alignment of navigation icons. Refined date badge to match class-button aesthetics. Symmetrical floating sidebar. Unified root-level scrolling across all views. |
 | Apr 14 | **Part 4 UI & Automation**: Redesigned audio footer for horizontal alignment. Implemented 36px circular play button and 26px bookmark dots. Refined "Watch on YouTube" icon. Established automated extraction protocol for YouTube transcripts and scenarios. Formally documented extraction workflow in `ADD_HOMEWORK.md`. Cleaned up data for S129 Day 03. |
 | Apr 14 | **UI/UX Polish**: Investigated UI flows with visual bot. Fixed dark mode image glare via filters. Handled mobile phantom tap highlights. Replaced basic time-hide logic with a hybrid scroll-directional mechanism for the top nav. |
+| Apr 14 | **Glassy UI & Player Refinement**: Implemented Apple-style backdrop-blur finishes for Transcript and Audio buttons. Refined border thickness for distinct desktop/mobile experiences. Replaced generic YT icon with branded SVG and added redirection prompt. Simplified "Transcript" toggle logic. |
 
 ---
 

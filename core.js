@@ -262,9 +262,15 @@ function loadYouTubeAPI() {
 }
 
 async function initAudioPlayers() {
-  // Clear old players
+  // Clear and destroy old players to free memory
+  if (audioPlayers) {
+    Object.values(audioPlayers).forEach(p => {
+      if (p && typeof p.destroy === 'function') p.destroy();
+    });
+  }
   audioPlayers = {};
-  if (audioPoller) clearInterval(audioPoller);
+  if (audioPoller) cancelAnimationFrame(audioPoller);
+  audioPoller = null;
 
   const needsYT = currentParts.some(part => part.type === 'respond-info-q' && part.content.videoUrl);
   if (needsYT) {
@@ -294,9 +300,6 @@ async function initAudioPlayers() {
       }
     }
   });
-
-  // Start polling for progress (high frequency for smooth movement)
-  audioPoller = setInterval(updateAudioProgress, 30);
 }
 
 function extractVideoId(url) {
@@ -358,9 +361,27 @@ function onPlayerStateChange(index, event) {
   if (event.data === YT.PlayerState.PLAYING) {
     icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
     btn.closest('.audio-standalone').classList.add('playing');
+    
+    // Start progress loop only while playing
+    if (!audioPoller) {
+      const loop = () => {
+        updateAudioProgress();
+        audioPoller = requestAnimationFrame(loop);
+      };
+      audioPoller = requestAnimationFrame(loop);
+    }
   } else {
     icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
     btn.closest('.audio-standalone').classList.remove('playing');
+    
+    // Stop loop if no video is playing
+    const anyPlaying = Object.values(audioPlayers).some(p => {
+        try { return p.getPlayerState() === YT.PlayerState.PLAYING; } catch(e) { return false; }
+    });
+    if (!anyPlaying && audioPoller) {
+      cancelAnimationFrame(audioPoller);
+      audioPoller = null;
+    }
   }
 }
 
