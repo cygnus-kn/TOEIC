@@ -22,7 +22,7 @@ while/phone
 
 Question 5
 
-![Question 5](writing-pictures/test-1-2025-pic-05.jpg)
+![Question 5](writing-pictures/test-1-2025-pic-5.jpg)
 box/heavy
 
 ### Part 2: Respond to an Email

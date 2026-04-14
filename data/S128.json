@@ -44,7 +44,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Questions 1-5",
           "content": {
-            "imageUrl": "test-data/writing-pictures/test-1-2025-pic-05.jpg",
+            "imageUrl": "test-data/writing-pictures/test-1-2025-pic-5.jpg",
             "words": ["box", "heavy"]
           }
         },
