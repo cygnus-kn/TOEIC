@@ -1086,8 +1086,12 @@ window.addEventListener('scroll', () => {
     return;
   }
   
-  // Only auto-show if we hit the absolute top 0 mark (prevents random shows in top 50px)
-  if (currentScrollY <= 0) {
+  const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+
+  // Auto-show ONLY if we natively pull down into overscroll (negative scrollY)
+  // OR if we hit the absolute top (0) on a legitimately tall scrollable page.
+  // This explicitly ignores bottom-bounces landing on 0 for short task-cards.
+  if (currentScrollY < 0 || (currentScrollY <= 0 && maxScroll > 50)) {
     showMobileControls();
     accumulatedScrollUp = 0;
     accumulatedScrollDown = 0;
@@ -1111,8 +1115,16 @@ window.addEventListener('scroll', () => {
   resetControlTimer();
 }, { passive: true });
 
-// Any interaction specifically on the nav buttons should reset the 3-second disappear timer
+// Any click on the page should immediately reveal the UI if it's currently hidden (solves the short-card scrolling trap)
 document.body.addEventListener('click', (e) => {
+  if (document.body.classList.contains('mobile-controls-hidden')) {
+    // Exclude timer interactions from summoning the UI, so it doesn't distract the student when a test starts
+    if (!e.target.closest('.timer-display')) {
+      showMobileControls();
+    }
+  }
+
+  // If the user actually tapped the nav buttons themselves, forcefully reset the disappearing timer
   if (e.target.closest('.sidebar-toggle-btn') || e.target.closest('.theme-toggle-wrapper')) {
     resetControlTimer();
   }
