@@ -536,7 +536,7 @@ function renderCards() {
         const q10Time = timestamps.q10 !== undefined ? timestamps.q10 : baseTime;
 
         const videoId = extractVideoId(part.content.videoUrl);
-        const watchLink = videoId ? `https://www.youtube.com/watch?v=${videoId}` : part.content.videoUrl;
+        const watchLink = videoId ? `https://www.youtube.com/watch?v=${videoId}&t=${Math.floor(q8Time)}s` : part.content.videoUrl;
 
         // Standalone Audio control without pill
         html += `
