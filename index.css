@@ -969,6 +969,11 @@ body {
   display: block;
   object-fit: contain;
   /* Show the whole image */
+  transition: filter var(--transition-smooth);
+}
+
+body.dark-theme .picture-container img {
+  filter: brightness(0.85) contrast(1.05); 
 }
 
 .audio-standalone {
