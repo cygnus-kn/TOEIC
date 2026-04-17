@@ -21,6 +21,7 @@ let currentParts = [];
 let activeClass = '';
 let activeType = ''; // 'homework' or 'lesson'
 let timers = {}; // { partIndex: { interval, remaining, running } }
+let topicTimers = {}; // { "partIndex-qIndex": { interval, remaining, running } }
 let audioPlayers = {}; // { partIndex: playerInstance }
 let audioPoller = null;
 
@@ -34,6 +35,8 @@ const RESPONSE_TIMES = {
   'opinion': 60,
   'email-response': 600,
   'sentence-picture': 300,
+  'topic-prep': 30,
+  'topic-prep-item': 30,
 };
 
 // Display names for card header
@@ -46,6 +49,8 @@ const TYPE_LABELS = {
   'opinion': 'TOEIC Speaking',
   'email-response': 'TOEIC Writing',
   'sentence-picture': 'TOEIC Writing',
+  'topic-prep': 'Topic Preparation',
+  'topic-prep-item': 'Topic Preparation',
 };
 
 // DOM refs
@@ -78,6 +83,12 @@ function clearAllTimers() {
     }
   }
   timers = {};
+
+  // Also clear any topic timers
+  for (const key in topicTimers) {
+    if (topicTimers[key].interval) clearInterval(topicTimers[key].interval);
+  }
+  topicTimers = {};
 }
 
 // ============================
@@ -231,7 +242,62 @@ function resumeResponseTimer(index, totalResponseTime) {
 
 
 // ============================
-//  Audio Control Logic (Enhanced)
+//  Topic Prep Timer Logic
+// ============================
+window.toggleTopicTimer = function (key, responseTime) {
+  const display = document.getElementById(`topic-timer-display-${key}`);
+  const valueEl = document.getElementById(`topic-timer-value-${key}`);
+  if (!display || !valueEl) return;
+
+  if (!topicTimers[key]) {
+    // Start
+    topicTimers[key] = { remaining: responseTime, running: true, interval: null };
+    display.classList.add('running');
+    display.classList.remove('finished');
+    valueEl.textContent = formatTime(responseTime);
+
+    topicTimers[key].interval = setInterval(() => {
+      topicTimers[key].remaining--;
+      valueEl.textContent = formatTime(topicTimers[key].remaining);
+      if (topicTimers[key].remaining <= 0) {
+        clearInterval(topicTimers[key].interval);
+        topicTimers[key].running = false;
+        display.classList.remove('running');
+        display.classList.add('finished');
+        valueEl.textContent = '00:00';
+      }
+    }, 1000);
+
+  } else if (topicTimers[key].running) {
+    // Pause
+    clearInterval(topicTimers[key].interval);
+    topicTimers[key].running = false;
+    display.classList.remove('running');
+
+  } else if (topicTimers[key].remaining > 0) {
+    // Resume
+    topicTimers[key].running = true;
+    display.classList.add('running');
+    topicTimers[key].interval = setInterval(() => {
+      topicTimers[key].remaining--;
+      valueEl.textContent = formatTime(topicTimers[key].remaining);
+      if (topicTimers[key].remaining <= 0) {
+        clearInterval(topicTimers[key].interval);
+        topicTimers[key].running = false;
+        display.classList.remove('running');
+        display.classList.add('finished');
+        valueEl.textContent = '00:00';
+      }
+    }, 1000);
+
+  } else {
+    // Reset
+    delete topicTimers[key];
+    display.classList.remove('running', 'finished');
+    valueEl.textContent = formatTime(responseTime);
+  }
+};
+
 // ============================
 window.isUserSeeking = false;
 
@@ -513,6 +579,40 @@ function renderCards() {
   let html = '';
 
   currentParts.forEach((part, index) => {
+
+    // ── Topic Preparation: render as stacked full cards ──────────────────────
+    if (part.type === 'topic-prep') {
+      const questions = part.questions || [];
+      const responseTime = part.responseTime || 30;
+      html += `<div class="topic-prep-stack">`;
+      questions.forEach((q, i) => {
+        const key = `${index}-${i}`;
+        html += `
+          <div class="part-card">
+            <div class="card-header-bar">
+              <span class="card-header-left">Topic Preparation</span>
+              <span class="card-header-right">Question ${i + 1}</span>
+            </div>
+            <div class="card-body">
+              <div class="part-content">
+                <div class="prep-stack-question">${q}</div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="response-timer" onclick="toggleTopicTimer('${key}', ${responseTime})" id="topic-timer-${key}">
+                <div class="timer-display" id="topic-timer-display-${key}">
+                  <span id="topic-timer-value-${key}">${formatTime(responseTime)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      return; // skip normal card rendering
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+
     let typeCategory = TYPE_LABELS[part.type] || 'TOEIC';
     const responseTime = part.responseTime || RESPONSE_TIMES[part.type] || 45;
 
@@ -543,13 +643,12 @@ function renderCards() {
     // Body
     html += `<div class="card-body">`;
     html += `<div class="part-content">`;
-    html += renderPartContent(part);
+    html += renderPartContent(part, index);
     html += `</div></div>`;
 
     // Footer with response timer or audio control
     const hasAudio = part.content && part.content.videoUrl;
-    const hasTimer = part.type !== 'sentence-picture' && (part.prepTime || part.responseTime || (part.type !== 'respond-info-q' && RESPONSE_TIMES[part.type]));
-
+    const hasTimer = part.type !== 'sentence-picture' && part.type !== 'topic-prep' && (part.prepTime || part.responseTime || (part.type !== 'respond-info-q' && RESPONSE_TIMES[part.type]));
     if (hasAudio || hasTimer) {
       if (hasAudio && part.type === 'respond-info-q') {
         html += `<div class="card-footer" style="flex-direction: column; align-items: center; gap: 4px;">`;
@@ -616,7 +715,7 @@ function renderCards() {
   initAudioPlayers();
 }
 
-function renderPartContent(part) {
+function renderPartContent(part, partIndex) {
   switch (part.type) {
     case 'read-aloud':
       return `<div class="reading-passage">${part.content.passage}</div>`;
@@ -635,7 +734,7 @@ function renderPartContent(part) {
         </div>
       `;
 
-    case 'respond-questions':
+    case 'respond-questions': {
       const qText = part.content.question;
       const lines = qText.split('\n');
       let htmlContent = '';
@@ -664,8 +763,9 @@ function renderPartContent(part) {
 
       if (inList) htmlContent += '</ul>';
       return `<div class="question-text">${htmlContent}</div>`;
+    }
 
-    case 'respond-info':
+    case 'respond-info': {
       let tableHtml = '<table class="info-block"><thead><tr>';
       if (part.content.headers) {
         part.content.headers.forEach(h => { tableHtml += `<th>${h}</th>`; });
@@ -683,6 +783,7 @@ function renderPartContent(part) {
         tableHtml += `<div class="question-text" style="margin-top:16px;">${part.content.question}</div>`;
       }
       return tableHtml;
+    }
 
     case 'respond-info-q':
       return `
@@ -699,9 +800,10 @@ function renderPartContent(part) {
         ` : ''}
       `;
 
-    case 'opinion':
+    case 'opinion': {
       const isEssay = part.label === 'Write an Opinion Essay';
       return `<div class="opinion-prompt">${isEssay ? '<strong>Essay:</strong> ' : ''}${part.content.prompt.replace(/\n/g, '<br>')}</div>`;
+    }
 
     case 'email-response':
       return `
@@ -727,6 +829,40 @@ function renderPartContent(part) {
         </div>
         ${part.content.words ? `<div class="sentence-words">${part.content.words[0]} / ${part.content.words[1]}</div>` : ''}
       `;
+
+    case 'topic-prep': {
+      const questions = part.questions || [];
+      const responseTime = part.responseTime || 30;
+      const topicBadge = part.topic ? `<div class="prep-topic-badge">${part.topic}</div>` : '';
+      const instruction = part.instruction ? `<p class="prep-instruction">${part.instruction}</p>` : '';
+      const miniCards = questions.map((q, i) => {
+        const key = `${partIndex}-${i}`;
+        return `
+          <div class="prep-mini-card">
+            <div class="prep-mini-card-header">
+              <span class="prep-mini-counter">${i + 1} / ${questions.length}</span>
+            </div>
+            <div class="prep-mini-question">${q}</div>
+            <div class="prep-mini-footer">
+              <div class="response-timer" onclick="toggleTopicTimer('${key}', ${responseTime})" id="topic-timer-${key}">
+                <div class="timer-display" id="topic-timer-display-${key}">
+                  <span id="topic-timer-value-${key}">${formatTime(responseTime)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      return `
+        <div class="topic-prep-content">
+          <div class="prep-header-row">
+            ${topicBadge}
+            ${instruction}
+          </div>
+          <div class="prep-mini-cards">${miniCards}</div>
+        </div>
+      `;
+    }
 
     default:
       return `<div class="reading-passage">${JSON.stringify(part.content)}</div>`;

@@ -246,6 +246,81 @@ A standard speaking session typically follows this order, but can be customized 
 ---
 
 ## ══════════════════════════
+## TOPIC PREPARATION HOMEWORK
+
+`topic-prep` is a special homework type for **next-session preparation**. Unlike Speaking/Writing tasks, students don't speak or write — they simply think through their answers before the next class. It can be added to **any homework day** — Speaking or Writing — and can sit alongside any part type, including Q11 (Express an Opinion) and the Writing essay (Q8).
+
+**How it renders:** One pagination slot containing a vertical stack of full cards — one card per question — each with its own 30-second preparation timer. The header bar shows **"Topic Preparation"** and **"Question N"**.
+
+| Field           | Required | Description                                                    |
+| --------------- | -------- | -------------------------------------------------------------- |
+| `type`          | ✅        | Must be `"topic-prep"`                                         |
+| `label`         | ✅        | `"Topic Preparation"`                                          |
+| `questionLabel` | ✅        | e.g. `"Next Session"` (shown in the pagination dot tooltip)    |
+| `topic`         | ✅        | Short topic name, e.g. `"Work & Career"`                       |
+| `instruction`   | optional | Italic hint shown at the top of the card stack                 |
+| `questions`     | ✅        | Array of question strings (3–7 recommended)                    |
+| `responseTime`  | optional | Seconds per question timer. Defaults to `30`. **Set this to match the actual response time of the part being prepared** (see table below) |
+
+**Recommended `responseTime` by preparation type:**
+
+| Preparing for…              | `responseTime` |
+| --------------------------- | -------------- |
+| Speaking Q5–6 (short)       | `15`           |
+| Speaking Q7 / general topic | `30`           |
+| Speaking Q11 (opinion)      | `60`           |
+| Writing essay (Q8)          | `60` or more   |
+
+
+### Schema
+
+```json
+{
+  "type": "topic-prep",
+  "label": "Topic Preparation",
+  "questionLabel": "Next Session",
+  "topic": "TOPIC NAME",
+  "instruction": "Think about your answers to the following questions. You will discuss these topics in the next class. Take 30 seconds to prepare each one.",
+  "questions": [
+    "Question 1 text here.",
+    "Question 2 text here.",
+    "Question 3 text here.",
+    "Question 4 text here.",
+    "Question 5 text here."
+  ],
+  "responseTime": 30
+}
+```
+
+> [!IMPORTANT]
+> **`topic-prep` is always a single entry in the `parts` array**, regardless of how many questions it contains. Do NOT create one entry per question — the app automatically expands the `questions` array into individual stacked cards.
+
+> [!TIP]
+> `topic-prep` can appear **anywhere** in the `parts` array — at the end, middle, or beginning of a homework day. The number of questions is flexible; **3–7 is a reasonable range**, but any count works.
+
+### Example — Work & Career
+
+```json
+{
+  "type": "topic-prep",
+  "label": "Topic Preparation",
+  "questionLabel": "Next Session",
+  "topic": "Work & Career",
+  "instruction": "Think about your answers to the following questions. You will discuss these topics in the next class. Take 30 seconds to prepare each one.",
+  "questions": [
+    "Describe your ideal job. What kind of work environment would you prefer — an office, working from home, or outdoors? Why?",
+    "What skills do you think are most important to succeed in today's job market? Give examples.",
+    "Have you ever had a part-time job or helped with work at home? What did you learn from that experience?",
+    "Some people choose a job for the salary, while others choose based on passion. Which do you think is more important, and why?",
+    "How do you think technology is changing the way people work? Give one example of a job that has changed because of technology."
+  ],
+  "responseTime": 30
+}
+```
+
+---
+
+## ══════════════════════════
 ## WRITING HOMEWORK
 
 A standard writing session typically follows this order (individual parts or mixed sets are also allowed):
@@ -398,3 +473,5 @@ A standard writing session typically follows this order (individual parts or mix
 | Bullet list in questions | Use `\n- Item` in the question string                                   |
 | Speaking opinion label   | `"Express an Opinion"`                                                  |
 | Writing opinion label    | `"Write an Opinion Essay"`                                              |
+| `topic-prep` placement   | Can appear **anywhere** in the `parts` array                        |
+| `topic-prep` questions   | Any count works; one string per array entry — stacked into separate cards |

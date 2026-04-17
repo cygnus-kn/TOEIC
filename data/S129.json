@@ -176,6 +176,21 @@
           "content": {
             "prompt": "Some people think that the company should increase the salary of all the employees every year. Others think that the company should increase the salary of the employees who only bring good results? What is your opinion on this matter."
           }
+        },
+        {
+          "type": "topic-prep",
+          "label": "Topic Preparation",
+          "questionLabel": "Next Session",
+          "topic": "Work & Career",
+          "instruction": "Think about your answers to the following questions. You will discuss these topics in the next class. Take 30 seconds to prepare each one.",
+          "questions": [
+            "Describe your ideal job. What kind of work environment would you prefer — an office, working from home, or outdoors? Why?",
+            "What skills do you think are most important to succeed in today's job market? Give examples.",
+            "Have you ever had a part-time job or helped with work at home? What did you learn from that experience?",
+            "Some people choose a job for the salary, while others choose based on passion. Which do you think is more important, and why?",
+            "How do you think technology is changing the way people work? Give one example of a job that has changed because of technology."
+          ],
+          "responseTime": 30
         }
       ]
     }
