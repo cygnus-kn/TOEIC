@@ -913,6 +913,7 @@ body.dark-theme .timer-display.running {
   background: linear-gradient(90deg, rgba(52, 45, 97, 0.85) 0%, rgba(126, 21, 70, 0.85) 100%);
   border-color: transparent;
   color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
@@ -921,6 +922,7 @@ body.dark-theme .timer-display.finished {
   background: linear-gradient(135deg, rgba(255, 59, 48, 0.85) 0%, rgba(255, 69, 58, 0.85) 100%);
   border-color: transparent;
   color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
@@ -934,6 +936,7 @@ body.dark-theme .timer-display.prep-stage {
   background: linear-gradient(90deg, #FFD60A 0%, #FF9F0A 100%);
   border-color: transparent;
   color: #000000;
+  -webkit-text-fill-color: #000000;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
