@@ -841,7 +841,15 @@ body {
   transition: all var(--transition-fast);
 }
 
-.response-timer:hover .timer-display {
+.response-timer:hover .timer-display:not(.running):not(.prep-stage) {
+  transform: scale(1.02);
+  background: var(--color-surface-hover);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.response-timer:hover .timer-display.running,
+.response-timer:hover .timer-display.prep-stage {
   transform: scale(1.02);
   background: linear-gradient(90deg, rgba(62, 55, 113, 0.85) 0%, rgba(142, 26, 82, 0.85) 100%);
 }
@@ -856,10 +864,11 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: linear-gradient(90deg, rgba(52, 45, 97, 0.85) 0%, rgba(126, 21, 70, 0.85) 100%);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-secondary);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  color: #ffffff;
   padding: 8px 28px;
   border-radius: 9999px;
   font-size: 18px;
@@ -871,8 +880,20 @@ body {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-theme .timer-display {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-tertiary);
+}
+
+.timer-display.running {
+  background: linear-gradient(90deg, rgba(52, 45, 97, 0.85) 0%, rgba(126, 21, 70, 0.85) 100%);
+  border-color: transparent;
+  color: #ffffff;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
-  /* Apple-like glass rim lift */
 }
 
 .timer-display span {
@@ -882,12 +903,35 @@ body {
 
 .timer-display.finished {
   background: linear-gradient(135deg, rgba(255, 59, 48, 0.85) 0%, rgba(255, 69, 58, 0.85) 100%);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .timer-display.prep-stage {
   background: linear-gradient(90deg, #FFD60A 0%, #FF9F0A 100%);
+  border-color: transparent;
   color: #000000;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
 }
+
+/* Topic Preparation — stacked full cards in one pagination slot */
+.topic-prep-stack {
+  width: 100%;
+  min-width: 100%;
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.prep-stack-question {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.75;
+  color: var(--color-text-primary);
+}
+
 
 .reveal-section {
   display: flex;
