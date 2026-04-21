@@ -70,11 +70,11 @@
           "questionLabel": "Questions 8-10",
           "content": {
             "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-3.webp",
-            "videoUrl": "https://www.youtube.com/embed/fMDRgKYFzWY?start=620&enablejsapi=1",
+            "videoUrl": "https://www.youtube.com/embed/fMDRgKYFzWY?start=619&enablejsapi=1",
             "timestamps": {
-              "q8": 620,
-              "q9": 662,
-              "q10": 697
+              "q8": 619,
+              "q9": 661,
+              "q10": 696
             },
             "question": "Question 8: When is the first day of class and when is the registration deadline?\n\nQuestion 9: I was told that the registration fee is 275 dollars per semester. Does that include everything for the classes that you offer throughout the course?\n\nQuestion 10: I am interested in learning more about Japan and their tourism industry. Could you please tell me all the classes that would be helpful for people like me?"
           }
