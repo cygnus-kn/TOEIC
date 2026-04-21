@@ -236,24 +236,32 @@
         {
           "type": "read-aloud",
           "label": "Read a Text Aloud",
-          "questionLabel": "Questions 1-2",
+          "questionLabel": "Passage 9",
           "content": {
-            "passage": "Welcome to the 10th anniversary party of Sweet Caroline's Ice Cream Parlor. We have been striving for the last ten years to make this place a favorite dessert shop for folks in Forestdale County. Thank you for allowing us the honor of creating fond memories for you, your family and your friends!"
+            "passage": "Good evening and welcome to our performance. On behalf of the Woodson Dance Company, I'd like to thank you for supporting the arts. Tonight's program will feature the folk music, traditional costumes, and visual art of the Caribbean. Because this is the final show of our season, there will be a reception in the lobby after our program."
           }
         },
         {
           "type": "read-aloud",
           "label": "Read a Text Aloud",
-          "questionLabel": "Questions 1-2",
+          "questionLabel": "Passage 10",
           "content": {
-            "passage": "Thank you for tuning into your daily weather report with Blake Dawson. We are expecting light and moderate rain in some places from Florida up to Virginia. Starting from New Jersey, there is a stationary front bringing rain, ice, and snow along the coast. Please gear up if you are planning an outing this weekend. And now, stay tuned for sports news."
+            "passage": "Are you looking for accommodations in Stanton Beach for your summer vacation? During the months of June, July, and August, hotel prices can be extremely high. But Bondwell Rentals offers furnished houses and apartments for large groups at very reasonable prices. And all of our properties are just steps away from the ocean. To learn more, contact our office today!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 11",
+          "content": {
+            "passage": "In weather news this week, the Cooperstown area is going to get significantly cooler. After having such a hot and humid August, it will be a nice change to see some lower temperatures. Expect cool breezes, cloudy skies, and occasional rain showers."
           }
         },
         {
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-1.webp",
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -262,59 +270,171 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-2.webp",
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
         {
-          "type": "respond-questions",
-          "label": "Respond to Questions",
-          "questionLabel": "Questions 5-7",
-          "responseTime": 15,
+          "type": "describe-picture",
+          "label": "Describe a Picture",
           "content": {
-            "question": "Do you prefer to take morning classes or evening classes? Why"
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic3.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 3",
+            "prompt": "Describe the picture in as much detail as you can."
           }
         },
         {
-          "type": "respond-questions",
-          "label": "Respond to Questions",
-          "questionLabel": "Questions 5-7",
-          "responseTime": 15,
+          "type": "describe-picture",
+          "label": "Describe a Picture",
           "content": {
-            "question": "Do you prefer to have a short break or a long break between classes? Why?"
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic4.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 4",
+            "prompt": "Describe the picture in as much detail as you can."
           }
         },
         {
-          "type": "respond-questions",
-          "label": "Respond to Questions",
-          "questionLabel": "Questions 5-7",
-          "responseTime": 30,
+          "type": "describe-picture",
+          "label": "Describe a Picture",
           "content": {
-            "question": "What are some disadvantages of attending a school located far from your hometown?"
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic5.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 5",
+            "prompt": "Describe the picture in as much detail as you can."
           }
         },
         {
-          "type": "respond-info-q",
-          "label": "Questions 8-10: Respond to Information",
-          "questionLabel": "Questions 8-10",
+          "type": "describe-picture",
+          "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-3.webp",
-            "videoUrl": "https://www.youtube.com/embed/fMDRgKYFzWY?start=619&enablejsapi=1",
-            "timestamps": {
-              "q8": 619,
-              "q9": 661,
-              "q10": 696
-            },
-            "question": "Question 8: When is the first day of class and when is the registration deadline?\n\nQuestion 9: I was told that the registration fee is 275 dollars per semester. Does that include everything for the classes that you offer throughout the course?\n\nQuestion 10: I am interested in learning more about Japan and their tourism industry. Could you please tell me all the classes that would be helpful for people like me?"
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic6.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 6",
+            "prompt": "Describe the picture in as much detail as you can."
           }
         },
         {
-          "type": "opinion",
-          "label": "Express an Opinion",
-          "questionLabel": "Question 11",
+          "type": "describe-picture",
+          "label": "Describe a Picture",
           "content": {
-            "prompt": "If you were to give feedback to your colleague in order to improve their work productivity, what would you like to talk about?\n- Communication skills\n- Work motivation\n- Teamwork"
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic7.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 7",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic8.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 8",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic9.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 9",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic10.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 10",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic11.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 11",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic12.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 12",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic13.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 13",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic14.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 14",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic15.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 15",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic16.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 16",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic17.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 17",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic18.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 18",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic19.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 19",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic20.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 20",
+            "prompt": "Describe the picture in as much detail as you can."
           }
         }
       ]
