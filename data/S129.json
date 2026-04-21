@@ -1,6 +1,91 @@
 {
   "homework": [
     {
+      "date": "[HW Day 05]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Welcome to the 10th anniversary party of Sweet Caroline's Ice Cream Parlor. We have been striving for the last ten years to make this place a favorite dessert shop for folks in Forestdale County. Thank you for allowing us the honor of creating fond memories for you, your family and your friends!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Thank you for tuning into your daily weather report with Blake Dawson. We are expecting light and moderate rain in some places from Florida up to Virginia. Starting from New Jersey, there is a stationary front bringing rain, ice, and snow along the coast. Please gear up if you are planning an outing this weekend. And now, stay tuned for sports news."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-1.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-2.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-7",
+          "responseTime": 15,
+          "content": {
+            "question": "Do you prefer to take morning classes or evening classes? Why"
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-7",
+          "responseTime": 15,
+          "content": {
+            "question": "Do you prefer to have a short break or a long break between classes? Why?"
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-7",
+          "responseTime": 30,
+          "content": {
+            "question": "What are some disadvantages of attending a school located far from your hometown?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 8-10: Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/fMDRgKYFzWY?enablejsapi=1",
+            "timestamps": {},
+            "question": "Question 8: When is the first day of class and when is the registration deadline?\n\nQuestion 9: I was told that the registration fee is 275 dollars per semester. Does that include everything for the classes that you offer throughout the course?\n\nQuestion 10: I am interested in learning more about Japan and their tourism industry. Could you please tell me all the classes that would be helpful for people like me?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "If you were to give feedback to your colleague in order to improve their work productivity, what would you like to talk about?\n- Communication skills\n- Work motivation\n- Teamwork"
+          }
+        }
+      ]
+    },
+    {
       "date": "[HW Day 04] 04/13",
       "parts": [
         {
@@ -8,7 +93,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Questions 1-2",
           "content": {
-            "passage": "Thank you for tuning into the Daily Cup of Tea podcast. It’s Friday, and as always, we have invited a special guest on our show to spill the tea on what has happened this week. Please welcome a veteran journalist, a published author and a marketing specialist, Cindy Wagner, who is joining us live at the studio today."
+            "passage": "Thank you for tuning into the Daily Cup of Tea podcast. It\u2019s Friday, and as always, we have invited a special guest on our show to spill the tea on what has happened this week. Please welcome a veteran journalist, a published author and a marketing specialist, Cindy Wagner, who is joining us live at the studio today."
           }
         },
         {
@@ -24,7 +109,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/speaking-pictures/GwenTV-02-2023-picture-1.png",
-            "imagePlaceholder": "🖼️ Picture 1",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -33,7 +118,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/speaking-pictures/GwenTV-02-2023-picture-2.png",
-            "imagePlaceholder": "🖼️ Picture 2",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -113,7 +198,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/speaking-pictures/GwenTV-01-2023-picture-1.png",
-            "imagePlaceholder": "🖼️ Picture 1",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -122,7 +207,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/speaking-pictures/GwenTV-01-2023-picture-2.png",
-            "imagePlaceholder": "🖼️ Picture 2",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -184,7 +269,7 @@
           "topic": "Work & Career",
           "instruction": "Think about your answers to the following questions. You will discuss these topics in the next class. Take 30 seconds to prepare each one.",
           "questions": [
-            "Describe your ideal job. What kind of work environment would you prefer — an office, working from home, or outdoors? Why?",
+            "Describe your ideal job. What kind of work environment would you prefer \u2014 an office, working from home, or outdoors? Why?",
             "What skills do you think are most important to succeed in today's job market? Give examples.",
             "Have you ever had a part-time job or helped with work at home? What did you learn from that experience?",
             "Some people choose a job for the salary, while others choose based on passion. Which do you think is more important, and why?",
@@ -199,26 +284,66 @@
     {
       "date": "[Lesson Day 02] 04/10",
       "vocab": [
-        { "word": "revenue", "definition": "(n.) income, especially of a company", "example": "The company's annual revenue exceeded $5 million." },
-        { "word": "approximately", "definition": "(adv.) close to; around", "example": "The project will take approximately three weeks." },
-        { "word": "inconvenience", "definition": "(n.) trouble or difficulty", "example": "We apologize for any inconvenience caused by the delay." },
-        { "word": "quarterly", "definition": "(adj.) happening every three months", "example": "The quarterly report showed strong growth." }
+        {
+          "word": "revenue",
+          "definition": "(n.) income, especially of a company",
+          "example": "The company's annual revenue exceeded $5 million."
+        },
+        {
+          "word": "approximately",
+          "definition": "(adv.) close to; around",
+          "example": "The project will take approximately three weeks."
+        },
+        {
+          "word": "inconvenience",
+          "definition": "(n.) trouble or difficulty",
+          "example": "We apologize for any inconvenience caused by the delay."
+        },
+        {
+          "word": "quarterly",
+          "definition": "(adj.) happening every three months",
+          "example": "The quarterly report showed strong growth."
+        }
       ],
       "structures": [
-        { "pattern": "Due to + noun/gerund", "example": "Due to the heavy rain, the event was postponed.\nDue to increasing demand, we hired more staff." },
-        { "pattern": "I'd like to + verb", "example": "I'd like to start by introducing our new team member.\nI'd like to discuss the upcoming schedule changes." }
+        {
+          "pattern": "Due to + noun/gerund",
+          "example": "Due to the heavy rain, the event was postponed.\nDue to increasing demand, we hired more staff."
+        },
+        {
+          "pattern": "I'd like to + verb",
+          "example": "I'd like to start by introducing our new team member.\nI'd like to discuss the upcoming schedule changes."
+        }
       ]
     },
     {
       "date": "[Lesson Day 01] 04/07",
       "vocab": [
-        { "word": "hesitate", "definition": "(v.) to pause before doing something", "example": "Don't hesitate to contact us if you have questions." },
-        { "word": "thrill", "definition": "(v.) to feel very excited", "example": "We were thrilled to hear the good news." },
-        { "word": "assistance", "definition": "(n.) help or support", "example": "Please ask for assistance if you need help." }
+        {
+          "word": "hesitate",
+          "definition": "(v.) to pause before doing something",
+          "example": "Don't hesitate to contact us if you have questions."
+        },
+        {
+          "word": "thrill",
+          "definition": "(v.) to feel very excited",
+          "example": "We were thrilled to hear the good news."
+        },
+        {
+          "word": "assistance",
+          "definition": "(n.) help or support",
+          "example": "Please ask for assistance if you need help."
+        }
       ],
       "structures": [
-        { "pattern": "feel free to + verb", "example": "Feel free to ask any questions during the presentation.\nFeel free to contact me anytime." },
-        { "pattern": "In my opinion / From my point of view", "example": "In my opinion, working from home increases productivity.\nFrom my point of view, this is the best approach." }
+        {
+          "pattern": "feel free to + verb",
+          "example": "Feel free to ask any questions during the presentation.\nFeel free to contact me anytime."
+        },
+        {
+          "pattern": "In my opinion / From my point of view",
+          "example": "In my opinion, working from home increases productivity.\nFrom my point of view, this is the best approach."
+        }
       ]
     }
   ]
