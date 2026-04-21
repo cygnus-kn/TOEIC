@@ -248,11 +248,11 @@
           "questionLabel": "Questions 8-10",
           "content": {
             "imageUrl": "test-data/speaking-pictures/GwenTV-01-2023-picture-3.png",
-            "videoUrl": "https://www.youtube.com/embed/3jmaksYCoxQ?start=618&enablejsapi=1",
+            "videoUrl": "https://www.youtube.com/embed/3jmaksYCoxQ?start=617&enablejsapi=1",
             "timestamps": {
-              "q8": 618,
-              "q9": 660,
-              "q10": 688
+              "q8": 617,
+              "q9": 659,
+              "q10": 687
             },
             "question": "Question 8: What time will the orientation start and end?\n\nQuestion 9: Will I have to bring my own lunch?\n\nQuestion 10: I was told that I will be leading an education session in the afternoon. Can you tell me the details of the session that I will be leading?"
           }
@@ -265,21 +265,6 @@
           "content": {
             "prompt": "Some people think that the company should increase the salary of all the employees every year. Others think that the company should increase the salary of the employees who only bring good results? What is your opinion on this matter."
           }
-        },
-        {
-          "type": "topic-prep",
-          "label": "Topic Preparation",
-          "questionLabel": "Next Session",
-          "topic": "Work & Career",
-          "instruction": "Think about your answers to the following questions. You will discuss these topics in the next class. Take 30 seconds to prepare each one.",
-          "questions": [
-            "Describe your ideal job. What kind of work environment would you prefer \u2014 an office, working from home, or outdoors? Why?",
-            "What skills do you think are most important to succeed in today's job market? Give examples.",
-            "Have you ever had a part-time job or helped with work at home? What did you learn from that experience?",
-            "Some people choose a job for the salary, while others choose based on passion. Which do you think is more important, and why?",
-            "How do you think technology is changing the way people work? Give one example of a job that has changed because of technology."
-          ],
-          "responseTime": 30
         }
       ]
     }
