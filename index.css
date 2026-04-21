@@ -852,7 +852,7 @@ body {
 
 /* Card body — white content area */
 .card-body {
-  padding: 24px;
+  padding: 16px;
   background: var(--color-bg);
   overflow-y: visible !important;
   /* Force card to expand naturally */
@@ -1303,34 +1303,14 @@ body.dark-theme .out-link-icon:hover {
 .opinion-prompt ul {
   margin-top: var(--space-md);
   margin-bottom: var(--space-md);
-  padding-left: 0;
-  list-style: none; /* No default bullets */
+  padding-left: 24px;
+  list-style-type: disc;
 }
 
 .question-text li,
 .opinion-prompt li {
-  position: relative;
-  padding-left: 28px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   line-height: 1.6;
-}
-
-.question-text li::before,
-.opinion-prompt li::before {
-  content: '';
-  position: absolute;
-  left: 8px;
-  top: 10px;
-  width: 6px;
-  height: 6px;
-  background: var(--color-accent);
-  border-radius: 50%;
-  box-shadow: 0 0 8px var(--color-accent-light);
-}
-
-body.dark-theme .question-text li::before,
-body.dark-theme .opinion-prompt li::before {
-  box-shadow: 0 0 10px var(--color-accent);
 }
 
 /* Express an Opinion preset */
