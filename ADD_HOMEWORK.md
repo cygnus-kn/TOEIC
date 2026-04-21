@@ -1,27 +1,48 @@
-# How to Add Homework to data.js
+# How to Add Homework
 
-This guide explains how to add a new homework day for **any class** to `data.js`.
+This guide explains how to add a new homework day for **any class**.
 Read the user's prompt to determine: the **class ID**, the **test type** (Speaking or Writing), and the **content** for each question.
 
 ---
 
 ## 1. Where to Add It
 
-Open `data.js`. Find the class entry by its ID inside `CLASSES_DATA`:
+Adding homework requires updating **two** files: `data.js` for the sidebar menu navigation, and `data/CLASS_ID.json` for the actual payload content.
+
+### Step 1: Update `data.js`
+Open `data.js`. Find the class entry by its ID inside `CLASSES_DATA` and insert a new pointer object with just the `date` at the top of the `homework` array:
 
 ```js
 const CLASSES_DATA = {
   CLASS_ID: {
     homework: [
-      // ← INSERT NEW ENTRY HERE (newest first)
+      { date: "[HW Day XX] MM/DD" }, // ← INSERT NEW POINTER HERE (newest first)
+      // ... older entries
     ],
     lesson: [ ... ]
   }
 }
 ```
 
-> If the class ID does not exist yet, create a new entry following the same shape as an existing one.  
-> New homework entries always go at the **top** of the `homework` array.
+> If the class ID does not exist yet, create a new entry following the shape of an existing one.
+
+### Step 2: Update `data/CLASS_ID.json`
+Open the corresponding JSON file in the `data/` folder (e.g., `data/S129.json`). If it doesn't exist, create it. Insert the new homework entry with its full `parts` array at the top of the `homework` array. 
+**Important:** Because this is a `.json` file, you MUST use strict JSON formatting (double quotes for all property keys and string values).
+
+```json
+{
+  "homework": [
+    {
+      "date": "[HW Day XX] MM/DD",
+      "parts": [
+        // ← INSERT CONTENT PARTS HERE
+      ]
+    }
+  ],
+  "lesson": [ ... ]
+}
+```
 
 ---
 
@@ -464,8 +485,8 @@ A standard writing session typically follows this order (individual parts or mix
 
 | Need                     | Rule                                                                    |
 | ------------------------ | ----------------------------------------------------------------------- |
-| Where to insert          | Top of `homework: []` array (newest first)                              |
-| New class doesn't exist  | Create a new key in `CLASSES_DATA` with `homework: []` and `lesson: []` |
+| Where to insert          | `data.js` for date pointers; `data/CLASS_ID.json` for full text content      |
+| New class doesn't exist  | Create a new key in `CLASSES_DATA` and initialize matching `data/CLASS_ID.json` file |
 | Image paths — Speaking   | `test-data/speaking-pictures/*.png`                                    |
 | Image paths — Writing    | `test-data/writing-pictures/*.jpg`                                      |
 | YouTube `start=`         | In seconds: `(minutes × 60) + seconds`                                  |

@@ -1,0 +1,732 @@
+{
+  "homework": [
+    {
+      "date": "[HW Day 08]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 17",
+          "content": {
+            "passage": "Thank you for attending this press conference. It's my pleasure to present our company's new director, Linda Smith. Ms. Smith will focus on expanding our client base, supporting our employees, and improving our products. Since she has over thirty years' experience in our field, I'm confident she will provide valuable leadership. Now, please welcome Ms. Linda Smith."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 18",
+          "content": {
+            "passage": "Are you thinking of taking a trip? Let the team at Travel Smart help you find the best deals on airline tickets, hotel reservations, and tours. For more than thirty years, our agency has been providing personalized service and convenience to travelers. Whether your destination is international or domestic, we can make your trip a success."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 08-pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 08-pic2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        }
+      ]
+    },
+    {
+      "date": "[HW Day 07]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 15",
+          "content": {
+            "passage": "Are you looking for fine dining at an affordable price? Stop by Mr. Wu's Chinese Restaurant, located downtown on Main Street. We are famous for our dumplings, noodles, and desserts. For your convenience, our restaurant offers takeout and delivery services!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 16",
+          "content": {
+            "passage": "And now for this week's weather forecast. In the Midvale region, we are expecting heavy rain, lower temperatures, and wind from the northwest. Because rainfall last month was much lower than expected, this forecast should be welcome news to our local farmers."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 07-pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 07-pic2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "topic-prep",
+          "label": "Topic Preparation",
+          "questionLabel": "Question 7",
+          "topic": "Speaking Part 3",
+          "instruction": "Prepare your answers for the following Question 7 topics. Take 30 seconds to prepare each one.",
+          "questions": [
+            "Do you prefer watching sports live or on television?",
+            "Do you think fast food is popular in Vietnam? Why or why not?",
+            "People exercise in many different ways. What are some advantages of choosing walking instead of other forms of exercise?",
+            "What is the most important thing to prevent health issue?\n- Exercise\n- Diet\n- Sleep",
+            "If you were deciding where to eat, which of the following factors would most influence your decision? Why?\n- The menu\n- The atmosphere\n- The review"
+          ],
+          "responseTime": 30
+        }
+      ]
+    },
+    {
+      "date": "[HW Day 06]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 12",
+          "content": {
+            "passage": "When we return from the commercial break, I'll be talking with Maria Gonzalez about the housing market. As an experienced real estate agent, Maria has seen nearly every situation you may encounter. She'll be sharing her best tips for renters, sellers, and buyers Stay tuned. We'll be right back!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 13",
+          "content": {
+            "passage": "In local news, officials at City Hall have commissioned several sculptures to be displayed in Mason Park. The sculptures will be located near the basketball, tennis, and handball courts. Because the works are being created outdoors, the general public is welcome to come by and take photographs."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 14",
+          "content": {
+            "passage": "You have reached Benny's Shoe Store. Unfortunately, no one is available to take your call at this time. For information about our hours, location, and special discounts, please visit our Web site. If you would like to communicate with a store associate, please press \"one\" and leave a detailed message. An available associate will contact you shortly."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 06-pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 06-pic2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 1",
+          "responseTime": 15,
+          "content": {
+            "question": "Where do you usually study?"
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 2",
+          "responseTime": 15,
+          "content": {
+            "question": "Do you listen to music when you study?"
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 3",
+          "responseTime": 15,
+          "content": {
+            "question": "What time of day do you feel you concentrate the best?"
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 4",
+          "responseTime": 15,
+          "content": {
+            "question": "Do you take breaks while studying?"
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 5",
+          "responseTime": 15,
+          "content": {
+            "question": "Do you make shopping lists before going shopping?"
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 6",
+          "responseTime": 15,
+          "content": {
+            "question": "Where do you like to go shopping?"
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "responseTime": 15,
+          "content": {
+            "question": "What are your hobbies?"
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 8",
+          "responseTime": 15,
+          "content": {
+            "question": "How much money do you invest in your hobbies?"
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 9",
+          "responseTime": 15,
+          "content": {
+            "question": "Where is your hometown located?"
+          }
+        },
+        {
+          "type": "respond-questions",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 10",
+          "responseTime": 15,
+          "content": {
+            "question": "How long have you lived in your current house?"
+          }
+        }
+      ]
+    },
+    {
+      "date": "[HW Day 05]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 9",
+          "content": {
+            "passage": "Good evening and welcome to our performance. On behalf of the Woodson Dance Company, I'd like to thank you for supporting the arts. Tonight's program will feature the folk music, traditional costumes, and visual art of the Caribbean. Because this is the final show of our season, there will be a reception in the lobby after our program."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 10",
+          "content": {
+            "passage": "Are you looking for accommodations in Stanton Beach for your summer vacation? During the months of June, July, and August, hotel prices can be extremely high. But Bondwell Rentals offers furnished houses and apartments for large groups at very reasonable prices. And all of our properties are just steps away from the ocean. To learn more, contact our office today!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 11",
+          "content": {
+            "passage": "In weather news this week, the Cooperstown area is going to get significantly cooler. After having such a hot and humid August, it will be a nice change to see some lower temperatures. Expect cool breezes, cloudy skies, and occasional rain showers."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic3.webp",
+            "imagePlaceholder": "🖼️ Picture 3",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic4.webp",
+            "imagePlaceholder": "🖼️ Picture 4",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic5.webp",
+            "imagePlaceholder": "🖼️ Picture 5",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic6.webp",
+            "imagePlaceholder": "🖼️ Picture 6",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic7.webp",
+            "imagePlaceholder": "🖼️ Picture 7",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic8.webp",
+            "imagePlaceholder": "🖼️ Picture 8",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic9.webp",
+            "imagePlaceholder": "🖼️ Picture 9",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic10.webp",
+            "imagePlaceholder": "🖼️ Picture 10",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic11.webp",
+            "imagePlaceholder": "🖼️ Picture 11",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic12.webp",
+            "imagePlaceholder": "🖼️ Picture 12",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic13.webp",
+            "imagePlaceholder": "🖼️ Picture 13",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic14.webp",
+            "imagePlaceholder": "🖼️ Picture 14",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic15.webp",
+            "imagePlaceholder": "🖼️ Picture 15",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic16.webp",
+            "imagePlaceholder": "🖼️ Picture 16",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic17.webp",
+            "imagePlaceholder": "🖼️ Picture 17",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic18.webp",
+            "imagePlaceholder": "🖼️ Picture 18",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic19.webp",
+            "imagePlaceholder": "🖼️ Picture 19",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 05-pic20.webp",
+            "imagePlaceholder": "🖼️ Picture 20",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        }
+      ]
+    },
+    {
+      "date": "[HW Day 04]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 6",
+          "content": {
+            "passage": "On Monday, May 7, we will start installing new telephone lines in most of your offices. Unfortunately, you won't be able to use your telephones until the work is completed later in the week. This will affect your work on Monday, Tuesday, and Wednesday morning However, you can use the telephones in the main reception area during that time."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 7",
+          "content": {
+            "passage": "All right everyone, we've come to the end of our tour of the downtown area, and we're about to enter the public gardens, where we'll take a short break. There's a café here, where you can rest, get something to drink, and look over the schedule for the rest of the day. Let me know if you have any questions."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 8",
+          "content": {
+            "passage": "Thank you for calling Madison Cinema, Bristol’s favorite movie theater.This week, we are offering special discounts on popcorn, sweets, and other snacks. Please press one to hear the list of this week’s movies, or press two to buy tickets in advance. If you have any other requests, press three to speak to our staff member."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 04-pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 04-pic2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 04-pic3.webp",
+            "imagePlaceholder": "🖼️ Picture 3",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 04-pic4.webp",
+            "imagePlaceholder": "🖼️ Picture 4",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 04-pic5.webp",
+            "imagePlaceholder": "🖼️ Picture 5",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 04-pic6.webp",
+            "imagePlaceholder": "🖼️ Picture 6",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        }
+      ]
+    },
+    {
+      "date": "[HW Day 03]",
+      "parts": [
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 03-pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 03-pic2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 03-pic3.webp",
+            "imagePlaceholder": "🖼️ Picture 3",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 03-pic4.webp",
+            "imagePlaceholder": "🖼️ Picture 4",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 03-pic5.webp",
+            "imagePlaceholder": "🖼️ Picture 5",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/homework pictures/HW Day 03-pic6.webp",
+            "imagePlaceholder": "🖼️ Picture 6",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 3 (059-NTV)",
+          "content": {
+            "passage": "Attention, all staff! I am pleased to announce that the construction of our indoor fitness facility is finally finished. The new gym is located on the fifth floor in the main building. Anyone who would like to have the benefit of using it is free to do so any time since it will be open every day, 24 hours a day. Administrative assistants in each department will help you upgrade your current identification card or have a new one issued."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 4 (043-NTV)",
+          "content": {
+            "passage": "It's my pleasure to welcome everyone to the coolest sightseeing in Manhattan. As you probably have already read in the catalog, Manhattan is famous for its many distinct skyscrapers, not to mention dazzling neon signs at night. I recommend you bring a video camera and record the many precious moments of your trip. The weather is cooperating with a gentle wind from the ocean, and we will see live performances by the street artists who live in the western district of Manhattan, called Little Argentina. As you might have noticed, we changed today's itinerary. You are all invited to a complimentary dinner buffet to celebrate this hotel's 20th anniversary."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 5 (050-NTV)",
+          "content": {
+            "passage": "Of all the locations we've seen so far, I strongly advise that you select this sandwich shop and convert it to your new Italian restaurant. The store has a friendly, comfortable, cozy, and welcoming atmosphere. The interior decorations are so spotlessly clean and elegant that you might even want to keep everything as it is. The rent is quite reasonable, considering its priceless location right in the heart of downtown. Why don't we take a closer look at this immaculate store while we have lunch here? Let's first find a parking space."
+          }
+        }
+      ]
+    },
+    {
+      "date": "[HW Day 02]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 7",
+          "content": {
+            "passage": "Why don’t you treat yourself to a holiday at the Hotel Hampton in Virginia? For just $225 per person, you can fly to sunny Virginia and enjoy a wonderful 3-night stay. The Hotel Hampton is a 5-star resort with great facilities including a swimming pool, a gymnasium, a business center and an 18-hole golf course. This promotion is only available for a limited time, so you’d better reserve your place today! The number to call is 605-0317 or you can visit www.hamptonhotel.com for more information."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 8",
+          "content": {
+            "passage": "Good afternoon, everyone and welcome to the Chinatown historic district. My name is George and I’ll be your guide today. The district was first founded by Cantonese immigrants around 1920. Later, however, it received immigrants from many other countries looking for work. During the tour, you’re allowed to take pictures. We will see many fine examples of Chinese architecture, and many Chinese restaurants and grocery stores. We will also see a Greek church and a Turkish mosque. Now let’s start our tour."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 9",
+          "content": {
+            "passage": "At the company’s anniversary dinner, you will all be sitting with your departments. Company shuttle buses will be available at the main entrance at 5 P.M. For those of you who will not take the shuttle bus, a map with directions will be posted in the lobby and also on the third, ninth, and twelfth floors. Remember, everyone is required to attend this ceremony. If for some reason you are unable to attend, please contact the HR department and state your reason."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 10",
+          "content": {
+            "passage": "Rock Radio is proud to present an hour-long interview with Collin Taylor, world famous singer and song writer. The interview will be broadcast live on Rock Radio, 98.7, on March 18th at 7 P.M. We’ll discuss the music industry, Mr. Taylor early career, and his latest album. After the interview, Mr. Taylor will be answering questions from listeners who call in. You won’t want to miss this one. 7 P.M., March 18th, on Rock Radio."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 11",
+          "content": {
+            "passage": "Hello, you have reached the Customer Service Department at Neo Industries Incorporated. Our customer service center is temporarily unavailable due to technical difficulties with our computer system. We are currently working in the problem, and we hope to have the system up and running again within the hour. If you’re calling to find out about your order status, our new products, or any other information, please visit our website and click on the appropriate link. We apologize for any inconvenience, and thank you for calling Neo Industries Incorporated."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 12",
+          "content": {
+            "passage": "Are you interested in losing weight but don’t want to spend all of your valuable time stuck inside a gym? Fortunately, Hard Line Fitness is now accepting new members for discounted rates. If you and a friend register for a six-month membership within the next five weeks you will only have to pay 50% of the regular membership fee. Hard Line Fitness has expert trainers who are fit, enthusiastic and friendly, and our fitness equipment is top-of-the-line. Call now to get more information about us at 1-800-988-3355"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 1 (060-NTV)",
+          "content": {
+            "passage": "This is Marilyn Smith from Pacific Flight 55. Regrettably, I need to report some unfortunate news. Due to treacherous weather, the connecting flight will be delayed until after midnight. I have been informed that a hurricane will pass through this area. On behalf of Pacific Air, I would like to offer everyone on the connecting flight food vouchers that can be used at all of the restaurants in the terminal."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 2 (061-NTV)",
+          "content": {
+            "passage": "Hello. I am glad to welcome you to the 20th Annual World Conference on Intellectual Property Protection. I am Dr. Fergus Parry. When I was offered the opportunity to address the important question of how to prevent illegal copying, I realized that we have reached the point where we should definitely do something to crack down hard on unauthorized use. We will discuss this issue and gather ideas to take the appropriate measures. So please participate actively in as many seminars as you can."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 3 (058-NTV)",
+          "content": {
+            "passage": "This is Charles Loffman from the ACF Weather Network. It's a bit cold today, but the temperature will begin to be moderate this afternoon with light winds. A weak disturbance passing to the south will deliver increasing clouds this afternoon along with a chance of a few flurries. Please be sure to bring a hat when you go out. Skies will gradually clear overnight. Stay with us. Coming up next is sports."
+          }
+        }
+      ]
+    },
+    {
+      "date": "[HW Day 01]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 1",
+          "content": {
+            "passage": "The Madeleine Hotel is proud to announce the completion of its new Convention Center. With advanced audio-visual equipment, dining facilities, and plenty of space, it’s the perfect location for any corporate event. To reserve the Madeleine Hotel Convention Center, simply call one of our friendly customer service agents at 1-800-555-9973. You can also arrange a tour of the facilities with the centre manager, Jennifer. Call today!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 2",
+          "content": {
+            "passage": "Don't settle for just any old dinner. We can help guide you to the best restaurants near our Chincoteague /ʃɪŋkəˈti:g/ hotel. With the Atlantic Ocean at Chincoteague's back door, it's no wonder that seafood abounds in the local fare. Chincoteague Island has long been renowned for its fresh, local seafood - especially Tom's Cove Clams and Oysters. In Chincoteague, seafood goes straight from the local waters to your plate. You can't get it any fresher than that!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 3",
+          "content": {
+            "passage": "Ladies and gentlemen, this is Christine and I’m your chief flight attendant. Welcome aboard British Airways bound for Florence. We are here to make sure you have a relaxed, comfortable, and enjoyable flight. Our flight time will be of approximately 3 hours and 15 minutes. We will be flying at an altitude of 30.000 feet. Your portable electronic devices must be set to ‘airplane’ mode until an announcement is made upon arrival. Now, we will be showing you a safety video so please give us your full attention. Thank you."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 4",
+          "content": {
+            "passage": "Let’s look at the weather. Temperatures have gone down lower than we expect at this time of year, and today it’ll snow in most places. Eastern areas will see particularly heavy snow. Many schools and offices have announced closings due to the weather and public transportation is experiencing cancellations. Government officials recommend that residents not travel far away from home. Keep you updated by listening for more announcements throughout the day."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Passage 5",
+          "content": {
+            "passage": "Good evening, ladies and gentlemen. We are all here to thank one of our most valued employees, Mike Smith, our Regional Marketing Manager in Hong Kong, who is retiring next month. As you may all know, Mike was your first Regional Marketing Rep. Thanks to Mike, we have had excellent sales in Hong Kong and extended our wide network of regional sales offices around East Asia. And now we want to sincerely thank Mike for his 35 years of service and for all his contribution to overseas sales, which have become a central part of our business today."
+          }
+        }
+      ]
+    }
+  ],
+  "lesson": []
+}

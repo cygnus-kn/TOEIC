@@ -3,6 +3,19 @@
    ============================ */
 
 const CLASSES_DATA = {
+  Homework: {
+    homework: [
+      { date: "[HW Day 08]" },
+      { date: "[HW Day 07]" },
+      { date: "[HW Day 06]" },
+      { date: "[HW Day 05]" },
+      { date: "[HW Day 04]" },
+      { date: "[HW Day 03]" },
+      { date: "[HW Day 02]" },
+      { date: "[HW Day 01]" }
+    ],
+    lesson: []
+  },
   S129: {
     homework: [
       { date: "[HW Day 04] 04/13" },

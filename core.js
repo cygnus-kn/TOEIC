@@ -626,12 +626,14 @@ function renderCards() {
     // Header bar
     let qLabel = part.questionLabel || `Question ${index + 1}`;
     
-    // Force programmatic grouping for standard TOEIC Speaking parts
-    if (part.type === 'describe-picture') {
-      if (index === 2 || index === 3) qLabel = 'Question 3-4';
-    } else if (part.type === 'respond-questions') {
-      if (index === 4 || index === 5) qLabel = 'Question 5-6';
-      if (index === 6) qLabel = 'Question 7'; // Specifically ensure index 6 is only "Question 7"
+    // Force programmatic grouping for standard TOEIC Speaking parts ONLY IF not explicitly defined in JSON
+    if (!part.questionLabel) {
+      if (part.type === 'describe-picture') {
+        if (index === 2 || index === 3) qLabel = 'Question 3-4';
+      } else if (part.type === 'respond-questions') {
+        if (index === 4 || index === 5) qLabel = 'Question 5-6';
+        if (index === 6) qLabel = 'Question 7';
+      }
     }
     html += `
       <div class="card-header-bar">

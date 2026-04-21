@@ -490,13 +490,19 @@ body.dark-theme .class-header:hover {
 }
 
 .class-children {
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   max-height: 0;
   transition: max-height var(--transition-smooth);
+  scrollbar-width: none;
+}
+
+.class-children::-webkit-scrollbar {
+  display: none;
 }
 
 .class-group.expanded .class-children {
-  max-height: 600px;
+  max-height: 185px;
 }
 
 /* Category (Homework / Lesson) */
@@ -533,13 +539,19 @@ body.dark-theme .class-header:hover {
 }
 
 .category-children {
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   max-height: 0;
   transition: max-height var(--transition-smooth);
+  scrollbar-width: none;
+}
+
+.category-children::-webkit-scrollbar {
+  display: none;
 }
 
 .category-group.expanded .category-children {
-  max-height: 400px;
+  max-height: 185px; /* Roughly height of 5 entries */
 }
 
 /* Date entries */
@@ -687,6 +699,13 @@ body.dark-theme .class-header:hover {
   z-index: 1000;
   display: none;
   padding: 4px;
+  max-height: 165px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+  display: none;
 }
 
 body.dark-theme .dropdown-menu {
@@ -756,8 +775,8 @@ body {
   overflow: visible;
   /* Allow vertical growth and shadows */
   min-height: 0;
-  padding: 4px 0 40px;
-  /* Minimized top padding to pull badge closer */
+  padding: 4px 0 20vh;
+  /* Extra bottom padding to simulate space and ensure scroll-to-hide nav capability */
 }
 
 .card-track {
@@ -1052,6 +1071,7 @@ body.dark-theme .timer-display.prep-stage {
   display: block;
   object-fit: contain;
   /* Show the whole image */
+  border-radius: var(--radius-md);
   transition: filter var(--transition-smooth);
 }
 
