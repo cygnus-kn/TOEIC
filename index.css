@@ -1328,10 +1328,10 @@ body.dark-theme .out-link-icon:hover {
 
 /* Express an Opinion preset */
 .opinion-prompt {
-  font-size: 16.5px;
-  line-height: 1.8;
+  font-size: 20px; /* Matched to question-text */
+  line-height: 1.6;
   color: var(--color-text-primary);
-  font-weight: 500;
+  font-weight: 400; /* Reverted from 500 */
   padding: 0;
 }
 
