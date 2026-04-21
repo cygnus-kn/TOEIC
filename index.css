@@ -93,12 +93,49 @@ body {
   background: var(--color-page-bg);
   color: var(--color-text-primary);
   line-height: 1.5;
-  line-height: 1.5;
   overflow-x: hidden;
   overflow-y: auto;
   min-height: 100dvh;
   transition: background-color var(--transition-smooth), color var(--transition-smooth);
   scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+body.dark-theme * {
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }
 
 /* ============================
@@ -388,11 +425,6 @@ body.dark-theme .moon-icon {
   flex: 1;
   overflow-y: auto;
   padding: var(--space-sm) var(--space-md);
-  scrollbar-width: none;
-}
-
-.sidebar-nav::-webkit-scrollbar {
-  display: none;
 }
 
 /* Class group */
@@ -494,11 +526,6 @@ body.dark-theme .class-header:hover {
   overflow-x: hidden;
   max-height: 0;
   transition: max-height var(--transition-smooth);
-  scrollbar-width: none;
-}
-
-.class-children::-webkit-scrollbar {
-  display: none;
 }
 
 .class-group.expanded .class-children {
@@ -543,11 +570,6 @@ body.dark-theme .class-header:hover {
   overflow-x: hidden;
   max-height: 0;
   transition: max-height var(--transition-smooth);
-  scrollbar-width: none;
-}
-
-.category-children::-webkit-scrollbar {
-  display: none;
 }
 
 .category-group.expanded .category-children {
@@ -701,11 +723,6 @@ body.dark-theme .class-header:hover {
   padding: 4px;
   max-height: 165px;
   overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.dropdown-menu::-webkit-scrollbar {
-  display: none;
 }
 
 body.dark-theme .dropdown-menu {
