@@ -66,6 +66,40 @@ const lessonContent = document.getElementById('lessonContent');
 const cardContainer = document.getElementById('cardContainer');
 
 // ============================
+//  Markdown Helper
+// ============================
+function formatMarkdown(text) {
+  if (!text) return '';
+  const lines = text.split('\n');
+  let htmlContent = '';
+  let inList = false;
+
+  lines.forEach(line => {
+    const trimmedLine = line.trim();
+    if (trimmedLine.startsWith('- ')) {
+      if (!inList) {
+        htmlContent += '<ul>';
+        inList = true;
+      }
+      htmlContent += `<li>${trimmedLine.substring(2)}</li>`;
+    } else {
+      if (inList) {
+        htmlContent += '</ul>';
+        inList = false;
+      }
+      if (trimmedLine === '') {
+        htmlContent += '<br>';
+      } else {
+        htmlContent += `<div>${trimmedLine}</div>`;
+      }
+    }
+  });
+
+  if (inList) htmlContent += '</ul>';
+  return htmlContent;
+}
+
+// ============================
 //  Clear all timers
 // ============================
 function clearAllTimers() {
@@ -737,34 +771,7 @@ function renderPartContent(part, partIndex) {
       `;
 
     case 'respond-questions': {
-      const qText = part.content.question;
-      const lines = qText.split('\n');
-      let htmlContent = '';
-      let inList = false;
-
-      lines.forEach(line => {
-        const trimmedLine = line.trim();
-        if (trimmedLine.startsWith('- ')) {
-          if (!inList) {
-            htmlContent += '<ul>';
-            inList = true;
-          }
-          htmlContent += `<li>${trimmedLine.substring(2)}</li>`;
-        } else {
-          if (inList) {
-            htmlContent += '</ul>';
-            inList = false;
-          }
-          if (trimmedLine === '') {
-            htmlContent += '<br>';
-          } else {
-            htmlContent += `<div>${trimmedLine}</div>`;
-          }
-        }
-      });
-
-      if (inList) htmlContent += '</ul>';
-      return `<div class="question-text">${htmlContent}</div>`;
+      return `<div class="question-text">${formatMarkdown(part.content.question)}</div>`;
     }
 
     case 'respond-info': {
@@ -782,7 +789,7 @@ function renderPartContent(part, partIndex) {
       }
       tableHtml += '</tbody></table>';
       if (part.content.question) {
-        tableHtml += `<div class="question-text" style="margin-top:16px;">${part.content.question}</div>`;
+        tableHtml += `<div class="question-text" style="margin-top:16px;">${formatMarkdown(part.content.question)}</div>`;
       }
       return tableHtml;
     }
@@ -797,14 +804,14 @@ function renderPartContent(part, partIndex) {
         ${part.content.question ? `
           <div class="reveal-section">
             <button class="reveal-btn" onclick="const q = this.nextElementSibling; q.classList.toggle('visible')">Transcript</button>
-            <div class="question-text reveal-content" style="text-align:left; font-size:16px;">${part.content.question.replace(/\n/g, '<br>')}</div>
+            <div class="question-text reveal-content" style="text-align:left; font-size:16px;">${formatMarkdown(part.content.question)}</div>
           </div>
         ` : ''}
       `;
 
     case 'opinion': {
       const isEssay = part.label === 'Write an Opinion Essay';
-      return `<div class="opinion-prompt">${isEssay ? '<strong>Essay:</strong> ' : ''}${part.content.prompt.replace(/\n/g, '<br>')}</div>`;
+      return `<div class="opinion-prompt">${isEssay ? '<strong>Essay:</strong> ' : ''}${formatMarkdown(part.content.prompt)}</div>`;
     }
 
     case 'email-response':
