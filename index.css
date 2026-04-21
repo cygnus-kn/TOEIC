@@ -993,6 +993,19 @@ body.dark-theme .timer-display.prep-stage {
   color: var(--color-text-primary);
 }
 
+.prep-stack-question ul,
+.prep-mini-question ul {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding-left: 24px;
+  list-style-type: disc;
+}
+
+.prep-stack-question li,
+.prep-mini-question li {
+  margin-bottom: 8px;
+}
+
 
 .reveal-section {
   display: flex;

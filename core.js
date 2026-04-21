@@ -629,7 +629,7 @@ function renderCards() {
             </div>
             <div class="card-body">
               <div class="part-content">
-                <div class="prep-stack-question">${q}</div>
+                <div class="prep-stack-question">${formatMarkdown(q)}</div>
               </div>
             </div>
             <div class="card-footer">
@@ -851,7 +851,7 @@ function renderPartContent(part, partIndex) {
             <div class="prep-mini-card-header">
               <span class="prep-mini-counter">${i + 1} / ${questions.length}</span>
             </div>
-            <div class="prep-mini-question">${q}</div>
+            <div class="prep-mini-question">${formatMarkdown(q)}</div>
             <div class="prep-mini-footer">
               <div class="response-timer" onclick="toggleTopicTimer('${key}', ${responseTime})" id="topic-timer-${key}">
                 <div class="timer-display" id="topic-timer-display-${key}">
