@@ -986,11 +986,12 @@ body.dark-theme .timer-display.prep-stage {
   gap: 20px;
 }
 
-.prep-stack-question {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.75;
+.prep-stack-question,
+.prep-mini-question {
+  font-size: 20px;
+  line-height: 1.6;
   color: var(--color-text-primary);
+  text-align: left;
 }
 
 .prep-stack-question ul,
