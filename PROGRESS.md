@@ -1,6 +1,6 @@
 # TOEIC Homework Platform — Progress Tracker
 
-> Last updated: 2026-04-14
+> Last updated: 2026-04-25
 
 ---
 
@@ -95,11 +95,11 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 
 ## 🗄 Data (`data.js`)
 
-### Class S129 (Speaking)
+### SW Class (Speaking & Writing)
 | Type | Entries |
 |------|---------|
-| Homework | 3 days (Apr 8, Apr 11, Apr 12) |
-| Lessons | 2 days (Apr 7, Apr 10) |
+| Homework | 10 days |
+| Lessons | 0 days |
 
 ### Class S128 (Writing)
 | Type | Entries |
@@ -207,6 +207,7 @@ body / .app
 | Apr 14 | **UI/UX Polish**: Investigated UI flows with visual bot. Fixed dark mode image glare via filters. Handled mobile phantom tap highlights. Replaced basic time-hide logic with a hybrid scroll-directional mechanism for the top nav. |
 | Apr 14 | **Glassy UI & Player Refinement**: Implemented Apple-style backdrop-blur finishes for Transcript and Audio buttons. Refined border thickness for distinct desktop/mobile experiences. Replaced generic YT icon with branded SVG and added redirection prompt. Simplified "Transcript" toggle logic. |
 | Apr 21 | **Homework Expansion**: Extracted passages, parsed 20+ images from PDF materials, and fully integrated HW Day 04 through HW Day 08. Configured custom JSON labels for distinct question groupings. **UI Enhancement**: Overhauled sidebar class folders and date dropdown menus with capped dimensions (~5 items) and hidden slick scrollbars for cleaner UI density. Fixed global card-container padding to enable end-of-page mobile auto-hide logic. |
+| Apr 25 | **Global Image Zoom**: Implemented a universal full-screen image modal overlay with a glassmorphism backdrop. Added 'Escape' key dismissal, disabled background keyboard navigation while zooming, and added native tooltips. **Performance & UX**: Resolved page-load transition flashes (FOUC) using a strategic `.preload` class. Rebranded core class tab from "Homework" to "SW Class" and properly migrated data files. Confirmed In-Memory JSON caching is functional for optimal load times. |
 
 ---
 

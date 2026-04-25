@@ -100,6 +100,10 @@ body {
   scroll-behavior: smooth;
 }
 
+body.preload, body.preload * {
+  transition: none !important;
+}
+
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 5px;
@@ -289,6 +293,7 @@ body:not(.dark-theme) .sidebar-toggle-btn:hover {
 
 /* Mobile auto-hide styles */
 @media (max-width: 1024px) {
+
   body.mobile-controls-hidden .main-top-bar,
   body.mobile-controls-hidden .theme-toggle-wrapper {
     opacity: 0;
@@ -573,7 +578,8 @@ body.dark-theme .class-header:hover {
 }
 
 .category-group.expanded .category-children {
-  max-height: 185px; /* Roughly height of 5 entries */
+  max-height: 185px;
+  /* Roughly height of 5 entries */
 }
 
 /* Date entries */
@@ -777,8 +783,10 @@ body {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  scrollbar-width: none; /* Hide for Firefox */
-  -ms-overflow-style: none; /* Hide for IE/Edge */
+  scrollbar-width: none;
+  /* Hide for Firefox */
+  -ms-overflow-style: none;
+  /* Hide for IE/Edge */
 }
 
 /* Hide for Chrome, Safari, and newer Edge */
@@ -1107,7 +1115,7 @@ body.dark-theme .timer-display.prep-stage {
 }
 
 body.dark-theme .picture-container img {
-  filter: brightness(0.85) contrast(1.05); 
+  filter: brightness(0.85) contrast(1.05);
 }
 
 .audio-standalone {
@@ -1329,10 +1337,12 @@ body.dark-theme .out-link-icon:hover {
 
 /* Express an Opinion preset */
 .opinion-prompt {
-  font-size: 20px; /* Matched to question-text */
+  font-size: 20px;
+  /* Matched to question-text */
   line-height: 1.6;
   color: var(--color-text-primary);
-  font-weight: 400; /* Reverted from 500 */
+  font-weight: 400;
+  /* Reverted from 500 */
   padding: 0;
 }
 
@@ -1415,7 +1425,8 @@ body.dark-theme .out-link-icon:hover {
 }
 
 .pagination-dot {
-  pointer-events: auto; /* Allow clicking the dots themselves */
+  pointer-events: auto;
+  /* Allow clicking the dots themselves */
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -1829,6 +1840,7 @@ body.dark-theme .bookmark-dot:not(.active-bookmark):hover {
 
 /* Mobile-specific adjustments for Glassy Buttons */
 @media (max-width: 600px) {
+
   .reveal-btn,
   .audio-toggle-btn,
   .bookmark-dot:not(.active-bookmark) {
@@ -1840,4 +1852,43 @@ body.dark-theme .bookmark-dot:not(.active-bookmark):hover {
   body.dark-theme .bookmark-dot:not(.active-bookmark) {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
+}
+
+/* ============================
+   Image Modal / Zoom
+   ============================ */
+.image-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: zoom-out;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.image-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+.image-modal img {
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  cursor: default;
+  object-fit: contain;
+}
+
+.main img:not(#imageModalContent) {
+  cursor: zoom-in;
 }

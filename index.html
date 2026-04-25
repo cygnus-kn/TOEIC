@@ -11,7 +11,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="index.css">
 </head>
-<body>
+<body class="preload">
   <script>
     (function() {
       try {
@@ -21,6 +21,10 @@
           document.body.classList.add('dark-theme');
         }
       } catch (e) {}
+      // Remove preload class after a tick to allow initial styles to apply without transitioning
+      setTimeout(function() {
+        document.body.classList.remove('preload');
+      }, 50);
     })();
   </script>
 
@@ -122,7 +126,13 @@
       </div>
       
       <div id="notificationContainer" class="notification-container"></div>
+
     </main>
+  </div>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="image-modal" onclick="this.classList.remove('active')">
+    <img id="imageModalContent" alt="Zoomed picture" onclick="event.stopPropagation()">
   </div>
 
   <script src="data.js"></script>

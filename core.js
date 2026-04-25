@@ -861,7 +861,7 @@ function renderPartContent(part, partIndex) {
       if (part.content.imageUrl) {
         return `
           <div class="picture-container">
-            <img src="${part.content.imageUrl}" alt="Describe this picture">
+            <img src="${part.content.imageUrl}" alt="Describe this picture" title="Expand">
           </div>
         `;
       }
@@ -899,7 +899,7 @@ function renderPartContent(part, partIndex) {
       return `
         ${part.content.imageUrl ? `
           <div class="picture-container">
-            <img src="${part.content.imageUrl}" alt="Information provided">
+            <img src="${part.content.imageUrl}" alt="Information provided" title="Expand">
           </div>
         ` : ''}
         ${part.content.question ? `
@@ -933,7 +933,7 @@ function renderPartContent(part, partIndex) {
       return `
         <div class="picture-container">
           ${part.content.imageUrl
-          ? `<img src="${part.content.imageUrl}" alt="Write about this picture">`
+          ? `<img src="${part.content.imageUrl}" alt="Write about this picture" title="Expand">`
           : `<div style="display:flex;align-items:center;justify-content:center;height:200px;font-size:48px;">${part.content.imagePlaceholder || '🖼️'}</div>`
         }
         </div>
@@ -1068,6 +1068,10 @@ function renderLesson(lesson) {
 //  Keyboard Navigation
 // ============================
 document.addEventListener('keydown', (e) => {
+  // If image modal is open, prevent arrow keys from navigating tasks
+  const imageModal = document.getElementById('imageModal');
+  if (imageModal && imageModal.classList.contains('active')) return;
+
   if (homeworkViewer.style.display !== 'none') {
     // Handle Shift + Arrows for seeking audio
     if (e.shiftKey) {
@@ -1419,6 +1423,11 @@ document.body.addEventListener('click', (e) => {
   if (e.target.closest('.sidebar-toggle-btn') || e.target.closest('.theme-toggle-wrapper')) {
     resetControlTimer();
   }
+
+  // Intercept any image clicks in the main content area for the zoom modal
+  if (e.target.tagName === 'IMG' && e.target.closest('.main') && !e.target.closest('#imageModal')) {
+    openImageModal(e.target.src);
+  }
 }, { passive: true });
 
 document.body.addEventListener('touchstart', (e) => {
@@ -1429,3 +1438,23 @@ document.body.addEventListener('touchstart', (e) => {
 
 // Initialize auto-hide check globally
 resetControlTimer();
+
+// Image Modal functionality
+function openImageModal(src) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('imageModalContent');
+  if (modal && modalImg) {
+    modalImg.src = src;
+    modal.classList.add('active');
+  }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById('imageModal');
+    if (modal && modal.classList.contains('active')) {
+      modal.classList.remove('active');
+    }
+  }
+});
