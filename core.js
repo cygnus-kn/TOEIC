@@ -22,7 +22,8 @@ let activeClass = '';
 let activeType = ''; // 'homework' or 'lesson'
 let timers = {}; // { partIndex: { interval, remaining, running } }
 let topicTimers = {}; // { "partIndex-qIndex": { interval, remaining, running } }
-let audioPlayers = {}; // { partIndex: playerInstance }
+let audioPlayers = {}; // { partIndex: YT playerInstance }
+let localAudioPlayers = {}; // { partIndex: HTMLAudioElement }
 let audioPoller = null;
 
 // Response times per question type (in seconds)
@@ -362,13 +363,20 @@ function loadYouTubeAPI() {
 }
 
 async function initAudioPlayers() {
-  // Clear and destroy old players to free memory
+  // Clear and destroy old YT players to free memory
   if (audioPlayers) {
     Object.values(audioPlayers).forEach(p => {
       if (p && typeof p.destroy === 'function') p.destroy();
     });
   }
   audioPlayers = {};
+
+  // Clear old local audio players
+  Object.values(localAudioPlayers).forEach(p => {
+    if (p && typeof p.pause === 'function') p.pause();
+  });
+  localAudioPlayers = {};
+
   if (audioPoller) cancelAnimationFrame(audioPoller);
   audioPoller = null;
 
@@ -398,6 +406,29 @@ async function initAudioPlayers() {
           }
         });
       }
+    } else if (part.type === 'respond-info-q' && part.content.audioUrls) {
+      // Local audio: load first file (Q7) by default
+      const audio = new Audio(part.content.audioUrls[0]);
+      audio._urls = part.content.audioUrls;
+      audio._currentTrack = 0;
+      localAudioPlayers[index] = audio;
+
+      audio.addEventListener('ended', () => {
+        const btn = document.getElementById(`audio-btn-${index}`);
+        if (btn) btn.querySelector('svg').innerHTML = '<path d="M8 5v14l11-7z"/>';
+        const ctrl = document.getElementById(`audio-ctrl-${index}`);
+        if (ctrl) ctrl.classList.remove('playing');
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (window.isUserSeeking) return;
+        const seeker = document.getElementById(`seeker-${index}`);
+        const timeDisplay = document.getElementById(`time-${index}`);
+        if (audio.duration > 0) {
+          if (seeker) seeker.value = (audio.currentTime / audio.duration) * 100;
+          if (timeDisplay) timeDisplay.textContent = `${formatTime(Math.floor(audio.currentTime))} / ${formatTime(Math.floor(audio.duration))}`;
+        }
+      });
     }
   });
 }
@@ -413,9 +444,26 @@ function extractStartTime(url) {
 }
 
 window.toggleAudio = function (index) {
+  // Local HTML5 audio
+  const local = localAudioPlayers[index];
+  if (local) {
+    const btn = document.getElementById(`audio-btn-${index}`);
+    const ctrl = document.getElementById(`audio-ctrl-${index}`);
+    if (local.paused) {
+      local.play();
+      if (btn) btn.querySelector('svg').innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+      if (ctrl) ctrl.classList.add('playing');
+    } else {
+      local.pause();
+      if (btn) btn.querySelector('svg').innerHTML = '<path d="M8 5v14l11-7z"/>';
+      if (ctrl) ctrl.classList.remove('playing');
+    }
+    return;
+  }
+
+  // YouTube audio
   const player = audioPlayers[index];
   if (!player) return;
-
   const state = player.getPlayerState();
   if (state === YT.PlayerState.PLAYING) {
     player.pauseVideo();
@@ -425,6 +473,11 @@ window.toggleAudio = function (index) {
 };
 
 window.seekAudio = function (index, value) {
+  const local = localAudioPlayers[index];
+  if (local) {
+    local.currentTime = (value / 100) * local.duration;
+    return;
+  }
   const player = audioPlayers[index];
   if (!player) return;
   const duration = player.getDuration();
@@ -432,13 +485,39 @@ window.seekAudio = function (index, value) {
   player.seekTo(seekTo, true);
 };
 
-window.seekAudioToTime = function (index, seconds) {
+window.seekAudioToTime = function (index, trackIndex) {
+  const local = localAudioPlayers[index];
+  if (local) {
+    // trackIndex is the array index of the audio file to switch to
+    const urls = local._urls;
+    if (!urls || trackIndex >= urls.length) return;
+    const wasPlaying = !local.paused;
+    local.pause();
+    local._currentTrack = trackIndex;
+    local.src = urls[trackIndex];
+    local.load();
+    if (wasPlaying) local.play();
+    else {
+      // Also play immediately when bookmark is tapped (mirrors YouTube UX)
+      local.play();
+      const btn = document.getElementById(`audio-btn-${index}`);
+      const ctrl = document.getElementById(`audio-ctrl-${index}`);
+      if (btn) btn.querySelector('svg').innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+      if (ctrl) ctrl.classList.add('playing');
+    }
+    return;
+  }
   const player = audioPlayers[index];
   if (!player || typeof player.seekTo !== 'function') return;
-  player.seekTo(seconds, true);
+  player.seekTo(trackIndex, true);
 };
 
 window.seekBy = function (index, seconds) {
+  const local = localAudioPlayers[index];
+  if (local) {
+    local.currentTime = Math.max(0, local.currentTime + seconds);
+    return;
+  }
   const player = audioPlayers[index];
   if (!player || typeof player.getCurrentTime !== 'function') return;
   const currentTime = player.getCurrentTime();
@@ -683,7 +762,7 @@ function renderCards() {
     html += `</div></div>`;
 
     // Footer with response timer or audio control
-    const hasAudio = part.content && part.content.videoUrl;
+    const hasAudio = part.content && (part.content.videoUrl || part.content.audioUrls);
     const hasTimer = part.type !== 'sentence-picture' && part.type !== 'topic-prep' && (part.prepTime || part.responseTime || (part.type !== 'respond-info-q' && RESPONSE_TIMES[part.type]));
     if (hasAudio || hasTimer) {
       if (hasAudio && part.type === 'respond-info-q') {
@@ -693,42 +772,64 @@ function renderCards() {
       }
 
       if (hasAudio && part.type === 'respond-info-q') {
-        const baseTime = extractStartTime(part.content.videoUrl) || 0;
-        const timestamps = part.content.timestamps || {};
-        const q8Time = timestamps.q8 !== undefined ? timestamps.q8 : baseTime;
-        const q9Time = timestamps.q9 !== undefined ? timestamps.q9 : baseTime;
-        const q10Time = timestamps.q10 !== undefined ? timestamps.q10 : baseTime;
-
-        const videoId = extractVideoId(part.content.videoUrl);
-        const watchLink = videoId ? `https://www.youtube.com/watch?v=${videoId}&t=${Math.floor(q8Time)}s` : part.content.videoUrl;
-
-        // Standalone Audio control without pill
-        html += `
-          <div class="audio-standalone" id="audio-ctrl-${index}">
+        if (part.content.audioUrls) {
+          // ── Local MP3 audio (Q7/Q8/Q9 per separate file) ──────────────────
+          const labels = part.content.questionLabels || ['7', '8', '9'];
+          html += `
+            <div class="audio-standalone" id="audio-ctrl-${index}">
               <button class="audio-toggle-btn" onclick="event.stopPropagation(); toggleAudio(${index})" id="audio-btn-${index}">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
               </button>
               <div class="audio-seeker-container">
-                <input type="range" class="audio-seeker" id="seeker-${index}" min="0" max="100" value="0" step="0.1" 
-                       onmousedown="event.stopPropagation(); isUserSeeking = true;" 
+                <input type="range" class="audio-seeker" id="seeker-${index}" min="0" max="100" value="0" step="0.1"
+                       onmousedown="event.stopPropagation(); isUserSeeking = true;"
                        onmouseup="event.stopPropagation(); isUserSeeking = false;"
                        oninput="event.stopPropagation(); seekAudio(${index}, this.value)">
               </div>
               <div class="audio-time" id="time-${index}" style="white-space: nowrap;">00:00 / 00:00</div>
               <div class="audio-bookmarks" id="bookmarks-${index}">
-                <button class="bookmark-dot" data-time="${q8Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q8Time}); setActiveBookmark(this, ${index})" title="Jump to Question 8">8</button>
-                <button class="bookmark-dot" data-time="${q9Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q9Time}); setActiveBookmark(this, ${index})" title="Jump to Question 9">9</button>
-                <button class="bookmark-dot" data-time="${q10Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q10Time}); setActiveBookmark(this, ${index})" title="Jump to Question 10">10</button>
-                <a class="bookmark-dot out-link-icon" href="${watchLink}" target="_blank" rel="noopener noreferrer" title="Watch on YouTube" onclick="if(!confirm('You are about to be redirected to YouTube.')) { event.preventDefault(); }">
-                  <svg width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21.582 6.186a2.665 2.665 0 0 0-1.884-1.898C18.035 3.8 12 3.8 12 3.8s-6.035 0-7.698.488a2.665 2.665 0 0 0-1.884 1.898C1.916 8.07 1.916 12 1.916 12s0 3.93.502 5.814a2.665 2.665 0 0 0 1.884 1.898c1.663.488 7.698.488 7.698.488s6.035 0 7.698-.488a2.665 2.665 0 0 0 1.884-1.898c.502-1.884.502-5.814.502-5.814s0-3.93-.502-5.814z" fill="#FF0000"/>
-                    <path d="M9.9 15.568V8.432L16.173 12l-6.273 3.568z" fill="#FFFFFF"/>
-                  </svg>
-                </a>
+                ${labels.map((lbl, ti) => `<button class="bookmark-dot${ti === 0 ? ' active-bookmark' : ''}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${ti}); setActiveBookmark(this, ${index})" title="Play Question ${lbl}">${lbl}</button>`).join('')}
               </div>
-            <div id="yt-player-${index}" class="hidden-player"></div>
-          </div>
-        `;
+            </div>
+          `;
+        } else {
+          // ── YouTube audio ────────────────────────────────────────────────
+          const baseTime = extractStartTime(part.content.videoUrl) || 0;
+          const timestamps = part.content.timestamps || {};
+          const q8Time = timestamps.q8 !== undefined ? timestamps.q8 : baseTime;
+          const q9Time = timestamps.q9 !== undefined ? timestamps.q9 : baseTime;
+          const q10Time = timestamps.q10 !== undefined ? timestamps.q10 : baseTime;
+
+          const videoId = extractVideoId(part.content.videoUrl);
+          const watchLink = videoId ? `https://www.youtube.com/watch?v=${videoId}&t=${Math.floor(q8Time)}s` : part.content.videoUrl;
+
+          html += `
+            <div class="audio-standalone" id="audio-ctrl-${index}">
+                <button class="audio-toggle-btn" onclick="event.stopPropagation(); toggleAudio(${index})" id="audio-btn-${index}">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <div class="audio-seeker-container">
+                  <input type="range" class="audio-seeker" id="seeker-${index}" min="0" max="100" value="0" step="0.1" 
+                         onmousedown="event.stopPropagation(); isUserSeeking = true;" 
+                         onmouseup="event.stopPropagation(); isUserSeeking = false;"
+                         oninput="event.stopPropagation(); seekAudio(${index}, this.value)">
+                </div>
+                <div class="audio-time" id="time-${index}" style="white-space: nowrap;">00:00 / 00:00</div>
+                <div class="audio-bookmarks" id="bookmarks-${index}">
+                  <button class="bookmark-dot" data-time="${q8Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q8Time}); setActiveBookmark(this, ${index})" title="Jump to Question 8">8</button>
+                  <button class="bookmark-dot" data-time="${q9Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q9Time}); setActiveBookmark(this, ${index})" title="Jump to Question 9">9</button>
+                  <button class="bookmark-dot" data-time="${q10Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q10Time}); setActiveBookmark(this, ${index})" title="Jump to Question 10">10</button>
+                  <a class="bookmark-dot out-link-icon" href="${watchLink}" target="_blank" rel="noopener noreferrer" title="Watch on YouTube" onclick="if(!confirm('You are about to be redirected to YouTube.')) { event.preventDefault(); }">
+                    <svg width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.582 6.186a2.665 2.665 0 0 0-1.884-1.898C18.035 3.8 12 3.8 12 3.8s-6.035 0-7.698.488a2.665 2.665 0 0 0-1.884 1.898C1.916 8.07 1.916 12 1.916 12s0 3.93.502 5.814a2.665 2.665 0 0 0 1.884 1.898c1.663.488 7.698.488 7.698.488s6.035 0 7.698-.488a2.665 2.665 0 0 0 1.884-1.898c.502-1.884.502-5.814.502-5.814s0-3.93-.502-5.814z" fill="#FF0000"/>
+                      <path d="M9.9 15.568V8.432L16.173 12l-6.273 3.568z" fill="#FFFFFF"/>
+                    </svg>
+                  </a>
+                </div>
+              <div id="yt-player-${index}" class="hidden-player"></div>
+            </div>
+          `;
+        }
       } else if (hasTimer) {
         const displayTime = part.prepTime || responseTime;
         html += `
@@ -904,6 +1005,19 @@ window.goToPart = function (index) {
   // Pause all audio when moving away from a part
   Object.values(audioPlayers).forEach(p => {
     if (p && p.pauseVideo) p.pauseVideo();
+  });
+  Object.values(localAudioPlayers).forEach(p => {
+    if (p && !p.paused) {
+      p.pause();
+      const entries = Object.entries(localAudioPlayers);
+      const idx = entries.find(([, v]) => v === p)?.[0];
+      if (idx !== undefined) {
+        const btn = document.getElementById(`audio-btn-${idx}`);
+        const ctrl = document.getElementById(`audio-ctrl-${idx}`);
+        if (btn) btn.querySelector('svg').innerHTML = '<path d="M8 5v14l11-7z"/>';
+        if (ctrl) ctrl.classList.remove('playing');
+      }
+    }
   });
 };
 

@@ -1,6 +1,211 @@
 {
   "homework": [
     {
+      "date": "[HW Day 09]",
+      "parts": [
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Test 01",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 01.webp",
+            "imagePlaceholder": "🖼️ Test 01 Picture",
+            "audioUrls": [
+              "test-data/Part 4 audio/Test 01/T01_Q_07.mp3",
+              "test-data/Part 4 audio/Test 01/T01_Q_08.mp3",
+              "test-data/Part 4 audio/Test 01/T01_Q_09.mp3"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hello, one of my friends was telling me about your August event calendar. I'm calling to learn a little more about the events you're having. What is the date of the lecture about early farming practices? And what time does it start?\n\nQuestion 8: I'm really excited about the Food History Festival on August 27th. That starts at 11 o'clock in the morning, right?\n\nQuestion 9: Events that take place in the morning are especially convenient for me. Can you give me all the details about the events that take place in the morning?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Test 02",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 02.webp",
+            "imagePlaceholder": "🖼️ Test 02 Picture",
+            "audioUrls": [
+              "test-data/Part 4 audio/Test 02/T02_Q_07.mp3",
+              "test-data/Part 4 audio/Test 02/T02_Q_08.mp3",
+              "test-data/Part 4 audio/Test 02/T02_Q_09.mp3"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, I'm attending our law firm's annual retreat, but I lost my schedule. I'm hoping you can answer some of my questions. When is the dinner and who is giving the closing remarks?\n\nQuestion 8: I need to make a phone call at 2 o'clock. Will that be a problem?\n\nQuestion 9: I'm really looking forward to participating in some competitions. Can you give me all the details of the competitions that are scheduled?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Test 03",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 03.webp",
+            "imagePlaceholder": "🖼️ Test 03 Picture",
+            "audioUrls": [
+              "test-data/Part 4 audio/Test 03/T03_Q_07.mp3",
+              "test-data/Part 4 audio/Test 03/T03_Q_08.mp3",
+              "test-data/Part 4 audio/Test 03/T03_Q_09.mp3"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, I heard about your rafting trips and I'd like to get some information. Where are you located and at what months do you have rafting trips?\n\nQuestion 8: I don't own any rafting equipment. Do I need to buy any to go on one of your rafting trips?\n\nQuestion 9: My son has never been rafting before. Can you give me all the details of any trips that are appropriate for a beginner?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Test 04",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 04.webp",
+            "imagePlaceholder": "🖼️ Test 04 Picture",
+            "audioUrls": [
+              "test-data/Part 4 audio/Test 04/T04_Q_07.mp3",
+              "test-data/Part 4 audio/Test 04/T04_Q_08.mp3",
+              "test-data/Part 4 audio/Test 04/T04_Q_09.mp3"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, this is Brad Peterson. I'm visiting Oak Hedge in a few weeks, and I'd like more information about your company's tours. I heard that your old town walking tour is great. Can you tell me how long that tour is and how much it costs?\n\nQuestion 8: There are four people in my group. We can get a discount because we have four people, right?\n\nQuestion 9: I'm particularly interested in your bus tours. Could you give me all of the details of any bus tours you offer?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Test 05",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 05.webp",
+            "imagePlaceholder": "🖼️ Test 05 Picture",
+            "audioUrls": [
+              "test-data/Part 4 audio/Test 05/T05_Q_07.mp3",
+              "test-data/Part 4 audio/Test 05/T05_Q_08.mp3",
+              "test-data/Part 4 audio/Test 05/T05_Q_09.mp3"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, I'm attending the corporate retreat this week, but I left the schedule in my office. I was hoping you could give me some information. Can you tell me what time the first event starts and what the topic is?\n\nQuestion 8: Someone in my department said that I need to bring my own lunch. Is that right?\n\nQuestion 9: I believe the schedule said that there are going to be some workshops. Can you give me all the details about any workshops at the retreat?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Test 06",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 06.webp",
+            "imagePlaceholder": "🖼️ Test 06 Picture",
+            "audioUrls": [
+              "test-data/Part 4 audio/Test 06/T06_Q_07.mp3",
+              "test-data/Part 4 audio/Test 06/T06_Q_08.mp3",
+              "test-data/Part 4 audio/Test 06/T06_Q_09.mp3"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, I like to attend events at your community center, but I don't think I received a copy of the October schedule. I'm hoping you can answer my questions. I really like your monthly folk music event. On what date will folk music night take place in October and what time will it start?\n\nQuestion 8: I heard you're having a poetry competition this month. If I want to participate, I can just sign up when I arrive that night, right?\n\nQuestion 9: My friend is coming to visit at the beginning of the month, and I'd like to bring him to some events while he's here. Can you give me all the details of any events taking place before October 10th?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Test 07",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 07.webp",
+            "imagePlaceholder": "🖼️ Test 07 Picture",
+            "audioUrls": [
+              "test-data/Part 4 audio/Test 07/T07_Q_07.mp3",
+              "test-data/Part 4 audio/Test 07/T07_Q_08.mp3",
+              "test-data/Part 4 audio/Test 07/T07_Q_09.mp3"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hello, I know you're working on the schedule for the monthly staff meeting and I have some questions for you. What is the date of the meeting and where will it be held?\n\nQuestion 8: I know we have some new staff members that will be introduced at this meeting. Mary Irwin will be making those introductions, right?\n\nQuestion 9: A colleague said she might need my help preparing for the meeting. Could you give me all the details of sessions that she will be leading?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Test 08",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 08.webp",
+            "imagePlaceholder": "🖼️ Test 08 Picture",
+            "audioUrls": [
+              "test-data/Part 4 audio/Test 08/T08_Q_07.mp3",
+              "test-data/Part 4 audio/Test 08/T08_Q_08.mp3",
+              "test-data/Part 4 audio/Test 08/T08_Q_09.mp3"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hello, I'm interviewing applicants tomorrow for our Student Internship Program, but I forgot the schedule on my desk and I was hoping you could take a look at it for me. Where will the interviews be held and what time is the first one?\n\nQuestion 8: I know we've had some good interns from Boulder University in the past. We don't have any applicants from Boulder, do we?\n\nQuestion 9: I'm particularly interested in getting good interns for the art department. Can you give me all the details about the interviews with applicants applying to work in the art department?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Test 09",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 09.webp",
+            "imagePlaceholder": "🖼️ Test 09 Picture",
+            "audioUrls": [
+              "test-data/Part 4 audio/Test 09/T09_Q_07.mp3",
+              "test-data/Part 4 audio/Test 09/T09_Q_08.mp3",
+              "test-data/Part 4 audio/Test 09/T09_Q_09.mp3"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, I'm interested in taking a group exercise class, and I'm hoping you can give me some information. How much does it cost to take a class?\n\nQuestion 8: I'm interested in the water exercise class. That's on Wednesdays, right?\n\nQuestion 9: I heard you offer a dance for fitness class. Could you give me all the details about any dance for fitness classes you'll be offering?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Test 10",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 10.webp",
+            "imagePlaceholder": "🖼️ Test 10 Picture",
+            "audioUrls": [
+              "test-data/Part 4 audio/Test 10/T10_Q_07.mp3",
+              "test-data/Part 4 audio/Test 10/T10_Q_08.mp3",
+              "test-data/Part 4 audio/Test 10/T10_Q_09.mp3"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi there. I'm interested in attending the Leadership Conference this April, but I can't find any details about the agenda online. I hope you can answer some of my questions. What are the dates of the conference and where is it being held?\n\nQuestion 8: If I can only attend one day of the conference, do I still have to pay for the full conference?\n\nQuestion 9: Pedro Marquez is a good friend of mine, so I'd like to attend as many of his sessions as I can. Can you give me all the details about the sessions Pedro will be leading?"
+          }
+        }
+      ]
+    },
+    {
       "date": "[HW Day 08]",
       "parts": [
         {
@@ -24,7 +229,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 08-pic1.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
+            "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -33,7 +238,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 08-pic2.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
+            "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
         }
@@ -63,7 +268,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 07-pic1.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
+            "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -72,7 +277,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 07-pic2.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
+            "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -125,7 +330,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 06-pic1.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
+            "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -134,7 +339,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 06-pic2.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
+            "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -262,7 +467,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic1.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
+            "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -271,7 +476,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic2.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
+            "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -280,7 +485,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic3.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 3",
+            "imagePlaceholder": "🖼️ Picture 3",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -289,7 +494,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic4.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 4",
+            "imagePlaceholder": "🖼️ Picture 4",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -298,7 +503,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic5.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 5",
+            "imagePlaceholder": "🖼️ Picture 5",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -307,7 +512,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic6.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 6",
+            "imagePlaceholder": "🖼️ Picture 6",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -316,7 +521,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic7.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 7",
+            "imagePlaceholder": "🖼️ Picture 7",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -325,7 +530,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic8.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 8",
+            "imagePlaceholder": "🖼️ Picture 8",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -334,7 +539,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic9.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 9",
+            "imagePlaceholder": "🖼️ Picture 9",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -343,7 +548,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic10.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 10",
+            "imagePlaceholder": "🖼️ Picture 10",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -352,7 +557,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic11.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 11",
+            "imagePlaceholder": "🖼️ Picture 11",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -361,7 +566,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic12.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 12",
+            "imagePlaceholder": "🖼️ Picture 12",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -370,7 +575,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic13.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 13",
+            "imagePlaceholder": "🖼️ Picture 13",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -379,7 +584,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic14.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 14",
+            "imagePlaceholder": "🖼️ Picture 14",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -388,7 +593,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic15.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 15",
+            "imagePlaceholder": "🖼️ Picture 15",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -397,7 +602,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic16.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 16",
+            "imagePlaceholder": "🖼️ Picture 16",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -406,7 +611,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic17.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 17",
+            "imagePlaceholder": "🖼️ Picture 17",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -415,7 +620,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic18.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 18",
+            "imagePlaceholder": "🖼️ Picture 18",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -424,7 +629,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic19.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 19",
+            "imagePlaceholder": "🖼️ Picture 19",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -433,7 +638,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 05-pic20.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 20",
+            "imagePlaceholder": "🖼️ Picture 20",
             "prompt": "Describe the picture in as much detail as you can."
           }
         }
@@ -455,7 +660,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 7",
           "content": {
-            "passage": "All right everyone, we've come to the end of our tour of the downtown area, and we're about to enter the public gardens, where we'll take a short break. There's a caf\u00e9 here, where you can rest, get something to drink, and look over the schedule for the rest of the day. Let me know if you have any questions."
+            "passage": "All right everyone, we've come to the end of our tour of the downtown area, and we're about to enter the public gardens, where we'll take a short break. There's a café here, where you can rest, get something to drink, and look over the schedule for the rest of the day. Let me know if you have any questions."
           }
         },
         {
@@ -463,7 +668,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 8",
           "content": {
-            "passage": "Thank you for calling Madison Cinema, Bristol\u2019s favorite movie theater.This week, we are offering special discounts on popcorn, sweets, and other snacks. Please press one to hear the list of this week\u2019s movies, or press two to buy tickets in advance. If you have any other requests, press three to speak to our staff member."
+            "passage": "Thank you for calling Madison Cinema, Bristol’s favorite movie theater.This week, we are offering special discounts on popcorn, sweets, and other snacks. Please press one to hear the list of this week’s movies, or press two to buy tickets in advance. If you have any other requests, press three to speak to our staff member."
           }
         },
         {
@@ -471,7 +676,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 04-pic1.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
+            "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -480,7 +685,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 04-pic2.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
+            "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -489,7 +694,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 04-pic3.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 3",
+            "imagePlaceholder": "🖼️ Picture 3",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -498,7 +703,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 04-pic4.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 4",
+            "imagePlaceholder": "🖼️ Picture 4",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -507,7 +712,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 04-pic5.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 5",
+            "imagePlaceholder": "🖼️ Picture 5",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -516,7 +721,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 04-pic6.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 6",
+            "imagePlaceholder": "🖼️ Picture 6",
             "prompt": "Describe the picture in as much detail as you can."
           }
         }
@@ -530,7 +735,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 03-pic1.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
+            "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -539,7 +744,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 03-pic2.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
+            "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -548,7 +753,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 03-pic3.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 3",
+            "imagePlaceholder": "🖼️ Picture 3",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -557,7 +762,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 03-pic4.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 4",
+            "imagePlaceholder": "🖼️ Picture 4",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -566,7 +771,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 03-pic5.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 5",
+            "imagePlaceholder": "🖼️ Picture 5",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -575,7 +780,7 @@
           "label": "Describe a Picture",
           "content": {
             "imageUrl": "test-data/homework pictures/HW Day 03-pic6.webp",
-            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 6",
+            "imagePlaceholder": "🖼️ Picture 6",
             "prompt": "Describe the picture in as much detail as you can."
           }
         },
@@ -613,7 +818,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 7",
           "content": {
-            "passage": "Why don\u2019t you treat yourself to a holiday at the Hotel Hampton in Virginia? For just $225 per person, you can fly to sunny Virginia and enjoy a wonderful 3-night stay. The Hotel Hampton is a 5-star resort with great facilities including a swimming pool, a gymnasium, a business center and an 18-hole golf course. This promotion is only available for a limited time, so you\u2019d better reserve your place today! The number to call is 605-0317 or you can visit www.hamptonhotel.com for more information."
+            "passage": "Why don’t you treat yourself to a holiday at the Hotel Hampton in Virginia? For just $225 per person, you can fly to sunny Virginia and enjoy a wonderful 3-night stay. The Hotel Hampton is a 5-star resort with great facilities including a swimming pool, a gymnasium, a business center and an 18-hole golf course. This promotion is only available for a limited time, so you’d better reserve your place today! The number to call is 605-0317 or you can visit www.hamptonhotel.com for more information."
           }
         },
         {
@@ -621,7 +826,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 8",
           "content": {
-            "passage": "Good afternoon, everyone and welcome to the Chinatown historic district. My name is George and I\u2019ll be your guide today. The district was first founded by Cantonese immigrants around 1920. Later, however, it received immigrants from many other countries looking for work. During the tour, you\u2019re allowed to take pictures. We will see many fine examples of Chinese architecture, and many Chinese restaurants and grocery stores. We will also see a Greek church and a Turkish mosque. Now let\u2019s start our tour."
+            "passage": "Good afternoon, everyone and welcome to the Chinatown historic district. My name is George and I’ll be your guide today. The district was first founded by Cantonese immigrants around 1920. Later, however, it received immigrants from many other countries looking for work. During the tour, you’re allowed to take pictures. We will see many fine examples of Chinese architecture, and many Chinese restaurants and grocery stores. We will also see a Greek church and a Turkish mosque. Now let’s start our tour."
           }
         },
         {
@@ -629,7 +834,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 9",
           "content": {
-            "passage": "At the company\u2019s anniversary dinner, you will all be sitting with your departments. Company shuttle buses will be available at the main entrance at 5 P.M. For those of you who will not take the shuttle bus, a map with directions will be posted in the lobby and also on the third, ninth, and twelfth floors. Remember, everyone is required to attend this ceremony. If for some reason you are unable to attend, please contact the HR department and state your reason."
+            "passage": "At the company’s anniversary dinner, you will all be sitting with your departments. Company shuttle buses will be available at the main entrance at 5 P.M. For those of you who will not take the shuttle bus, a map with directions will be posted in the lobby and also on the third, ninth, and twelfth floors. Remember, everyone is required to attend this ceremony. If for some reason you are unable to attend, please contact the HR department and state your reason."
           }
         },
         {
@@ -637,7 +842,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 10",
           "content": {
-            "passage": "Rock Radio is proud to present an hour-long interview with Collin Taylor, world famous singer and song writer. The interview will be broadcast live on Rock Radio, 98.7, on March 18th at 7 P.M. We\u2019ll discuss the music industry, Mr. Taylor early career, and his latest album. After the interview, Mr. Taylor will be answering questions from listeners who call in. You won\u2019t want to miss this one. 7 P.M., March 18th, on Rock Radio."
+            "passage": "Rock Radio is proud to present an hour-long interview with Collin Taylor, world famous singer and song writer. The interview will be broadcast live on Rock Radio, 98.7, on March 18th at 7 P.M. We’ll discuss the music industry, Mr. Taylor early career, and his latest album. After the interview, Mr. Taylor will be answering questions from listeners who call in. You won’t want to miss this one. 7 P.M., March 18th, on Rock Radio."
           }
         },
         {
@@ -645,7 +850,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 11",
           "content": {
-            "passage": "Hello, you have reached the Customer Service Department at Neo Industries Incorporated. Our customer service center is temporarily unavailable due to technical difficulties with our computer system. We are currently working in the problem, and we hope to have the system up and running again within the hour. If you\u2019re calling to find out about your order status, our new products, or any other information, please visit our website and click on the appropriate link. We apologize for any inconvenience, and thank you for calling Neo Industries Incorporated."
+            "passage": "Hello, you have reached the Customer Service Department at Neo Industries Incorporated. Our customer service center is temporarily unavailable due to technical difficulties with our computer system. We are currently working in the problem, and we hope to have the system up and running again within the hour. If you’re calling to find out about your order status, our new products, or any other information, please visit our website and click on the appropriate link. We apologize for any inconvenience, and thank you for calling Neo Industries Incorporated."
           }
         },
         {
@@ -653,7 +858,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 12",
           "content": {
-            "passage": "Are you interested in losing weight but don\u2019t want to spend all of your valuable time stuck inside a gym? Fortunately, Hard Line Fitness is now accepting new members for discounted rates. If you and a friend register for a six-month membership within the next five weeks you will only have to pay 50% of the regular membership fee. Hard Line Fitness has expert trainers who are fit, enthusiastic and friendly, and our fitness equipment is top-of-the-line. Call now to get more information about us at 1-800-988-3355"
+            "passage": "Are you interested in losing weight but don’t want to spend all of your valuable time stuck inside a gym? Fortunately, Hard Line Fitness is now accepting new members for discounted rates. If you and a friend register for a six-month membership within the next five weeks you will only have to pay 50% of the regular membership fee. Hard Line Fitness has expert trainers who are fit, enthusiastic and friendly, and our fitness equipment is top-of-the-line. Call now to get more information about us at 1-800-988-3355"
           }
         },
         {
@@ -690,7 +895,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 1",
           "content": {
-            "passage": "The Madeleine Hotel is proud to announce the completion of its new Convention Center. With advanced audio-visual equipment, dining facilities, and plenty of space, it\u2019s the perfect location for any corporate event. To reserve the Madeleine Hotel Convention Center, simply call one of our friendly customer service agents at 1-800-555-9973. You can also arrange a tour of the facilities with the centre manager, Jennifer. Call today!"
+            "passage": "The Madeleine Hotel is proud to announce the completion of its new Convention Center. With advanced audio-visual equipment, dining facilities, and plenty of space, it’s the perfect location for any corporate event. To reserve the Madeleine Hotel Convention Center, simply call one of our friendly customer service agents at 1-800-555-9973. You can also arrange a tour of the facilities with the centre manager, Jennifer. Call today!"
           }
         },
         {
@@ -698,7 +903,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 2",
           "content": {
-            "passage": "Don't settle for just any old dinner. We can help guide you to the best restaurants near our Chincoteague /\u0283\u026a\u014bk\u0259\u02c8ti:g/ hotel. With the Atlantic Ocean at Chincoteague's back door, it's no wonder that seafood abounds in the local fare. Chincoteague Island has long been renowned for its fresh, local seafood - especially Tom's Cove Clams and Oysters. In Chincoteague, seafood goes straight from the local waters to your plate. You can't get it any fresher than that!"
+            "passage": "Don't settle for just any old dinner. We can help guide you to the best restaurants near our Chincoteague /ʃɪŋkəˈti:g/ hotel. With the Atlantic Ocean at Chincoteague's back door, it's no wonder that seafood abounds in the local fare. Chincoteague Island has long been renowned for its fresh, local seafood - especially Tom's Cove Clams and Oysters. In Chincoteague, seafood goes straight from the local waters to your plate. You can't get it any fresher than that!"
           }
         },
         {
@@ -706,7 +911,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 3",
           "content": {
-            "passage": "Ladies and gentlemen, this is Christine and I\u2019m your chief flight attendant. Welcome aboard British Airways bound for Florence. We are here to make sure you have a relaxed, comfortable, and enjoyable flight. Our flight time will be of approximately 3 hours and 15 minutes. We will be flying at an altitude of 30.000 feet. Your portable electronic devices must be set to \u2018airplane\u2019 mode until an announcement is made upon arrival. Now, we will be showing you a safety video so please give us your full attention. Thank you."
+            "passage": "Ladies and gentlemen, this is Christine and I’m your chief flight attendant. Welcome aboard British Airways bound for Florence. We are here to make sure you have a relaxed, comfortable, and enjoyable flight. Our flight time will be of approximately 3 hours and 15 minutes. We will be flying at an altitude of 30.000 feet. Your portable electronic devices must be set to ‘airplane’ mode until an announcement is made upon arrival. Now, we will be showing you a safety video so please give us your full attention. Thank you."
           }
         },
         {
@@ -714,7 +919,7 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Passage 4",
           "content": {
-            "passage": "Let\u2019s look at the weather. Temperatures have gone down lower than we expect at this time of year, and today it\u2019ll snow in most places. Eastern areas will see particularly heavy snow. Many schools and offices have announced closings due to the weather and public transportation is experiencing cancellations. Government officials recommend that residents not travel far away from home. Keep you updated by listening for more announcements throughout the day."
+            "passage": "Let’s look at the weather. Temperatures have gone down lower than we expect at this time of year, and today it’ll snow in most places. Eastern areas will see particularly heavy snow. Many schools and offices have announced closings due to the weather and public transportation is experiencing cancellations. Government officials recommend that residents not travel far away from home. Keep you updated by listening for more announcements throughout the day."
           }
         },
         {
