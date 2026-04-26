@@ -1,7 +1,7 @@
 {
   "homework": [
     {
-      "date": "[HW Day 10]",
+      "date": "[HW Day 11]",
       "parts": [
         {
           "type": "respond-info-q",
@@ -201,6 +201,101 @@
               "9"
             ],
             "question": "Question 7: Hi there. I'm interested in attending the Leadership Conference this April, but I can't find any details about the agenda online. I hope you can answer some of my questions. What are the dates of the conference and where is it being held?\n\nQuestion 8: If I can only attend one day of the conference, do I still have to pay for the full conference?\n\nQuestion 9: Pedro Marquez is a good friend of mine, so I'd like to attend as many of his sessions as I can. Can you give me all the details about the sessions Pedro will be leading?"
+          }
+        }
+      ]
+    },
+    {
+      "date": "[HW Day 10]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Today on Smart Cooking, I'll teach you how to make pasta salad, which is my favorite summertime lunch dish. The ingredients you'll need include one box of pasta, a variety of vegetables, and olive oil. After a commercial break, we will begin by cooking the pasta."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Woodhaven Car Wash has been serving the Franklin area for over forty years. Our full exterior service includes handwashing, waxing, and tire cleaning. We also offer several options for cleaning your car's interior. While we work on your vehicle, you can enjoy coffee or tea in our comfortable waiting area. And remember, we're open late for your convenience! For detailed information regarding course content and schedules, please visit our Web site."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/day10-pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/day10-pic2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you prefer to take morning classes or evening classes? Why?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you prefer to have a short break or a long break between classes? Why?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What are some disadvantages of attending a school located far from your hometown?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Practice 1",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 - Practice 1.webp",
+            "imagePlaceholder": "🖼️ Practice 1 Table",
+            "audioUrls": [
+              "test-data/Part 4 audio/Practice 1/Practice 1-q8.mp3",
+              "test-data/Part 4 audio/Practice 1/Practice 1-q9.mp3",
+              "test-data/Part 4 audio/Practice 1/Practice 1-q10.mp3"
+            ],
+            "questionLabels": ["8", "9", "10"],
+            "question": "Question 8: Hello, this is Lucy, the resort manager speaking. I know you're working on the new employee orientation schedule, and I wanted to ask you a few questions about it. What date is the orientation scheduled, and what time will it be over?\n\nQuestion 9: I think we need more time for the resort tour. Do you think it is possible to extend the time?\n\nQuestion 10: I can't stay for the whole orientation. Can you give me all the details of what is scheduled after lunch?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Practice 2",
+          "content": {
+            "imageUrl": "test-data/Part 4 audio/Part 4 - Practice 2.webp",
+            "imagePlaceholder": "🖼️ Practice 2 Table",
+            "audioUrls": [
+              "test-data/Part 4 audio/Practice 2/Practice 2-q8.mp3",
+              "test-data/Part 4 audio/Practice 2/Practice 2-q9.mp3",
+              "test-data/Part 4 audio/Practice 2/Practice 2-q10.mp3"
+            ],
+            "questionLabels": ["8", "9", "10"],
+            "question": "Question 8: Hi, this is Mandy. I haven't received my schedule for May 23rd yet. Can I ask you some questions so that I can confirm a few things? When does the first meeting start? And who will I meet?\n\nQuestion 9: I'm aware that I'm having lunch at noon with Andrew Simmons. Is that right?\n\nQuestion 10: I know I have things to do in the afternoon. Can you tell me the schedule after lunch?"
           }
         }
       ]

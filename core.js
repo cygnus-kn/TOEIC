@@ -30,6 +30,8 @@ let audioPoller = null;
 const RESPONSE_TIMES = {
   'read-aloud': 45,
   'describe-picture': 30,
+  'respond-questions-15': 15,
+  'respond-questions-30': 30,
   'respond-questions': 30,
   'respond-info': 60,
   'respond-info-q': 15,
@@ -44,6 +46,8 @@ const RESPONSE_TIMES = {
 const TYPE_LABELS = {
   'read-aloud': 'TOEIC Speaking',
   'describe-picture': 'TOEIC Speaking',
+  'respond-questions-15': 'TOEIC Speaking',
+  'respond-questions-30': 'TOEIC Speaking',
   'respond-questions': 'TOEIC Speaking',
   'respond-info': 'TOEIC Speaking',
   'respond-info-q': 'TOEIC Speaking',
@@ -743,7 +747,7 @@ function renderCards() {
     if (!part.questionLabel) {
       if (part.type === 'describe-picture') {
         if (index === 2 || index === 3) qLabel = 'Question 3-4';
-      } else if (part.type === 'respond-questions') {
+      } else if (part.type === 'respond-questions' || part.type === 'respond-questions-15' || part.type === 'respond-questions-30') {
         if (index === 4 || index === 5) qLabel = 'Question 5-6';
         if (index === 6) qLabel = 'Question 7';
       }
@@ -871,6 +875,8 @@ function renderPartContent(part, partIndex) {
         </div>
       `;
 
+    case 'respond-questions-30':
+    case 'respond-questions-15':
     case 'respond-questions': {
       return `<div class="question-text">${formatMarkdown(part.content.question)}</div>`;
     }

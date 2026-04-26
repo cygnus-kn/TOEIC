@@ -72,17 +72,17 @@ TOEIC homework usually follows one of two formats. However, **homework days are 
 
 A standard speaking session typically follows this order, but can be customized with any number of parts (e.g., just Part 1 or a mix of Parts 1-4):
 
-| #   | Type                | Label                                  | questionLabel      | responseTime    |
-| --- | ------------------- | -------------------------------------- | ------------------ | --------------- |
-| 1   | `read-aloud`        | Read a Text Aloud                      | `"Questions 1-2"`  | —               |
-| 2   | `read-aloud`        | Read a Text Aloud                      | `"Questions 1-2"`  | —               |
-| 3   | `describe-picture`  | Describe a Picture                     | —                  | —               |
-| 4   | `describe-picture`  | Describe a Picture                     | —                  | —               |
-| 5   | `respond-questions` | Respond to Questions                   | `"Questions 5-7"`  | `15`            |
-| 6   | `respond-questions` | Respond to Questions                   | `"Questions 5-7"`  | `15`            |
-| 7   | `respond-questions` | Respond to Questions                   | `"Questions 5-7"`  | `30`            |
-| 8   | `respond-info-q`    | Questions 8-10: Respond to Information | `"Questions 8-10"` | —               |
-| 9   | `opinion`           | Express an Opinion                     | `"Question 11"`    | `60` (optional) |
+| #   | Type                   | Label                                  | questionLabel      | responseTime    |
+| --- | ---------------------- | -------------------------------------- | ------------------ | --------------- |
+| 1   | `read-aloud`           | Read a Text Aloud                      | `"Questions 1-2"`  | —               |
+| 2   | `read-aloud`           | Read a Text Aloud                      | `"Questions 1-2"`  | —               |
+| 3   | `describe-picture`     | Describe a Picture                     | —                  | —               |
+| 4   | `describe-picture`     | Describe a Picture                     | —                  | —               |
+| 5   | `respond-questions-15` | Respond to Questions                   | `"Questions 5-6"`  | `15`            |
+| 6   | `respond-questions-15` | Respond to Questions                   | `"Questions 5-6"`  | `15`            |
+| 7   | `respond-questions-30` | Respond to Questions                   | `"Question 7"`     | `30`            |
+| 8   | `respond-info-q`       | Respond to Information                 | `"Questions 8-10"` | —               |
+| 9   | `opinion`              | Express an Opinion                     | `"Question 11"`    | `60` (optional) |
 
 ---
 
@@ -117,19 +117,17 @@ A standard speaking session typically follows this order, but can be customized 
 ```js
 // Parts 5 & 6 — short answer
 {
-  type: "respond-questions",
+  type: "respond-questions-15",
   label: "Respond to Questions",
-  questionLabel: "Questions 5-7",
-  responseTime: 15,
+  questionLabel: "Questions 5-6",
   content: { question: "Question text here." }
 }
 
 // Part 7 — longer answer, may have bullet options
 {
-  type: "respond-questions",
+  type: "respond-questions-30",
   label: "Respond to Questions",
-  questionLabel: "Questions 5-7",
-  responseTime: 30,
+  questionLabel: "Question 7",
   content: {
     question: "Which of the following do you prefer?\n- Option A\n- Option B\n- Option C"
   }
@@ -142,13 +140,31 @@ A standard speaking session typically follows this order, but can be customized 
 
 #### `respond-info-q`
 ```js
+// Alternative 1: YouTube video link
 {
   type: "respond-info-q",
-  label: "Questions 8-10: Respond to Information",
+  label: "Respond to Information",
   questionLabel: "Questions 8-10",
   content: {
     imageUrl: "test-data/speaking-pictures/FILENAME.png",
     videoUrl: "https://www.youtube.com/embed/VIDEO_ID?start=SECONDS&enablejsapi=1",
+    timestamps: {
+      q8: 120, // Replace these with exact extracted seconds
+      q9: 135,
+      q10: 150
+    },
+    question: "Question 8: ...\n\nQuestion 9: ...\n\nQuestion 10: ..."
+  }
+}
+
+// Alternative 2: Local audio and image files
+{
+  type: "respond-info-q",
+  label: "Respond to Information",
+  questionLabel: "Questions 8-10",
+  content: {
+    imageUrl: "test-data/Part 4 audio/FILENAME.webp",
+    audioUrl: "test-data/Part 4 audio/FILENAME.mp3",
     timestamps: {
       q8: 120, // Replace these with exact extracted seconds
       q9: 135,
@@ -167,6 +183,16 @@ A standard speaking session typically follows this order, but can be customized 
 > 3. Inject the `timestamps` property into your JSON construction.
 > 4. In the `question` string, ensure you include any contextual scenario/intro spoken by the speaker immediately *before* the specific questions themselves (e.g. for Q9 or Q10). However, DO NOT include the general overarching introduction to the call (e.g. "Hello my name is...") in the reveal text string. Only include the exact text for Q8, Q9, and Q10.
 > 5. **CRITICAL:** Run `rm -f transcript.json` to delete your temporary file once you are finished.
+> 
+> **Note for AI Assistant: Local Audio Transcript Extraction Guide**
+> When asked to construct a homework prompt containing Part 4 from local audio and image files, follow these exact steps:
+> 1. If images are provided as `.png` or `.jpg`, convert them to `.webp` format using a Python script with the `Pillow` library, and place them in the appropriate directory (e.g. `test-data/Part 4 audio/`).
+> 2. Transcribe the local audio file (`.mp3` or `.m4a`) using the Whisper CLI to generate a JSON transcript. Run this exact terminal command:
+>    `/opt/homebrew/bin/whisper "test-data/path/to/audio.mp3" --model base --output_format json --output_dir scratch/`
+> 3. Read the generated `.json` file in the `scratch/` directory to find the exact timestamps and scenario phrasing.
+>    - **CRITICAL FORMATTING RULE**: The `timestamps` mapping and `question` string formatting must follow the exact same rules as the YouTube guide above.
+> 4. Inject the `timestamps` property into your JSON construction, and use the `audioUrl` field (pointing to the local audio file) instead of `videoUrl`.
+> 5. **CRITICAL:** Run `rm -f scratch/*.json` to clean up your temporary transcript files once you are finished.
 ```js
 {
   type: "opinion",
@@ -218,29 +244,26 @@ A standard speaking session typically follows this order, but can be customized 
       }
     },
     {
-      type: "respond-questions",
+      type: "respond-questions-15",
       label: "Respond to Questions",
-      questionLabel: "Questions 5-7",
-      responseTime: 15,
+      questionLabel: "Questions 5-6",
       content: { question: "Q5 TEXT" }
     },
     {
-      type: "respond-questions",
+      type: "respond-questions-15",
       label: "Respond to Questions",
-      questionLabel: "Questions 5-7",
-      responseTime: 15,
+      questionLabel: "Questions 5-6",
       content: { question: "Q6 TEXT" }
     },
     {
-      type: "respond-questions",
+      type: "respond-questions-30",
       label: "Respond to Questions",
-      questionLabel: "Questions 5-7",
-      responseTime: 30,
+      questionLabel: "Question 7",
       content: { question: "Q7 TEXT\n- Option A\n- Option B\n- Option C" }
     },
     {
       type: "respond-info-q",
-      label: "Questions 8-10: Respond to Information",
+      label: "Respond to Information",
       questionLabel: "Questions 8-10",
       content: {
         imageUrl: "test-data/speaking-pictures/FILENAME-picture-3.png",
@@ -273,14 +296,14 @@ A standard speaking session typically follows this order, but can be customized 
 
 **How it renders:** One pagination slot containing a vertical stack of full cards — one card per question — each with its own 30-second preparation timer. The header bar shows **"Topic Preparation"** and **"Question N"**.
 
-| Field           | Required | Description                                                    |
-| --------------- | -------- | -------------------------------------------------------------- |
-| `type`          | ✅        | Must be `"topic-prep"`                                         |
-| `label`         | ✅        | `"Topic Preparation"`                                          |
-| `questionLabel` | ✅        | e.g. `"Next Session"` (shown in the pagination dot tooltip)    |
-| `topic`         | ✅        | Short topic name, e.g. `"Work & Career"`                       |
-| `instruction`   | optional | Italic hint shown at the top of the card stack                 |
-| `questions`     | ✅        | Array of question strings (3–7 recommended)                    |
+| Field           | Required | Description                                                                                                                               |
+| --------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`          | ✅        | Must be `"topic-prep"`                                                                                                                    |
+| `label`         | ✅        | `"Topic Preparation"`                                                                                                                     |
+| `questionLabel` | ✅        | e.g. `"Next Session"` (shown in the pagination dot tooltip)                                                                               |
+| `topic`         | ✅        | Short topic name, e.g. `"Work & Career"`                                                                                                  |
+| `instruction`   | optional | Italic hint shown at the top of the card stack                                                                                            |
+| `questions`     | ✅        | Array of question strings (3–7 recommended)                                                                                               |
 | `responseTime`  | optional | Seconds per question timer. Defaults to `30`. **Set this to match the actual response time of the part being prepared** (see table below) |
 
 **Recommended `responseTime` by preparation type:**
@@ -301,7 +324,7 @@ A standard speaking session typically follows this order, but can be customized 
   "label": "Topic Preparation",
   "questionLabel": "Next Session",
   "topic": "TOPIC NAME",
-  "instruction": "Think about your answers to the following questions. You will discuss these topics in the next class. Take 30 seconds to prepare each one.",
+  "instruction": "Think about your answers to the following questions. You will discuss these topics in the next class. Take [15/30/60] seconds to prepare each one.",
   "questions": [
     "Question 1 text here.",
     "Question 2 text here.",
@@ -309,7 +332,7 @@ A standard speaking session typically follows this order, but can be customized 
     "Question 4 text here.",
     "Question 5 text here."
   ],
-  "responseTime": 30
+  "responseTime": 30 // Change this to match the part being prepared (15, 30, 60, etc.)
 }
 ```
 
@@ -483,16 +506,16 @@ A standard writing session typically follows this order (individual parts or mix
 
 ## Quick Reference
 
-| Need                     | Rule                                                                    |
-| ------------------------ | ----------------------------------------------------------------------- |
-| Where to insert          | `data.js` for date pointers; `data/CLASS_ID.json` for full text content      |
+| Need                     | Rule                                                                                 |
+| ------------------------ | ------------------------------------------------------------------------------------ |
+| Where to insert          | `data.js` for date pointers; `data/CLASS_ID.json` for full text content              |
 | New class doesn't exist  | Create a new key in `CLASSES_DATA` and initialize matching `data/CLASS_ID.json` file |
-| Image paths — Speaking   | `test-data/speaking-pictures/*.png`                                    |
-| Image paths — Writing    | `test-data/writing-pictures/*.jpg`                                      |
-| YouTube `start=`         | In seconds: `(minutes × 60) + seconds`                                  |
-| `responseTime` unit      | Always in **seconds**                                                   |
-| Bullet list in questions | Use `\n- Item` in the question string                                   |
-| Speaking opinion label   | `"Express an Opinion"`                                                  |
-| Writing opinion label    | `"Write an Opinion Essay"`                                              |
-| `topic-prep` placement   | Can appear **anywhere** in the `parts` array                        |
-| `topic-prep` questions   | Any count works; one string per array entry — stacked into separate cards |
+| Image paths — Speaking   | `test-data/speaking-pictures/*.png`                                                  |
+| Image paths — Writing    | `test-data/writing-pictures/*.jpg`                                                   |
+| YouTube `start=`         | In seconds: `(minutes × 60) + seconds`                                               |
+| `responseTime` unit      | Always in **seconds**                                                                |
+| Bullet list in questions | Use `\n- Item` in the question string                                                |
+| Speaking opinion label   | `"Express an Opinion"`                                                               |
+| Writing opinion label    | `"Write an Opinion Essay"`                                                           |
+| `topic-prep` placement   | Can appear **anywhere** in the `parts` array                                         |
+| `topic-prep` questions   | Any count works; one string per array entry — stacked into separate cards            |

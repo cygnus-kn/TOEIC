@@ -47,6 +47,12 @@
   --transition-fast: 150ms ease;
   --transition-smooth: 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
   --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Animation timings & easings */
+  --anim-duration-view: 400ms;
+  --anim-duration-modal: 250ms;
+  --anim-easing-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --anim-easing-swipe: cubic-bezier(0.25, 0.1, 0.1, 1);
 }
 
 body.dark-theme {
@@ -117,7 +123,7 @@ body.preload, body.preload * {
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  transition: background 0.3s;
+  transition: background var(--transition-smooth);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -186,6 +192,18 @@ body.dark-theme * {
   /* Deep shadow since it's an overlay */
 }
 
+@media (max-width: 600px) {
+  /* Fluid floating sidebar on mobile */
+  .sidebar {
+    top: 16px !important;
+    /* Move down slightly for floating look */
+    height: calc(100dvh - 48px) !important;
+    border-radius: 24px !important;
+    margin: 16px !important;
+    left: 0 !important;
+  }
+}
+
 .sidebar.collapsed {
   transform: translateX(calc(-100% - 32px));
   opacity: 0;
@@ -235,6 +253,15 @@ body.dark-theme .sidebar {
   z-index: 1001;
   pointer-events: none;
   transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+}
+
+@media (max-width: 600px) {
+  /* Fix top bar layout — moved down to align with sidebar's internal button
+     Sidebar: top 16px + margin 16px = 32px. Header padding: 16px. Button center: 32+16+19=67px
+     Page button center at top:48px = 48 + 19 = 67px ✓ */
+  .main-top-bar {
+    top: 48px;
+  }
 }
 
 .sidebar-toggle-btn {
@@ -291,6 +318,13 @@ body:not(.dark-theme) .sidebar-toggle-btn:hover {
   transition: opacity var(--transition-smooth), transform var(--transition-smooth);
 }
 
+@media (max-width: 600px) {
+  /* Toggle center: 51 + 16 (half of 32px height) = 67px — matches sidebar button ✓ */
+  .theme-toggle-wrapper {
+    top: 51px;
+  }
+}
+
 /* Mobile auto-hide styles */
 @media (max-width: 1024px) {
 
@@ -321,6 +355,13 @@ body:not(.dark-theme) .sidebar-toggle-btn:hover {
   flex-shrink: 0;
 }
 
+@media (max-width: 600px) {
+  .sidebar-header {
+    padding-top: 16px !important;
+    /* Reset padding since sidebar moved down */
+  }
+}
+
 .sidebar-controls {
   display: flex;
   gap: 8px;
@@ -340,6 +381,16 @@ body:not(.dark-theme) .sidebar-toggle-btn:hover {
   align-items: center;
   justify-content: center;
   transition: all var(--transition-smooth);
+}
+
+@media (max-width: 600px) {
+  /* Match internal sidebar button to same 38px size */
+  .sidebar-control-btn {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
 }
 
 .sidebar-control-btn:hover {
@@ -370,6 +421,13 @@ body.dark-theme .sidebar-control-btn:hover {
   transition: background var(--transition-smooth);
 }
 
+@media (max-width: 600px) {
+  .theme-toggle {
+    height: 32px !important;
+    width: 60px !important;
+  }
+}
+
 body.dark-theme .theme-toggle {
   background: #3a3a3c;
 }
@@ -387,8 +445,24 @@ body.dark-theme .theme-toggle {
   z-index: 2;
 }
 
+@media (max-width: 600px) {
+  .toggle-knob {
+    width: 26px !important;
+    height: 26px !important;
+    top: 3px !important;
+    left: 3px !important;
+  }
+}
+
 body.dark-theme .toggle-knob {
   transform: translateX(24px);
+}
+
+@media (max-width: 600px) {
+  body.dark-theme .toggle-knob {
+    transform: translateX(28px) !important;
+    /* Move to (60 - 26 - 3) - 3 = 28px */
+  }
 }
 
 .toggle-icon {
@@ -630,6 +704,18 @@ body.dark-theme .class-header:hover {
 
 @media (max-width: 600px) {
   .main {
+    padding: 45px var(--space-lg) 100px;
+    margin: 12px;
+    width: calc(100% - 24px);
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
     margin: 12px;
     padding: 20px var(--space-lg) 100px;
   }
@@ -645,7 +731,22 @@ body.dark-theme .class-header:hover {
   gap: var(--space-lg);
   padding-top: 10vh;
   /* Nudge down to center visually */
-  animation: fadeIn 600ms ease;
+  animation: fadeInUp var(--anim-duration-view) var(--anim-easing-smooth);
+}
+
+@media (max-width: 600px) {
+  /* Welcome state: fill remaining space and center itself,
+     independent of the parent's flex-start alignment */
+  .welcome-state {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    /* Fallback: always center vertically in viewport */
+  }
 }
 
 .welcome-icon {
@@ -668,10 +769,20 @@ body.dark-theme .class-header:hover {
   flex-direction: column;
   gap: var(--space-md);
   /* Tightened gap between badge and card */
-  animation: fadeInUp 400ms ease;
+  animation: fadeInUp var(--anim-duration-view) var(--anim-easing-smooth);
   min-height: 0;
   overflow-x: clip;
   /* Clip horizontal only where possible */
+}
+
+@media (max-width: 600px) {
+  .homework-viewer {
+    width: 100%;
+    flex: none;
+    min-height: 0;
+    gap: 16px;
+    /* Space between badge and card */
+  }
 }
 
 .viewer-header {
@@ -680,6 +791,16 @@ body.dark-theme .class-header:hover {
   gap: var(--space-md);
   padding: 0 4px;
   /* Give badge room */
+}
+
+@media (max-width: 600px) {
+  /* Align the date badge to the top-left of the card on mobile */
+  .viewer-header {
+    justify-content: flex-start;
+    margin-bottom: 0;
+    margin-top: 70px;
+    padding-left: 2px;
+  }
 }
 
 .badge-dropdown {
@@ -702,6 +823,14 @@ body.dark-theme .class-header:hover {
   cursor: pointer;
   transition: all var(--transition-smooth);
   user-select: none;
+}
+
+@media (max-width: 600px) {
+  .date-badge {
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 20px;
+  }
 }
 
 .badge-chevron {
@@ -819,14 +948,34 @@ body {
   /* Extra bottom padding to simulate space and ensure scroll-to-hide nav capability */
 }
 
+@media (max-width: 600px) {
+  .card-container {
+    padding: 0;
+    max-width: 100%;
+    flex: none;
+    /* Don't stretch to fill remaining height */
+    height: auto;
+    /* Let card grow naturally */
+    overflow: visible;
+  }
+}
+
 .card-track {
   display: flex;
   align-items: flex-start;
   /* Align cards to top of viewer */
   gap: 32px;
-  transition: transform 400ms cubic-bezier(0.25, 0.1, 0.1, 1);
+  transition: transform var(--anim-duration-view) var(--anim-easing-swipe);
   will-change: transform;
   height: auto;
+}
+
+@media (max-width: 600px) {
+  .card-track {
+    height: auto;
+    /* Allow track to be as tall as the card */
+    align-items: flex-start;
+  }
 }
 
 /* ============================
@@ -846,6 +995,26 @@ body {
   flex-direction: column;
 }
 
+@media (max-width: 600px) {
+  .part-card {
+    zoom: 0.88;
+    border-radius: 20px;
+    max-height: none;
+    /* Card grows freely */
+    overflow: hidden;
+    /* Must stay hidden to clip the header and preserve rounded corners */
+  }
+}
+@supports not (zoom: 1) {
+  @media (max-width: 600px) {
+    .part-card {
+      transform: scale(0.88);
+      transform-origin: center top;
+      margin-bottom: -15%;
+    }
+  }
+}
+
 .part-card:hover {
   box-shadow: var(--shadow-card-hover);
 }
@@ -859,6 +1028,12 @@ body {
   background: linear-gradient(90deg, #342D61 0%, #7E1546 100%);
   color: #ffffff;
   flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .card-header-bar {
+    padding: 10px 16px;
+  }
 }
 
 .card-header-left {
@@ -881,6 +1056,12 @@ body {
   /* Force card to expand naturally */
 }
 
+@media (max-width: 600px) {
+  .card-body {
+    padding: 14px;
+  }
+}
+
 /* Card footer — response timer area */
 .card-footer {
   padding: 0 24px 20px;
@@ -888,6 +1069,12 @@ body {
   justify-content: center;
   margin-top: auto;
   flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .card-footer {
+    padding: 0 16px 16px;
+  }
 }
 
 .response-timer {
@@ -1069,7 +1256,7 @@ body.dark-theme .timer-display.prep-stage {
 
 .reveal-content.visible {
   display: block;
-  animation: fadeInDown 300ms ease forwards;
+  animation: fadeInDown 300ms var(--anim-easing-smooth) forwards;
 }
 
 
@@ -1148,6 +1335,13 @@ body.dark-theme .picture-container img {
   margin: 0 auto;
 }
 
+@media (max-width: 600px) {
+  /* Audio player mobile optimization specifically for small widths */
+  .audio-standalone {
+    gap: 8px !important;
+  }
+}
+
 .audio-toggle-btn {
   background: var(--color-surface);
   border: 1px solid var(--color-border-strong);
@@ -1162,6 +1356,13 @@ body.dark-theme .picture-container img {
   transition: all var(--transition-fast);
   flex-shrink: 0;
   align-self: center;
+}
+
+@media (max-width: 600px) {
+  .audio-toggle-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
 }
 
 .audio-toggle-btn:hover {
@@ -1219,11 +1420,24 @@ body.dark-theme .audio-toggle-btn:hover {
   font-variant-numeric: tabular-nums;
 }
 
+@media (max-width: 600px) {
+  .audio-time {
+    font-size: 10px !important;
+    min-width: 60px;
+  }
+}
+
 .audio-bookmarks {
   display: flex;
   gap: 8px;
   align-items: center;
   align-self: center;
+}
+
+@media (max-width: 600px) {
+  .audio-bookmarks {
+    gap: 4px !important;
+  }
 }
 
 .bookmark-dot {
@@ -1244,6 +1458,15 @@ body.dark-theme .audio-toggle-btn:hover {
   transition: all var(--transition-fast);
   padding: 0;
   box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .bookmark-dot {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    font-size: 10px !important;
+  }
 }
 
 .bookmark-dot.active-bookmark {
@@ -1439,6 +1662,21 @@ body.dark-theme .out-link-icon:hover {
   transition: all var(--transition-smooth);
 }
 
+@media (max-width: 600px) {
+  /* Fix pagination dots to bottom of screen — thumb zone */
+  .pagination {
+    position: fixed;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    padding: 12px 0;
+    z-index: 100;
+    /* Slight frosted glass so it stays readable over any content */
+    background: transparent;
+  }
+}
+
 .pagination-dot {
   pointer-events: auto;
   /* Allow clicking the dots themselves */
@@ -1473,7 +1711,7 @@ body.dark-theme .out-link-icon:hover {
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
-  animation: fadeInUp 400ms ease;
+  animation: fadeInUp var(--anim-duration-view) var(--anim-easing-smooth);
 }
 
 .lesson-content {
@@ -1589,230 +1827,7 @@ body.dark-theme .out-link-icon:hover {
 
 
 
-/* ============================
-   Mobile Responsiveness
-   ============================ */
-@media (max-width: 600px) {
-  .main {
-    padding: 45px var(--space-lg) 100px;
-    margin: 12px;
-    width: calc(100% - 24px);
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
 
-  /* Allow body/app to scroll on mobile */
-  body,
-  .app {
-    overflow: unset;
-    height: auto;
-    min-height: 100dvh;
-  }
-
-  .card-container {
-    padding: 0;
-    max-width: 100%;
-    flex: none;
-    /* Don't stretch to fill remaining height */
-    height: auto;
-    /* Let card grow naturally */
-    overflow: visible;
-  }
-
-  .card-track {
-    height: auto;
-    /* Allow track to be as tall as the card */
-    align-items: flex-start;
-  }
-
-  .part-card {
-    zoom: 0.88;
-    border-radius: 20px;
-    max-height: none;
-    /* Card grows freely */
-    overflow: hidden;
-    /* Must stay hidden to clip the header and preserve rounded corners */
-  }
-
-  .homework-viewer {
-    width: 100%;
-    flex: none;
-    min-height: 0;
-    gap: 16px;
-    /* Space between badge and card */
-  }
-
-
-
-  .card-header-bar {
-    padding: 10px 16px;
-  }
-
-  .card-body {
-    padding: 14px;
-  }
-
-  .card-footer {
-    padding: 0 16px 16px;
-  }
-
-  /* Welcome state: fill remaining space and center itself,
-     independent of the parent's flex-start alignment */
-  .welcome-state {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    /* Fallback: always center vertically in viewport */
-  }
-
-  .reading-passage,
-  .question-text {
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  /* Align the date badge to the top-left of the card on mobile */
-  .viewer-header {
-    justify-content: flex-start;
-    margin-bottom: 0;
-    margin-top: 70px;
-    padding-left: 2px;
-  }
-
-
-  .date-badge {
-    font-size: 14px;
-    padding: 8px 16px;
-    border-radius: 20px;
-  }
-
-  /* Fluid floating sidebar on mobile */
-  .sidebar {
-    top: 16px !important;
-    /* Move down slightly for floating look */
-    height: calc(100dvh - 48px) !important;
-    border-radius: 24px !important;
-    margin: 16px !important;
-    left: 0 !important;
-  }
-
-  .sidebar-header {
-    padding-top: 16px !important;
-    /* Reset padding since sidebar moved down */
-  }
-
-  /* Fix top bar layout — moved down to align with sidebar's internal button
-     Sidebar: top 16px + margin 16px = 32px. Header padding: 16px. Button center: 32+16+19=67px
-     Page button center at top:48px = 48 + 19 = 67px ✓ */
-  .main-top-bar {
-    top: 48px;
-  }
-
-  /* Toggle center: 51 + 16 (half of 32px height) = 67px — matches sidebar button ✓ */
-  .theme-toggle-wrapper {
-    top: 51px;
-  }
-
-  /* Match internal sidebar button to same 38px size */
-  .sidebar-control-btn {
-    width: 38px !important;
-    height: 38px !important;
-    min-width: 38px !important;
-    min-height: 38px !important;
-  }
-
-  .sidebar-toggle-btn svg,
-  .sidebar-control-btn svg {
-    width: 20px !important;
-    height: 20px !important;
-  }
-
-  .theme-toggle {
-    height: 32px !important;
-    width: 60px !important;
-  }
-
-  .toggle-knob {
-    width: 26px !important;
-    height: 26px !important;
-    top: 3px !important;
-    left: 3px !important;
-  }
-
-  body.dark-theme .toggle-knob {
-    transform: translateX(28px) !important;
-    /* Move to (60 - 26 - 3) - 3 = 28px */
-  }
-
-  /* Fix pagination dots to bottom of screen — thumb zone */
-  .pagination {
-    position: fixed;
-    bottom: 28px;
-    left: 0;
-    right: 0;
-    justify-content: center;
-    padding: 12px 0;
-    z-index: 100;
-    /* Slight frosted glass so it stays readable over any content */
-    background: transparent;
-  }
-
-  /* Dots: keep original 8px size, just fix to bottom */
-
-  .sidebar:not(.collapsed) {
-    width: fit-content !important;
-    min-width: 160px !important;
-    max-width: 80% !important;
-    z-index: 2005;
-  }
-
-  /* Audio player mobile optimization specifically for small widths */
-  .audio-standalone {
-    gap: 8px !important;
-  }
-
-  .audio-toggle-btn {
-    width: 32px !important;
-    height: 32px !important;
-  }
-
-  .audio-toggle-btn svg {
-    width: 20px !important;
-    height: 20px !important;
-  }
-
-  .audio-time {
-    font-size: 10px !important;
-    min-width: 60px;
-  }
-
-  .audio-bookmarks {
-    gap: 4px !important;
-  }
-
-  .bookmark-dot {
-    width: 24px !important;
-    height: 24px !important;
-    min-width: 24px !important;
-    font-size: 10px !important;
-  }
-}
-
-@supports not (zoom: 1) {
-  @media (max-width: 600px) {
-    .part-card {
-      transform: scale(0.88);
-      transform-origin: center top;
-      margin-bottom: -15%;
-    }
-  }
-}
 
 /* ============================
    Glassy Buttons Upgrade
@@ -1853,6 +1868,20 @@ body.dark-theme .bookmark-dot:not(.active-bookmark):hover {
   border-color: var(--color-accent);
 }
 
+@media (max-width: 600px) {
+  .reveal-btn,
+  .audio-toggle-btn,
+  .bookmark-dot:not(.active-bookmark) {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  body.dark-theme .reveal-btn,
+  body.dark-theme .audio-toggle-btn,
+  body.dark-theme .bookmark-dot:not(.active-bookmark) {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
 /* Mobile-specific adjustments for Glassy Buttons */
 @media (max-width: 600px) {
 
@@ -1887,7 +1916,7 @@ body.dark-theme .bookmark-dot:not(.active-bookmark):hover {
   -webkit-backdrop-filter: blur(4px);
   cursor: zoom-out;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--anim-duration-modal) var(--anim-easing-smooth);
 }
 
 .image-modal.active {

@@ -5,6 +5,7 @@
 const CLASSES_DATA = {
   "SW Class": {
     homework: [
+      { date: "[HW Day 11]" },
       { date: "[HW Day 10]" },
       { date: "[HW Day 09]" },
       { date: "[HW Day 08]" },

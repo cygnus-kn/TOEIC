@@ -1,6 +1,6 @@
 # TOEIC Homework Platform — Progress Tracker
 
-> Last updated: 2026-04-25
+> Last updated: 2026-04-26
 
 ---
 
@@ -208,6 +208,7 @@ body / .app
 | Apr 14 | **Glassy UI & Player Refinement**: Implemented Apple-style backdrop-blur finishes for Transcript and Audio buttons. Refined border thickness for distinct desktop/mobile experiences. Replaced generic YT icon with branded SVG and added redirection prompt. Simplified "Transcript" toggle logic. |
 | Apr 21 | **Homework Expansion**: Extracted passages, parsed 20+ images from PDF materials, and fully integrated HW Day 04 through HW Day 08. Configured custom JSON labels for distinct question groupings. **UI Enhancement**: Overhauled sidebar class folders and date dropdown menus with capped dimensions (~5 items) and hidden slick scrollbars for cleaner UI density. Fixed global card-container padding to enable end-of-page mobile auto-hide logic. |
 | Apr 25 | **Global Image Zoom**: Implemented a universal full-screen image modal overlay with a glassmorphism backdrop. Added 'Escape' key dismissal, disabled background keyboard navigation while zooming, and added native tooltips. **Performance & UX**: Resolved page-load transition flashes (FOUC) using a strategic `.preload` class. Rebranded core class tab from "Homework" to "SW Class" and properly migrated data files. Confirmed In-Memory JSON caching is functional for optimal load times. |
+| Apr 26 | **Schema Normalization & Content Updates**: Transitioned `respond-questions` to strict typing (`respond-questions-15` and `respond-questions-30`) in `core.js` and JSON data to eliminate manual `responseTime` fields. Standardized the label for `respond-info-q` to remove redundant numbering. Appended comprehensive "Local Audio Transcript Extraction Guide" to `ADD_HOMEWORK.md` and added generic placeholders for variable response times in `topic-prep`. Extracted and integrated HW Day 10 content from workbook PDF with WebP image conversion. **CSS Refactoring**: Modularized `index.css` by moving monolithic mobile media queries inline beneath respective desktop components. |
 
 ---
 
