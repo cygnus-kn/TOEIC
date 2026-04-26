@@ -654,7 +654,7 @@ window.selectHomework = async function (className, date) {
   activeClass = className;
   activeType = 'homework';
   const activeDate = date; // Local reference for clarity
-  dateBadge.textContent = date;
+  dateBadge.innerHTML = `${date}<svg class="badge-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
   renderCards();
   renderPagination();
   showHomeworkViewer();
@@ -679,7 +679,7 @@ window.selectLesson = async function (className, date) {
   activeClass = className;
   activeType = 'lesson';
   const activeDate = date; // Local reference for clarity
-  lessonDateBadge.textContent = date;
+  lessonDateBadge.innerHTML = `${date}<svg class="badge-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
   renderLesson(lesson);
   showLessonViewer();
   saveAppState(className, 'lesson', date, 0);
@@ -1160,12 +1160,15 @@ function toggleDropdown(type) {
   if (!isShowing) {
     renderDropdown(type);
     dropdown.classList.add('show');
+    const badgeDropdown = dropdown.closest('.badge-dropdown');
+    if (badgeDropdown) badgeDropdown.classList.add('open');
   }
 }
 
 function closeAllDropdowns() {
   homeworkDropdown.classList.remove('show');
   lessonDropdown.classList.remove('show');
+  document.querySelectorAll('.badge-dropdown.open').forEach(el => el.classList.remove('open'));
 }
 
 dateBadge.addEventListener('click', (e) => {
@@ -1258,7 +1261,7 @@ function renderSidebar() {
 
   for (const [className, classData] of Object.entries(CLASSES_DATA)) {
     html += `
-      <div class="class-group expanded" data-class="${className}">
+      <div class="class-group" data-class="${className}">
         <div class="class-header" onclick="toggleClass('${className}')">
           <div style="display:flex; align-items:center; gap:12px;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-tertiary);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>

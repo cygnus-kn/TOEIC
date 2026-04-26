@@ -689,17 +689,31 @@ body.dark-theme .class-header:hover {
 .date-badge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: 6px;
   padding: 8px 16px;
-  background: var(--color-surface);
+  background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: 9999px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   cursor: pointer;
   transition: all var(--transition-smooth);
   user-select: none;
+}
+
+.badge-chevron {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--color-text-tertiary);
+  transition: transform var(--transition-smooth);
+}
+
+.badge-dropdown.open .badge-chevron {
+  transform: rotate(90deg);
 }
 
 .date-badge:hover {
@@ -739,6 +753,7 @@ body.dark-theme .dropdown-menu {
 
 .dropdown-menu.show {
   display: block;
+  animation: fadeInDown var(--transition-smooth);
 }
 
 .dropdown-item {
