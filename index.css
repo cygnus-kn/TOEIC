@@ -833,18 +833,6 @@ body.dark-theme .class-header:hover {
   }
 }
 
-.badge-chevron {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  color: var(--color-text-tertiary);
-  transition: transform var(--transition-smooth);
-}
-
-.badge-dropdown.open .badge-chevron {
-  transform: rotate(90deg);
-}
-
 .date-badge:hover {
   background: var(--color-surface-hover);
   border-color: var(--color-border-strong);
