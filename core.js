@@ -683,7 +683,7 @@ window.selectLesson = async function (className, date) {
   activeClass = className;
   activeType = 'lesson';
   const activeDate = date; // Local reference for clarity
-  lessonDateBadge.innerHTML = `${date}<svg class="badge-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+  lessonDateBadge.textContent = date;
   renderLesson(lesson);
   showLessonViewer();
   saveAppState(className, 'lesson', date, 0);
