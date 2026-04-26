@@ -72,17 +72,17 @@ TOEIC homework usually follows one of two formats. However, **homework days are 
 
 A standard speaking session typically follows this order, but can be customized with any number of parts (e.g., just Part 1 or a mix of Parts 1-4):
 
-| #   | Type                   | Label                                  | questionLabel      | responseTime    |
-| --- | ---------------------- | -------------------------------------- | ------------------ | --------------- |
-| 1   | `read-aloud`           | Read a Text Aloud                      | `"Questions 1-2"`  | —               |
-| 2   | `read-aloud`           | Read a Text Aloud                      | `"Questions 1-2"`  | —               |
-| 3   | `describe-picture`     | Describe a Picture                     | —                  | —               |
-| 4   | `describe-picture`     | Describe a Picture                     | —                  | —               |
-| 5   | `respond-questions-15` | Respond to Questions                   | `"Questions 5-6"`  | `15`            |
-| 6   | `respond-questions-15` | Respond to Questions                   | `"Questions 5-6"`  | `15`            |
-| 7   | `respond-questions-30` | Respond to Questions                   | `"Question 7"`     | `30`            |
-| 8   | `respond-info-q`       | Respond to Information                 | `"Questions 8-10"` | —               |
-| 9   | `opinion`              | Express an Opinion                     | `"Question 11"`    | `60` (optional) |
+| #   | Type                   | Label                  | questionLabel      | responseTime    |
+| --- | ---------------------- | ---------------------- | ------------------ | --------------- |
+| 1   | `read-aloud`           | Read a Text Aloud      | `"Questions 1-2"`  | —               |
+| 2   | `read-aloud`           | Read a Text Aloud      | `"Questions 1-2"`  | —               |
+| 3   | `describe-picture`     | Describe a Picture     | —                  | —               |
+| 4   | `describe-picture`     | Describe a Picture     | —                  | —               |
+| 5   | `respond-questions-15` | Respond to Questions   | `"Questions 5-6"`  | `15`            |
+| 6   | `respond-questions-15` | Respond to Questions   | `"Questions 5-6"`  | `15`            |
+| 7   | `respond-questions-30` | Respond to Questions   | `"Question 7"`     | `30`            |
+| 8   | `respond-info-q`       | Respond to Information | `"Questions 8-10"` | —               |
+| 9   | `opinion`              | Express an Opinion     | `"Question 11"`    | `60` (optional) |
 
 ---
 
@@ -379,7 +379,7 @@ A standard writing session typically follows this order (individual parts or mix
 
 ### Writing Part Schemas
 
-#### `sentence-picture` (×5, one per picture/word pair)
+#### `sentence-picture`
 ```js
 {
   type: "sentence-picture",
@@ -393,7 +393,7 @@ A standard writing session typically follows this order (individual parts or mix
 ```
 > No `responseTime`. No timer is shown for this type.
 
-#### `email-response` (×2, one per email prompt)
+#### `email-response`
 ```js
 {
   type: "email-response",
