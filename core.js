@@ -23,6 +23,7 @@ let activeType = ''; // 'homework' or 'lesson'
 let timers = {}; // { partIndex: { interval, remaining, running } }
 let topicTimers = {}; // { "partIndex-qIndex": { interval, remaining, running } }
 let audioPlayers = {}; // { partIndex: YT playerInstance }
+let youtubePlayerPromises = {}; // { partIndex: Promise<YT.Player> }
 let localAudioPlayers = {}; // { partIndex: HTMLAudioElement }
 let audioPoller = null;
 
@@ -372,6 +373,7 @@ async function initAudioPlayers() {
     });
   }
   audioPlayers = {};
+  youtubePlayerPromises = {};
 
   // Clear old local audio players
   Object.values(localAudioPlayers).forEach(p => {
@@ -382,33 +384,8 @@ async function initAudioPlayers() {
   if (audioPoller) cancelAnimationFrame(audioPoller);
   audioPoller = null;
 
-  const needsYT = currentParts.some(part => part.type === 'respond-info-q' && part.content.videoUrl);
-  if (needsYT) {
-    await loadYouTubeAPI();
-  }
-
   currentParts.forEach((part, index) => {
-    if (part.type === 'respond-info-q' && part.content.videoUrl) {
-      const videoId = extractVideoId(part.content.videoUrl);
-      const startTime = extractStartTime(part.content.videoUrl);
-
-      if (window.YT && window.YT.Player) {
-        audioPlayers[index] = new YT.Player(`yt-player-${index}`, {
-          height: '0',
-          width: '0',
-          videoId: videoId,
-          playerVars: {
-            'autoplay': 0,
-            'controls': 0,
-            'start': startTime,
-            'enablejsapi': 1
-          },
-          events: {
-            'onStateChange': (event) => onPlayerStateChange(index, event)
-          }
-        });
-      }
-    } else if (part.type === 'respond-info-q' && part.content.audioUrls) {
+    if (part.type === 'respond-info-q' && part.content.audioUrls) {
       // Local audio: load first file (Q7) by default
       const audio = new Audio(part.content.audioUrls[0]);
       audio._urls = part.content.audioUrls;
@@ -435,6 +412,50 @@ async function initAudioPlayers() {
   });
 }
 
+async function ensureYouTubePlayer(index) {
+  if (audioPlayers[index]) return audioPlayers[index];
+  if (youtubePlayerPromises[index]) return youtubePlayerPromises[index];
+
+  const part = currentParts[index];
+  if (!part || part.type !== 'respond-info-q' || !part.content.videoUrl) return null;
+
+  const videoId = extractVideoId(part.content.videoUrl);
+  if (!videoId) return null;
+
+  const mount = document.getElementById(`yt-player-${index}`);
+  if (!mount) return null;
+
+  const startTime = extractStartTime(part.content.videoUrl);
+
+  youtubePlayerPromises[index] = (async () => {
+    await loadYouTubeAPI();
+
+    return new Promise((resolve) => {
+      audioPlayers[index] = new YT.Player(`yt-player-${index}`, {
+        height: '0',
+        width: '0',
+        videoId: videoId,
+        playerVars: {
+          'autoplay': 0,
+          'controls': 0,
+          'start': startTime,
+          'enablejsapi': 1
+        },
+        events: {
+          'onReady': () => resolve(audioPlayers[index]),
+          'onStateChange': (event) => onPlayerStateChange(index, event)
+        }
+      });
+    });
+  })();
+
+  try {
+    return await youtubePlayerPromises[index];
+  } finally {
+    delete youtubePlayerPromises[index];
+  }
+}
+
 function extractVideoId(url) {
   const match = url.match(/embed\/([^?]+)/);
   return match ? match[1] : '';
@@ -445,7 +466,42 @@ function extractStartTime(url) {
   return match ? parseInt(match[1]) : 0;
 }
 
-window.toggleAudio = function (index) {
+function getRespondInfoTimestamps(part) {
+  const baseTime = extractStartTime(part.content.videoUrl) || 0;
+  const timestamps = part.content.timestamps || {};
+  return {
+    q8: timestamps.q8 !== undefined ? timestamps.q8 : baseTime,
+    q9: timestamps.q9 !== undefined ? timestamps.q9 : baseTime,
+    q10: timestamps.q10 !== undefined ? timestamps.q10 : baseTime,
+  };
+}
+
+function syncYouTubeBookmark(index, currentTime) {
+  const part = currentParts[index];
+  if (!part || part.type !== 'respond-info-q' || !part.content.videoUrl) return;
+
+  const container = document.getElementById(`bookmarks-${index}`);
+  if (!container) return;
+
+  const dots = Array.from(container.querySelectorAll('.bookmark-dot:not(.out-link-icon)'));
+  if (dots.length < 3) return;
+
+  const { q8, q9, q10 } = getRespondInfoTimestamps(part);
+  let activeDot = dots[0];
+
+  if (currentTime >= q10) {
+    activeDot = dots[2];
+  } else if (currentTime >= q9) {
+    activeDot = dots[1];
+  } else if (currentTime >= q8) {
+    activeDot = dots[0];
+  }
+
+  dots.forEach(dot => dot.classList.remove('active-bookmark'));
+  activeDot.classList.add('active-bookmark');
+}
+
+window.toggleAudio = async function (index) {
   // Local HTML5 audio
   const local = localAudioPlayers[index];
   if (local) {
@@ -464,8 +520,9 @@ window.toggleAudio = function (index) {
   }
 
   // YouTube audio
-  const player = audioPlayers[index];
+  const player = await ensureYouTubePlayer(index);
   if (!player) return;
+  syncYouTubeBookmark(index, player.getCurrentTime());
   const state = player.getPlayerState();
   if (state === YT.PlayerState.PLAYING) {
     player.pauseVideo();
@@ -474,20 +531,21 @@ window.toggleAudio = function (index) {
   }
 };
 
-window.seekAudio = function (index, value) {
+window.seekAudio = async function (index, value) {
   const local = localAudioPlayers[index];
   if (local) {
     local.currentTime = (value / 100) * local.duration;
     return;
   }
-  const player = audioPlayers[index];
+  const player = await ensureYouTubePlayer(index);
   if (!player) return;
   const duration = player.getDuration();
   const seekTo = (value / 100) * duration;
   player.seekTo(seekTo, true);
+  syncYouTubeBookmark(index, seekTo);
 };
 
-window.seekAudioToTime = function (index, trackIndex) {
+window.seekAudioToTime = async function (index, trackIndex) {
   const local = localAudioPlayers[index];
   if (local) {
     // trackIndex is the array index of the audio file to switch to
@@ -509,18 +567,19 @@ window.seekAudioToTime = function (index, trackIndex) {
     }
     return;
   }
-  const player = audioPlayers[index];
+  const player = await ensureYouTubePlayer(index);
   if (!player || typeof player.seekTo !== 'function') return;
   player.seekTo(trackIndex, true);
+  syncYouTubeBookmark(index, trackIndex);
 };
 
-window.seekBy = function (index, seconds) {
+window.seekBy = async function (index, seconds) {
   const local = localAudioPlayers[index];
   if (local) {
     local.currentTime = Math.max(0, local.currentTime + seconds);
     return;
   }
-  const player = audioPlayers[index];
+  const player = await ensureYouTubePlayer(index);
   if (!player || typeof player.getCurrentTime !== 'function') return;
   const currentTime = player.getCurrentTime();
   player.seekTo(currentTime + seconds, true);
@@ -542,6 +601,7 @@ function onPlayerStateChange(index, event) {
   if (event.data === YT.PlayerState.PLAYING) {
     icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
     btn.closest('.audio-standalone').classList.add('playing');
+    syncYouTubeBookmark(index, audioPlayers[index].getCurrentTime());
     
     // Start progress loop only while playing
     if (!audioPoller) {
@@ -583,6 +643,7 @@ function updateAudioProgress() {
         if (timeDisplay) {
           timeDisplay.textContent = `${formatTime(Math.floor(current))} / ${formatTime(Math.floor(duration))}`;
         }
+        syncYouTubeBookmark(index, current);
       }
     }
   }
@@ -624,8 +685,7 @@ async function getClassData(className) {
   if (dataCache[className]) return dataCache[className];
   
   try {
-    const timestamp = new Date().getTime();
-    const response = await fetch(`data/${className}.json?t=${timestamp}`);
+    const response = await fetch(`data/${className}.json`);
     const data = await response.json();
     dataCache[className] = data;
     return data;
@@ -796,11 +856,7 @@ function renderCards() {
           `;
         } else {
           // ── YouTube audio ────────────────────────────────────────────────
-          const baseTime = extractStartTime(part.content.videoUrl) || 0;
-          const timestamps = part.content.timestamps || {};
-          const q8Time = timestamps.q8 !== undefined ? timestamps.q8 : baseTime;
-          const q9Time = timestamps.q9 !== undefined ? timestamps.q9 : baseTime;
-          const q10Time = timestamps.q10 !== undefined ? timestamps.q10 : baseTime;
+          const { q8: q8Time, q9: q9Time, q10: q10Time } = getRespondInfoTimestamps(part);
 
           const videoId = extractVideoId(part.content.videoUrl);
           const watchLink = videoId ? `https://www.youtube.com/watch?v=${videoId}&t=${Math.floor(q8Time)}s` : part.content.videoUrl;
@@ -818,7 +874,7 @@ function renderCards() {
                 </div>
                 <div class="audio-time" id="time-${index}" style="white-space: nowrap;">00:00 / 00:00</div>
                 <div class="audio-bookmarks" id="bookmarks-${index}">
-                  <button class="bookmark-dot" data-time="${q8Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q8Time}); setActiveBookmark(this, ${index})" title="Jump to Question 8">8</button>
+                  <button class="bookmark-dot active-bookmark" data-time="${q8Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q8Time}); setActiveBookmark(this, ${index})" title="Jump to Question 8">8</button>
                   <button class="bookmark-dot" data-time="${q9Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q9Time}); setActiveBookmark(this, ${index})" title="Jump to Question 9">9</button>
                   <button class="bookmark-dot" data-time="${q10Time}" onclick="event.stopPropagation(); seekAudioToTime(${index}, ${q10Time}); setActiveBookmark(this, ${index})" title="Jump to Question 10">10</button>
                   <a class="bookmark-dot out-link-icon" href="${watchLink}" target="_blank" rel="noopener noreferrer" title="Watch on YouTube" onclick="if(!confirm('You are about to be redirected to YouTube.')) { event.preventDefault(); }">
@@ -850,8 +906,8 @@ function renderCards() {
   });
 
   cardTrack.innerHTML = html;
-  goToPart(0);
   initAudioPlayers();
+  goToPart(0);
 }
 
 function renderPartContent(part, partIndex) {
@@ -1022,6 +1078,11 @@ window.goToPart = function (index) {
       }
     }
   });
+
+  const part = currentParts[index];
+  if (part && part.type === 'respond-info-q' && part.content.videoUrl) {
+    ensureYouTubePlayer(index);
+  }
 };
 
 function updatePaginationDots() {
