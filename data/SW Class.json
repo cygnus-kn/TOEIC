@@ -1,8 +1,210 @@
 {
   "homework": [
     {
+      "date": "[HW Day 18]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Good afternoon, folks, and welcome back to Nashville Traffic Watch! We've got some traffic on the main highway due to construction, causing delays of about 30 minutes during busy times. Consider taking Maple Street, Oak Avenue, or Pine Road as alternate routes. Stay tuned for more updates on your route!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Welcome to the Hawaiian Banana Plantation! I'm Kai Mahelona, and I'll be your guide throughout the tour today. During our time together, you'll walk through the banana fields, see how they are grown, and have the chance to pick your own Hawaiian Apple Bananas. Let's dive into this tropical adventure!"
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2024-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2024-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "When was the last time you dined out with your friends, and which restaurant did you go to?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "How often do you dine out with your friends, and which restaurant is your preferred choice?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "When choosing a restaurant to dine out, which of the following factors do you prioritize the most:\n- Menu choices\n- Quality of service\n- Location"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2024-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/8DR7Cjv-AZo?start=626&enablejsapi=1",
+            "timestamps": {
+              "q8": 626,
+              "q9": 675,
+              "q10": 706
+            },
+            "question": "Question 8: Where will the interviews take place, and when will the first interview start?\n\nQuestion 9: I heard there are two applicants applying for the assistant sales manager position. Can you confirm if this information is correct?\n\nQuestion 10: On a personal note, I've had some great experiences working with people from Sapphire Suites. Are there any applicants who have experience working there?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you think it is better for students to challenge themselves with tougher classes than to take easier courses in college?"
+          }
+        }
+      ]
+    },
+
+    {
+      "date": "[HW Day 17]",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "If you were to give feedback to your colleague in order to improve their work productivity, what would you like to talk about?\n- Communication skills\n- Work motivation\n- Teamwork"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "What is the most important factor a business owner should have to become successful?\n- Background knowledge of the industry\n- Strong leadership skills\n- Innovation and creativity"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "What is the most important factor that should be considered when choosing a job?\n- Friendly co-workers\n- Learning opportunities\n- Career future"
+          }
+        }
+      ]
+    },
+
+    {
+      "date": "[HW Day 16]",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "What advantages can a company receive when it collects online reviews from its customers?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "What are the advantages of using public transportation?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "What are the disadvantages of playing video games regularly?"
+          }
+        }
+      ]
+    },
+
+    {
+      "date": "[HW Day 15]",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Is traveling by car or airplane better for vacation in your opinion?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you think TV or online advertisements influence customers more effectively? Explain your choice."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Is a laptop or tablet better for your daily tasks and enjoyment? Explain your choice."
+          }
+        }
+      ]
+    },
+
+    {
       "date": "[HW Day 14]",
-      "parts": []
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "\"It is necessary to have a college degree to be successful.\" Do you agree or disagree with that statement? Give specific reasons and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you agree or disagree that arts and music should be required subjects just like math and science?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you agree or disagree that having fun office events helps workers enjoy their jobs more?"
+          }
+        }
+      ]
     },
 
     {
@@ -476,7 +678,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/day10-pic1.webp",
+            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -485,7 +687,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/day10-pic2.webp",
+            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -571,7 +773,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 09-pic1.webp",
+            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2023-picture-1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -581,7 +783,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 09-pic2.webp",
+            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2023-picture-2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -735,7 +937,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 07-pic1.webp",
+            "imageUrl": "test-data/speaking-pictures/GwenTV-07-2023-picture-1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -745,7 +947,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 07-pic2.webp",
+            "imageUrl": "test-data/speaking-pictures/GwenTV-07-2023-picture-2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           },
