@@ -38,28 +38,25 @@
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Questions 5-7",
-          "responseTime": 15,
           "content": {
             "question": "Do you prefer to take morning classes or evening classes? Why"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Questions 5-7",
-          "responseTime": 15,
           "content": {
             "question": "Do you prefer to have a short break or a long break between classes? Why?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Questions 5-7",
-          "responseTime": 30,
           "content": {
             "question": "What are some disadvantages of attending a school located far from your hometown?"
           }
@@ -127,28 +124,25 @@
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Questions 5-7",
-          "responseTime": 15,
           "content": {
             "question": "When was the last time you visited a new city who did you go there with?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Questions 5-7",
-          "responseTime": 15,
           "content": {
             "question": "When you visit a new city would you prefer to stay at a hotel or find a place where you could stay with your friends and family?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Questions 5-7",
-          "responseTime": 30,
           "content": {
             "question": "Which of the following activities do you think you must try when visiting a new city?\n- Eating at a local restaurant\n- Shopping in the neighborhood\n- Going on a guided tour"
           }
@@ -216,28 +210,25 @@
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Questions 5-7",
-          "responseTime": 15,
           "content": {
             "question": "What was your first ever job how long did you do it for?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Questions 5-7",
-          "responseTime": 15,
           "content": {
             "question": "Do you prefer to work during the daytime or during the night time? Why?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Questions 5-7",
-          "responseTime": 30,
           "content": {
             "question": "What are some advantages of working in a busy city rather than working in a quiet area?"
           }

@@ -1,14 +1,19 @@
 {
   "homework": [
     {
-      "date": "[HW Day 12]",
+      "date": "[HW Day 14]",
+      "parts": []
+    },
+
+    {
+      "date": "[HW Day 13]",
       "parts": [
         {
           "type": "read-aloud",
           "label": "Read a Text Aloud",
           "questionLabel": "Questions 1-2",
           "content": {
-            "passage": "Welcome to Dixon National Park! In a couple of minutes, we'll begin our bicycle tour around the park. While biking through the Dixon Forest, please remain on the path. The tour should conclude at approximately noon. You'll then have an opportunity to eat, drink, and see the displays at the visitor's center. I hope everyone's excited!"
+            "passage": "Attention, students. This Friday night, the Maytown School's yearly fund-raising dinner will be held in the cafeteria. Tickets are ten dollars per person. All money raised will benefit programs like sports, performing arts, and student government. To enjoy a delicious dinner and support our schools, purchase your tickets today!"
           }
         },
         {
@@ -16,14 +21,14 @@
           "label": "Read a Text Aloud",
           "questionLabel": "Questions 1-2",
           "content": {
-            "passage": "Is your computer starting to slow down? Would you like a larger screen? If so, stop by Bennington Computer Emporium. We carry an enormous selection of the latest models of desktops, laptops, and tablets. We also carry a huge selection of accessories. What's more, if you come in today, you'll receive an additional twenty percent off."
+            "passage": "Are you looking for a place to live? Green Meadows is a new apartment complex that can meet your needs. Our homes feature modern kitchens, hardwood floors, and spacious bedrooms. Additionally, our apartments are conveniently located near several restaurants and shops. If you're interested in visiting our properties, call Green Meadows today!"
           }
         },
         {
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/HW12_Part2_Pic1.webp",
+            "imageUrl": "test-data/speaking-pictures/GwenTV-05-2023-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -32,7 +37,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/HW12_Part2_Pic2.webp",
+            "imageUrl": "test-data/speaking-pictures/GwenTV-05-2023-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -42,7 +47,7 @@
           "label": "Respond to Questions",
           "questionLabel": "Questions 5-6",
           "content": {
-            "question": "How often do you buy new shoes? Do you like to buy shoes from the same brand?"
+            "question": "When was the last time you went on vacation? Where did you go for your vacation?"
           }
         },
         {
@@ -50,7 +55,7 @@
           "label": "Respond to Questions",
           "questionLabel": "Questions 5-6",
           "content": {
-            "question": "What makes you buy a new pair of shoes?"
+            "question": "Do you like to stay at one location when you go on vacation? Why or why not?"
           }
         },
         {
@@ -58,9 +63,70 @@
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
           "content": {
-            "question": "What is the most important thing that you would consider when buying new shoes?\n- Comfort\n- Durability\n- Appearance"
+            "question": "What would be the best thing about traveling abroad during your vacation?\n- Eating new kinds of food\n- Meeting other travelers\n- Visiting museums"
           }
         },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2024-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/mxSOVXhIrls?start=622&enablejsapi=1",
+            "timestamps": {
+              "q8": 622,
+              "q9": 666,
+              "q10": 700
+            },
+            "question": "Question 8: When will it be held and what time will the first session start on the first day?\n\nQuestion 9: My friend is also interested in attending the conference but she will only be available on the second day. Will she be required to pay for both days?\n\nQuestion 10: Last year's workshop was incredibly helpful. Could you provide information about all the workshops scheduled for this year's conference?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Should companies allow employees to work from home 2 days per week? Why or why not?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you think teachers should strictly limit students' mobile phone use in school?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you agree or disagree with the following statement?\n\"Teachers with a lot of experience will have more effect on their students.\""
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "When you are looking for work, what are the advantages of finding information about jobs online? Use specific ideas and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you agree the best way to deal with work stress is talking to a supervisor?"
+          }
+        }
+      ]
+    },
+
+    {
+      "date": "[HW Day 12]",
+      "parts": [
         {
           "type": "respond-info-q",
           "label": "Respond to Information",
@@ -111,18 +177,77 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2024-picture-3.webp",
-            "videoUrl": "https://www.youtube.com/embed/mxSOVXhIrls?start=622&enablejsapi=1",
+            "imageUrl": "test-data/speaking-pictures/GwenTV-04-2023-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/e0DNbA4B4Y0?start=618&enablejsapi=1",
             "timestamps": {
-              "q8": 622,
+              "q8": 618,
               "q9": 666,
-              "q10": 700
+              "q10": 699
             },
-            "question": "Question 8: When will it be held and what time will the first session start on the first day?\n\nQuestion 9: My friend is also interested in attending the conference but she will only be available on the second day. Will she be required to pay for both days?\n\nQuestion 10: Last year's workshop was incredibly helpful. Could you provide information about all the workshops scheduled for this year's conference?"
+            "question": "Question 8: When is the first day of the movie festival? What movie will be shown on the first day?\n\nQuestion 9: I am a huge fan of the director Richard Ford. I heard that you'll be playing his movie on the 5th of May. Is that right?\n\nQuestion 10: I like comedy movies. Could you please tell me all the details of the comedy movies that I can enjoy at the festival?"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Welcome to Dixon National Park! In a couple of minutes, we'll begin our bicycle tour around the park. While biking through the Dixon Forest, please remain on the path. The tour should conclude at approximately noon. You'll then have an opportunity to eat, drink, and see the displays at the visitor's center. I hope everyone's excited!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Is your computer starting to slow down? Would you like a larger screen? If so, stop by Bennington Computer Emporium. We carry an enormous selection of the latest models of desktops, laptops, and tablets. We also carry a huge selection of accessories. What's more, if you come in today, you'll receive an additional twenty percent off."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-04-2023-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-04-2023-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "How often do you buy new shoes? Do you like to buy shoes from the same brand?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "What makes you buy a new pair of shoes?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What is the most important thing that you would consider when buying new shoes?\n- Comfort\n- Durability\n- Appearance"
           }
         }
       ]
     },
+
     {
       "date": "[HW Day 11]",
       "parts": [
@@ -463,46 +588,41 @@
           "questionLabel": "Question 3-4"
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
-          "responseTime": 30,
           "content": {
             "question": "Do you prefer to live in the city or in the countryside?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
-          "responseTime": 30,
           "content": {
             "question": "Do you think that online shops are a good place to buy clothes?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
-          "responseTime": 30,
           "content": {
             "question": "What are the advantages of watching TV?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
-          "responseTime": 30,
           "content": {
             "question": "What are the important things you would consider when moving to a new place?\n- Low rent\n- Convenient location\n- Services offered"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
-          "responseTime": 30,
           "content": {
             "question": "Which factor is most important to you when deciding to continue seeing an advertisement?\n- Fun content\n- Catchy music\n- Interesting product"
           }
@@ -534,7 +654,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 08-pic1.webp",
+            "imageUrl": "test-data/speaking-pictures/GwenTV-01-2023-picture-1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -544,53 +664,48 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 08-pic2.webp",
+            "imageUrl": "test-data/speaking-pictures/GwenTV-01-2023-picture-2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           },
           "questionLabel": "Question 3-4"
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
-          "responseTime": 30,
           "content": {
             "question": "Do you prefer watching sports live or on television?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
-          "responseTime": 30,
           "content": {
             "question": "Do you think fast food is popular in Vietnam? Why or why not?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
-          "responseTime": 30,
           "content": {
             "question": "People exercise in many different ways. What are some advantages of choosing walking instead of other forms of exercise?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
-          "responseTime": 30,
           "content": {
             "question": "What is the most important thing to prevent health issue?\n- Exercise\n- Diet\n- Sleep"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-30",
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
-          "responseTime": 30,
           "content": {
             "question": "If you were deciding where to eat, which of the following factors would most influence your decision? Why?\n- The menu\n- The atmosphere\n- The review"
           }
@@ -701,91 +816,81 @@
           "questionLabel": "Question 3-4"
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Question 1",
-          "responseTime": 15,
           "content": {
             "question": "Where do you usually study?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Question 2",
-          "responseTime": 15,
           "content": {
             "question": "Do you listen to music when you study?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Question 3",
-          "responseTime": 15,
           "content": {
             "question": "What time of day do you feel you concentrate the best?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Question 4",
-          "responseTime": 15,
           "content": {
             "question": "Do you take breaks while studying?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Question 5",
-          "responseTime": 15,
           "content": {
             "question": "Do you make shopping lists before going shopping?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Question 6",
-          "responseTime": 15,
           "content": {
             "question": "Where do you like to go shopping?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Question 7",
-          "responseTime": 15,
           "content": {
             "question": "What are your hobbies?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Question 8",
-          "responseTime": 15,
           "content": {
             "question": "How much money do you invest in your hobbies?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Question 9",
-          "responseTime": 15,
           "content": {
             "question": "Where is your hometown located?"
           }
         },
         {
-          "type": "respond-questions",
+          "type": "respond-questions-15",
           "label": "Respond to Questions",
           "questionLabel": "Question 10",
-          "responseTime": 15,
           "content": {
             "question": "How long have you lived in your current house?"
           }

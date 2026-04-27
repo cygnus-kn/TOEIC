@@ -113,7 +113,7 @@ A standard speaking session typically follows this order, but can be customized 
 }
 ```
 
-#### `respond-questions`
+#### `respond-questions-15` / `respond-questions-30`
 ```js
 // Parts 5 & 6 — short answer
 {
@@ -134,6 +134,8 @@ A standard speaking session typically follows this order, but can be customized 
 }
 ```
 > Use `\n- ` to create bullet list items. They render as `<ul><li>` in the app.
+
+> Do not use the legacy `respond-questions` type. Choose `respond-questions-15` for 15-second prompts and `respond-questions-30` for 30-second prompts.
 
 > [!IMPORTANT]
 > Q5-7 questions in the workbook are often preceded by an intro scenario (e.g. *"Imagine that a company is doing research..."*). **Always remove this intro sentence.** Only include the actual question text itself in the `question` field.

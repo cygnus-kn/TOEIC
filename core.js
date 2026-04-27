@@ -32,7 +32,6 @@ const RESPONSE_TIMES = {
   'describe-picture': 30,
   'respond-questions-15': 15,
   'respond-questions-30': 30,
-  'respond-questions': 30,
   'respond-info': 60,
   'respond-info-q': 15,
   'opinion': 60,
@@ -48,7 +47,6 @@ const TYPE_LABELS = {
   'describe-picture': 'TOEIC Speaking',
   'respond-questions-15': 'TOEIC Speaking',
   'respond-questions-30': 'TOEIC Speaking',
-  'respond-questions': 'TOEIC Speaking',
   'respond-info': 'TOEIC Speaking',
   'respond-info-q': 'TOEIC Speaking',
   'opinion': 'TOEIC Speaking',
@@ -747,7 +745,7 @@ function renderCards() {
     if (!part.questionLabel) {
       if (part.type === 'describe-picture') {
         if (index === 2 || index === 3) qLabel = 'Question 3-4';
-      } else if (part.type === 'respond-questions' || part.type === 'respond-questions-15' || part.type === 'respond-questions-30') {
+      } else if (part.type === 'respond-questions-15' || part.type === 'respond-questions-30') {
         if (index === 4 || index === 5) qLabel = 'Question 5-6';
         if (index === 6) qLabel = 'Question 7';
       }
@@ -876,8 +874,7 @@ function renderPartContent(part, partIndex) {
       `;
 
     case 'respond-questions-30':
-    case 'respond-questions-15':
-    case 'respond-questions': {
+    case 'respond-questions-15': {
       return `<div class="question-text">${formatMarkdown(part.content.question)}</div>`;
     }
 

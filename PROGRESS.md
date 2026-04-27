@@ -6,7 +6,7 @@
 
 ## 📋 Project Overview
 
-A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking & Writing homework and class notes. Built with vanilla HTML, CSS, and JavaScript — no frameworks.
+A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing homework and class notes. Built with vanilla HTML, CSS, and JavaScript — no frameworks.
 
 **Stack:** `index.html` · `index.css` · `core.js` · `data.js` · `data/` (JSON)  
 **Hosted at:** GitHub (`/Users/cygnus/Documents/GitHub/Homework`)
@@ -30,7 +30,7 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 
 ### 📄 Homework Viewer
 - [x] Card-based layout with horizontal slide navigation
-- [x] Swipe / trackpad scroll to navigate between parts
+- [x] Swipe and keyboard arrow navigation between parts
 - [x] Pagination dots with increased touch hit targets for mobile and fixed clickability for desktop
 - [x] Glassmorphism date badge using synchronized "Class Button" design language (13.5px font, pill-shape)
 - [x] Dropdown to switch between homework dates
@@ -44,29 +44,31 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 | Describe a Picture | ✅ |
 | Respond to Questions | ✅ |
 | Respond to Info (table) | ✅ |
-| Respond to Info + Audio (Q8-10) | ✅ |
+| Respond to Info + YouTube / Local Audio | ✅ |
 | Express an Opinion | ✅ |
 | Email Response (Writing) | ✅ |
 | Sentence + Picture (Writing) | ✅ |
+| Topic Preparation | ✅ |
 
 ### ⏱ Response Timers
 - [x] Per-card countdown timers (click to start/pause/resume/reset cycle)
 - [x] Prep time stage (yellow) → Response time stage (default)
-- [x] CSS progress ring depletes as time runs down
+- [x] Topic preparation cards each get independent timers
 - [x] "Finished" state when timer reaches zero
 
-### 🎵 Audio Player (YouTube IFrame API)
-- [x] Hidden YouTube player for `respond-info-q` type
+### 🎵 Audio Player (YouTube IFrame API + Local HTML5 Audio)
+- [x] Hidden YouTube player for `respond-info-q` entries with `videoUrl`
+- [x] Local audio player for `respond-info-q` entries with `audioUrls` arrays
 - [x] Custom play/pause button (circular mirrored bookmark-dot design)
 - [x] Seekbar with live horizontal time display (`MM:SS / MM:SS`)
 - [x] Audio paused automatically when navigating to another part or assignment
 - [x] Audio player now supports Shift + Arrow keys for global seeking
-- [x] Interactive bookmark dots (8, 9, 10) for rapid navigation to specific question starts with manual active state highlighting
-- [x] Integrated "Watch on YouTube" button with custom red SVG branding and redirection confirmation prompt
-- [x] Glassy Finish: Translucent Apple-inspired design for all player controls (Play, Bookmarks, YouTube) with sub-pixel optimization for mobile.
-- [x] Automated Transcript extraction protocol: AI can now auto-extract question starts and scenario contexts from YouTube links
+- [x] Interactive bookmark dots for rapid navigation to question starts / separate local clips
+- [x] Integrated "Watch on YouTube" button for YouTube-backed tasks with custom red SVG branding and redirection confirmation prompt
+- [x] Glassy Finish: Translucent Apple-inspired design for all player controls (Play, Bookmarks, YouTube) with sub-pixel optimization for mobile
+- [x] Automated transcript extraction protocols for YouTube links and local audio workflows
 - [x] Perfectly aligned horizontal layout for all audio controls (Play → Seeker → Time → Bookmarks)
-- [x] Redesigned "Transcript" toggle (replacing Reveal/Hide) with optimized auto-width glassy buttons.
+- [x] Redesigned "Transcript" toggle (replacing Reveal/Hide) with optimized auto-width glassy buttons
 
 ### 📚 Lesson Viewer
 - [x] Vocabulary section with word, definition, and example
@@ -79,10 +81,6 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 - [x] Respects `prefers-color-scheme` on first load
 - [x] Theme persisted in `localStorage`
 - [x] JPEG schedule glare reduced in dark mode using CSS brightness filters
-
-### 🔔 Notifications
-- [x] Toast notification system (e.g., "This is not your class")
-- [x] Auto-dismiss with fade-out animation
 
 ### ⚡ Optimization & Performance
 - [x] **Lazy-Loaded Audio**: YouTube IFrame API now only loads when a task requiring audio is active.
@@ -98,7 +96,7 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 ### SW Class (Speaking & Writing)
 | Type | Entries |
 |------|---------|
-| Homework | 11 days |
+| Homework | 13 days |
 | Lessons | 0 days |
 
 ### Class S128 (Writing)
@@ -119,10 +117,12 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 
 - [ ] Add more homework entries as the course progresses
 - [ ] Add more class groups (e.g., S130, S131) when new cohorts begin
-- [ ] Improve `describe-picture` cards for HW Day 02 (placeholder image currently used for office scene)
+- [ ] Sync `ADD_HOMEWORK.md` with the live local-audio `audioUrls` schema
+- [ ] Restore visible timer progress-ring CSS or remove the unused `--progress` updates from timer logic
+- [ ] Implement or remove the unused `notificationContainer` toast mount point
 - [ ] Consider adding a "mark as done" toggle per card for student self-tracking
 - [ ] Consider adding a review/notes text area per lesson entry
-- [ ] Accessibility: keyboard navigation for card swiping
+- [ ] Accessibility: broader focus management and keyboard support beyond current arrow-key part navigation
 
 ---
 
@@ -191,8 +191,9 @@ body / .app
 
 ## 🐛 Known Issues / Watch List
 
-- Documentation drift: `ADD_HOMEWORK.md` still emphasizes the older `respond-info-q` examples, while live `SW Class` data now uses local `audioUrls` arrays for separate question clips.
-- Legacy data remains in `S129.json` using `respond-questions` plus explicit `responseTime`, while newer content has moved to `respond-questions-15` / `respond-questions-30`.
+- Documentation drift: `ADD_HOMEWORK.md` still documents local `respond-info-q` around a single `audioUrl` plus `timestamps`, while live `SW Class` data now uses `audioUrls` arrays for separate question clips.
+- Timer JS still updates a `--progress` CSS variable, but the current stylesheet does not render a visible progress ring from it.
+- `index.html` contains `notificationContainer`, but no toast notification implementation is currently present in `core.js` / `index.css`.
 
 ---
 
@@ -215,7 +216,8 @@ body / .app
 | Apr 21 | **Homework Expansion**: Extracted passages, parsed 20+ images from PDF materials, and fully integrated HW Day 04 through HW Day 08. Configured custom JSON labels for distinct question groupings. **UI Enhancement**: Overhauled sidebar class folders and date dropdown menus with capped dimensions (~5 items) and hidden slick scrollbars for cleaner UI density. Fixed global card-container padding to enable end-of-page mobile auto-hide logic. |
 | Apr 25 | **Global Image Zoom**: Implemented a universal full-screen image modal overlay with a glassmorphism backdrop. Added 'Escape' key dismissal, disabled background keyboard navigation while zooming, and added native tooltips. **Performance & UX**: Resolved page-load transition flashes (FOUC) using a strategic `.preload` class. Rebranded core class tab from "Homework" to "SW Class" and properly migrated data files. Confirmed In-Memory JSON caching is functional for optimal load times. |
 | Apr 26 | **Schema Normalization & Content Updates**: Transitioned `respond-questions` to strict typing (`respond-questions-15` and `respond-questions-30`) in `core.js` and JSON data to eliminate manual `responseTime` fields. Standardized the label for `respond-info-q` to remove redundant numbering. Appended comprehensive "Local Audio Transcript Extraction Guide" to `ADD_HOMEWORK.md` and added generic placeholders for variable response times in `topic-prep`. Extracted and integrated HW Day 10 content from workbook PDF with WebP image conversion. **CSS Refactoring**: Modularized `index.css` by moving monolithic mobile media queries inline beneath respective desktop components. |
-| Apr 27 | **Progress Sync**: Updated `PROGRESS.md` to reflect the live repo state. Corrected class entry counts, removed obsolete authentication-era watch items, and documented the remaining schema drift between `ADD_HOMEWORK.md`, legacy `S129` data, and the newer local-audio `SW Class` structure. |
+| Apr 27 | **Progress Sync**: Updated `PROGRESS.md` to reflect the live repo state. Corrected class entry counts (`SW Class` now has 13 homework days), removed obsolete authentication-era / toast claims, documented local `audioUrls` support, and captured the remaining schema drift between `ADD_HOMEWORK.md`, legacy `S129` data, and the newer local-audio `SW Class` structure. |
+| Apr 27 | **Respond Questions Cleanup**: Migrated remaining `respond-questions` JSON entries in `SW Class` and `S129` to strict `respond-questions-15` / `respond-questions-30` types, removed redundant `responseTime` fields for those cards, removed the legacy renderer fallback from `core.js`, and updated `ADD_HOMEWORK.md` to block new legacy usage. |
 
 ---
 
