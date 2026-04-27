@@ -69,6 +69,7 @@ const lessonDateBadge = document.getElementById('lessonDateBadge');
 const lessonContent = document.getElementById('lessonContent');
 const cardContainer = document.getElementById('cardContainer');
 const bottomRecorderShell = document.getElementById('bottomRecorderShell');
+const bottomNav = document.getElementById('bottomNav');
 const bottomRecorderHandle = document.getElementById('bottomRecorderHandle');
 const bottomRedoBtn = document.getElementById('bottomRedoBtn');
 const bottomRecordBtn = document.getElementById('bottomRecordBtn');
@@ -81,6 +82,9 @@ const recordingFileName = document.getElementById('recordingFileName');
 const recordingFileExtension = document.getElementById('recordingFileExtension');
 const cancelSaveBtn = document.getElementById('cancelSave');
 const confirmSaveBtn = document.getElementById('confirmSave');
+const bottomPlaybackSeeker = document.getElementById('bottomPlaybackSeeker');
+const bottomSeekerProgress = document.getElementById('bottomSeekerProgress');
+const bottomSeekerKnob = document.getElementById('bottomSeekerKnob');
 
 // Recorder state
 let mediaRecorder = null;
@@ -88,8 +92,67 @@ let mediaStream = null;
 let mediaChunks = [];
 let recordingStartedAt = 0;
 let recordingTicker = null;
+let recordingLimitTimeout = null;
+let playbackTicker = null;
 let currentRecordingAudio = null;
+let isSeekingPlayback = false;
 const recordings = {}; // { taskKey: { blob, url, durationMs, mimeType } }
+
+// Nav Dragging State
+let isDraggingNav = false;
+let navOffsetX = 0;
+let navOffsetY = 0;
+
+function initNavDragging() {
+  if (!bottomNav || !bottomRecorderShell) return;
+  
+  // Skip on mobile/touch
+  if (window.matchMedia("(pointer: coarse)").matches) return;
+
+  bottomNav.style.cursor = 'grab';
+
+  bottomNav.addEventListener('mousedown', (e) => {
+    // Only drag if clicking the background of the nav, not buttons/seeker
+    if (e.target.closest('button') || e.target.closest('.bottom-playback-seeker-wrapper')) return;
+    
+    isDraggingNav = true;
+    const rect = bottomNav.getBoundingClientRect();
+    navOffsetX = e.clientX - rect.left;
+    navOffsetY = e.clientY - rect.top;
+    
+    // Prepare shell for absolute movement
+    bottomRecorderShell.style.width = 'auto';
+    bottomRecorderShell.style.left = rect.left + 'px';
+    bottomRecorderShell.style.top = rect.top + 'px';
+    bottomRecorderShell.style.bottom = 'auto';
+    bottomRecorderShell.style.right = 'auto';
+    bottomRecorderShell.style.transform = 'none';
+    bottomNav.style.cursor = 'grabbing';
+    
+    e.preventDefault();
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDraggingNav) return;
+    
+    let x = e.clientX - navOffsetX;
+    let y = e.clientY - navOffsetY;
+    
+    // Constraints (padding from edges)
+    x = Math.max(10, Math.min(window.innerWidth - bottomNav.offsetWidth - 10, x));
+    y = Math.max(10, Math.min(window.innerHeight - bottomNav.offsetHeight - 10, y));
+    
+    bottomRecorderShell.style.left = x + 'px';
+    bottomRecorderShell.style.top = y + 'px';
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (isDraggingNav) {
+      isDraggingNav = false;
+      bottomNav.style.cursor = 'grab';
+    }
+  });
+}
 
 // ============================
 //  Markdown Helper
@@ -199,11 +262,13 @@ function getRecordingLimitSeconds() {
 }
 
 function setRecordingStatus(text, opts = {}) {
-  const { visible = true, recording = false } = opts;
+  const { visible = true, recording = false, playback = false, pulsing = false } = opts;
   if (!recordingStatus || !recordingStatusText) return;
   recordingStatusText.textContent = text;
-  recordingStatus.hidden = !visible;
+  // recordingStatus.hidden = !visible; // Permanent now
   recordingStatus.classList.toggle('recording', recording);
+  recordingStatus.classList.toggle('playback', playback);
+  recordingStatus.classList.toggle('pulsing', pulsing);
 }
 
 function clearRecordingTicker() {
@@ -212,10 +277,23 @@ function clearRecordingTicker() {
 }
 
 function stopPlaybackPreview() {
-  if (!currentRecordingAudio) return;
-  currentRecordingAudio.pause();
-  currentRecordingAudio.currentTime = 0;
-  currentRecordingAudio = null;
+  if (currentRecordingAudio) {
+    currentRecordingAudio.pause();
+    currentRecordingAudio = null;
+  }
+  clearPlaybackTicker();
+}
+
+function clearPlaybackTicker() {
+  if (playbackTicker) clearInterval(playbackTicker);
+  playbackTicker = null;
+}
+
+function startPlaybackTicker() {
+  clearPlaybackTicker();
+  playbackTicker = setInterval(() => {
+    updateBottomNavState();
+  }, 33); // 30fps for smooth movement
 }
 
 function stopAllPromptAudio() {
@@ -285,29 +363,64 @@ function updateBottomNavState() {
   bottomSaveBtn.disabled = !hasRecording || mediaRecorder?.state === 'recording';
 
   const isRecording = mediaRecorder?.state === 'recording';
+  const isPlaying = currentRecordingAudio && !currentRecordingAudio.paused;
+  
   bottomRecordBtn.classList.toggle('recording', !!isRecording);
   updateRecordButtonIcon(isRecording);
 
   if (isRecording) {
     const elapsed = Date.now() - recordingStartedAt;
-    setRecordingStatus(formatRecordingDuration(elapsed), { visible: true, recording: true });
+    setRecordingStatus(formatRecordingDuration(elapsed), { visible: true, recording: true, pulsing: true });
+  } else if (currentRecordingAudio) {
+    // Playback/Review Mode
+    const recording = getCurrentRecording();
+    const durationMs = recording ? recording.durationMs : 0;
+    const currentMs = currentRecordingAudio.currentTime * 1000;
+    const remainingMs = Math.max(0, durationMs - currentMs);
+    const isFinished = currentRecordingAudio.currentTime >= (currentRecordingAudio.duration || (durationMs/1000)) - 0.05;
+    
+    if (isFinished) {
+      setRecordingStatus('00:00', { visible: true, playback: true, pulsing: false });
+    } else {
+      setRecordingStatus(formatRecordingDuration(remainingMs), { visible: true, playback: true, pulsing: isPlaying });
+    }
   } else if (hasRecording) {
     setRecordingStatus(formatRecordingDuration(getCurrentRecording().durationMs), { visible: true, recording: false });
-  } else if (!activeType || !hasParts) {
-    setRecordingStatus('', { visible: false, recording: false });
-  } else if (!canRecord && activeType === 'lesson') {
-    setRecordingStatus('Recording is only available on homework cards', { visible: true, recording: false });
-  } else if (!canRecord) {
-    setRecordingStatus('Microphone recording is not supported here', { visible: true, recording: false });
   } else {
-    setRecordingStatus('', { visible: false, recording: false });
+    setRecordingStatus('00:00', { visible: true, recording: false });
   }
 
-  updatePlaybackButton(currentRecordingAudio && !currentRecordingAudio.paused);
+  updatePlaybackButton(isPlaying);
+
+  // Seeker management
+  if (bottomPlaybackSeeker && bottomSeekerProgress && bottomSeekerKnob) {
+    const isPlaying = currentRecordingAudio && !currentRecordingAudio.paused;
+    bottomPlaybackSeeker.classList.toggle('expanded', hasRecording);
+    
+    const recording = getCurrentRecording();
+    if (isPlaying && recording && recording.durationMs && !isSeekingPlayback) {
+      const duration = recording.durationMs / 1000;
+      const progress = (currentRecordingAudio.currentTime / duration) * 100;
+      bottomSeekerProgress.style.width = `${progress}%`;
+      bottomSeekerKnob.style.left = `${progress}%`;
+    } else if (!isPlaying && currentRecordingAudio && recording && recording.durationMs && !isSeekingPlayback) {
+        // Keep progress visible if paused
+        const duration = recording.durationMs / 1000;
+        const progress = (currentRecordingAudio.currentTime / duration) * 100;
+        bottomSeekerProgress.style.width = `${progress}%`;
+        bottomSeekerKnob.style.left = `${progress}%`;
+    } else if (!hasRecording) {
+      bottomSeekerProgress.style.width = '0%';
+      bottomSeekerKnob.style.left = '0%';
+    }
+  }
 }
 
 async function startRecording() {
   if (!currentPartSupportsRecording() || mediaRecorder?.state === 'recording') return;
+  
+  // Ensure any previous playback is stopped before we start a new session
+  stopPlaybackPreview();
 
   if (getCurrentRecording()) {
     if (!window.confirm('This will delete your current recording so you can prepare and record again. Continue?')) {
@@ -318,11 +431,17 @@ async function startRecording() {
       if (recordings[key].url) URL.revokeObjectURL(recordings[key].url);
       delete recordings[key];
     }
+    
+    if (recordingLimitTimeout) {
+      clearTimeout(recordingLimitTimeout);
+      recordingLimitTimeout = null;
+    }
+
     updateBottomNavState();
     return;
   }
 
-  stopAllPromptAudio();
+  // stopAllPromptAudio(); // Removed: Allow part 4 audio to keep playing
   stopPlaybackPreview();
 
   try {
@@ -341,8 +460,21 @@ async function startRecording() {
       }
     });
 
+    mediaRecorder.onerror = (e) => {
+      console.error('MediaRecorder error:', e.error);
+    };
+
+    mediaRecorder.oninactive = () => {
+      console.warn('MediaRecorder became inactive');
+    };
+
     mediaRecorder.addEventListener('stop', () => {
       clearRecordingTicker();
+      if (recordingLimitTimeout) {
+        clearTimeout(recordingLimitTimeout);
+        recordingLimitTimeout = null;
+      }
+
       const previous = recordingTaskKey ? recordings[recordingTaskKey] : null;
       if (previous?.url) URL.revokeObjectURL(previous.url);
 
@@ -373,7 +505,8 @@ async function startRecording() {
     }, 250);
 
     const limitSeconds = getRecordingLimitSeconds();
-    window.setTimeout(() => {
+    if (recordingLimitTimeout) clearTimeout(recordingLimitTimeout);
+    recordingLimitTimeout = window.setTimeout(() => {
       if (mediaRecorder?.state === 'recording') {
         stopRecording();
       }
@@ -409,18 +542,21 @@ function playCurrentRecording() {
     return;
   }
 
-  stopAllPromptAudio();
+  // stopAllPromptAudio(); // Removed: Allow part 4 audio to keep playing
   currentRecordingAudio = new Audio(recording.url);
   currentRecordingAudio.addEventListener('ended', () => {
-    currentRecordingAudio = null;
+    // Don't nullify yet, keep it to show the 00:00 state
+    clearPlaybackTicker();
     updateBottomNavState();
   }, { once: true });
   currentRecordingAudio.play().then(() => {
+    startPlaybackTicker();
     updateBottomNavState();
     setRecordingStatus(formatRecordingDuration(recording.durationMs), { visible: true, recording: false });
   }).catch((error) => {
     console.error('Failed to play recording:', error);
     currentRecordingAudio = null;
+    clearPlaybackTicker();
     updateBottomNavState();
   });
 }
@@ -1016,6 +1152,10 @@ async function getClassData(className) {
 // ============================
 window.selectHomework = async function (className, date) {
   if (mediaRecorder?.state === 'recording') stopRecording();
+  if (recordingLimitTimeout) {
+    clearTimeout(recordingLimitTimeout);
+    recordingLimitTimeout = null;
+  }
   stopPlaybackPreview();
   clearActiveEntries();
   clearAllTimers();
@@ -1047,6 +1187,10 @@ window.selectHomework = async function (className, date) {
 // ============================
 window.selectLesson = async function (className, date) {
   if (mediaRecorder?.state === 'recording') stopRecording();
+  if (recordingLimitTimeout) {
+    clearTimeout(recordingLimitTimeout);
+    recordingLimitTimeout = null;
+  }
   stopPlaybackPreview();
   clearActiveEntries();
   clearAllTimers();
@@ -1372,6 +1516,10 @@ function renderPagination() {
 }
 
 window.goToPart = function (index) {
+  if (recordingLimitTimeout) {
+    clearTimeout(recordingLimitTimeout);
+    recordingLimitTimeout = null;
+  }
   stopPlaybackPreview();
   if (index !== currentPart) {
     clearAllTimers();
@@ -1918,6 +2066,54 @@ if (confirmSaveBtn) {
 // Initialize auto-hide check globally
 resetControlTimer();
 
+// Seeker interaction
+if (bottomPlaybackSeeker) {
+  const handleSeek = (e) => {
+    const recording = getCurrentRecording();
+    if (!currentRecordingAudio || !recording || !recording.durationMs) return;
+    const duration = recording.durationMs / 1000;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const rect = bottomPlaybackSeeker.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const percent = Math.max(0, Math.min(1, x / rect.width));
+    
+    // Update visuals immediately for smoothness
+    bottomSeekerProgress.style.width = `${percent * 100}%`;
+    bottomSeekerKnob.style.left = `${percent * 100}%`;
+    
+    currentRecordingAudio.currentTime = percent * duration;
+  };
+
+  bottomPlaybackSeeker.addEventListener('mousedown', (e) => {
+    isSeekingPlayback = true;
+    handleSeek(e);
+    const move = (me) => handleSeek(me);
+    const up = () => {
+      isSeekingPlayback = false;
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+      updateBottomNavState();
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  });
+
+  bottomPlaybackSeeker.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    isSeekingPlayback = true;
+    handleSeek(e);
+    const move = (me) => handleSeek(me);
+    const up = () => {
+      isSeekingPlayback = false;
+      window.removeEventListener('touchmove', move);
+      window.removeEventListener('touchend', up);
+      updateBottomNavState();
+    };
+    window.addEventListener('touchmove', move);
+    window.addEventListener('touchend', up);
+  }, { passive: false });
+}
+
 // Image Modal functionality
 function openImageModal(src) {
   const modal = document.getElementById('imageModal');
@@ -1937,3 +2133,6 @@ document.addEventListener('keydown', (e) => {
     }
   }
 });
+
+// Initialize dragging
+initNavDragging();

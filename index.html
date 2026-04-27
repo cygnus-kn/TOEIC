@@ -132,36 +132,50 @@
 
   <div class="bottom-recorder-shell" id="bottomRecorderShell" aria-live="polite">
     <div class="bottom-nav" id="bottomNav">
-      <div class="recording-status" id="recordingStatus" hidden>
-        <span class="recording-status-dot"></span>
-        <span id="recordingStatusText">00:00</span>
+      <!-- Unified Media Player Seeker (Top) -->
+      <div class="bottom-playback-seeker-wrapper" id="bottomPlaybackSeeker">
+        <div class="bottom-seeker-bar">
+          <div class="bottom-seeker-progress" id="bottomSeekerProgress"></div>
+          <div class="bottom-seeker-knob" id="bottomSeekerKnob"></div>
+        </div>
       </div>
-      <button class="bottom-nav-btn" id="bottomRedoBtn" aria-label="Redo recording" title="Redo recording">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-          <path d="M3 3v5h5"/>
-        </svg>
-      </button>
-      <button class="bottom-nav-btn bottom-nav-btn-primary" id="bottomRecordBtn" aria-label="Record answer" title="Record answer">
-        <svg class="record-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/>
-          <path d="M5 11a7 7 0 0 0 14 0"/>
-          <path d="M12 18v3"/>
-          <path d="M8.5 21h7"/>
-        </svg>
-      </button>
-      <button class="bottom-nav-btn" id="bottomPlaybackBtn" aria-label="Play latest recording" title="Play latest recording">
-        <svg class="playback-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M8 6.8v10.4c0 .7.78 1.13 1.38.75l8.18-5.2a.9.9 0 0 0 0-1.5l-8.18-5.2A.9.9 0 0 0 8 6.8Z"/>
-        </svg>
-      </button>
-      <button class="bottom-nav-btn" id="bottomSaveBtn" aria-label="Save latest recording" title="Save latest recording">
-        <svg class="save-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 3v12"/>
-          <path d="m7 10 5 5 5-5"/>
-          <path d="M5 18v1.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V18"/>
-        </svg>
-      </button>
+
+      <!-- Unified Media Player Controls (Bottom) -->
+      <div class="bottom-nav-controls">
+        <div class="recording-status" id="recordingStatus">
+          <span class="recording-status-dot"></span>
+          <span id="recordingStatusText">00:00</span>
+        </div>
+        
+        <div class="bottom-nav-btns">
+          <button class="bottom-nav-btn" id="bottomRedoBtn" aria-label="Redo recording" title="Redo recording">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+          </button>
+          <button class="bottom-nav-btn bottom-nav-btn-primary" id="bottomRecordBtn" aria-label="Record answer" title="Record answer">
+            <svg class="record-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/>
+              <path d="M5 11a7 7 0 0 0 14 0"/>
+              <path d="M12 18v3"/>
+              <path d="M8.5 21h7"/>
+            </svg>
+          </button>
+          <button class="bottom-nav-btn" id="bottomPlaybackBtn" aria-label="Play latest recording" title="Play latest recording">
+            <svg class="playback-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M8 6.8v10.4c0 .7.78 1.13 1.38.75l8.18-5.2a.9.9 0 0 0 0-1.5l-8.18-5.2A.9.9 0 0 0 8 6.8Z"/>
+            </svg>
+          </button>
+          <button class="bottom-nav-btn" id="bottomSaveBtn" aria-label="Save latest recording" title="Save latest recording">
+            <svg class="save-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v12"/>
+              <path d="m7 10 5 5 5-5"/>
+              <path d="M5 18v1.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
   <button class="bottom-recorder-handle" id="bottomRecorderHandle" aria-label="Show recording controls" title="Show recording controls"></button>
