@@ -1,6 +1,6 @@
 # TOEIC Homework Platform — Progress Tracker
 
-> Last updated: 2026-04-26
+> Last updated: 2026-04-27
 
 ---
 
@@ -98,14 +98,20 @@ A macOS-inspired, student-authenticated web portal for delivering TOEIC Speaking
 ### SW Class (Speaking & Writing)
 | Type | Entries |
 |------|---------|
-| Homework | 10 days |
+| Homework | 11 days |
 | Lessons | 0 days |
 
 ### Class S128 (Writing)
 | Type | Entries |
 |------|---------|
-| Homework | 1 day (Apr 10) |
+| Homework | 2 days |
 | Lessons | 1 day (Apr 9) |
+
+### Class S129 (Speaking)
+| Type | Entries |
+|------|---------|
+| Homework | 3 days |
+| Lessons | 2 days |
 
 ---
 
@@ -185,8 +191,8 @@ body / .app
 
 ## 🐛 Known Issues / Watch List
 
-- Audio poller (`setInterval`) is not explicitly cancelled when a non-audio card is rendered — low impact but worth cleaning up
-- `S128` class only has one student range defined implicitly; if more students are added, the password list in `passwords.md` and `VALID_USER_IDS` in `app.js` must both be updated
+- Documentation drift: `ADD_HOMEWORK.md` still emphasizes the older `respond-info-q` examples, while live `SW Class` data now uses local `audioUrls` arrays for separate question clips.
+- Legacy data remains in `S129.json` using `respond-questions` plus explicit `responseTime`, while newer content has moved to `respond-questions-15` / `respond-questions-30`.
 
 ---
 
@@ -209,6 +215,7 @@ body / .app
 | Apr 21 | **Homework Expansion**: Extracted passages, parsed 20+ images from PDF materials, and fully integrated HW Day 04 through HW Day 08. Configured custom JSON labels for distinct question groupings. **UI Enhancement**: Overhauled sidebar class folders and date dropdown menus with capped dimensions (~5 items) and hidden slick scrollbars for cleaner UI density. Fixed global card-container padding to enable end-of-page mobile auto-hide logic. |
 | Apr 25 | **Global Image Zoom**: Implemented a universal full-screen image modal overlay with a glassmorphism backdrop. Added 'Escape' key dismissal, disabled background keyboard navigation while zooming, and added native tooltips. **Performance & UX**: Resolved page-load transition flashes (FOUC) using a strategic `.preload` class. Rebranded core class tab from "Homework" to "SW Class" and properly migrated data files. Confirmed In-Memory JSON caching is functional for optimal load times. |
 | Apr 26 | **Schema Normalization & Content Updates**: Transitioned `respond-questions` to strict typing (`respond-questions-15` and `respond-questions-30`) in `core.js` and JSON data to eliminate manual `responseTime` fields. Standardized the label for `respond-info-q` to remove redundant numbering. Appended comprehensive "Local Audio Transcript Extraction Guide" to `ADD_HOMEWORK.md` and added generic placeholders for variable response times in `topic-prep`. Extracted and integrated HW Day 10 content from workbook PDF with WebP image conversion. **CSS Refactoring**: Modularized `index.css` by moving monolithic mobile media queries inline beneath respective desktop components. |
+| Apr 27 | **Progress Sync**: Updated `PROGRESS.md` to reflect the live repo state. Corrected class entry counts, removed obsolete authentication-era watch items, and documented the remaining schema drift between `ADD_HOMEWORK.md`, legacy `S129` data, and the newer local-audio `SW Class` structure. |
 
 ---
 

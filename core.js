@@ -777,7 +777,7 @@ function renderCards() {
 
       if (hasAudio && part.type === 'respond-info-q') {
         if (part.content.audioUrls) {
-          // ── Local MP3 audio (Q7/Q8/Q9 per separate file) ──────────────────
+          // ── Local WebM audio (Q7/Q8/Q9 per separate file) ──────────────────
           const labels = part.content.questionLabels || ['7', '8', '9'];
           html += `
             <div class="audio-standalone" id="audio-ctrl-${index}">

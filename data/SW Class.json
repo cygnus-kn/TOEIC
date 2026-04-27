@@ -1,6 +1,129 @@
 {
   "homework": [
     {
+      "date": "[HW Day 12]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Welcome to Dixon National Park! In a couple of minutes, we'll begin our bicycle tour around the park. While biking through the Dixon Forest, please remain on the path. The tour should conclude at approximately noon. You'll then have an opportunity to eat, drink, and see the displays at the visitor's center. I hope everyone's excited!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Is your computer starting to slow down? Would you like a larger screen? If so, stop by Bennington Computer Emporium. We carry an enormous selection of the latest models of desktops, laptops, and tablets. We also carry a huge selection of accessories. What's more, if you come in today, you'll receive an additional twenty percent off."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/HW12_Part2_Pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/HW12_Part2_Pic2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "How often do you buy new shoes? Do you like to buy shoes from the same brand?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "What makes you buy a new pair of shoes?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What is the most important thing that you would consider when buying new shoes?\n- Comfort\n- Durability\n- Appearance"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/fMDRgKYFzWY?start=619&enablejsapi=1",
+            "timestamps": {
+              "q8": 619,
+              "q9": 661,
+              "q10": 696
+            },
+            "question": "Question 8: When is the first day of class and when is the registration deadline?\n\nQuestion 9: I was told that the registration fee is 275 dollars per semester. Does that include everything for the classes that you offer throughout the course?\n\nQuestion 10: I am interested in learning more about Japan and their tourism industry. Could you please tell me all the classes that would be helpful for people like me?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-07-2023-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/PTT0RWjgbpk?start=619&enablejsapi=1",
+            "timestamps": {
+              "q8": 619,
+              "q9": 669,
+              "q10": 701
+            },
+            "question": "Question 8: Where will the interviews take place? What time will the first interview start?\n\nQuestion 9: I was told that we have two applicants who are applying for the restaurant manager position. Do I have the right information?\n\nQuestion 10: I think people who have worked at the skyscraper hotel are competent and hardworking. Do we have any applicants who are currently working there now?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-09-2023-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/-gf8cJ5oHEI?start=617&enablejsapi=1",
+            "timestamps": {
+              "q8": 617,
+              "q9": 659,
+              "q10": 689
+            },
+            "question": "Question 8: When and where will the festival take place?\n\nQuestion 9: I was told that the first performance will start at 10:30 a.m. Is this correct?\n\nQuestion 10: I'm a big fan of jazz music. Could you please let me know during which performances I will get to enjoy jazz music?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2024-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/mxSOVXhIrls?start=622&enablejsapi=1",
+            "timestamps": {
+              "q8": 622,
+              "q9": 666,
+              "q10": 700
+            },
+            "question": "Question 8: When will it be held and what time will the first session start on the first day?\n\nQuestion 9: My friend is also interested in attending the conference but she will only be available on the second day. Will she be required to pay for both days?\n\nQuestion 10: Last year's workshop was incredibly helpful. Could you provide information about all the workshops scheduled for this year's conference?"
+          }
+        }
+      ]
+    },
+    {
       "date": "[HW Day 11]",
       "parts": [
         {
@@ -11,9 +134,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 01.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 01 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 01/T01_Q_07.mp3",
-              "test-data/Part 4 audio/Test 01/T01_Q_08.mp3",
-              "test-data/Part 4 audio/Test 01/T01_Q_09.mp3"
+              "test-data/Part 4 audio/Test 01/T01_Q_07.webm",
+              "test-data/Part 4 audio/Test 01/T01_Q_08.webm",
+              "test-data/Part 4 audio/Test 01/T01_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -31,9 +154,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 02.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 02 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 02/T02_Q_07.mp3",
-              "test-data/Part 4 audio/Test 02/T02_Q_08.mp3",
-              "test-data/Part 4 audio/Test 02/T02_Q_09.mp3"
+              "test-data/Part 4 audio/Test 02/T02_Q_07.webm",
+              "test-data/Part 4 audio/Test 02/T02_Q_08.webm",
+              "test-data/Part 4 audio/Test 02/T02_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -51,9 +174,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 03.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 03 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 03/T03_Q_07.mp3",
-              "test-data/Part 4 audio/Test 03/T03_Q_08.mp3",
-              "test-data/Part 4 audio/Test 03/T03_Q_09.mp3"
+              "test-data/Part 4 audio/Test 03/T03_Q_07.webm",
+              "test-data/Part 4 audio/Test 03/T03_Q_08.webm",
+              "test-data/Part 4 audio/Test 03/T03_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -71,9 +194,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 04.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 04 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 04/T04_Q_07.mp3",
-              "test-data/Part 4 audio/Test 04/T04_Q_08.mp3",
-              "test-data/Part 4 audio/Test 04/T04_Q_09.mp3"
+              "test-data/Part 4 audio/Test 04/T04_Q_07.webm",
+              "test-data/Part 4 audio/Test 04/T04_Q_08.webm",
+              "test-data/Part 4 audio/Test 04/T04_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -91,9 +214,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 05.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 05 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 05/T05_Q_07.mp3",
-              "test-data/Part 4 audio/Test 05/T05_Q_08.mp3",
-              "test-data/Part 4 audio/Test 05/T05_Q_09.mp3"
+              "test-data/Part 4 audio/Test 05/T05_Q_07.webm",
+              "test-data/Part 4 audio/Test 05/T05_Q_08.webm",
+              "test-data/Part 4 audio/Test 05/T05_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -111,9 +234,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 06.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 06 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 06/T06_Q_07.mp3",
-              "test-data/Part 4 audio/Test 06/T06_Q_08.mp3",
-              "test-data/Part 4 audio/Test 06/T06_Q_09.mp3"
+              "test-data/Part 4 audio/Test 06/T06_Q_07.webm",
+              "test-data/Part 4 audio/Test 06/T06_Q_08.webm",
+              "test-data/Part 4 audio/Test 06/T06_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -131,9 +254,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 07.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 07 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 07/T07_Q_07.mp3",
-              "test-data/Part 4 audio/Test 07/T07_Q_08.mp3",
-              "test-data/Part 4 audio/Test 07/T07_Q_09.mp3"
+              "test-data/Part 4 audio/Test 07/T07_Q_07.webm",
+              "test-data/Part 4 audio/Test 07/T07_Q_08.webm",
+              "test-data/Part 4 audio/Test 07/T07_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -151,9 +274,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 08.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 08 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 08/T08_Q_07.mp3",
-              "test-data/Part 4 audio/Test 08/T08_Q_08.mp3",
-              "test-data/Part 4 audio/Test 08/T08_Q_09.mp3"
+              "test-data/Part 4 audio/Test 08/T08_Q_07.webm",
+              "test-data/Part 4 audio/Test 08/T08_Q_08.webm",
+              "test-data/Part 4 audio/Test 08/T08_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -171,9 +294,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 09.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 09 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 09/T09_Q_07.mp3",
-              "test-data/Part 4 audio/Test 09/T09_Q_08.mp3",
-              "test-data/Part 4 audio/Test 09/T09_Q_09.mp3"
+              "test-data/Part 4 audio/Test 09/T09_Q_07.webm",
+              "test-data/Part 4 audio/Test 09/T09_Q_08.webm",
+              "test-data/Part 4 audio/Test 09/T09_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -191,9 +314,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 10.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 10 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 10/T10_Q_07.mp3",
-              "test-data/Part 4 audio/Test 10/T10_Q_08.mp3",
-              "test-data/Part 4 audio/Test 10/T10_Q_09.mp3"
+              "test-data/Part 4 audio/Test 10/T10_Q_07.webm",
+              "test-data/Part 4 audio/Test 10/T10_Q_08.webm",
+              "test-data/Part 4 audio/Test 10/T10_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -274,9 +397,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 - Practice 1.webp",
             "imagePlaceholder": "🖼️ Practice 1 Table",
             "audioUrls": [
-              "test-data/Part 4 audio/Practice 1/Practice 1-q8.mp3",
-              "test-data/Part 4 audio/Practice 1/Practice 1-q9.mp3",
-              "test-data/Part 4 audio/Practice 1/Practice 1-q10.mp3"
+              "test-data/Part 4 audio/Practice 1/Practice 1-q8.webm",
+              "test-data/Part 4 audio/Practice 1/Practice 1-q9.webm",
+              "test-data/Part 4 audio/Practice 1/Practice 1-q10.webm"
             ],
             "questionLabels": ["8", "9", "10"],
             "question": "Question 8: Hello, this is Lucy, the resort manager speaking. I know you're working on the new employee orientation schedule, and I wanted to ask you a few questions about it. What date is the orientation scheduled, and what time will it be over?\n\nQuestion 9: I think we need more time for the resort tour. Do you think it is possible to extend the time?\n\nQuestion 10: I can't stay for the whole orientation. Can you give me all the details of what is scheduled after lunch?"
@@ -290,9 +413,9 @@
             "imageUrl": "test-data/Part 4 audio/Part 4 - Practice 2.webp",
             "imagePlaceholder": "🖼️ Practice 2 Table",
             "audioUrls": [
-              "test-data/Part 4 audio/Practice 2/Practice 2-q8.mp3",
-              "test-data/Part 4 audio/Practice 2/Practice 2-q9.mp3",
-              "test-data/Part 4 audio/Practice 2/Practice 2-q10.mp3"
+              "test-data/Part 4 audio/Practice 2/Practice 2-q8.webm",
+              "test-data/Part 4 audio/Practice 2/Practice 2-q9.webm",
+              "test-data/Part 4 audio/Practice 2/Practice 2-q10.webm"
             ],
             "questionLabels": ["8", "9", "10"],
             "question": "Question 8: Hi, this is Mandy. I haven't received my schedule for May 23rd yet. Can I ask you some questions so that I can confirm a few things? When does the first meeting start? And who will I meet?\n\nQuestion 9: I'm aware that I'm having lunch at noon with Andrew Simmons. Is that right?\n\nQuestion 10: I know I have things to do in the afternoon. Can you tell me the schedule after lunch?"
