@@ -130,9 +130,60 @@
     </main>
   </div>
 
+  <div class="bottom-recorder-shell" id="bottomRecorderShell" aria-live="polite">
+    <div class="bottom-nav" id="bottomNav">
+      <div class="recording-status" id="recordingStatus" hidden>
+        <span class="recording-status-dot"></span>
+        <span id="recordingStatusText">00:00</span>
+      </div>
+      <button class="bottom-nav-btn" id="bottomRedoBtn" aria-label="Redo recording" title="Redo recording">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+      </button>
+      <button class="bottom-nav-btn bottom-nav-btn-primary" id="bottomRecordBtn" aria-label="Record answer" title="Record answer">
+        <svg class="record-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/>
+          <path d="M5 11a7 7 0 0 0 14 0"/>
+          <path d="M12 18v3"/>
+          <path d="M8.5 21h7"/>
+        </svg>
+      </button>
+      <button class="bottom-nav-btn" id="bottomPlaybackBtn" aria-label="Play latest recording" title="Play latest recording">
+        <svg class="playback-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M8 6.8v10.4c0 .7.78 1.13 1.38.75l8.18-5.2a.9.9 0 0 0 0-1.5l-8.18-5.2A.9.9 0 0 0 8 6.8Z"/>
+        </svg>
+      </button>
+      <button class="bottom-nav-btn" id="bottomSaveBtn" aria-label="Save latest recording" title="Save latest recording">
+        <svg class="save-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v12"/>
+          <path d="m7 10 5 5 5-5"/>
+          <path d="M5 18v1.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <button class="bottom-recorder-handle" id="bottomRecorderHandle" aria-label="Show recording controls" title="Show recording controls"></button>
+
   <!-- Image Modal -->
   <div id="imageModal" class="image-modal" onclick="this.classList.remove('active')">
     <img id="imageModalContent" alt="Zoomed picture" onclick="event.stopPropagation()">
+  </div>
+
+  <!-- Save Modal -->
+  <div id="saveModal" class="save-modal">
+    <div class="save-modal-content">
+      <h3>Rename Recording</h3>
+      <div class="save-modal-input-wrapper">
+        <input type="text" id="recordingFileName" placeholder="Enter filename...">
+        <span id="recordingFileExtension">.mp4</span>
+      </div>
+      <div class="save-modal-actions">
+        <button id="cancelSave" class="save-modal-btn cancel">Cancel</button>
+        <button id="confirmSave" class="save-modal-btn confirm">Save</button>
+      </div>
+    </div>
   </div>
 
   <script src="data.js"></script>
