@@ -455,6 +455,18 @@ async function startRecording() {
       mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
     }
 
+    // Protection for Scenario 1: Audio Interruption (Phone Calls, Alarms)
+    mediaStream.getAudioTracks().forEach(track => {
+      track.onended = () => {
+        console.warn('Audio track ended unexpectedly (interruption detected).');
+        if (mediaRecorder === localRecorder && localRecorder.state === 'recording') {
+          stopRecording();
+          // Optional: give user visual feedback of interruption
+          setRecordingStatus('Interrupted. Saved.', { visible: true, recording: false });
+        }
+      };
+    });
+
     const localChunks = [];
     const mimeType = getSupportedRecordingMimeType();
     const recordingTaskKey = getCurrentTaskKey();
@@ -2150,3 +2162,13 @@ document.addEventListener('keydown', (e) => {
 
 // Initialize dragging
 initNavDragging();
+
+// Protection for Scenario 2: App Backgrounding (Swiping to Home Screen)
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') {
+    if (mediaRecorder?.state === 'recording') {
+      console.warn('App backgrounded. Auto-stopping recording to prevent data loss.');
+      stopRecording();
+    }
+  }
+});
