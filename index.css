@@ -2001,42 +2001,7 @@ body:not(.dark-theme) .bottom-nav-btn-primary.active-media:hover {
   filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.08));
 }
 
-.bottom-recorder-shell.hidden {
-  opacity: 0;
-  transform: translate(-50%, 18px);
-  pointer-events: none;
-}
-
-/* Bottom bar is now permanent on mobile, so we removed the hide rule here */
-
-.bottom-recorder-handle {
-  position: fixed;
-  left: 50%;
-  bottom: 7px;
-  width: 64px;
-  height: 6px;
-  transform: translate(-50%, 16px);
-  border: none;
-  border-radius: 9999px;
-  background: rgba(148, 163, 184, 0.7);
-  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.18), 0 6px 18px rgba(0, 0, 0, 0.18);
-  opacity: 0;
-  pointer-events: none;
-  cursor: pointer;
-  z-index: 1101;
-  transition: opacity var(--transition-smooth), transform var(--transition-smooth), background var(--transition-fast);
-}
-
-.bottom-recorder-handle:hover {
-  background: rgba(203, 213, 225, 0.95);
-}
-
-body:not(.dark-theme) .bottom-recorder-handle {
-  background: rgba(15, 23, 42, 0.35);
-  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08), 0 6px 18px rgba(15, 23, 42, 0.12);
-}
-
-/* Handle not needed if bar is permanent */
+/* Bottom bar is now permanent on mobile, so we removed the hide rule and handle here */
 
 @media (max-width: 600px) {
   .bottom-recorder-shell {

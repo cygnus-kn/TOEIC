@@ -70,7 +70,6 @@ const lessonContent = document.getElementById('lessonContent');
 const cardContainer = document.getElementById('cardContainer');
 const bottomRecorderShell = document.getElementById('bottomRecorderShell');
 const bottomNav = document.getElementById('bottomNav');
-const bottomRecorderHandle = document.getElementById('bottomRecorderHandle');
 const bottomRedoBtn = document.getElementById('bottomRedoBtn');
 const bottomRecordBtn = document.getElementById('bottomRecordBtn');
 const bottomPlaybackBtn = document.getElementById('bottomPlaybackBtn');
@@ -1929,109 +1928,13 @@ renderSidebar();
 restoreAppState();
 updateBottomNavState();
 
-// ============================
-//  Mobile UI Auto-Hide
-// ============================
-let lastScrollY = window.scrollY;
-let accumulatedScrollUp = 0;
-let accumulatedScrollDown = 0;
-let controlHideTimeout = null;
-
-function showMobileControls() {
-  document.body.classList.remove('mobile-controls-hidden');
-  resetControlTimer();
-}
-
-function hideMobileControls() {
-  if (window.innerWidth <= 1024 && sidebar && sidebar.classList.contains('collapsed')) {
-    document.body.classList.add('mobile-controls-hidden');
-  }
-  accumulatedScrollUp = 0;
-  accumulatedScrollDown = 0;
-}
-
-function resetControlTimer() {
-  if (controlHideTimeout) clearTimeout(controlHideTimeout);
-  if (window.innerWidth > 1024) return;
-  
-  controlHideTimeout = setTimeout(() => {
-    hideMobileControls();
-  }, 3000);
-}
-
-// Listen to scroll to detect intent
-window.addEventListener('scroll', () => {
-  const currentScrollY = window.scrollY || document.documentElement.scrollTop;
-  
-  if (window.innerWidth > 1024) {
-    showMobileControls();
-    return;
-  }
-  
-  const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-
-  // Auto-show ONLY if we natively pull down into overscroll (negative scrollY)
-  // OR if we hit the absolute top (0) on a legitimately tall scrollable page.
-  // This explicitly ignores bottom-bounces landing on 0 for short task-cards.
-  if (currentScrollY < 0 || (currentScrollY <= 0 && maxScroll > 50)) {
-    showMobileControls();
-    accumulatedScrollUp = 0;
-    accumulatedScrollDown = 0;
-  } else if (currentScrollY < lastScrollY) {
-    // Scrolling upwards
-    accumulatedScrollUp += (lastScrollY - currentScrollY);
-    accumulatedScrollDown = 0;
-    if (accumulatedScrollUp > 300) { // Firm upward intent
-      showMobileControls();
-    }
-  } else if (currentScrollY > lastScrollY) {
-    // Scrolling downwards
-    accumulatedScrollDown += (currentScrollY - lastScrollY);
-    accumulatedScrollUp = 0;
-    if (accumulatedScrollDown > 30) { // Slight scroll down hides layout
-      hideMobileControls();
-    }
-  }
-  
-  lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY; // Handle mobile scroll bouncing
-  resetControlTimer();
-}, { passive: true });
-
-// Any click on the page should immediately reveal the UI if it's currently hidden (solves the short-card scrolling trap)
+// Any click on the page should trigger image zoom modal if it's an image
 document.body.addEventListener('click', (e) => {
-  if (document.body.classList.contains('mobile-controls-hidden')) {
-    // Exclude timer interactions from summoning the UI, so it doesn't distract the student when a test starts
-    if (!e.target.closest('.timer-display')) {
-      showMobileControls();
-    }
-  }
-
-  // If the user actually tapped the nav buttons themselves, forcefully reset the disappearing timer
-  if (e.target.closest('.sidebar-toggle-btn') || e.target.closest('.theme-toggle-wrapper')) {
-    resetControlTimer();
-  }
-
   // Intercept any image clicks in the main content area for the zoom modal
   if (e.target.tagName === 'IMG' && e.target.closest('.main') && !e.target.closest('#imageModal')) {
     openImageModal(e.target.src);
   }
 }, { passive: true });
-
-document.body.addEventListener('touchstart', (e) => {
-  if (e.target.closest('.sidebar-toggle-btn') || e.target.closest('.theme-toggle-wrapper') || e.target.closest('.bottom-recorder-shell') || e.target.closest('.bottom-recorder-handle')) {
-    resetControlTimer();
-  }
-}, { passive: true });
-
-if (bottomRecorderHandle) {
-  bottomRecorderHandle.addEventListener('click', () => {
-    showMobileControls();
-  });
-
-  bottomRecorderHandle.addEventListener('touchstart', () => {
-    showMobileControls();
-  }, { passive: true });
-}
 
 if (bottomRecordBtn) {
   bottomRecordBtn.addEventListener('click', async () => {
@@ -2042,7 +1945,6 @@ if (bottomRecordBtn) {
     } else {
       await startRecording();
     }
-    resetControlTimer();
   });
 }
 
