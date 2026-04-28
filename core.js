@@ -358,9 +358,9 @@ function updateBottomNavState() {
   const hasRecording = !!getCurrentRecording();
 
   bottomRecordBtn.disabled = !canRecord;
-  bottomRedoBtn.disabled = !hasRecording || mediaRecorder?.state === 'recording';
-  bottomPlaybackBtn.disabled = !hasRecording || mediaRecorder?.state === 'recording';
-  bottomSaveBtn.disabled = !hasRecording || mediaRecorder?.state === 'recording';
+  bottomRedoBtn.disabled = !hasRecording || mediaRecorder !== null;
+  bottomPlaybackBtn.disabled = !hasRecording || mediaRecorder !== null;
+  bottomSaveBtn.disabled = !hasRecording || mediaRecorder !== null;
 
   const isRecording = mediaRecorder?.state === 'recording';
   const isPlaying = currentRecordingAudio && !currentRecordingAudio.paused;
@@ -457,26 +457,30 @@ async function startRecording() {
       mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
     }
 
-    mediaChunks = [];
+    const localChunks = [];
     const mimeType = getSupportedRecordingMimeType();
     const recordingTaskKey = getCurrentTaskKey();
-    mediaRecorder = mimeType ? new MediaRecorder(mediaStream, { mimeType }) : new MediaRecorder(mediaStream);
+    const localRecorder = mimeType ? new MediaRecorder(mediaStream, { mimeType }) : new MediaRecorder(mediaStream);
+    mediaRecorder = localRecorder;
 
-    mediaRecorder.addEventListener('dataavailable', (event) => {
+    localRecorder.addEventListener('dataavailable', (event) => {
       if (event.data && event.data.size > 0) {
-        mediaChunks.push(event.data);
+        localChunks.push(event.data);
       }
     });
 
-    mediaRecorder.onerror = (e) => {
+    localRecorder.onerror = (e) => {
       console.error('MediaRecorder error:', e.error);
     };
 
-    mediaRecorder.oninactive = () => {
+    localRecorder.oninactive = () => {
       console.warn('MediaRecorder became inactive');
     };
 
-    mediaRecorder.addEventListener('stop', () => {
+    const localStartedAt = Date.now();
+    recordingStartedAt = localStartedAt;
+
+    localRecorder.addEventListener('stop', () => {
       clearRecordingTicker();
       if (recordingLimitTimeout) {
         clearTimeout(recordingLimitTimeout);
@@ -486,11 +490,11 @@ async function startRecording() {
       const previous = recordingTaskKey ? recordings[recordingTaskKey] : null;
       if (previous?.url) URL.revokeObjectURL(previous.url);
 
-      const mime = mediaRecorder?.mimeType || mimeType || 'audio/webm';
-      const blob = new Blob(mediaChunks, { type: mime });
-      const durationMs = Date.now() - recordingStartedAt;
+      const mime = localRecorder.mimeType || mimeType || 'audio/webm';
+      const blob = new Blob(localChunks, { type: mime });
+      const durationMs = Date.now() - localStartedAt;
 
-      if (recordingTaskKey) {
+      if (recordingTaskKey && blob.size > 0) {
         recordings[recordingTaskKey] = {
           blob,
           url: URL.createObjectURL(blob),
@@ -499,13 +503,13 @@ async function startRecording() {
         };
       }
 
-      mediaRecorder = null;
-      mediaChunks = [];
+      if (mediaRecorder === localRecorder) {
+        mediaRecorder = null;
+      }
       updateBottomNavState();
     }, { once: true });
 
-    recordingStartedAt = Date.now();
-    mediaRecorder.start();
+    localRecorder.start(1000);
     updateBottomNavState();
 
     recordingTicker = setInterval(() => {
@@ -536,6 +540,7 @@ async function toggleRecording() {
   if (mediaRecorder?.state === 'recording') {
     stopRecording();
   } else {
+    if (mediaRecorder !== null) return;
     await startRecording();
   }
 }
@@ -2007,7 +2012,7 @@ if (bottomRecordBtn) {
 
 if (bottomRedoBtn) {
   bottomRedoBtn.addEventListener('click', async () => {
-    if (!getCurrentRecording() || mediaRecorder?.state === 'recording') return;
+    if (!getCurrentRecording() || mediaRecorder !== null) return;
     
     const key = getCurrentTaskKey();
     if (key && recordings[key]) {
