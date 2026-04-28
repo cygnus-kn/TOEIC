@@ -445,6 +445,14 @@ async function startRecording() {
   stopPlaybackPreview();
 
   try {
+    if (mediaStream) {
+      const tracks = mediaStream.getAudioTracks();
+      const hasLiveTrack = tracks.some(track => track.readyState === 'live');
+      if (!hasLiveTrack) {
+        mediaStream = null;
+      }
+    }
+
     if (!mediaStream) {
       mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
     }
@@ -1516,6 +1524,9 @@ function renderPagination() {
 }
 
 window.goToPart = function (index) {
+  if (mediaRecorder?.state === 'recording') {
+    stopRecording();
+  }
   if (recordingLimitTimeout) {
     clearTimeout(recordingLimitTimeout);
     recordingLimitTimeout = null;
