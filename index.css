@@ -2061,6 +2061,7 @@ body:not(.dark-theme) .bottom-nav-btn-primary.active-media:hover {
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
+  order: 2;
 }
 
 .lesson-section {
