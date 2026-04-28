@@ -445,12 +445,10 @@ async function startRecording() {
   stopPlaybackPreview();
 
   try {
+    // Force a fresh media stream for every recording to prevent Safari 0-byte audio bug
     if (mediaStream) {
-      const tracks = mediaStream.getAudioTracks();
-      const hasLiveTrack = tracks.some(track => track.readyState === 'live');
-      if (!hasLiveTrack) {
-        mediaStream = null;
-      }
+      mediaStream.getAudioTracks().forEach(track => track.stop());
+      mediaStream = null;
     }
 
     if (!mediaStream) {
