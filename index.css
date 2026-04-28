@@ -1868,7 +1868,7 @@ body:not(.dark-theme) .recording-status {
   justify-content: flex-start;
   min-height: 48px;
   transition: min-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 14px;
+  border-radius: 24px;
   background: rgba(23, 30, 46, 0.95);
   backdrop-filter: blur(32px) saturate(180%);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
@@ -2045,40 +2045,37 @@ body:not(.dark-theme) .bottom-recorder-handle {
 
   .bottom-nav {
     width: auto;
-    min-width: 240px;
+    min-width: 280px;
     max-width: 92vw;
-    min-height: 44px;
-    gap: 0;
-    padding: 0 8px;
-    border-radius: 24px;
+    padding: 0;
   }
 
   .bottom-nav-controls {
-    height: 44px;
-    justify-content: center;
-    gap: 20px;
-    padding: 0 8px;
-    width: auto;
+    height: 48px;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0 16px;
+    width: 100%;
   }
 
   .recording-status {
     padding: 0;
-    font-size: 13px;
-    gap: 6px;
+    font-size: 13.5px;
+    gap: 8px;
   }
 
   .bottom-nav-btns {
-    gap: 10px;
+    gap: 6px;
   }
 
   .bottom-nav-btn {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
   }
 
   .bottom-nav-btn-primary {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
 
   .bottom-recorder-handle {
