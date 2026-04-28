@@ -1999,26 +1999,41 @@ body:not(.dark-theme) .bottom-recorder-handle {
   }
 
   .bottom-nav {
-    display: flex;
+    width: auto;
+    min-width: 240px;
+    max-width: 92vw;
+    min-height: 44px;
+    gap: 0;
+    padding: 0 8px;
+    border-radius: 24px;
+  }
+
+  .bottom-nav-controls {
+    height: 44px;
     justify-content: center;
-    gap: 7px;
-    min-height: 40px;
-    padding: 4px 12px;
+    gap: 20px;
+    padding: 0 8px;
+    width: auto;
   }
 
   .recording-status {
-    padding: 0 1px;
-    font-size: 12px;
+    padding: 0;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .bottom-nav-btns {
+    gap: 10px;
   }
 
   .bottom-nav-btn {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
   }
 
   .bottom-nav-btn-primary {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
   }
 
   .bottom-recorder-handle {
