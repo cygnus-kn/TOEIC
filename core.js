@@ -121,7 +121,8 @@ function initNavDragging() {
     navOffsetY = e.clientY - rect.top;
     
     // Prepare shell for absolute movement
-    bottomRecorderShell.style.width = 'auto';
+    // Freeze width to prevent squish bug
+    bottomRecorderShell.style.width = bottomRecorderShell.offsetWidth + 'px';
     bottomRecorderShell.style.left = rect.left + 'px';
     bottomRecorderShell.style.top = rect.top + 'px';
     bottomRecorderShell.style.bottom = 'auto';
