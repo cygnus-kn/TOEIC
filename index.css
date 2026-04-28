@@ -1144,6 +1144,16 @@ body.dark-theme .timer-display {
   color: var(--color-text-tertiary);
 }
 
+@media (max-width: 600px) {
+  .timer-display {
+    padding: 6px 16px;
+    min-width: 85px;
+    font-size: 17px;
+    letter-spacing: 0;
+    gap: 6px;
+  }
+}
+
 .timer-display.running,
 body.dark-theme .timer-display.running {
   background: linear-gradient(90deg, rgba(52, 45, 97, 0.85) 0%, rgba(126, 21, 70, 0.85) 100%);
@@ -1818,6 +1828,15 @@ body:not(.dark-theme) .recording-status {
 .recording-status span:last-child {
   min-width: 36px;
   text-align: left;
+}
+
+@media (max-width: 600px) {
+  .recording-status {
+    gap: 4px;
+  }
+  .recording-status span:last-child {
+    min-width: 32px;
+  }
 }
 
 .recording-status-dot {
