@@ -97,6 +97,7 @@ let playbackTicker = null;
 let currentRecordingAudio = null;
 let isSeekingPlayback = false;
 const recordings = {}; // { taskKey: { blob, url, durationMs, mimeType } }
+const QUICK_REDO_WARNING_KEY = 'toeicQuickRedoWarningSeen';
 
 // Nav Dragging State
 let isDraggingNav = false;
@@ -261,6 +262,22 @@ function getRecordingLimitSeconds() {
   return 120;
 }
 
+function shouldWarnForQuickRedo() {
+  try {
+    return localStorage.getItem(QUICK_REDO_WARNING_KEY) !== 'true';
+  } catch (error) {
+    return true;
+  }
+}
+
+function markQuickRedoWarningSeen() {
+  try {
+    localStorage.setItem(QUICK_REDO_WARNING_KEY, 'true');
+  } catch (error) {
+    // Ignore storage failures and keep the flow usable.
+  }
+}
+
 function setRecordingStatus(text, opts = {}) {
   const { visible = true, recording = false, playback = false, pulsing = false } = opts;
   if (!recordingStatus || !recordingStatusText) return;
@@ -320,34 +337,33 @@ function getSupportedRecordingMimeType() {
 
 function updatePlaybackButton(isPlaying = false) {
   if (!bottomPlaybackBtn) return;
-  const svg = bottomPlaybackBtn.querySelector('svg');
-  if (!svg) return;
-  svg.setAttribute('width', '22');
-  svg.setAttribute('height', '22');
-  svg.setAttribute('fill', isPlaying ? 'none' : 'currentColor');
-  svg.setAttribute('stroke', isPlaying ? 'currentColor' : 'none');
-  svg.setAttribute('stroke-width', isPlaying ? '3' : '0');
-  svg.setAttribute('stroke-linecap', 'round');
-  svg.setAttribute('stroke-linejoin', 'round');
-  svg.innerHTML = isPlaying
-    ? '<path d="M8 5v14"/><path d="M16 5v14"/>'
-    : '<path d="M8 6.8v10.4c0 .7.78 1.13 1.38.75l8.18-5.2a.9.9 0 0 0 0-1.5l-8.18-5.2A.9.9 0 0 0 8 6.8Z"/>';
+  bottomPlaybackBtn.setAttribute('aria-label', 'Delete latest recording');
+  bottomPlaybackBtn.setAttribute('title', 'Delete latest recording');
 }
 
-function updateRecordButtonIcon(isRecording = false) {
+function updateRecordButtonIcon(mode = 'record') {
   if (!bottomRecordBtn) return;
   const svg = bottomRecordBtn.querySelector('svg');
   if (!svg) return;
+  const isRecording = mode === 'recording';
+  const isPlayback = mode === 'playback';
+  const isPause = mode === 'pause';
   svg.setAttribute('width', isRecording ? '28' : '24');
   svg.setAttribute('height', isRecording ? '28' : '24');
-  svg.setAttribute('fill', isRecording ? 'currentColor' : 'none');
-  svg.setAttribute('stroke', isRecording ? 'none' : 'currentColor');
-  svg.setAttribute('stroke-width', isRecording ? '0' : '1.5');
+  svg.setAttribute('fill', isRecording || isPlayback || isPause ? 'currentColor' : 'none');
+  svg.setAttribute('stroke', isRecording || isPlayback || isPause ? 'none' : 'currentColor');
+  svg.setAttribute('stroke-width', isRecording || isPlayback || isPause ? '0' : '1.5');
   svg.setAttribute('stroke-linecap', 'round');
   svg.setAttribute('stroke-linejoin', 'round');
-  svg.innerHTML = isRecording
-    ? '<rect x="3.8" y="3.8" width="16.4" height="16.4" rx="4"/>'
-    : '<path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/><path d="M8.5 21h7"/>';
+  if (isRecording) {
+    svg.innerHTML = '<rect x="3.8" y="3.8" width="16.4" height="16.4" rx="4"/>';
+  } else if (isPause) {
+    svg.innerHTML = '<path d="M6.7 5.2h4.6v13.6H6.7z"/><path d="M12.7 5.2h4.6v13.6h-4.6z"/>';
+  } else if (isPlayback) {
+    svg.innerHTML = '<path d="M7 5.4v13.2c0 .9.98 1.45 1.74.96l10.2-6.48a1.12 1.12 0 0 0 0-1.88L8.74 4.44A1.12 1.12 0 0 0 7 5.4Z"/>';
+  } else {
+    svg.innerHTML = '<path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/><path d="M8.5 21h7"/>';
+  }
 }
 
 function updateBottomNavState() {
@@ -364,9 +380,13 @@ function updateBottomNavState() {
 
   const isRecording = mediaRecorder?.state === 'recording';
   const isPlaying = currentRecordingAudio && !currentRecordingAudio.paused;
+  const recordButtonMode = isRecording ? 'recording' : isPlaying ? 'pause' : hasRecording ? 'playback' : 'record';
   
   bottomRecordBtn.classList.toggle('recording', !!isRecording);
-  updateRecordButtonIcon(isRecording);
+  bottomRecordBtn.classList.toggle('active-media', !!isRecording);
+  updateRecordButtonIcon(recordButtonMode);
+  bottomRecordBtn.setAttribute('aria-label', isRecording ? 'Stop recording' : isPlaying ? 'Pause playback' : hasRecording ? 'Play latest recording' : 'Record answer');
+  bottomRecordBtn.setAttribute('title', isRecording ? 'Stop recording' : isPlaying ? 'Pause playback' : hasRecording ? 'Play latest recording' : 'Record answer');
 
   if (isRecording) {
     const elapsed = Date.now() - recordingStartedAt;
@@ -2015,7 +2035,13 @@ if (bottomRecorderHandle) {
 
 if (bottomRecordBtn) {
   bottomRecordBtn.addEventListener('click', async () => {
-    await toggleRecording();
+    if (mediaRecorder?.state === 'recording') {
+      stopRecording();
+    } else if (getCurrentRecording()) {
+      playCurrentRecording();
+    } else {
+      await startRecording();
+    }
     resetControlTimer();
   });
 }
@@ -2023,6 +2049,12 @@ if (bottomRecordBtn) {
 if (bottomRedoBtn) {
   bottomRedoBtn.addEventListener('click', async () => {
     if (!getCurrentRecording() || mediaRecorder !== null) return;
+
+    if (shouldWarnForQuickRedo()) {
+      const confirmed = window.confirm('Record again will discard the current take and immediately start a new recording. Continue?');
+      if (!confirmed) return;
+      markQuickRedoWarningSeen();
+    }
     
     const key = getCurrentTaskKey();
     if (key && recordings[key]) {
@@ -2039,7 +2071,16 @@ if (bottomRedoBtn) {
 
 if (bottomPlaybackBtn) {
   bottomPlaybackBtn.addEventListener('click', () => {
-    playCurrentRecording();
+    if (!getCurrentRecording() || mediaRecorder !== null) return;
+    if (!window.confirm('Delete the current recording?')) return;
+
+    const key = getCurrentTaskKey();
+    if (key && recordings[key]) {
+      if (recordings[key].url) URL.revokeObjectURL(recordings[key].url);
+      delete recordings[key];
+    }
+    stopPlaybackPreview();
+    updateBottomNavState();
     resetControlTimer();
   });
 }

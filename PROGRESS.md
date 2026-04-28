@@ -1,6 +1,6 @@
 # TOEIC Homework Platform — Progress Tracker
 
-> Last updated: 2026-04-27
+> Last updated: 2026-04-28
 
 ---
 
@@ -69,6 +69,12 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 - [x] Automated transcript extraction protocols for YouTube links and local audio workflows
 - [x] Perfectly aligned horizontal layout for all audio controls (Play → Seeker → Time → Bookmarks)
 - [x] Redesigned "Transcript" toggle (replacing Reveal/Hide) with optimized auto-width glassy buttons
+
+### 🎙 Recorder Controls
+- [x] Primary center control now changes by state: record → stop → play → pause
+- [x] Secondary controls now support `Record again`, delete-with-confirmation, and renamed-save flow
+- [x] First use of `Record again` shows a one-time destructive warning, then later uses stay instant via `localStorage`
+- [x] Recorder bar icon strokes and timer weight were tuned so the center action stays visually dominant
 
 ### 📚 Lesson Viewer
 - [x] Vocabulary section with word, definition, and example
@@ -225,6 +231,7 @@ body / .app
 | Apr 27 | **Respond Questions Cleanup**: Migrated remaining `respond-questions` JSON entries in `SW Class` and `S129` to strict `respond-questions-15` / `respond-questions-30` types, removed redundant `responseTime` fields for those cards, removed the legacy renderer fallback from `core.js`, and updated `ADD_HOMEWORK.md` to block new legacy usage. |
 | Apr 27 | **Recording & Navigation Overhaul**: Integrated immediate "Redo" functionality and forced a permanent mobile nav bar for active recording sessions. Prioritized `.mp4` format for iOS devices. Implemented a 2-minute recording limit safeguard. Added a premium "Save Rename Modal" for customized file downloads. Refined CSS transitions for the bottom nav pill and timer reveal. |
 | Apr 28 | **Unified Media Player & UI Polish**: Redesigned the recorder into a "Music Player" squircle with a seeker bar that expands when a recording is ready. Added **desktop dragging** support for the nav bar. **Aesthetic Overhaul**: Implemented a "Clean Glass" light mode with accent tints and high-contrast charcoal icons. **Stability**: Fixed the "Ghost Timer" bug that caused recordings to stop prematurely at 8s/24s. Adjusted HW Day 18 Question 9 timestamp for better audio alignment. |
+| Apr 28 | **Recorder Interaction Refinement**: Converted the center recorder into a true stateful control (record, stop, play, pause), repurposed the side playback button into delete-with-confirmation, relabeled the left action to `Record again`, added a first-use redo warning stored in `localStorage`, and rebalanced icon/timer weights so side controls no longer overpower the primary action. |
 
 ---
 
