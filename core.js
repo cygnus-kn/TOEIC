@@ -105,55 +105,9 @@ let navOffsetX = 0;
 let navOffsetY = 0;
 
 function initNavDragging() {
-  if (!bottomNav || !bottomRecorderShell) return;
-  
-  // Skip on mobile/touch
-  if (window.matchMedia("(pointer: coarse)").matches) return;
-
-  bottomNav.style.cursor = 'grab';
-
-  bottomNav.addEventListener('mousedown', (e) => {
-    // Only drag if clicking the background of the nav, not buttons/seeker
-    if (e.target.closest('button') || e.target.closest('.bottom-playback-seeker-wrapper')) return;
-    
-    isDraggingNav = true;
-    const rect = bottomNav.getBoundingClientRect();
-    navOffsetX = e.clientX - rect.left;
-    navOffsetY = e.clientY - rect.top;
-    
-    // Prepare shell for absolute movement
-    bottomRecorderShell.style.width = 'auto';
-    bottomRecorderShell.style.left = rect.left + 'px';
-    bottomRecorderShell.style.top = rect.top + 'px';
-    bottomRecorderShell.style.bottom = 'auto';
-    bottomRecorderShell.style.right = 'auto';
-    bottomRecorderShell.style.transform = 'none';
-    bottomNav.style.cursor = 'grabbing';
-    
-    e.preventDefault();
-  });
-
-  window.addEventListener('mousemove', (e) => {
-    if (!isDraggingNav) return;
-    
-    let x = e.clientX - navOffsetX;
-    let y = e.clientY - navOffsetY;
-    
-    // Constraints (padding from edges)
-    x = Math.max(10, Math.min(window.innerWidth - bottomNav.offsetWidth - 10, x));
-    y = Math.max(10, Math.min(window.innerHeight - bottomNav.offsetHeight - 10, y));
-    
-    bottomRecorderShell.style.left = x + 'px';
-    bottomRecorderShell.style.top = y + 'px';
-  });
-
-  window.addEventListener('mouseup', () => {
-    if (isDraggingNav) {
-      isDraggingNav = false;
-      bottomNav.style.cursor = 'grab';
-    }
-  });
+  // Logic moved to inline script in index.html to bypass cache
 }
+
 
 // ============================
 //  Markdown Helper
@@ -2104,84 +2058,10 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ============================
-//  Mobile UI Auto-Hide
-// ============================
-let accumulatedScrollUp = 0;
-let accumulatedScrollDown = 0;
-let controlHideTimeout = null;
-let lastScrollY = window.scrollY;
-
-function showMobileControls() {
-  document.body.classList.remove('mobile-controls-hidden');
-  resetControlTimer();
-}
-
-function hideMobileControls() {
-  // Mobile only check (<= 1024px)
-  if (window.innerWidth <= 1024) {
-    document.body.classList.add('mobile-controls-hidden');
-  }
-}
-
-function resetControlTimer() {
-  if (controlHideTimeout) clearTimeout(controlHideTimeout);
-  // Do not even start a timer if we are on desktop
-  if (window.innerWidth > 1024) return;
-  
-  controlHideTimeout = setTimeout(() => {
-    hideMobileControls();
-  }, 3000);
-}
-
-// Global listeners for intent
-window.addEventListener('scroll', () => {
-  const currentScrollY = window.scrollY || document.documentElement.scrollTop;
-  
-  if (window.innerWidth > 1024) {
-    showMobileControls();
-    return;
-  }
-  
-  if (currentScrollY < lastScrollY) {
-    // Scrolling upwards: Reveal after deliberate swipe
-    accumulatedScrollUp += (lastScrollY - currentScrollY);
-    accumulatedScrollDown = 0;
-    if (accumulatedScrollUp > 350) {
-      showMobileControls();
-    }
-  } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
-    // Scrolling downwards: Hide quickly
-    accumulatedScrollDown += (currentScrollY - lastScrollY);
-    accumulatedScrollUp = 0;
-    if (accumulatedScrollDown > 30) {
-      hideMobileControls();
-    }
-  }
-  
-  lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
-  resetControlTimer();
-}, { passive: true });
-
-// Tap/Touch Reveal
-document.addEventListener('touchstart', (e) => {
-  if (window.innerWidth <= 1024) {
-    const isCard = e.target.closest('#cardContainer');
-    const isNav = e.target.closest('#bottomNav');
-    const isSidebar = e.target.closest('#sidebar');
-    const isLesson = e.target.closest('#lessonContent');
-    const isBadge = e.target.closest('#dateBadge') || e.target.closest('#lessonDateBadge');
-
-    if (!isCard && !isNav && !isSidebar && !isLesson && !isBadge) {
-      showMobileControls();
-    } else {
-      resetControlTimer();
-    }
-  }
-}, { passive: true });
-
-// Initial Kick-off
-resetControlTimer();
+// Mobile UI Auto-Hide logic moved to inline script in index.html to bypass cache
+function showMobileControls() {}
+function hideMobileControls() {}
+function resetControlTimer() {}
 
 // Initialize dragging
 initNavDragging();
