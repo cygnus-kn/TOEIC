@@ -138,12 +138,12 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 
 ---
 
-## 📐 Mobile Layout Alignment Guide (< 600px)
+## 🎨 Layout Alignment & Technical Guides
 
-> **Why this section exists:** During the Apr 13 mobile refinement session, we hit several alignment bugs that each took multiple attempts to diagnose. This section documents what actually controls each element's position, so future changes can be made in one shot.
+<details>
+<summary><b>Mobile Layout Alignment Guide (< 600px)</b></summary>
 
 ### Element Hierarchy (top → bottom)
-
 ```
 body / .app
   └── .main              ← The rounded white card that holds everything
@@ -159,45 +159,54 @@ body / .app
 ```
 
 ### Key Lessons Learned
-
 | Problem | Root Cause | Fix |
 |---------|-----------|-----|
 | Sidebar button and theme toggle not vertically aligned | Sidebar button is a **flex child** inside `.main-top-bar` — setting `top` on the button itself does nothing. Its vertical position is controlled by `.main-top-bar { top }`. The theme toggle IS independently `position: absolute`. | Set `.main-top-bar { top: 20px }`. Calculate toggle top so both share the same vertical center: `toggle-top = (bar-top + button-height/2) - toggle-height/2`. |
 | Badge too far from card | `.homework-viewer` has `gap: var(--space-xl)` (~24px) in the base CSS. `margin-bottom` on `.viewer-header` was fighting the flex gap. | Override `.homework-viewer { gap: 16px }` in the mobile media query. |
 | Two `.homework-viewer` rules in the same `@media` block | An earlier fix added `gap: 6px`, then a later fix added `gap: 14px` in a separate rule above. The 6px rule appeared later in the file and silently won. | **Always consolidate** — search for duplicates before adding a new rule. One rule per selector per media query. |
-| Card vertically centered (should be top-aligned) | `.main { justify-content: center }` in the base CSS centers everything vertically. | Override to `justify-content: flex-start` on mobile. |
-| Welcome state ("Select a homework...") also got top-aligned | `.welcome-state` is inside `.main`, so `flex-start` pulled it up too. | Give `.welcome-state { flex: 1; min-height: 60vh; justify-content: center }` on mobile so it fills remaining space and self-centers. |
 | Card height was constrained / cut off | `.part-card { max-height: 100% }` in the base CSS, combined with flex containers, capped card height. | Override to `max-height: none` on mobile. Also set `height: auto` and `flex: none` on `.card-container`, `.card-track`, and `.homework-viewer`. |
-| Card lost rounded top corners | Setting `overflow: visible` on `.part-card` broke `border-radius` clipping. | `overflow` must stay `hidden` on `.part-card`. Height growth is controlled by `max-height: none`, not overflow. |
-| Body didn't scroll on mobile | `body { overflow: hidden; height: 100dvh }` in the base CSS. | Override on mobile: `body, .app { overflow: unset; height: auto; min-height: 100dvh }`. |
 | Audio controls misaligned | Timestamp was below seeker, shifting the buttons container height. | Moved timestamp inline (horizontal) and removed vertical margin hacks. Now all controls share a common flex baseline. |
-| YouTube icon missing circle | Applied `transparent` border/background in light mode. | Inherited base `.bookmark-dot` styles for a consistent circular look. |
-| Part 4 text missing scenario | Only question text was being added during construction. | Protocol updated to extract and include speaker scenarios (e.g., "I was told...") in the reveal text string. |
-| Reveal button layout shift | Button width changed based on text length. | Enforced fixed `145px` width for ".reveal-btn". |
-| Glassy button borders look thick on mobile | Sub-pixel scaling combined `border` + `inset-shadow` into a heavy 2px band. | Re-engineered glassy styles to use razor-thin 1px borders with NO inset shadows on mobile (`@media max-width: 600px`). |
+| Glassy button borders look thick on mobile | Sub-pixel scaling combined `border` + `inset-shadow` into a heavy 2px band. | Re-engineered glassy styles to use razor-thin 1px borders with NO inset shadows on mobile. |
 
-### Quick Reference: What Controls What
+</details>
 
-| What you want to move | Change this property | On this selector |
-|-----------------------|---------------------|-----------------|
-| Sidebar button vertical position | `top` | `.main-top-bar` (mobile override) |
-| Theme toggle vertical position | `top` | `.theme-toggle-wrapper` (mobile override) |
-| Badge ↔ Card gap | `gap` | `.homework-viewer` (mobile override) |
-| Badge ↔ Top icons gap | `margin-top` | `.viewer-header` (mobile override) |
-| Card top alignment | `justify-content` | `.main` (mobile override) |
-| Pagination position | `position: fixed; bottom` | `.pagination` (mobile override) |
-| Card scales proportionally | `zoom` | `.part-card` (mobile override) |
+<details>
+<summary><b>Case Study: The "Ghost Cache" Navigation Bug</b></summary>
 
-### Current Mobile Values (Apr 13)
+### The Core Objective
+Enable the user to click and drag the microphone navigation bar to any position on the screen to prevent it from obstructing content.
 
-```css
-.main-top-bar        { top: 48px } /* Aligned to sidebar button center (67px) */
-.theme-toggle-wrapper { top: 51px } /* Aligned to sidebar button center (67px) */
-.viewer-header       { margin-top: 70px } /* Baseline alignment with icons */
-.homework-viewer     { gap: 16px }         /* Badge ↔ Card spacing */
-.part-card           { zoom: 0.88 }        /* Proportional scaling */
-.pagination          { position: fixed; bottom: 28px } /* Thumb zone */
-```
+### Troubleshooting Phases
+
+1. **Phase 1: The "Pointer: Coarse" Blocker**
+   - **Discovery:** `window.matchMedia("(pointer: coarse)")` was causing the script to return early on modern "hybrid" laptops.
+   - **Fix:** Removed the check and migrated to the unified **Pointer Events API**.
+
+2. **Phase 2: The WebKit Hit-Testing Bug**
+   - **Discovery:** `backdrop-filter` elements inside `pointer-events: none` parents fail hit-testing in Safari.
+   - **Fix:** Removed `pointer-events: none` and added legacy vendor prefixes.
+
+3. **Phase 3: CSS & Event Brute Force**
+   - **Discovery:** Browser ignored `mousedown` on flex container empty space.
+   - **Fix:** Applied `cursor: grab !important` and reverted to classic `mousedown` on `window` for stability.
+
+4. **Phase 4: Document-Level Tracking & Visual Debugging**
+   - **Discovery:** Diagnostic colors (red/green) failed to appear during clicks.
+   - **Fix:** Moved listeners to `document` level to prove event detection.
+   - **Result:** **Critical Failure.** Proved the browser was not running the latest code despite hard resets.
+
+5. **Phase 5: The "Ghost Cache" Revelation**
+   - **Discovery:** A browser subagent verified the console saw debug logs that no longer existed on disk.
+   - **Fix:** Confirmed a "Ghost Cache" where the browser served an old script version from memory.
+
+### Final Resolution: The Surgical Strike
+1. **ID Renaming:** Changed ID from `bottomNav` to `bottomNav_v14` to break links with cached scripts.
+2. **Inline Logic:** Moved the drag-and-drop JS into an **inline `<script>` tag** in `index.html`.
+3. **Restoration:** Once the cache was busted, successfully returned to the original `bottomNav` ID.
+
+**Result:** **SUCCESS.** The navigation bar is now fully draggable across all browsers.
+
+</details>
 
 ---
 
@@ -232,6 +241,7 @@ body / .app
 | Apr 27 | **Recording & Navigation Overhaul**: Integrated immediate "Redo" functionality and forced a permanent mobile nav bar for active recording sessions. Prioritized `.mp4` format for iOS devices. Implemented a 2-minute recording limit safeguard. Added a premium "Save Rename Modal" for customized file downloads. Refined CSS transitions for the bottom nav pill and timer reveal. |
 | Apr 28 | **Unified Media Player & UI Polish**: Redesigned the recorder into a "Music Player" squircle with a seeker bar that expands when a recording is ready. Added **desktop dragging** support for the nav bar. **Aesthetic Overhaul**: Implemented a "Clean Glass" light mode with accent tints and high-contrast charcoal icons. **Stability**: Fixed the "Ghost Timer" bug that caused recordings to stop prematurely at 8s/24s. Adjusted HW Day 18 Question 9 timestamp for better audio alignment. |
 | Apr 28 | **Recorder Interaction Refinement**: Converted the center recorder into a true stateful control (record, stop, play, pause), repurposed the side playback button into delete-with-confirmation, relabeled the left action to `Record again`, added a first-use redo warning stored in `localStorage`, and rebalanced icon/timer weights so side controls no longer overpower the primary action. |
+| Apr 29 | **The Ghost Cache Battle**: Resolved a critical bug where the bottom navigation bar remained undraggable due to aggressive browser caching. Implemented **inline drag-and-drop logic** in `index.html` and used an **ID-swap maneuver** to bypass stale scripts. Restored the project to a clean state with fully functional dragging. Documented the process in a new troubleshooting case study. |
 
 ---
 
