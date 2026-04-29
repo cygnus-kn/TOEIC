@@ -106,7 +106,8 @@ body {
   scroll-behavior: smooth;
 }
 
-body.preload, body.preload * {
+body.preload,
+body.preload * {
   transition: none !important;
 }
 
@@ -180,13 +181,14 @@ body.dark-theme * {
   transition: all var(--transition-fast);
   z-index: 2000;
   border-radius: var(--radius-lg);
-  box-shadow: 
+  box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.3),
     inset 0 10px 20px -5px rgba(255, 255, 255, 0.2),
     0 10px 40px -10px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 600px) {
+
   /* Fluid floating sidebar on mobile */
   .sidebar {
     top: 16px !important;
@@ -250,6 +252,7 @@ body.dark-theme .sidebar {
 }
 
 @media (max-width: 600px) {
+
   /* Fix top bar layout — moved down to align with sidebar's internal button
      Sidebar: top 16px + margin 16px = 32px. Header padding: 16px. Button center: 32+16+19=67px
      Page button center at top:48px = 48 + 19 = 67px ✓ */
@@ -313,6 +316,7 @@ body:not(body.dark-theme) .sidebar-toggle-btn:hover {
 }
 
 @media (max-width: 600px) {
+
   /* Toggle center: 51 + 16 (half of 32px height) = 67px — matches sidebar button ✓ */
   .theme-toggle-wrapper {
     top: 51px;
@@ -378,6 +382,7 @@ body:not(body.dark-theme) .sidebar-toggle-btn:hover {
 }
 
 @media (max-width: 600px) {
+
   /* Match internal sidebar button to same 38px size */
   .sidebar-control-btn {
     width: 38px !important;
@@ -730,6 +735,7 @@ body.dark-theme .class-header:hover {
 }
 
 @media (max-width: 600px) {
+
   /* Welcome state: fill remaining space and center itself,
      independent of the parent's flex-start alignment */
   .welcome-state {
@@ -790,6 +796,7 @@ body.dark-theme .class-header:hover {
 }
 
 @media (max-width: 600px) {
+
   /* Align the date badge to the top-left of the card on mobile */
   .viewer-header {
     justify-content: flex-start;
@@ -990,6 +997,7 @@ body {
     /* Must stay hidden to clip the header and preserve rounded corners */
   }
 }
+
 @supports not (zoom: 1) {
   @media (max-width: 600px) {
     .part-card {
@@ -1333,6 +1341,7 @@ body.dark-theme .picture-container img {
 }
 
 @media (max-width: 600px) {
+
   /* Audio player mobile optimization specifically for small widths */
   .audio-standalone {
     gap: 8px !important;
@@ -1721,9 +1730,9 @@ body.dark-theme .out-link-icon:hover {
   margin-bottom: 0;
   opacity: 0;
   pointer-events: none;
-  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
-              opacity 0.35s ease, 
-              padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.35s ease,
+    padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0 16px;
   background: transparent;
   border-bottom: none;
@@ -1814,7 +1823,8 @@ body.dark-theme .bottom-seeker-knob {
 }
 
 .recording-status[hidden] {
-  opacity: 0.3; /* Instead of hiding, make it dim when inactive? Or just keep it visible. */
+  opacity: 0.3;
+  /* Instead of hiding, make it dim when inactive? Or just keep it visible. */
   pointer-events: none;
 }
 
@@ -1831,6 +1841,7 @@ body:not(body.dark-theme) .recording-status {
   .recording-status {
     gap: 4px;
   }
+
   .recording-status span:last-child {
     min-width: 32px;
   }
@@ -1858,7 +1869,8 @@ body:not(body.dark-theme) .recording-status {
   background: #34c759;
 }
 
-.bottom-nav, #bottomNav {
+.bottom-nav,
+#bottomNav {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -1882,11 +1894,10 @@ body:not(body.dark-theme) .recording-status {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
-  height: 48px;
+  padding: 6px 16px;
+  min-height: 48px;
   flex: none;
 }
-
 
 
 .bottom-nav-btns {
@@ -1894,12 +1905,14 @@ body:not(body.dark-theme) .recording-status {
   align-items: center;
   gap: 6px;
 }
-body:not(body.dark-theme) .bottom-nav, 
+
+body:not(body.dark-theme) .bottom-nav,
 body:not(body.dark-theme) #bottomNav {
   background: rgba(255, 255, 255, 0.8);
   border-color: rgba(0, 0, 0, 0.08);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
+
 .bottom-nav-btn {
   width: 36px;
   height: 36px;
@@ -2006,7 +2019,8 @@ body:not(body.dark-theme) .bottom-nav-btn-primary.active-media:hover {
     bottom: 14px;
   }
 
-  .bottom-nav, #bottomNav {
+  .bottom-nav,
+  #bottomNav {
     width: auto;
     min-width: 0;
     max-width: 95vw;
@@ -2023,9 +2037,11 @@ body:not(body.dark-theme) .bottom-nav-btn-primary.active-media:hover {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 69, 58, 0.4);
   }
+
   70% {
     box-shadow: 0 0 0 8px rgba(255, 69, 58, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(255, 69, 58, 0);
   }
@@ -2035,9 +2051,11 @@ body:not(body.dark-theme) .bottom-nav-btn-primary.active-media:hover {
   0% {
     box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.4);
   }
+
   70% {
     box-shadow: 0 0 0 8px rgba(52, 199, 89, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(52, 199, 89, 0);
   }
@@ -2211,6 +2229,7 @@ body.dark-theme .bookmark-dot:not(.active-bookmark):hover {
 }
 
 @media (max-width: 600px) {
+
   .reveal-btn,
   .audio-toggle-btn,
   .bookmark-dot:not(.active-bookmark) {
