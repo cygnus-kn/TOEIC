@@ -1861,7 +1861,7 @@ body:not(.dark-theme) .recording-status {
   background: #34c759;
 }
 
-.bottom-nav {
+.bottom-nav, #bottomNav {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -1877,6 +1877,8 @@ body:not(.dark-theme) .recording-status {
   overflow: hidden;
   width: 100%;
   pointer-events: auto;
+  cursor: grab !important;
+  user-select: none;
 }
 
 .bottom-nav-controls {
@@ -1894,13 +1896,7 @@ body:not(.dark-theme) .recording-status {
   gap: 6px;
 }
 
-body:not(.dark-theme) .bottom-nav {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px) saturate(190%);
-  -webkit-backdrop-filter: blur(20px) saturate(190%);
-  border-color: rgba(0, 122, 255, 0.12);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 122, 255, 0.04);
-}
+
 
 .bottom-nav-btn {
   width: 36px;
@@ -2008,7 +2004,7 @@ body:not(.dark-theme) .bottom-nav-btn-primary.active-media:hover {
     bottom: 14px;
   }
 
-  .bottom-nav {
+  .bottom-nav, #bottomNav {
     width: auto;
     min-width: 0;
     max-width: 95vw;

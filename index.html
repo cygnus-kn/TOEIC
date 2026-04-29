@@ -202,7 +202,68 @@
     </div>
   </div>
 
-  <script src="data.js"></script>
-  <script src="core.js"></script>
+  <script src="data.js?v=20"></script>
+  <script src="core.js?v=20"></script>
+  
+  <script>
+    // INLINE DRAG LOGIC - BYPASSES ALL CACHING
+    (function() {
+      let isDraggingNav = false;
+      
+      document.addEventListener('mousedown', (e) => {
+        const nav = document.getElementById('bottomNav');
+        const shell = document.getElementById('bottomRecorderShell');
+        if (!nav || !shell || e.button !== 0) return;
+
+        // Ensure we only drag on the background, not buttons
+        if (!nav.contains(e.target) || e.target.closest('button') || e.target.closest('.bottom-playback-seeker-wrapper')) return;
+        
+        const startX = e.clientX;
+        const startY = e.clientY;
+        const rect = shell.getBoundingClientRect();
+        const initialX = rect.left;
+        const initialY = rect.top;
+
+        isDraggingNav = true;
+        nav.classList.add('dragging');
+        
+        // Lock dimensions and switch to absolute screen coordinates
+        shell.style.position = 'fixed';
+        shell.style.margin = '0';
+        shell.style.width = rect.width + 'px';
+        shell.style.height = rect.height + 'px';
+        shell.style.left = initialX + 'px';
+        shell.style.top = initialY + 'px';
+        shell.style.bottom = 'auto';
+        shell.style.right = 'auto';
+        shell.style.transform = 'none';
+
+        const onMouseMove = (moveEvent) => {
+          if (!isDraggingNav) return;
+          const dx = moveEvent.clientX - startX;
+          const dy = moveEvent.clientY - startY;
+          let newX = initialX + dx;
+          let newY = initialY + dy;
+          
+          // Screen boundary constraints (10px padding)
+          newX = Math.max(10, Math.min(window.innerWidth - rect.width - 10, newX));
+          newY = Math.max(10, Math.min(window.innerHeight - rect.height - 10, newY));
+          
+          shell.style.left = newX + 'px';
+          shell.style.top = newY + 'px';
+        };
+
+        const onMouseUp = () => {
+          isDraggingNav = false;
+          nav.classList.remove('dragging');
+          document.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('mouseup', onMouseUp);
+        };
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+      });
+    })();
+  </script>
 </body>
 </html>
