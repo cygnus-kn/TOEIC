@@ -206,6 +206,19 @@ Enable the user to click and drag the microphone navigation bar to any position 
 
 **Result:** **SUCCESS.** The navigation bar is now fully draggable across all browsers.
 
+---
+
+### 🧠 AI Recovery Protocol: If Dragging Breaks Again
+> **ATTENTION FUTURE ASSISTANTS:** This project is extremely sensitive to "Ghost Caching." If you modify the drag logic and the user says "nothing changed," **DO NOT** keep editing external `.js` files. Follow this protocol:
+
+1. **The ID Maneuver**: Temporarily rename the navigation bar ID in `index.html`, `index.css`, and the script (e.g., `bottomNav` → `bottomNav_RECOVERY`). This forces the browser to ignore any cached scripts targeting the old ID.
+2. **The Inline Authority**: Keep the core drag logic **INLINE** within `index.html`. External files (`core.js`) are heavily cached; the HTML itself is the only authority the browser reliably reloads.
+3. **Brute Force Coordinates**:
+   - The bar starts with `transform: translateX(-50%)` and `left: 50%`. 
+   - On `mousedown`, you **MUST** immediately calculate `getBoundingClientRect()`, set the element to `position: fixed`, and hard-code its `top` and `left` to match the rect.
+   - **Crucial:** Set `transform: none` and `margin: 0` the moment the drag starts. If you don't, the CSS centering will "double-offset" the movement and make the bar fly off-screen.
+4. **Return to Original ID**: Once the feature is confirmed working, you can safely rename the ID back to `bottomNav`.
+
 </details>
 
 ---
