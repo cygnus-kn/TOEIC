@@ -231,7 +231,8 @@
         shell.style.position = 'fixed';
         shell.style.margin = '0';
         shell.style.width = rect.width + 'px';
-        shell.style.height = rect.height + 'px';
+        shell.style.minHeight = rect.height + 'px';
+        shell.style.height = 'auto';
         shell.style.left = initialX + 'px';
         shell.style.top = initialY + 'px';
         shell.style.bottom = 'auto';

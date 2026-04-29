@@ -98,11 +98,11 @@ body {
   font-family: var(--font-family);
   background: var(--color-page-bg);
   color: var(--color-text-primary);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
   line-height: 1.5;
   overflow-x: hidden;
   overflow-y: auto;
   min-height: 100dvh;
-  transition: background-color var(--transition-smooth), color var(--transition-smooth);
   scroll-behavior: smooth;
 }
 
@@ -166,30 +166,24 @@ body.dark-theme * {
 /* Sidebar */
 .sidebar {
   width: var(--sidebar-width);
-  min-width: 240px;
-  max-width: 400px;
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(50px) saturate(200%);
-  -webkit-backdrop-filter: blur(50px) saturate(200%);
-  border: 1px solid var(--sidebar-border);
-  border-radius: 20px;
-  margin: 16px;
   height: calc(100dvh - 64px);
+  background: var(--sidebar-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--sidebar-border);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   position: fixed;
-  /* Overlay on top of content */
   top: 16px;
   left: 16px;
-  height: calc(100dvh - 64px);
-  transition: all var(--transition-smooth);
+  transition: all var(--transition-fast);
   z-index: 2000;
-  box-shadow:
+  border-radius: var(--radius-lg);
+  box-shadow: 
     inset 0 0 0 1px rgba(255, 255, 255, 0.3),
     inset 0 10px 20px -5px rgba(255, 255, 255, 0.2),
     0 10px 40px -10px rgba(0, 0, 0, 0.2);
-  /* Deep shadow since it's an overlay */
 }
 
 @media (max-width: 600px) {
@@ -286,7 +280,7 @@ body.dark-theme .sidebar {
   flex-shrink: 0;
 }
 
-body:not(.dark-theme) .sidebar-toggle-btn {
+body:not(body.dark-theme) .sidebar-toggle-btn {
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(0, 0, 0, 0.05);
   color: #000000;
@@ -304,7 +298,7 @@ body:not(.dark-theme) .sidebar-toggle-btn {
   background: rgba(255, 255, 255, 0.15);
 }
 
-body:not(.dark-theme) .sidebar-toggle-btn:hover {
+body:not(body.dark-theme) .sidebar-toggle-btn:hover {
   background: rgba(255, 255, 255, 0.8);
 }
 
@@ -484,11 +478,11 @@ body.dark-theme .toggle-knob {
   color: #8e8e93;
 }
 
-body:not(.dark-theme) .sun-icon {
+body:not(body.dark-theme) .sun-icon {
   opacity: 1;
 }
 
-body:not(.dark-theme) .moon-icon {
+body:not(body.dark-theme) .moon-icon {
   opacity: 0;
 }
 
@@ -700,6 +694,7 @@ body.dark-theme .class-header:hover {
   position: relative;
   width: auto;
   max-width: 100%;
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 @media (max-width: 600px) {
@@ -978,7 +973,7 @@ body {
   border-radius: 24px;
   overflow: hidden;
   box-shadow: var(--shadow-card);
-  transition: box-shadow var(--transition-smooth);
+  transition: box-shadow var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
   background: var(--color-bg);
   border: 1px solid var(--color-border-strong);
   display: flex;
@@ -1018,6 +1013,7 @@ body {
   background: linear-gradient(90deg, #342D61 0%, #7E1546 100%);
   color: #ffffff;
   flex-shrink: 0;
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
 @media (max-width: 600px) {
@@ -1044,6 +1040,7 @@ body {
   background: var(--color-bg);
   overflow-y: visible !important;
   /* Force card to expand naturally */
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 @media (max-width: 600px) {
@@ -1753,7 +1750,7 @@ body.dark-theme .out-link-icon:hover {
   height: 8px;
 }
 
-body:not(.dark-theme) .bottom-seeker-bar {
+body:not(body.dark-theme) .bottom-seeker-bar {
   background: rgba(15, 23, 42, 0.1);
 }
 
@@ -1786,7 +1783,7 @@ body:not(.dark-theme) .bottom-seeker-bar {
   height: 16px;
 }
 
-body:not(.dark-theme) .bottom-seeker-knob {
+body:not(body.dark-theme) .bottom-seeker-knob {
   background: #ffffff;
   border-color: rgba(0, 0, 0, 0.05);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
@@ -1821,7 +1818,7 @@ body.dark-theme .bottom-seeker-knob {
   pointer-events: none;
 }
 
-body:not(.dark-theme) .recording-status {
+body:not(body.dark-theme) .recording-status {
   color: rgba(15, 23, 42, 0.92);
 }
 
@@ -1890,14 +1887,23 @@ body:not(.dark-theme) .recording-status {
   flex: none;
 }
 
+/* Add symmetrical padding when expanded */
+.bottom-playback-seeker-wrapper.expanded + .bottom-nav-controls {
+  padding-bottom: 12px;
+  height: auto;
+}
+
 .bottom-nav-btns {
   display: flex;
   align-items: center;
   gap: 6px;
 }
-
-
-
+body:not(body.dark-theme) .bottom-nav, 
+body:not(body.dark-theme) #bottomNav {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
 .bottom-nav-btn {
   width: 36px;
   height: 36px;
@@ -1913,7 +1919,7 @@ body:not(.dark-theme) .recording-status {
   padding: 0;
 }
 
-body:not(.dark-theme) .bottom-nav-btn {
+body:not(body.dark-theme) .bottom-nav-btn {
   color: #1d1d1f;
 }
 
@@ -1927,7 +1933,7 @@ body.dark-theme .bottom-nav-btn {
   color: #ffffff;
 }
 
-body:not(.dark-theme) .bottom-nav-btn:hover {
+body:not(body.dark-theme) .bottom-nav-btn:hover {
   background: transparent;
   color: #0f172a;
 }
@@ -1946,14 +1952,14 @@ body:not(.dark-theme) .bottom-nav-btn:hover {
   box-shadow: 0 8px 18px rgba(37, 99, 235, 0.32);
 }
 
-body:not(.dark-theme) .bottom-nav-btn-primary,
-body:not(.dark-theme) .bottom-nav-btn-primary:hover,
-body:not(.dark-theme) .bottom-nav-btn-primary.active-media,
-body:not(.dark-theme) .bottom-nav-btn-primary.active-media:hover {
+body:not(body.dark-theme) .bottom-nav-btn-primary,
+body:not(body.dark-theme) .bottom-nav-btn-primary:hover,
+body:not(body.dark-theme) .bottom-nav-btn-primary.active-media,
+body:not(body.dark-theme) .bottom-nav-btn-primary.active-media:hover {
   color: #ffffff;
 }
 
-body:not(.dark-theme) .bottom-nav-btn-primary:hover {
+body:not(body.dark-theme) .bottom-nav-btn-primary:hover {
   background: #2563eb;
   box-shadow: 0 10px 22px rgba(37, 99, 235, 0.38);
 }
@@ -1976,8 +1982,8 @@ body:not(.dark-theme) .bottom-nav-btn-primary:hover {
   box-shadow: 0 10px 22px rgba(255, 69, 58, 0.36);
 }
 
-body:not(.dark-theme) .bottom-nav-btn-primary.active-media,
-body:not(.dark-theme) .bottom-nav-btn-primary.active-media:hover {
+body:not(body.dark-theme) .bottom-nav-btn-primary.active-media,
+body:not(body.dark-theme) .bottom-nav-btn-primary.active-media:hover {
   background: #ff453a;
   color: #ffffff;
   box-shadow: 0 10px 22px rgba(255, 69, 58, 0.36);
