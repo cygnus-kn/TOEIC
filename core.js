@@ -63,6 +63,7 @@ const welcomeState = document.getElementById('welcomeState');
 const homeworkViewer = document.getElementById('homeworkViewer');
 const lessonViewer = document.getElementById('lessonViewer');
 const dateBadge = document.getElementById('dateBadge');
+const sidebar = document.getElementById('sidebar');
 const cardTrack = document.getElementById('cardTrack');
 const pagination = document.getElementById('pagination');
 const lessonDateBadge = document.getElementById('lessonDateBadge');
@@ -1768,7 +1769,7 @@ document.addEventListener('click', () => {
 });
 
 // --- Sidebar Resize & Collapse ---
-const sidebar = document.getElementById('sidebar');
+
 const resizeHandle = document.getElementById('sidebarResizeHandle');
 const collapseBtn = document.getElementById('sidebarCollapseBtn');
 
@@ -2102,6 +2103,85 @@ document.addEventListener('keydown', (e) => {
     }
   }
 });
+
+// ============================
+//  Mobile UI Auto-Hide
+// ============================
+let accumulatedScrollUp = 0;
+let accumulatedScrollDown = 0;
+let controlHideTimeout = null;
+let lastScrollY = window.scrollY;
+
+function showMobileControls() {
+  document.body.classList.remove('mobile-controls-hidden');
+  resetControlTimer();
+}
+
+function hideMobileControls() {
+  // Mobile only check (<= 1024px)
+  if (window.innerWidth <= 1024) {
+    document.body.classList.add('mobile-controls-hidden');
+  }
+}
+
+function resetControlTimer() {
+  if (controlHideTimeout) clearTimeout(controlHideTimeout);
+  // Do not even start a timer if we are on desktop
+  if (window.innerWidth > 1024) return;
+  
+  controlHideTimeout = setTimeout(() => {
+    hideMobileControls();
+  }, 3000);
+}
+
+// Global listeners for intent
+window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY || document.documentElement.scrollTop;
+  
+  if (window.innerWidth > 1024) {
+    showMobileControls();
+    return;
+  }
+  
+  if (currentScrollY < lastScrollY) {
+    // Scrolling upwards: Reveal after deliberate swipe
+    accumulatedScrollUp += (lastScrollY - currentScrollY);
+    accumulatedScrollDown = 0;
+    if (accumulatedScrollUp > 350) {
+      showMobileControls();
+    }
+  } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+    // Scrolling downwards: Hide quickly
+    accumulatedScrollDown += (currentScrollY - lastScrollY);
+    accumulatedScrollUp = 0;
+    if (accumulatedScrollDown > 30) {
+      hideMobileControls();
+    }
+  }
+  
+  lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+  resetControlTimer();
+}, { passive: true });
+
+// Tap/Touch Reveal
+document.addEventListener('touchstart', (e) => {
+  if (window.innerWidth <= 1024) {
+    const isCard = e.target.closest('#cardContainer');
+    const isNav = e.target.closest('#bottomNav');
+    const isSidebar = e.target.closest('#sidebar');
+    const isLesson = e.target.closest('#lessonContent');
+    const isBadge = e.target.closest('#dateBadge') || e.target.closest('#lessonDateBadge');
+
+    if (!isCard && !isNav && !isSidebar && !isLesson && !isBadge) {
+      showMobileControls();
+    } else {
+      resetControlTimer();
+    }
+  }
+}, { passive: true });
+
+// Initial Kick-off
+resetControlTimer();
 
 // Initialize dragging
 initNavDragging();
