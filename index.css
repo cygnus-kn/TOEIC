@@ -1887,11 +1887,7 @@ body:not(body.dark-theme) .recording-status {
   flex: none;
 }
 
-/* Add symmetrical padding when expanded */
-.bottom-playback-seeker-wrapper.expanded + .bottom-nav-controls {
-  padding-bottom: 12px;
-  height: auto;
-}
+
 
 .bottom-nav-btns {
   display: flex;
@@ -1967,7 +1963,7 @@ body:not(body.dark-theme) .bottom-nav-btn-primary:hover {
 .bottom-nav-btn-primary:hover {
   background: #2563eb;
   color: #ffffff;
-  transform: translateY(-1px) scale(1.02);
+  transform: none;
   box-shadow: 0 10px 22px rgba(37, 99, 235, 0.38);
 }
 
