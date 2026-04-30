@@ -106,22 +106,25 @@ let navOffsetX = 0;
 let navOffsetY = 0;
 
 function initNavDragging() {
-  document.addEventListener('mousedown', (e) => {
+  const startDragging = (e) => {
     if (!bottomNav || !bottomRecorderShell || e.button !== 0) return;
 
-    // Ensure we only drag on the background, not buttons or seeker
-    if (e.target.closest('button') || e.target.closest('.bottom-playback-seeker-wrapper')) return;
-    
+    // Ensure we are clicking on the nav background or the handle, not buttons or seeker
+    const isTargetNav = e.target.closest('.bottom-nav') || e.target.closest('.bottom-recorder-handle');
+    if (!isTargetNav) return;
+    if (e.target.closest('button') && !e.target.closest('.bottom-recorder-handle')) return;
+    if (e.target.closest('.bottom-playback-seeker-wrapper')) return;
+
+    const rect = bottomRecorderShell.getBoundingClientRect();
     const startX = e.clientX;
     const startY = e.clientY;
-    const rect = bottomRecorderShell.getBoundingClientRect();
     const initialX = rect.left;
     const initialY = rect.top;
 
     isDraggingNav = true;
     bottomNav.classList.add('dragging');
     
-    // Lock dimensions and switch to absolute screen coordinates
+    // Lock dimensions temporarily and switch to absolute screen coordinates
     bottomRecorderShell.style.position = 'fixed';
     bottomRecorderShell.style.margin = '0';
     bottomRecorderShell.style.width = rect.width + 'px';
@@ -132,7 +135,7 @@ function initNavDragging() {
     bottomRecorderShell.style.right = 'auto';
     bottomRecorderShell.style.transform = 'none';
 
-    const onMouseMove = (moveEvent) => {
+    const onMove = (moveEvent) => {
       if (!isDraggingNav) return;
       const dx = moveEvent.clientX - startX;
       const dy = moveEvent.clientY - startY;
@@ -147,16 +150,23 @@ function initNavDragging() {
       bottomRecorderShell.style.top = newY + 'px';
     };
 
-    const onMouseUp = () => {
+    const onEnd = () => {
       isDraggingNav = false;
       bottomNav.classList.remove('dragging');
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
+      
+      // Unlock dimensions so it can grow/shrink (e.g. when seeker expands)
+      bottomRecorderShell.style.width = '';
+      bottomRecorderShell.style.height = '';
+      
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onEnd);
     };
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-  });
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onEnd);
+  };
+
+  document.addEventListener('mousedown', startDragging);
 }
 
 
