@@ -71,6 +71,7 @@ const lessonContent = document.getElementById('lessonContent');
 const cardContainer = document.getElementById('cardContainer');
 const bottomRecorderShell = document.getElementById('bottomRecorderShell');
 const bottomNav = document.getElementById('bottomNav');
+const bottomRecorderHandle = document.getElementById('bottomRecorderHandle');
 const bottomRedoBtn = document.getElementById('bottomRedoBtn');
 const bottomRecordBtn = document.getElementById('bottomRecordBtn');
 const bottomPlaybackBtn = document.getElementById('bottomPlaybackBtn');
@@ -105,7 +106,57 @@ let navOffsetX = 0;
 let navOffsetY = 0;
 
 function initNavDragging() {
-  // Logic moved to inline script in index.html to bypass cache
+  document.addEventListener('mousedown', (e) => {
+    if (!bottomNav || !bottomRecorderShell || e.button !== 0) return;
+
+    // Ensure we only drag on the background, not buttons or seeker
+    if (e.target.closest('button') || e.target.closest('.bottom-playback-seeker-wrapper')) return;
+    
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const rect = bottomRecorderShell.getBoundingClientRect();
+    const initialX = rect.left;
+    const initialY = rect.top;
+
+    isDraggingNav = true;
+    bottomNav.classList.add('dragging');
+    
+    // Lock dimensions and switch to absolute screen coordinates
+    bottomRecorderShell.style.position = 'fixed';
+    bottomRecorderShell.style.margin = '0';
+    bottomRecorderShell.style.width = rect.width + 'px';
+    bottomRecorderShell.style.height = rect.height + 'px';
+    bottomRecorderShell.style.left = initialX + 'px';
+    bottomRecorderShell.style.top = initialY + 'px';
+    bottomRecorderShell.style.bottom = 'auto';
+    bottomRecorderShell.style.right = 'auto';
+    bottomRecorderShell.style.transform = 'none';
+
+    const onMouseMove = (moveEvent) => {
+      if (!isDraggingNav) return;
+      const dx = moveEvent.clientX - startX;
+      const dy = moveEvent.clientY - startY;
+      let newX = initialX + dx;
+      let newY = initialY + dy;
+      
+      // Screen boundary constraints (10px padding)
+      newX = Math.max(10, Math.min(window.innerWidth - rect.width - 10, newX));
+      newY = Math.max(10, Math.min(window.innerHeight - rect.height - 10, newY));
+      
+      bottomRecorderShell.style.left = newX + 'px';
+      bottomRecorderShell.style.top = newY + 'px';
+    };
+
+    const onMouseUp = () => {
+      isDraggingNav = false;
+      bottomNav.classList.remove('dragging');
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
 }
 
 
@@ -1883,13 +1934,109 @@ renderSidebar();
 restoreAppState();
 updateBottomNavState();
 
-// Any click on the page should trigger image zoom modal if it's an image
+// ============================
+//  Mobile UI Auto-Hide
+// ============================
+let lastScrollY = window.scrollY;
+let accumulatedScrollUp = 0;
+let accumulatedScrollDown = 0;
+let controlHideTimeout = null;
+
+function showMobileControls() {
+  document.body.classList.remove('mobile-controls-hidden');
+  resetControlTimer();
+}
+
+function hideMobileControls() {
+  if (window.innerWidth <= 1024 && sidebar && sidebar.classList.contains('collapsed')) {
+    document.body.classList.add('mobile-controls-hidden');
+  }
+  accumulatedScrollUp = 0;
+  accumulatedScrollDown = 0;
+}
+
+function resetControlTimer() {
+  if (controlHideTimeout) clearTimeout(controlHideTimeout);
+  if (window.innerWidth > 1024) return;
+
+  controlHideTimeout = setTimeout(() => {
+    hideMobileControls();
+  }, 3000);
+}
+
+// Listen to scroll to detect intent
+window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY || document.documentElement.scrollTop;
+
+  if (window.innerWidth > 1024) {
+    showMobileControls();
+    return;
+  }
+
+  const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+
+  // Auto-show ONLY if we natively pull down into overscroll (negative scrollY)
+  // OR if we hit the absolute top (0) on a legitimately tall scrollable page.
+  // This explicitly ignores bottom-bounces landing on 0 for short task-cards.
+  if (currentScrollY < 0 || (currentScrollY <= 0 && maxScroll > 50)) {
+    showMobileControls();
+    accumulatedScrollUp = 0;
+    accumulatedScrollDown = 0;
+  } else if (currentScrollY < lastScrollY) {
+    // Scrolling upwards
+    accumulatedScrollUp += (lastScrollY - currentScrollY);
+    accumulatedScrollDown = 0;
+    if (accumulatedScrollUp > 300) {
+      showMobileControls();
+    }
+  } else if (currentScrollY > lastScrollY) {
+    // Scrolling downwards
+    accumulatedScrollDown += (currentScrollY - lastScrollY);
+    accumulatedScrollUp = 0;
+    if (accumulatedScrollDown > 30) {
+      hideMobileControls();
+    }
+  }
+
+  lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+  resetControlTimer();
+}, { passive: true });
+
+// Any click on the page should immediately reveal the UI if it's currently hidden
 document.body.addEventListener('click', (e) => {
+  if (document.body.classList.contains('mobile-controls-hidden')) {
+    // Exclude timer interactions from summoning the UI while a test is running.
+    if (!e.target.closest('.timer-display')) {
+      showMobileControls();
+    }
+  }
+
+  // Reset the hide timer when the top nav controls are tapped.
+  if (e.target.closest('.sidebar-toggle-btn') || e.target.closest('.theme-toggle-wrapper')) {
+    resetControlTimer();
+  }
+
   // Intercept any image clicks in the main content area for the zoom modal
   if (e.target.tagName === 'IMG' && e.target.closest('.main') && !e.target.closest('#imageModal')) {
     openImageModal(e.target.src);
   }
 }, { passive: true });
+
+document.body.addEventListener('touchstart', (e) => {
+  if (e.target.closest('.sidebar-toggle-btn') || e.target.closest('.theme-toggle-wrapper') || e.target.closest('.bottom-recorder-shell') || e.target.closest('.bottom-recorder-handle')) {
+    resetControlTimer();
+  }
+}, { passive: true });
+
+if (bottomRecorderHandle) {
+  bottomRecorderHandle.addEventListener('click', () => {
+    showMobileControls();
+  });
+
+  bottomRecorderHandle.addEventListener('touchstart', () => {
+    showMobileControls();
+  }, { passive: true });
+}
 
 if (bottomRecordBtn) {
   bottomRecordBtn.addEventListener('click', async () => {
@@ -1900,6 +2047,7 @@ if (bottomRecordBtn) {
     } else {
       await startRecording();
     }
+    resetControlTimer();
   });
 }
 
@@ -2057,11 +2205,6 @@ document.addEventListener('keydown', (e) => {
     }
   }
 });
-
-// Mobile UI Auto-Hide logic moved to inline script in index.html to bypass cache
-function showMobileControls() {}
-function hideMobileControls() {}
-function resetControlTimer() {}
 
 // Initialize dragging
 initNavDragging();
