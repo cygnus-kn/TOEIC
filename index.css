@@ -1968,6 +1968,23 @@ body:not(body.dark-theme) .bottom-nav-btn:hover {
   color: #0f172a;
 }
 
+/* Destructive Action (Delete) */
+#bottomDeleteBtn {
+  color: rgba(255, 59, 48, 0.4);
+}
+
+.bottom-nav-btn:not(:disabled)#bottomDeleteBtn {
+  color: #ff3b30;
+}
+
+body.dark-theme #bottomDeleteBtn {
+  color: rgba(255, 69, 58, 0.3);
+}
+
+body.dark-theme .bottom-nav-btn:not(:disabled)#bottomDeleteBtn {
+  color: #ff453a;
+}
+
 .bottom-nav-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
