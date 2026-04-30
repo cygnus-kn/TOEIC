@@ -74,7 +74,7 @@ const bottomNav = document.getElementById('bottomNav');
 const bottomRecorderHandle = document.getElementById('bottomRecorderHandle');
 const bottomRedoBtn = document.getElementById('bottomRedoBtn');
 const bottomRecordBtn = document.getElementById('bottomRecordBtn');
-const bottomPlaybackBtn = document.getElementById('bottomPlaybackBtn');
+const bottomDeleteBtn = document.getElementById('bottomDeleteBtn');
 const bottomSaveBtn = document.getElementById('bottomSaveBtn');
 const recordingStatus = document.getElementById('recordingStatus');
 const recordingStatusText = document.getElementById('recordingStatusText');
@@ -259,12 +259,7 @@ function getCurrentRecording() {
   return key ? recordings[key] || null : null;
 }
 
-function sanitizeFilenamePart(value) {
-  return String(value || '')
-    .trim()
-    .replace(/[^\w.-]+/g, '-')
-    .replace(/^-+|-+$/g, '') || 'recording';
-}
+
 
 function getRecordingExtension(mimeType) {
   if (mimeType.includes('mp4')) return 'm4a';
@@ -350,10 +345,10 @@ function getSupportedRecordingMimeType() {
   return candidates.find(type => MediaRecorder.isTypeSupported(type)) || '';
 }
 
-function updatePlaybackButton(isPlaying = false) {
-  if (!bottomPlaybackBtn) return;
-  bottomPlaybackBtn.setAttribute('aria-label', 'Delete latest recording');
-  bottomPlaybackBtn.setAttribute('title', 'Delete latest recording');
+function updateDeleteButton() {
+  if (!bottomDeleteBtn) return;
+  bottomDeleteBtn.setAttribute('aria-label', 'Delete latest recording');
+  bottomDeleteBtn.setAttribute('title', 'Delete latest recording');
 }
 
 function updateRecordButtonIcon(mode = 'record') {
@@ -390,7 +385,7 @@ function updateBottomNavState() {
 
   bottomRecordBtn.disabled = !canRecord;
   bottomRedoBtn.disabled = !hasRecording || mediaRecorder !== null;
-  bottomPlaybackBtn.disabled = !hasRecording || mediaRecorder !== null;
+  bottomDeleteBtn.disabled = !hasRecording || mediaRecorder !== null;
   bottomSaveBtn.disabled = !hasRecording || mediaRecorder !== null;
 
   const isRecording = mediaRecorder?.state === 'recording';
@@ -425,7 +420,7 @@ function updateBottomNavState() {
     setRecordingStatus('00:00', { visible: true, recording: false });
   }
 
-  updatePlaybackButton(isPlaying);
+  updateDeleteButton();
 
   // Seeker management
   if (bottomPlaybackSeeker && bottomSeekerProgress && bottomSeekerKnob) {
@@ -624,16 +619,19 @@ function saveCurrentRecording() {
   if (!recording || mediaRecorder?.state === 'recording') return;
 
   const activeDate = activeType === 'homework' ? dateBadge.textContent : lessonDateBadge.textContent;
-  const part = currentParts[currentPart] || {};
-  const questionLabel = part.questionLabel || `Question ${currentPart + 1}`;
-  const extension = getRecordingExtension(recording.mimeType || 'audio/webm');
   
-  // Pre-fill filename with a smart default
-  const defaultName = [
-    sanitizeFilenamePart(activeClass),
-    sanitizeFilenamePart(activeDate),
-    sanitizeFilenamePart(questionLabel)
-  ].join('-');
+  // --- 1. Extract Day Number (e.g. "[HW Day 05]" -> "Day-05") ---
+  let dayStamp = 'Day-00';
+  const dayMatch = activeDate.match(/Day\s*(\d+)/i);
+  if (dayMatch) {
+    dayStamp = `Day-${dayMatch[1].padStart(2, '0')}`;
+  }
+
+  // --- 2. Determine Question Number (By Card Order) ---
+  const qNumber = currentPart + 1;
+  const defaultName = `${dayStamp}-Q${qNumber}`;
+  
+  const extension = getRecordingExtension(recording.mimeType || 'audio/webm');
   
   if (recordingFileName && recordingFileExtension && saveModal) {
     recordingFileName.value = defaultName;
@@ -2084,8 +2082,8 @@ if (bottomRedoBtn) {
   });
 }
 
-if (bottomPlaybackBtn) {
-  bottomPlaybackBtn.addEventListener('click', () => {
+if (bottomDeleteBtn) {
+  bottomDeleteBtn.addEventListener('click', () => {
     if (!getCurrentRecording() || mediaRecorder !== null) return;
     if (!window.confirm('Delete the current recording?')) return;
 
