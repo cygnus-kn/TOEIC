@@ -620,9 +620,9 @@ function saveCurrentRecording() {
 
   const activeDate = activeType === 'homework' ? dateBadge.textContent : lessonDateBadge.textContent;
   
-  // --- 1. Extract Day Number (e.g. "[HW Day 05]" -> "Day-05") ---
+  // --- 1. Extract Day Number (e.g. "[HW-05] 03/31" -> "Day-05") ---
   let dayStamp = 'Day-00';
-  const dayMatch = activeDate.match(/Day\s*(\d+)/i);
+  const dayMatch = activeDate.match(/(?:HW|Lesson)-?(\d+)/i);
   if (dayMatch) {
     dayStamp = `Day-${dayMatch[1].padStart(2, '0')}`;
   }
@@ -1872,7 +1872,7 @@ function renderSidebar() {
 
     if (classData.homework) {
       for (const hw of classData.homework) {
-        const hwLabel = hw.date.split(']')[0].replace('[', '') + ' ' + hw.date.split(']')[1].trim();
+        const hwLabel = hw.date;
         html += `
           <div class="date-entry" id="entry-${className}-homework-${hw.date}" onclick="selectHomework('${className}', '${hw.date}')">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-tertiary);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line></svg>
@@ -1883,7 +1883,7 @@ function renderSidebar() {
 
     if (classData.lesson) {
       for (const lesson of classData.lesson) {
-        const lessonLabel = lesson.date.split(']')[0].replace('[', '') + ' ' + lesson.date.split(']')[1].trim();
+        const lessonLabel = lesson.date;
         html += `
           <div class="date-entry" id="entry-${className}-lesson-${lesson.date}" onclick="selectLesson('${className}', '${lesson.date}')">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-tertiary);"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>

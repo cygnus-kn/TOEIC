@@ -1,7 +1,7 @@
 {
   "homework": [
     {
-      "date": "[HW Day 05] 03/31",
+      "date": "[HW-05] 03/31",
       "parts": [
         {
           "type": "read-aloud",
@@ -87,7 +87,7 @@
       ]
     },
     {
-      "date": "[HW Day 04] 04/13",
+      "date": "[HW-04] 04/13",
       "parts": [
         {
           "type": "read-aloud",
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "date": "[HW Day 03] 04/12",
+      "date": "[HW-03] 04/12",
       "parts": [
         {
           "type": "read-aloud",
@@ -262,7 +262,7 @@
   ],
   "lesson": [
     {
-      "date": "[Lesson Day 02] 04/10",
+      "date": "[Lesson-02] 04/10",
       "vocab": [
         {
           "word": "revenue",
@@ -297,7 +297,7 @@
       ]
     },
     {
-      "date": "[Lesson Day 01] 04/07",
+      "date": "[Lesson-01] 04/07",
       "vocab": [
         {
           "word": "hesitate",

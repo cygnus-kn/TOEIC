@@ -1,7 +1,7 @@
 {
   "homework": [
     {
-      "date": "[HW Day 03] 04/13",
+      "date": "[HW-03] 04/13",
       "parts": [
         {
           "type": "sentence-picture",
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "date": "[HW Day 01] 04/10",
+      "date": "[HW-01] 04/10",
       "parts": [
         {
           "type": "email-response",
@@ -111,7 +111,7 @@
   ],
   "lesson": [
     {
-      "date": "[Lesson Day 01] 04/09",
+      "date": "[Lesson-01] 04/09",
       "vocab": [
         { "word": "dietary", "definition": "(adj.) relating to diet or food", "example": "Please inform us of any dietary restrictions." },
         { "word": "complicated", "definition": "(adj.) consisting of many connected parts; complex", "example": "The instructions were too complicated to follow." },

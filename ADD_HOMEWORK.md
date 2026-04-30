@@ -16,7 +16,7 @@ Open `data.js`. Find the class entry by its ID inside `CLASSES_DATA` and insert 
 const CLASSES_DATA = {
   CLASS_ID: {
     homework: [
-      { date: "[HW Day XX] MM/DD" }, // ← INSERT NEW POINTER HERE (newest first)
+      { date: "[HW-XX] DD/MM" }, // ← INSERT NEW POINTER HERE (newest first)
       // ... older entries
     ],
     lesson: [ ... ]
@@ -34,7 +34,7 @@ Open the corresponding JSON file in the `data/` folder (e.g., `data/S129.json`).
 {
   "homework": [
     {
-      "date": "[HW Day XX] MM/DD",
+      "date": "[HW-XX] DD/MM",
       "parts": [
         // ← INSERT CONTENT PARTS HERE
       ]
@@ -49,10 +49,10 @@ Open the corresponding JSON file in the `data/` folder (e.g., `data/S129.json`).
 ## 2. Date Format
 
 ```js
-date: "[HW Day XX] MM/DD"
+date: "[HW-XX] DD/MM"
 ```
 
-Example: `"[HW Day 05] 04/15"`
+Example: `"[HW-05] 15/04"`
 
 ---
 
@@ -213,7 +213,7 @@ A standard speaking session typically follows this order, but can be customized 
 
 ```js
 {
-  date: "[HW Day XX] MM/DD",
+  date: "[HW-XX] DD/MM",
   parts: [
     {
       type: "read-aloud",
@@ -435,7 +435,7 @@ A standard writing session typically follows this order (individual parts or mix
 
 ```js
 {
-  date: "[HW Day XX] MM/DD",
+  date: "[HW-XX] DD/MM",
   parts: [
     {
       type: "sentence-picture",
