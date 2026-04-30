@@ -1,6 +1,6 @@
 # TOEIC Homework Platform — Progress Tracker
 
-> Last updated: 2026-04-28
+> Last updated: 2026-04-30
 
 ---
 
@@ -100,6 +100,8 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 - [x] **Aesthetic Overhaul**: Revamped light mode with a "Clean Glass" look, using pure white backdrops and accent blue tints. Optimized dark mode icon contrast for high legibility.
 - [x] **Recording Stability**: Resolved the "Ghost Timer" bug by ensuring all background timeouts are explicitly cleared during navigation and re-recording.
 - [x] **Permanent Mobile Nav**: Separated the recording pill from the auto-hide system on mobile to ensure it remains visible at all times during active sessions.
+- [x] **Universal Alignment System**: Implemented a CSS-variable-driven "Horizon Line" at 67px, ensuring toggle buttons and switches are perfectly aligned on all screen sizes.
+- [x] **Mobile Optimization**: Reduced mobile sidebar width to 220px and moved drag-and-drop logic into `core.js` for better codebase maintenance.
 
 ---
 
@@ -254,8 +256,8 @@ Enable the user to click and drag the microphone navigation bar to any position 
 | Apr 27 | **Recording & Navigation Overhaul**: Integrated immediate "Redo" functionality and forced a permanent mobile nav bar for active recording sessions. Prioritized `.mp4` format for iOS devices. Implemented a 2-minute recording limit safeguard. Added a premium "Save Rename Modal" for customized file downloads. Refined CSS transitions for the bottom nav pill and timer reveal. |
 | Apr 28 | **Unified Media Player & UI Polish**: Redesigned the recorder into a "Music Player" squircle with a seeker bar that expands when a recording is ready. Added **desktop dragging** support for the nav bar. **Aesthetic Overhaul**: Implemented a "Clean Glass" light mode with accent tints and high-contrast charcoal icons. **Stability**: Fixed the "Ghost Timer" bug that caused recordings to stop prematurely at 8s/24s. Adjusted HW Day 18 Question 9 timestamp for better audio alignment. |
 | Apr 28 | **Recorder Interaction Refinement**: Converted the center recorder into a true stateful control (record, stop, play, pause), repurposed the side playback button into delete-with-confirmation, relabeled the left action to `Record again`, added a first-use redo warning stored in `localStorage`, and rebalanced icon/timer weights so side controls no longer overpower the primary action. |
-| Apr 29 | ### 👻 The Ghost Cache Battles (Persistent Issue) <br> 1. **The Navigation Dragging Incident (Apr 28):** Resolved a critical bug where the bottom navigation bar remained undraggable due to aggressive browser caching. Implemented **inline drag-and-drop logic** in `index.html` and used an **ID-swap maneuver** to bypass stale scripts. <br> 2. **The Auto-Hide Disappearance (Apr 30):** Mobile auto-hide logic for the sidebar toggle was lost during a code migration. Restoration failed multiple times because the browser refused to acknowledge updates to `core.js`. **Resolution:** Used the "Inline Script Maneuver" to prove the logic worked, refined the "Empty Surface Only" touch rules, and then successfully migrated back to `core.js`. |
 | Apr 29 | **Mobile UI Finalization**: Restored and refined the hybrid mobile auto-hide logic. Implemented the strict **"Empty Surface Only"** touch-to-reveal rule, ensuring that tapping background areas reveals the UI while swiping cards or reading text does not. Fought the **"Ghost Cache"** once more by using inline scripts for verification before moving back to `core.js`. Consolidated sidebar toggle definitions to prevent script crashes. |
+| Apr 30 | **Refinement & Robustness**: Migrated the bottom navigation drag logic from `index.html` into `core.js` and resolved local development connectivity issues for mobile testing. **Universal Alignment**: Replaced hardcoded vertical positions with a mathematical CSS variable system (`--header-center-y`) that guarantees perfect icon alignment on both platforms. Reduced mobile sidebar width to 220px for improved viewport density. |
 
 ---
 
