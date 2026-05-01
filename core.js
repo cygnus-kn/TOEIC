@@ -26,6 +26,12 @@ let audioPlayers = {}; // { partIndex: YT playerInstance }
 let youtubePlayerPromises = {}; // { partIndex: Promise<YT.Player> }
 let localAudioPlayers = {}; // { partIndex: HTMLAudioElement }
 let audioPoller = null;
+let recognition = null; // Still kept for compatibility check
+let deepgramSocket = null;
+let dgStreamRecorder = null;
+let isVoiceNoteEnabled = false;
+let isRecognitionActive = false;
+const DEEPGRAM_KEY = '2f69e8e6cb6425de2b5b118670d4da8bf95c68c8';
 
 // Response times per question type (in seconds)
 const RESPONSE_TIMES = {
@@ -464,6 +470,71 @@ function updateBottomNavState() {
   }
 }
 
+function startVoiceTranscription() {
+  if (!isVoiceNoteEnabled || isRecognitionActive || !mediaStream) return;
+
+  const url = 'wss://api.deepgram.com/v1/listen?model=nova-2&smart_format=true&interim_results=true&filler_words=true';
+  deepgramSocket = new WebSocket(url, ['token', DEEPGRAM_KEY]);
+
+  deepgramSocket.onopen = () => {
+    isRecognitionActive = true;
+    const toggleVoiceBtn = document.getElementById('toggleVoiceNote');
+    if (toggleVoiceBtn) toggleVoiceBtn.classList.add('listening');
+
+    dgStreamRecorder = new MediaRecorder(mediaStream);
+    dgStreamRecorder.addEventListener('dataavailable', (event) => {
+      if (event.data.size > 0 && deepgramSocket.readyState === 1) {
+        deepgramSocket.send(event.data);
+      }
+    });
+    dgStreamRecorder.start(250);
+  };
+
+  let permanentTextBeforeResult = notepadTextarea.value;
+
+  deepgramSocket.onmessage = (message) => {
+    const received = JSON.parse(message.data);
+    const transcript = received.channel.alternatives[0].transcript;
+    
+    if (!transcript) return;
+
+    if (received.is_final) {
+      const space = permanentTextBeforeResult && !permanentTextBeforeResult.endsWith(' ') ? ' ' : '';
+      permanentTextBeforeResult += space + transcript.trim();
+      localStorage.setItem('toeicNotepadContent', permanentTextBeforeResult);
+    }
+
+    const spaceForInterim = permanentTextBeforeResult && !permanentTextBeforeResult.endsWith(' ') && !received.is_final ? ' ' : '';
+    notepadTextarea.value = permanentTextBeforeResult + (received.is_final ? '' : spaceForInterim + transcript);
+    
+    notepadTextarea.scrollTop = notepadTextarea.scrollHeight;
+    if (typeof updateWordCount === 'function') updateWordCount();
+  };
+
+  deepgramSocket.onclose = () => {
+    isRecognitionActive = false;
+    const toggleVoiceBtn = document.getElementById('toggleVoiceNote');
+    if (toggleVoiceBtn) toggleVoiceBtn.classList.remove('listening');
+  };
+
+  deepgramSocket.onerror = (err) => {
+    console.error('Deepgram WebSocket error:', err);
+  };
+}
+
+function stopVoiceTranscription() {
+  if (dgStreamRecorder && dgStreamRecorder.state !== 'inactive') {
+    dgStreamRecorder.stop();
+  }
+  if (deepgramSocket && deepgramSocket.readyState === 1) {
+    deepgramSocket.send(JSON.stringify({ type: 'CloseStream' }));
+    deepgramSocket.close();
+  }
+  isRecognitionActive = false;
+  const toggleVoiceBtn = document.getElementById('toggleVoiceNote');
+  if (toggleVoiceBtn) toggleVoiceBtn.classList.remove('listening');
+}
+
 async function startRecording() {
   if (!currentPartSupportsRecording() || mediaRecorder?.state === 'recording') return;
 
@@ -478,6 +549,16 @@ async function startRecording() {
     if (key && recordings[key]) {
       if (recordings[key].url) URL.revokeObjectURL(recordings[key].url);
       delete recordings[key];
+    }
+
+    if (isVoiceNoteEnabled) {
+      const textarea = document.getElementById('notepadTextarea');
+      if (textarea) {
+        textarea.value = '';
+        localStorage.setItem('toeicNotepadContent', '');
+        const countEl = document.getElementById('notepadWordCount');
+        if (countEl) countEl.innerHTML = '<span class="notepad-count-num">0</span>';
+      }
     }
 
     if (recordingLimitTimeout) {
@@ -545,6 +626,8 @@ async function startRecording() {
         recordingLimitTimeout = null;
       }
 
+      stopVoiceTranscription();
+
       const previous = recordingTaskKey ? recordings[recordingTaskKey] : null;
       if (previous?.url) URL.revokeObjectURL(previous.url);
 
@@ -568,6 +651,7 @@ async function startRecording() {
     }, { once: true });
 
     localRecorder.start(1000);
+    startVoiceTranscription();
     updateBottomNavState();
 
     recordingTicker = setInterval(() => {
@@ -2351,7 +2435,43 @@ function initNotepad() {
     });
   }
 
-  // 5. Copy Content
+  // 5. Voice Transcription Initialization
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const toggleVoiceBtn = document.getElementById('toggleVoiceNote');
+
+  if (toggleVoiceBtn) {
+    const showNotepadToast = (message) => {
+      const toast = document.getElementById('notepadStatusToast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      if (window.notepadToastTimeout) clearTimeout(window.notepadToastTimeout);
+      window.notepadToastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    };
+
+    toggleVoiceBtn.addEventListener('click', () => {
+      isVoiceNoteEnabled = !isVoiceNoteEnabled;
+      toggleVoiceBtn.classList.toggle('active', isVoiceNoteEnabled);
+      toggleVoiceBtn.title = isVoiceNoteEnabled ? "Voice-to-Text Enabled" : "Enable Voice-to-Text";
+      
+      showNotepadToast(isVoiceNoteEnabled ? "Voice-to-text enabled" : "Voice-to-text disabled");
+
+      const recordingActive = mediaRecorder?.state === 'recording';
+      if (isVoiceNoteEnabled && recordingActive && !isRecognitionActive) {
+         startVoiceTranscription();
+      } else if (!isVoiceNoteEnabled && isRecognitionActive) {
+         stopVoiceTranscription();
+      }
+    });
+
+    // Deepgram handles transcription via WebSockets
+
+
+  }
+
+  // 6. Copy Content
   const copyNotepadBtn = document.getElementById('copyNotepad');
   if (copyNotepadBtn) {
     copyNotepadBtn.addEventListener('click', async () => {

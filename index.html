@@ -207,14 +207,24 @@
       </div>
     </div>
     <textarea class="notepad-textarea" id="notepadTextarea" placeholder="Jot down your ideas here..."></textarea>
+    <div id="notepadStatusToast" class="notepad-status-toast"></div>
     <div class="notepad-footer">
       <span id="notepadWordCount">0</span>
-      <button class="notepad-footer-btn" id="copyNotepad" title="Copy all text">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-        </svg>
-      </button>
+      <div class="notepad-footer-actions">
+        <button class="notepad-footer-btn" id="toggleVoiceNote" title="Voice-to-Text">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+          </svg>
+        </button>
+        <button class="notepad-footer-btn" id="copyNotepad" title="Copy all text">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
     </div>
     <div class="notepad-edge n" data-edge="n"></div>
     <div class="notepad-edge e" data-edge="e"></div>
