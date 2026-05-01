@@ -1,6 +1,6 @@
 # TOEIC Homework Platform — Progress Tracker
 
-> Last updated: 2026-05-01
+> Last updated: 2026-05-02
 
 ---
 
@@ -110,6 +110,9 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 - [x] **Permanent Mobile Nav**: Separated the recording pill from the auto-hide system on mobile to ensure it remains visible at all times during active sessions.
 - [x] **Universal Alignment System**: Implemented a CSS-variable-driven "Horizon Line" at 67px, ensuring toggle buttons and switches are perfectly aligned on all screen sizes.
 - [x] **Mobile Optimization**: Reduced mobile sidebar width to 220px and moved drag-and-drop logic into `core.js` for better codebase maintenance.
+- [x] **Architectural Modularization**: Decoupled the monolithic 3000-line `core.js` into five dedicated, domain-specific modules (`sidebar.js`, `partCard.js`, `bottomNav.js`, `notepad.js`) to improve maintainability and performance.
+- [x] **Codebase Cleanup**: Purged over 2000 lines of redundant/dead code and stale section headers. Enforced a consistent section-header standard across all JS files.
+- [x] **Logic Isolation**: Moved card rendering and lesson logic into `partCard.js`, navigation UI into `sidebar.js`, and recorder orchestration into `bottomNav.js`, leaving `core.js` as a lean state-and-recording engine.
 
 ---
 
@@ -265,6 +268,7 @@ Enable the user to click and drag the microphone navigation bar to any position 
 | May 01 | **Drafting Area Final Polish**: Implemented a professional **Theater Mode** with a dimming backdrop and blur effect. Standardized the platform's **z-index hierarchy** (Notepad: 2100, Backdrop: 2050, Nav: 2200) to eliminate transition flickering. Added intuitive exit paths including **Esc** key support and auto-exit on minimize. Integrated **Deepgram Nova-2** for pro-level, cross-browser voice transcription and refined all hover/active button states for a minimalist, premium look. |
 | May 01 | **Maintenance Cleanup**: Synced `ADD_HOMEWORK.md` with the live `audioUrls` local-audio schema, updated `SW Class` homework counts, removed the unused notification mount point, deleted unused timer progress-variable writes, and removed leftover focus-mode console logs. |
 | May 01 | **Notepad AI Assist**: Restored the AI notepad feature with contextual draft scanning, smooth prompt animation, elevated compact input styling, two-sparkle AI footer icon, and polished send-button states. Replaced all hardcoded template/mock responses with a live **Gemini Cloud API** integration (`gemini-flash-latest`). Removed `buildAiReply`, `buildFeedbackReply`, and all static heuristic logic. |
+| May 02 | **Major Architectural Refactor**: Successfully modularized the platform by extracting concerns from `core.js` into dedicated modules: `sidebar.js` (nav UI/resize), `partCard.js` (rendering/timers/lessons), `bottomNav.js` (recorder controls/dragging), and `notepad.js` (AI/Notepad). Cleaned up stale logic, unused variables, and redundant blank lines. `core.js` reduced from ~2900 to ~750 lines, now acting as a lean central orchestrator. |
 
 ---
 
