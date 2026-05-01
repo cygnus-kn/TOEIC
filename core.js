@@ -123,7 +123,7 @@ function initNavDragging() {
 
     isDraggingNav = true;
     bottomNav.classList.add('dragging');
-    
+
     // Lock dimensions temporarily and switch to absolute screen coordinates
     bottomRecorderShell.style.position = 'fixed';
     bottomRecorderShell.style.margin = '0';
@@ -141,11 +141,11 @@ function initNavDragging() {
       const dy = moveEvent.clientY - startY;
       let newX = initialX + dx;
       let newY = initialY + dy;
-      
+
       // Screen boundary constraints (10px padding)
       newX = Math.max(10, Math.min(window.innerWidth - rect.width - 10, newX));
       newY = Math.max(10, Math.min(window.innerHeight - rect.height - 10, newY));
-      
+
       bottomRecorderShell.style.left = newX + 'px';
       bottomRecorderShell.style.top = newY + 'px';
     };
@@ -153,11 +153,11 @@ function initNavDragging() {
     const onEnd = () => {
       isDraggingNav = false;
       bottomNav.classList.remove('dragging');
-      
+
       // Unlock dimensions so it can grow/shrink (e.g. when seeker expands)
       bottomRecorderShell.style.width = '';
       bottomRecorderShell.style.height = '';
-      
+
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onEnd);
     };
@@ -386,14 +386,14 @@ function updateBottomNavState() {
   if (activeType === 'homework' && currentPartData) {
     const category = TYPE_LABELS[currentPartData.type];
     const isWritingOpinion = currentPartData.type === 'opinion' && currentPartData.label === 'Write an Opinion Essay';
-    
+
     if (category === 'TOEIC Speaking' && !isWritingOpinion) {
       isSpeakingTask = true;
     }
   }
 
   const shouldHide = !isSpeakingTask;
-  
+
   bottomRecorderShell.classList.toggle('hidden-nav', shouldHide);
   if (bottomRecorderHandle) bottomRecorderHandle.classList.toggle('hidden-nav', shouldHide);
 
@@ -409,7 +409,7 @@ function updateBottomNavState() {
   const isRecording = mediaRecorder?.state === 'recording';
   const isPlaying = currentRecordingAudio && !currentRecordingAudio.paused;
   const recordButtonMode = isRecording ? 'recording' : isPlaying ? 'pause' : hasRecording ? 'playback' : 'record';
-  
+
   bottomRecordBtn.classList.toggle('recording', !!isRecording);
   bottomRecordBtn.classList.toggle('active-media', !!isRecording);
   updateRecordButtonIcon(recordButtonMode);
@@ -425,8 +425,8 @@ function updateBottomNavState() {
     const durationMs = recording ? recording.durationMs : 0;
     const currentMs = currentRecordingAudio.currentTime * 1000;
     const remainingMs = Math.max(0, durationMs - currentMs);
-    const isFinished = currentRecordingAudio.currentTime >= (currentRecordingAudio.duration || (durationMs/1000)) - 0.05;
-    
+    const isFinished = currentRecordingAudio.currentTime >= (currentRecordingAudio.duration || (durationMs / 1000)) - 0.05;
+
     if (isFinished) {
       setRecordingStatus('00:00', { visible: true, playback: true, pulsing: false });
     } else {
@@ -444,7 +444,7 @@ function updateBottomNavState() {
   if (bottomPlaybackSeeker && bottomSeekerProgress && bottomSeekerKnob) {
     const isPlaying = currentRecordingAudio && !currentRecordingAudio.paused;
     bottomPlaybackSeeker.classList.toggle('expanded', hasRecording);
-    
+
     const recording = getCurrentRecording();
     if (isPlaying && recording && recording.durationMs && !isSeekingPlayback) {
       const duration = recording.durationMs / 1000;
@@ -452,11 +452,11 @@ function updateBottomNavState() {
       bottomSeekerProgress.style.width = `${progress}%`;
       bottomSeekerKnob.style.left = `${progress}%`;
     } else if (!isPlaying && currentRecordingAudio && recording && recording.durationMs && !isSeekingPlayback) {
-        // Keep progress visible if paused
-        const duration = recording.durationMs / 1000;
-        const progress = (currentRecordingAudio.currentTime / duration) * 100;
-        bottomSeekerProgress.style.width = `${progress}%`;
-        bottomSeekerKnob.style.left = `${progress}%`;
+      // Keep progress visible if paused
+      const duration = recording.durationMs / 1000;
+      const progress = (currentRecordingAudio.currentTime / duration) * 100;
+      bottomSeekerProgress.style.width = `${progress}%`;
+      bottomSeekerKnob.style.left = `${progress}%`;
     } else if (!hasRecording) {
       bottomSeekerProgress.style.width = '0%';
       bottomSeekerKnob.style.left = '0%';
@@ -466,7 +466,7 @@ function updateBottomNavState() {
 
 async function startRecording() {
   if (!currentPartSupportsRecording() || mediaRecorder?.state === 'recording') return;
-  
+
   // Ensure any previous playback is stopped before we start a new session
   stopPlaybackPreview();
 
@@ -479,7 +479,7 @@ async function startRecording() {
       if (recordings[key].url) URL.revokeObjectURL(recordings[key].url);
       delete recordings[key];
     }
-    
+
     if (recordingLimitTimeout) {
       clearTimeout(recordingLimitTimeout);
       recordingLimitTimeout = null;
@@ -637,7 +637,7 @@ function saveCurrentRecording() {
   if (!recording || mediaRecorder?.state === 'recording') return;
 
   const activeDate = activeType === 'homework' ? dateBadge.textContent : lessonDateBadge.textContent;
-  
+
   // --- 1. Extract Day Number (e.g. "[HW-05] 03/31" -> "Day-05") ---
   let dayStamp = 'Day-00';
   const dayMatch = activeDate.match(/(?:HW|Lesson)-?(\d+)/i);
@@ -648,14 +648,14 @@ function saveCurrentRecording() {
   // --- 2. Determine Question Number (By Card Order) ---
   const qNumber = currentPart + 1;
   const defaultName = `${dayStamp}-Q${qNumber}`;
-  
+
   const extension = getRecordingExtension(recording.mimeType || 'audio/webm');
-  
+
   if (recordingFileName && recordingFileExtension && saveModal) {
     recordingFileName.value = defaultName;
     recordingFileExtension.textContent = `.${extension}`;
     saveModal.classList.add('active');
-    
+
     // Auto-focus input for quick editing
     setTimeout(() => {
       recordingFileName.focus();
@@ -874,7 +874,7 @@ function loadYouTubeAPI() {
   return new Promise((resolve) => {
     // If the script is already being loaded, we need to wait for onYouTubeIframeAPIReady
     const existingScript = document.querySelector('script[src*="iframe_api"]');
-    
+
     const originalOnReady = window.onYouTubeIframeAPIReady;
     window.onYouTubeIframeAPIReady = () => {
       youtubeAPILoaded = true;
@@ -1128,7 +1128,7 @@ function onPlayerStateChange(index, event) {
     icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
     btn.closest('.audio-standalone').classList.add('playing');
     syncYouTubeBookmark(index, audioPlayers[index].getCurrentTime());
-    
+
     // Start progress loop only while playing
     if (!audioPoller) {
       const loop = () => {
@@ -1140,10 +1140,10 @@ function onPlayerStateChange(index, event) {
   } else {
     icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
     btn.closest('.audio-standalone').classList.remove('playing');
-    
+
     // Stop loop if no video is playing
     const anyPlaying = Object.values(audioPlayers).some(p => {
-        try { return p.getPlayerState() === YT.PlayerState.PLAYING; } catch(e) { return false; }
+      try { return p.getPlayerState() === YT.PlayerState.PLAYING; } catch (e) { return false; }
     });
     if (!anyPlaying && audioPoller) {
       cancelAnimationFrame(audioPoller);
@@ -1209,7 +1209,7 @@ const dataCache = {};
 
 async function getClassData(className) {
   if (dataCache[className]) return dataCache[className];
-  
+
   try {
     const response = await fetch(`data/${className}.json`);
     const data = await response.json();
@@ -1340,7 +1340,7 @@ function renderCards() {
 
     // Header bar
     let qLabel = part.questionLabel || `Question ${index + 1}`;
-    
+
     // Force programmatic grouping for standard TOEIC Speaking parts ONLY IF not explicitly defined in JSON
     if (!part.questionLabel) {
       if (part.type === 'describe-picture') {
@@ -1710,6 +1710,12 @@ document.addEventListener('keydown', (e) => {
     } else if (e.key === 'ArrowLeft') {
       e.preventDefault();
       if (currentPart > 0) goToPart(currentPart - 1);
+    } else if (e.key === ' ') {
+      // Space bar toggles recording or playback
+      if (bottomRecordBtn) {
+        e.preventDefault();
+        bottomRecordBtn.click();
+      }
     }
   }
 });
@@ -1834,7 +1840,7 @@ document.addEventListener('click', (e) => {
 
   const isSidebarOpen = !sidebar.classList.contains('collapsed');
   const isToggleButton = collapseBtn.contains(e.target) || (collapseBtnInternal && collapseBtnInternal.contains(e.target));
-  
+
   // Check if click was outside sidebar AND not on the toggle buttons
   if (isSidebarOpen && !sidebar.contains(e.target) && !isToggleButton) {
     toggleSidebar();
@@ -2089,7 +2095,7 @@ if (bottomRedoBtn) {
       if (!confirmed) return;
       markQuickRedoWarningSeen();
     }
-    
+
     const key = getCurrentTaskKey();
     if (key && recordings[key]) {
       if (recordings[key].url) URL.revokeObjectURL(recordings[key].url);
@@ -2097,7 +2103,7 @@ if (bottomRedoBtn) {
     }
     stopPlaybackPreview();
     updateBottomNavState();
-    
+
     await startRecording();
     resetControlTimer();
   });
@@ -2137,22 +2143,22 @@ if (confirmSaveBtn) {
   const performSave = () => {
     const recording = getCurrentRecording();
     if (!recording) return;
-    
+
     const extension = getRecordingExtension(recording.mimeType || 'audio/webm');
     const customName = (recordingFileName.value.trim() || 'recording') + `.${extension}`;
-    
+
     const link = document.createElement('a');
     link.href = recording.url;
     link.download = customName;
     document.body.appendChild(link);
     link.click();
     link.remove();
-    
+
     saveModal.classList.remove('active');
   };
 
   confirmSaveBtn.addEventListener('click', performSave);
-  
+
   // Allow Enter key to save
   recordingFileName?.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
@@ -2177,11 +2183,11 @@ if (bottomPlaybackSeeker) {
     const rect = bottomPlaybackSeeker.getBoundingClientRect();
     const x = clientX - rect.left;
     const percent = Math.max(0, Math.min(1, x / rect.width));
-    
+
     // Update visuals immediately for smoothness
     bottomSeekerProgress.style.width = `${percent * 100}%`;
     bottomSeekerKnob.style.left = `${percent * 100}%`;
-    
+
     currentRecordingAudio.currentTime = percent * duration;
   };
 
@@ -2267,6 +2273,7 @@ function initNotepad() {
   const isMinimized = localStorage.getItem('toeicNotepadMinimized') === 'true';
   const restoreBtn = document.getElementById('restoreNotepadBtn');
   const minimizeBtn = document.getElementById('minimizeNotepad');
+  const headerIcon = document.querySelector('.notepad-minimize-icon');
 
   const setNotepadVisibility = (minimized) => {
     if (minimized) {
@@ -2279,11 +2286,27 @@ function initNotepad() {
     localStorage.setItem('toeicNotepadMinimized', minimized);
   };
 
-  // Initial Visibility
+  const updateWordCount = () => {
+    const text = notepadTextarea.value.trim();
+    const count = text ? text.split(/\s+/).filter(w => w.length > 0).length : 0;
+    const wordCountEl = document.getElementById('notepadWordCount');
+    if (wordCountEl) {
+      wordCountEl.innerHTML = `<span class="notepad-count-num">${count}</span>`;
+    }
+  };
+
+  // Initial Visibility & Word Count
   setNotepadVisibility(isMinimized);
+  updateWordCount();
 
   if (minimizeBtn) {
     minimizeBtn.addEventListener('click', () => setNotepadVisibility(true));
+  }
+  if (headerIcon) {
+    headerIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setNotepadVisibility(true);
+    });
   }
   if (restoreBtn) {
     restoreBtn.addEventListener('click', () => setNotepadVisibility(false));
@@ -2298,7 +2321,7 @@ function initNotepad() {
 
   if (savedWidth) notepadOverlay.style.width = savedWidth + 'px';
   if (savedHeight) notepadOverlay.style.height = savedHeight + 'px';
-  
+
   if (savedTop) {
     notepadOverlay.style.top = savedTop;
     notepadOverlay.style.bottom = 'auto';
@@ -2314,19 +2337,50 @@ function initNotepad() {
   // 3. Save Content on Input
   notepadTextarea.addEventListener('input', () => {
     localStorage.setItem('toeicNotepadContent', notepadTextarea.value);
+    updateWordCount();
   });
 
   // 4. Clear Content
   if (clearNotepadBtn) {
     clearNotepadBtn.addEventListener('click', () => {
-      if (window.confirm('Clear all your notes?')) {
+      if (window.confirm('Erase all notes?')) {
         notepadTextarea.value = '';
         localStorage.removeItem('toeicNotepadContent');
+        updateWordCount();
       }
     });
   }
 
-  // 5. Save Dimensions on Resize
+  // 5. Copy Content
+  const copyNotepadBtn = document.getElementById('copyNotepad');
+  if (copyNotepadBtn) {
+    copyNotepadBtn.addEventListener('click', async () => {
+      const text = notepadTextarea.value;
+      if (!text) return;
+
+      try {
+        await navigator.clipboard.writeText(text);
+
+        // Visual Feedback
+        const originalIcon = copyNotepadBtn.innerHTML;
+        copyNotepadBtn.classList.add('success');
+        copyNotepadBtn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        `;
+
+        setTimeout(() => {
+          copyNotepadBtn.classList.remove('success');
+          copyNotepadBtn.innerHTML = originalIcon;
+        }, 3000);
+      } catch (err) {
+        console.error('Failed to copy text:', err);
+      }
+    });
+  }
+
+  // 6. Save Dimensions on Resize
   const resizeObserver = new ResizeObserver(entries => {
     for (let entry of entries) {
       const width = notepadOverlay.offsetWidth;
@@ -2385,7 +2439,7 @@ function initNotepad() {
           notepadOverlay.style.height = newHeight + 'px';
           notepadOverlay.style.top = newTop + 'px';
         }
-        
+
         notepadOverlay.style.right = 'auto';
         notepadOverlay.style.bottom = 'auto';
       };
@@ -2397,7 +2451,7 @@ function initNotepad() {
         document.documentElement.removeEventListener('touchend', onEnd);
         document.body.style.cursor = '';
         notepadOverlay.style.transition = '';
-        
+
         // Save final state
         localStorage.setItem('toeicNotepadWidth', notepadOverlay.offsetWidth);
         localStorage.setItem('toeicNotepadHeight', notepadOverlay.offsetHeight);
@@ -2409,7 +2463,7 @@ function initNotepad() {
       document.documentElement.addEventListener('mouseup', onEnd);
       document.documentElement.addEventListener('touchmove', onMove, { passive: false });
       document.documentElement.addEventListener('touchend', onEnd);
-      
+
       document.body.style.cursor = getComputedStyle(edge).cursor;
       notepadOverlay.style.transition = 'none';
     };
@@ -2425,10 +2479,10 @@ function initNotepad() {
 
     const startDragging = (e) => {
       if (e.target.closest('.notepad-clear-btn')) return;
-      
+
       const clientX = e.clientX || (e.touches && e.touches[0].clientX);
       const clientY = e.clientY || (e.touches && e.touches[0].clientY);
-      
+
       const rect = notepadOverlay.getBoundingClientRect();
       dragStartX = clientX;
       dragStartY = clientY;
@@ -2439,7 +2493,7 @@ function initNotepad() {
       document.documentElement.addEventListener('mouseup', draggingEnd);
       document.documentElement.addEventListener('touchmove', draggingMove, { passive: false });
       document.documentElement.addEventListener('touchend', draggingEnd);
-      
+
       notepadOverlay.classList.add('dragging');
       header.style.cursor = 'grabbing';
     };
@@ -2448,10 +2502,10 @@ function initNotepad() {
       if (e.cancelable) e.preventDefault();
       const clientX = e.clientX || (e.touches && e.touches[0].clientX);
       const clientY = e.clientY || (e.touches && e.touches[0].clientY);
-      
+
       const dx = clientX - dragStartX;
       const dy = clientY - dragStartY;
-      
+
       let newTop = initialTop + dy;
       let newLeft = initialLeft + dx;
 
@@ -2469,7 +2523,7 @@ function initNotepad() {
       document.documentElement.removeEventListener('mouseup', draggingEnd);
       document.documentElement.removeEventListener('touchmove', draggingMove);
       document.documentElement.removeEventListener('touchend', draggingEnd);
-      
+
       notepadOverlay.classList.remove('dragging');
       header.style.cursor = 'grab';
 

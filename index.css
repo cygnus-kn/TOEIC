@@ -2626,6 +2626,15 @@ body.dark-theme .notepad-header {
   letter-spacing: 0.5px;
 }
 
+.notepad-minimize-icon {
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.notepad-minimize-icon:hover {
+  opacity: 0.6;
+}
+
 .notepad-actions {
   display: flex;
   align-items: center;
@@ -2650,10 +2659,11 @@ body.dark-theme .notepad-header {
   color: var(--color-accent);
 }
 
-.notepad-action-btn.close:hover {
+.notepad-action-btn.destructive:hover {
   background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
 }
+
 
 .notepad-overlay.hidden {
   opacity: 0;
@@ -2678,6 +2688,56 @@ body.dark-theme .notepad-header {
 .notepad-textarea::placeholder {
   color: var(--color-text-tertiary);
   opacity: 0.6;
+}
+
+.notepad-footer {
+  padding: 4px 8px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+}
+
+.notepad-footer-btn {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.notepad-footer-btn:hover {
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.notepad-footer-btn.success {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+#notepadWordCount {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.notepad-count-num {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+body.dark-theme .notepad-footer {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 /* Floating Notepad Toggle Btn */

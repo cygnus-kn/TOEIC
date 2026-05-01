@@ -185,29 +185,37 @@
   <div class="notepad-overlay" id="notepadOverlay">
     <div class="notepad-header">
       <div class="notepad-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
+        <svg class="notepad-minimize-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" title="Minimize">
+          <rect x="4" y="3" width="16" height="18" rx="3"></rect>
+          <path d="M8 8h8M8 12h8M8 16h5"></path>
         </svg>
         <span>Drafting Area</span>
       </div>
       <div class="notepad-actions">
-        <button class="notepad-action-btn" id="clearNotepad" title="Clear notes">
+        <button class="notepad-action-btn destructive" id="clearNotepad" title="Erase all">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 6h18"></path>
-            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+            <path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.9-9.9c1-1 2.5-1 3.4 0l4.4 4.4c1 1 1 2.5 0 3.4L10.5 21z"></path>
+            <path d="m22 21-14 0"></path>
+            <path d="m18 11-4.4-4.4"></path>
           </svg>
         </button>
         <button class="notepad-action-btn close" id="minimizeNotepad" title="Minimize">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
         </button>
       </div>
     </div>
     <textarea class="notepad-textarea" id="notepadTextarea" placeholder="Jot down your ideas here..."></textarea>
+    <div class="notepad-footer">
+      <span id="notepadWordCount">0</span>
+      <button class="notepad-footer-btn" id="copyNotepad" title="Copy all text">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+    </div>
     <div class="notepad-edge n" data-edge="n"></div>
     <div class="notepad-edge e" data-edge="e"></div>
     <div class="notepad-edge s" data-edge="s"></div>
@@ -220,11 +228,24 @@
 
   <!-- Floating Notepad Toggle -->
   <button class="floating-notepad-btn" id="restoreNotepadBtn" aria-label="Show Notepad" title="Show Notepad">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
-      <polyline points="14 2 14 8 20 8"></polyline>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="3" width="16" height="18" rx="3"></rect>
+      <path d="M8 8h8M8 12h8M8 16h5"></path>
     </svg>
   </button>
+
+  <script>
+    // Critical: Set initial notepad visibility instantly to prevent "flash" on refresh
+    (function() {
+      try {
+        const minimized = localStorage.getItem('toeicNotepadMinimized') === 'true';
+        if (minimized) {
+          document.getElementById('notepadOverlay').classList.add('hidden');
+          document.getElementById('restoreNotepadBtn').classList.add('show');
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <button class="bottom-recorder-handle" id="bottomRecorderHandle" aria-label="Show recording controls" title="Show recording controls"></button>
   <!-- Image Modal -->
