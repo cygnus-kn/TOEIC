@@ -2374,6 +2374,12 @@ function initNotepad() {
     }
   };
 
+  const syncNotepadContent = () => {
+    localStorage.setItem('toeicNotepadContent', notepadTextarea.value);
+    updateWordCount();
+    notepadTextarea.scrollTop = notepadTextarea.scrollHeight;
+  };
+
   // Initial Visibility & Word Count
   setNotepadVisibility(isMinimized);
   updateWordCount();
@@ -2415,8 +2421,7 @@ function initNotepad() {
 
   // 3. Save Content on Input
   notepadTextarea.addEventListener('input', () => {
-    localStorage.setItem('toeicNotepadContent', notepadTextarea.value);
-    updateWordCount();
+    syncNotepadContent();
   });
 
   // 4. Clear Content
@@ -2424,6 +2429,8 @@ function initNotepad() {
     clearNotepadBtn.addEventListener('click', () => {
       if (window.confirm('Erase all notes?')) {
         notepadTextarea.value = '';
+        const aiInput = document.getElementById('notepadAiInput');
+        if (aiInput) aiInput.value = '';
         localStorage.removeItem('toeicNotepadContent');
         updateWordCount();
       }
@@ -2465,6 +2472,11 @@ function initNotepad() {
   // 6. Voice Transcription Initialization
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const toggleVoiceBtn = document.getElementById('toggleVoiceNote');
+  const toggleAiBtn = document.getElementById('toggleAiAssist');
+  const aiInput = document.getElementById('notepadAiInput');
+  const aiSubmitBtn = document.getElementById('notepadAiSubmit');
+  let isAiModeEnabled = localStorage.getItem('toeicNotepadAiMode') === 'true';
+  let isAiGenerating = false;
 
   if (toggleVoiceBtn) {
     const showNotepadToast = (message) => {
@@ -2497,6 +2509,218 @@ function initNotepad() {
 
 
   }
+
+  const getCurrentTaskSummary = () => {
+    const part = currentParts[currentPart];
+    if (!part) return '';
+
+    const summaryBits = [
+      part.label,
+      part.questionLabel,
+      part.content?.prompt,
+      part.content?.question,
+      part.content?.instruction
+    ].filter(Boolean);
+
+    return summaryBits.join(' | ');
+  };
+
+  const getDraftContext = () => {
+    return notepadTextarea.value
+      .split('\n')
+      .filter(line => !/^\s*(You|AI):/.test(line))
+      .join('\n')
+      .trim();
+  };
+
+  const getContextStats = (text) => {
+    const words = text ? text.split(/\s+/).filter(Boolean) : [];
+    const paragraphs = text ? text.split(/\n\s*\n/).filter(block => block.trim().length > 0) : [];
+    const sentences = text ? text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0) : [];
+    return {
+      wordCount: words.length,
+      paragraphCount: paragraphs.length,
+      sentenceCount: sentences.length
+    };
+  };
+
+  const getFirstSentence = (text) => {
+    const match = text.trim().match(/[^.!?]+[.!?]?/);
+    return match ? match[0].trim() : '';
+  };
+
+  const buildFeedbackReply = (contextText, currentTaskText) => {
+    if (!contextText) {
+      return 'I cannot give specific feedback yet because the drafting area is empty. Add your draft first, then ask again.';
+    }
+
+    const stats = getContextStats(contextText);
+    const lines = [];
+
+    if (stats.wordCount < 45) {
+      lines.push('You have a start, but it is still short. Add a clearer main point and one concrete supporting detail.');
+    } else {
+      lines.push('Your draft has a workable core idea. The next gain is making each sentence support the same main point.');
+    }
+
+    const firstSentence = getFirstSentence(contextText);
+    if (firstSentence) {
+      lines.push(`Opening: "${firstSentence}"`);
+    }
+
+    if (stats.paragraphCount < 2) {
+      lines.push('Organization: split your response into at least two parts so the reader can separate your claim from your support.');
+    } else {
+      lines.push('Organization: your paragraph split is present, but the transitions between ideas can be clearer.');
+    }
+
+    if (stats.sentenceCount < 4) {
+      lines.push('Development: add one example or explanation sentence so the answer does more than state the opinion.');
+    } else {
+      lines.push('Development: keep the strongest example and remove any sentence that repeats the same idea.');
+    }
+
+    if (currentTaskText) {
+      lines.push(`Task fit: keep your answer tied to this prompt focus: ${currentTaskText}`);
+    }
+
+    lines.push('Revision target: make the first sentence your direct answer, then follow it with one reason and one example.');
+    return lines.join('\n');
+  };
+
+  const buildAiReply = (question, contextText, currentTaskText) => {
+    const normalized = question.toLowerCase();
+
+    if (/(feedback|review|improve|essay|draft|opinion)/.test(normalized)) {
+      return buildFeedbackReply(contextText, currentTaskText);
+    }
+
+    if (/(grammar|fix|correct|rewrite)/.test(normalized)) {
+      if (!contextText) {
+        return 'There is no draft in the drafting area yet. Paste or write the text you want me to help revise.';
+      }
+      return 'I can help revise this draft. Start by tightening long sentences, making the first sentence your direct answer, and replacing repeated wording with one clear example.';
+    }
+
+    if (/(outline|structure|template)/.test(normalized)) {
+      return [
+        '1. State your answer directly in the first sentence.',
+        '2. Give one clear reason.',
+        '3. Add one short example.',
+        '4. End by repeating the main idea in one sentence.'
+      ].join('\n');
+    }
+
+    if (!contextText && currentTaskText) {
+      return `Focus on the current task first: ${currentTaskText}\n\nStart with a direct answer, then add one reason and one example.`;
+    }
+
+    if (!contextText) {
+      return 'Ask a more specific question or add a draft first. I work best when I can read the text already in the drafting area.';
+    }
+
+    const stats = getContextStats(contextText);
+    return [
+      `I read the draft first. It currently has about ${stats.wordCount} words.`,
+      'The fastest improvement is to make the first sentence your direct answer, then keep the rest of the draft supporting that answer.',
+      currentTaskText ? `Keep the response anchored to: ${currentTaskText}` : 'If you want a stronger answer, add one concrete example and remove repeated ideas.'
+    ].join('\n');
+  };
+
+  const typeIntoNotepad = async (text) => {
+    const chunkSize = 2;
+    for (let i = 0; i < text.length; i += chunkSize) {
+      notepadTextarea.value += text.slice(i, i + chunkSize);
+      syncNotepadContent();
+      await new Promise(resolve => setTimeout(resolve, 16));
+    }
+  };
+
+  const setAiModeState = (enabled) => {
+    isAiModeEnabled = enabled;
+    localStorage.setItem('toeicNotepadAiMode', enabled ? 'true' : 'false');
+    notepadOverlay.classList.toggle('ai-mode', enabled);
+    if (toggleAiBtn) toggleAiBtn.classList.toggle('active', enabled);
+    if (!enabled && aiInput) {
+      aiInput.value = '';
+    }
+    updateAiSubmitState();
+    if (enabled && aiInput) {
+      setTimeout(() => aiInput.focus(), 0);
+    }
+  };
+
+  const setAiBusyState = (busy) => {
+    isAiGenerating = busy;
+    if (toggleAiBtn) toggleAiBtn.classList.toggle('generating', busy);
+    if (aiSubmitBtn) aiSubmitBtn.classList.toggle('generating', busy);
+    if (aiInput) aiInput.disabled = busy;
+    if (aiSubmitBtn) aiSubmitBtn.disabled = busy;
+  };
+
+  const updateAiSubmitState = () => {
+    if (!aiInput || !aiSubmitBtn) return;
+    aiSubmitBtn.classList.toggle('has-text', aiInput.value.trim().length > 0);
+  };
+
+  const requestAiReply = async () => {
+    if (!isAiModeEnabled || isAiGenerating || !aiInput) return;
+
+    const question = aiInput.value.trim();
+    if (!question) {
+      const toast = document.getElementById('notepadStatusToast');
+      if (toast) {
+        toast.textContent = 'Type a question first';
+        toast.classList.add('show');
+        if (window.notepadToastTimeout) clearTimeout(window.notepadToastTimeout);
+        window.notepadToastTimeout = setTimeout(() => toast.classList.remove('show'), 1600);
+      }
+      aiInput.focus();
+      return;
+    }
+
+    setAiBusyState(true);
+
+    const contextText = getDraftContext();
+    const currentTaskText = getCurrentTaskSummary();
+    const reply = buildAiReply(question, contextText, currentTaskText);
+    const trimmed = notepadTextarea.value.trimEnd();
+    const intro = trimmed ? `${trimmed}\n\n` : '';
+    notepadTextarea.value = `${intro}You: ${question}\n\nAI: `;
+    syncNotepadContent();
+    aiInput.value = '';
+    updateAiSubmitState();
+
+    await typeIntoNotepad(reply);
+    notepadTextarea.value += '\n\n';
+    syncNotepadContent();
+
+    setAiBusyState(false);
+    aiInput.focus();
+  };
+
+  if (toggleAiBtn) {
+    toggleAiBtn.addEventListener('click', () => {
+      if (isAiGenerating) return;
+      setAiModeState(!isAiModeEnabled);
+    });
+  }
+
+  aiInput?.addEventListener('keydown', async (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      await requestAiReply();
+    }
+  });
+
+  aiInput?.addEventListener('input', updateAiSubmitState);
+
+  aiSubmitBtn?.addEventListener('click', async () => {
+    await requestAiReply();
+  });
+
+  setAiModeState(isAiModeEnabled);
+  updateAiSubmitState();
 
   // 6. Copy Content
   const copyNotepadBtn = document.getElementById('copyNotepad');

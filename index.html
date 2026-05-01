@@ -213,9 +213,25 @@
     </div>
     <textarea class="notepad-textarea" id="notepadTextarea" placeholder="Jot down your ideas here..."></textarea>
     <div id="notepadStatusToast" class="notepad-status-toast"></div>
+    <div class="notepad-ai-bar" id="notepadAiBar">
+      <input class="notepad-ai-input" id="notepadAiInput" type="text" placeholder="Ask anything" autocomplete="off">
+      <button class="notepad-ai-submit" id="notepadAiSubmit" title="Send AI prompt" aria-label="Send AI prompt">
+        <svg class="notepad-ai-send-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19V5"></path>
+          <path d="m6 11 6-6 6 6"></path>
+        </svg>
+        <span class="notepad-ai-stop-icon" aria-hidden="true"></span>
+      </button>
+    </div>
     <div class="notepad-footer">
       <span id="notepadWordCount">0</span>
       <div class="notepad-footer-actions">
+        <button class="notepad-footer-btn" id="toggleAiAssist" title="AI Assist">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 10.5 16.8 15 21.5 17 16.8 19 15 23 13.2 19 8.5 17 13.2 15 15 10.5z"></path>
+            <path d="M7 1.5 8.1 4.4 11 5.5 8.1 6.6 7 9.5 5.9 6.6 3 5.5 5.9 4.4 7 1.5z"></path>
+          </svg>
+        </button>
         <button class="notepad-footer-btn" id="toggleVoiceNote" title="Voice-to-Text">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>

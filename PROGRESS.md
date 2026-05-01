@@ -43,6 +43,7 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 - [x] **Universal Transitions**: Synchronized all notepad property changes (color, border, blur) to match the global 150ms theme speed.
 - [x] **Pro-Level Transcription**: Integrated **Deepgram Nova-2** via WebSockets for professional accuracy and cross-browser support (Firefox/Safari).
 - [x] **Word & Copy Utility**: Integrated a minimalist footer with a real-time word counter and a one-click "Copy all" button with visual success feedback.
+- [x] **Notepad AI Assist**: Added a footer AI toggle with a slim elevated prompt field, contextual draft scanning, typed `You:` / `AI:` replies, smooth show/hide animation, and polished send-button states.
 
 ### 🃏 Question Card Types
 | Type                                    | Status |
@@ -263,6 +264,7 @@ Enable the user to click and drag the microphone navigation bar to any position 
 | Apr 30 | **Naming Standardization**: Unified the homework and lesson naming convention to `[HW-XX] DD/MM` and `[Lesson-XX] DD/MM` across the entire platform. Updated `data.js`, all class JSON files, and documentation. Refined the sidebar rendering logic in `core.js` to preserve brackets in labels and updated recording filename regex to support the new naming scheme for robustness. |
 | May 01 | **Drafting Area Final Polish**: Implemented a professional **Theater Mode** with a dimming backdrop and blur effect. Standardized the platform's **z-index hierarchy** (Notepad: 2100, Backdrop: 2050, Nav: 2200) to eliminate transition flickering. Added intuitive exit paths including **Esc** key support and auto-exit on minimize. Integrated **Deepgram Nova-2** for pro-level, cross-browser voice transcription and refined all hover/active button states for a minimalist, premium look. |
 | May 01 | **Maintenance Cleanup**: Synced `ADD_HOMEWORK.md` with the live `audioUrls` local-audio schema, updated `SW Class` homework counts, removed the unused notification mount point, deleted unused timer progress-variable writes, and removed leftover focus-mode console logs. |
+| May 01 | **Notepad AI Assist Restore**: Reverted the broken refactor back to the latest committed monolithic app structure, then restored the notepad AI feature in `index.html`, `index.css`, and `core.js`. Added contextual notepad scanning, local demo reply generation, smooth AI prompt animation, elevated compact input styling, two-sparkle AI footer icon, active/empty/generating send-button states, and removed AI on/off draft toasts. |
 
 ---
 
