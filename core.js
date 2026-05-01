@@ -1,6 +1,8 @@
 'use strict';
 
-// --- Theme Logic ---
+// ============================
+//  Theme Logic
+// ============================
 const themeToggle = document.getElementById('themeToggle');
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -13,7 +15,10 @@ themeToggle.addEventListener('click', () => {
   const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
   localStorage.setItem('theme', theme);
 });
-// -------------------
+
+// ============================
+//  Global State & Config
+// ============================
 
 // State
 let currentPart = 0;
@@ -57,7 +62,7 @@ const TYPE_LABELS = {
   'topic-prep-item': 'Topic Preparation',
 };
 
-// DOM refs
+// --- DOM refs ---
 const welcomeState = document.getElementById('welcomeState');
 const homeworkViewer = document.getElementById('homeworkViewer');
 const lessonViewer = document.getElementById('lessonViewer');
@@ -72,7 +77,7 @@ const recordingFileExtension = document.getElementById('recordingFileExtension')
 const cancelSaveBtn = document.getElementById('cancelSave');
 const confirmSaveBtn = document.getElementById('confirmSave');
 
-// Recorder state
+// --- Recorder state ---
 let mediaRecorder = null;
 let mediaStream = null;
 let mediaChunks = [];
@@ -84,7 +89,6 @@ let currentRecordingAudio = null;
 let isSeekingPlayback = false;
 const recordings = {}; // { taskKey: { blob, url, durationMs, mimeType } }
 const QUICK_REDO_WARNING_KEY = 'toeicQuickRedoWarningSeen';
-
 
 // ============================
 //  Markdown Helper
@@ -120,7 +124,9 @@ function formatMarkdown(text) {
   return htmlContent;
 }
 
-
+// ============================
+//  Recording Helpers
+// ============================
 function getCurrentTaskKey() {
   const activeDate = activeType === 'homework' ? dateBadge.textContent : lessonDateBadge.textContent;
   if (!activeClass || !activeType || !activeDate || currentParts[currentPart] === undefined) return '';
@@ -135,8 +141,6 @@ function getCurrentRecording() {
   const key = getCurrentTaskKey();
   return key ? recordings[key] || null : null;
 }
-
-
 
 function getRecordingExtension(mimeType) {
   if (mimeType.includes('mp4')) return 'm4a';
@@ -221,9 +225,9 @@ function getSupportedRecordingMimeType() {
   return candidates.find(type => MediaRecorder.isTypeSupported(type)) || '';
 }
 
-
-
-
+// ============================
+//  Voice Transcription (Deepgram)
+// ============================
 function startVoiceTranscription() {
   if (!isVoiceNoteEnabled || isRecognitionActive || !mediaStream) return;
 
@@ -289,6 +293,9 @@ function stopVoiceTranscription() {
   if (toggleVoiceBtn) toggleVoiceBtn.classList.remove('listening');
 }
 
+// ============================
+//  Recording Engine
+// ============================
 async function startRecording() {
   if (!currentPartSupportsRecording() || mediaRecorder?.state === 'recording') return;
 
@@ -440,6 +447,9 @@ async function toggleRecording() {
   }
 }
 
+// ============================
+//  Playback
+// ============================
 function playCurrentRecording() {
   const recording = getCurrentRecording();
   if (!recording || mediaRecorder?.state === 'recording') return;
@@ -468,6 +478,9 @@ function playCurrentRecording() {
   });
 }
 
+// ============================
+//  Save Recording
+// ============================
 function saveCurrentRecording() {
   const recording = getCurrentRecording();
   if (!recording || mediaRecorder?.state === 'recording') return;
@@ -500,23 +513,6 @@ function saveCurrentRecording() {
   }
 }
 
-
-
-// ============================
-//  Audio Seek Helper
-// ============================
-window.seekBy = async function (index, seconds) {
-  const local = localAudioPlayers[index];
-  if (local) {
-    local.currentTime = Math.max(0, local.currentTime + seconds);
-    return;
-  }
-  const player = await ensureYouTubePlayer(index);
-  if (!player || typeof player.getCurrentTime !== 'function') return;
-  const currentTime = player.getCurrentTime();
-  player.seekTo(currentTime + seconds, true);
-};
-
 // ============================
 //  Clear active states
 // ============================
@@ -545,7 +541,9 @@ function showLessonViewer() {
   lessonViewer.style.animation = '';
 }
 
-// --- Data Cache ---
+// ============================
+//  Data Cache
+// ============================
 const dataCache = {};
 
 async function getClassData(className) {
@@ -588,7 +586,6 @@ window.selectHomework = async function (className, date) {
 
   activeClass = className;
   activeType = 'homework';
-  const activeDate = date; // Local reference for clarity
   dateBadge.textContent = date;
   renderCards();
   renderPagination();
@@ -620,50 +617,12 @@ window.selectLesson = async function (className, date) {
 
   activeClass = className;
   activeType = 'lesson';
-  const activeDate = date; // Local reference for clarity
   lessonDateBadge.textContent = date;
   renderLesson(lesson);
   showLessonViewer();
   saveAppState(className, 'lesson', date, 0);
   updateBottomNavState();
 };
-
-
-// ============================
-//  Lesson Rendering
-// ============================
-function renderLesson(lesson) {
-  let html = '';
-
-  if (lesson.vocab && lesson.vocab.length > 0) {
-    html += `<div class="lesson-section"><div class="lesson-section-title">Vocabulary</div><ul class="vocab-list">`;
-    lesson.vocab.forEach(v => {
-      html += `
-        <li class="vocab-item">
-          <div class="vocab-word">${v.word}</div>
-          <div class="vocab-def">${v.definition}</div>
-          <div class="vocab-example">"${v.example}"</div>
-        </li>
-      `;
-    });
-    html += `</ul></div>`;
-  }
-
-  if (lesson.structures && lesson.structures.length > 0) {
-    html += `<div class="lesson-section"><div class="lesson-section-title">Structures</div><ul class="structure-list">`;
-    lesson.structures.forEach(s => {
-      html += `
-        <li class="structure-item">
-          <div class="structure-pattern">${s.pattern}</div>
-          <div class="structure-example">${s.example.replace(/\n/g, '<br>')}</div>
-        </li>
-      `;
-    });
-    html += `</ul></div>`;
-  }
-
-  lessonContent.innerHTML = html;
-}
 
 // ============================
 //  Keyboard Navigation
@@ -708,68 +667,6 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ============================
-//  Dropdown Selection Logic
-// ============================
-const homeworkDropdown = document.getElementById('homeworkDropdown');
-const lessonDropdown = document.getElementById('lessonDropdown');
-
-function renderDropdown(type) {
-  const dropdown = type === 'homework' ? homeworkDropdown : lessonDropdown;
-  const items = CLASSES_DATA[activeClass][type];
-  const currentDate = type === 'homework' ? dateBadge.textContent : lessonDateBadge.textContent;
-
-  let html = '';
-  items.forEach(item => {
-    html += `
-      <div class="dropdown-item ${item.date === currentDate ? 'active' : ''}" 
-           onclick="handleDropdownSelect('${activeClass}', '${type}', '${item.date}')">
-        ${item.date}
-      </div>
-    `;
-  });
-  dropdown.innerHTML = html;
-}
-
-window.handleDropdownSelect = function (className, type, date) {
-  if (type === 'homework') selectHomework(className, date);
-  else selectLesson(className, date);
-  closeAllDropdowns();
-};
-
-function toggleDropdown(type) {
-  const dropdown = type === 'homework' ? homeworkDropdown : lessonDropdown;
-  const isShowing = dropdown.classList.contains('show');
-  closeAllDropdowns();
-  if (!isShowing) {
-    renderDropdown(type);
-    dropdown.classList.add('show');
-    const badgeDropdown = dropdown.closest('.badge-dropdown');
-    if (badgeDropdown) badgeDropdown.classList.add('open');
-  }
-}
-
-function closeAllDropdowns() {
-  homeworkDropdown.classList.remove('show');
-  lessonDropdown.classList.remove('show');
-  document.querySelectorAll('.badge-dropdown.open').forEach(el => el.classList.remove('open'));
-}
-
-dateBadge.addEventListener('click', (e) => {
-  e.stopPropagation();
-  toggleDropdown('homework');
-});
-
-lessonDateBadge.addEventListener('click', (e) => {
-  e.stopPropagation();
-  toggleDropdown('lesson');
-});
-
-document.addEventListener('click', () => {
-  closeAllDropdowns();
-});
-
-
-// ============================
 //  State Persistence
 // ============================
 function saveAppState(className, type, date, partIndex) {
@@ -798,7 +695,9 @@ async function restoreAppState() {
 restoreAppState();
 updateBottomNavState();
 
-// Modal Listeners
+// ============================
+//  Save Modal Listeners
+// ============================
 if (cancelSaveBtn) {
   cancelSaveBtn.addEventListener('click', () => {
     saveModal.classList.remove('active');
@@ -836,12 +735,9 @@ if (confirmSaveBtn) {
   });
 }
 
-// Initialize auto-hide check globally
-
-
-
-
-// Protection for Scenario 2: App Backgrounding (Swiping to Home Screen)
+// ============================
+//  App Backgrounding Protection
+// ============================
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') {
     if (mediaRecorder?.state === 'recording') {
@@ -850,4 +746,3 @@ document.addEventListener('visibilitychange', () => {
     }
   }
 });
-

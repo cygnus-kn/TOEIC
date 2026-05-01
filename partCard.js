@@ -1,9 +1,12 @@
 // ============================
 //  Part Card Logic
 // ============================
+
+// --- DOM Elements ---
 const cardTrack = document.getElementById('cardTrack');
 const pagination = document.getElementById('pagination');
 const cardContainer = document.getElementById('cardContainer');
+
 // ============================
 //  Card Rendering
 // ============================
@@ -913,3 +916,60 @@ function updateAudioProgress() {
     }
   }
 }
+
+// ============================
+//  Lesson Rendering
+// ============================
+// ============================
+//  Lesson Rendering
+// ============================
+function renderLesson(lesson) {
+  let html = '';
+
+  if (lesson.vocab && lesson.vocab.length > 0) {
+    html += `<div class="lesson-section"><div class="lesson-section-title">Vocabulary</div><ul class="vocab-list">`;
+    lesson.vocab.forEach(v => {
+      html += `
+        <li class="vocab-item">
+          <div class="vocab-word">${v.word}</div>
+          <div class="vocab-def">${v.definition}</div>
+          <div class="vocab-example">"${v.example}"</div>
+        </li>
+      `;
+    });
+    html += `</ul></div>`;
+  }
+
+  if (lesson.structures && lesson.structures.length > 0) {
+    html += `<div class="lesson-section"><div class="lesson-section-title">Structures</div><ul class="structure-list">`;
+    lesson.structures.forEach(s => {
+      html += `
+        <li class="structure-item">
+          <div class="structure-pattern">${s.pattern}</div>
+          <div class="structure-example">${s.example.replace(/\n/g, '<br>')}</div>
+        </li>
+      `;
+    });
+    html += `</ul></div>`;
+  }
+
+  lessonContent.innerHTML = html;
+}
+
+// ============================
+//  Audio Seek Helper
+// ============================
+// ============================
+//  Audio Seek Helper
+// ============================
+window.seekBy = async function (index, seconds) {
+  const local = localAudioPlayers[index];
+  if (local) {
+    local.currentTime = Math.max(0, local.currentTime + seconds);
+    return;
+  }
+  const player = await ensureYouTubePlayer(index);
+  if (!player || typeof player.getCurrentTime !== 'function') return;
+  const currentTime = player.getCurrentTime();
+  player.seekTo(currentTime + seconds, true);
+};

@@ -1,6 +1,8 @@
 // ============================
 //  Bottom Nav Logic
 // ============================
+
+// --- DOM Elements ---
 const bottomRecorderShell = document.getElementById('bottomRecorderShell');
 const bottomNav = document.getElementById('bottomNav');
 const bottomRecorderHandle = document.getElementById('bottomRecorderHandle');
@@ -14,6 +16,10 @@ const bottomSeekerKnob = document.getElementById('bottomSeekerKnob');
 let isDraggingNav = false;
 let navOffsetX = 0;
 let navOffsetY = 0;
+
+// ============================
+//  Nav Dragging
+// ============================
 function initNavDragging() {
   const startDragging = (e) => {
     if (!bottomNav || !bottomRecorderShell || e.button !== 0) return;
@@ -78,6 +84,9 @@ function initNavDragging() {
   document.addEventListener('mousedown', startDragging);
 }
 
+// ============================
+//  Button Icon & State
+// ============================
 function updateRecordButtonIcon(mode = 'record') {
   if (!bottomRecordBtn) return;
   const svg = bottomRecordBtn.querySelector('svg');
@@ -102,6 +111,10 @@ function updateRecordButtonIcon(mode = 'record') {
     svg.innerHTML = '<path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/><path d="M8.5 21h7"/>';
   }
 }
+
+// ============================
+//  Nav State Management
+// ============================
 function updateBottomNavState() {
   if (!bottomRecorderShell) return;
 
@@ -189,6 +202,10 @@ function updateBottomNavState() {
     }
   }
 }
+
+// ============================
+//  Button Event Listeners
+// ============================
 if (bottomRecorderHandle) {
   bottomRecorderHandle.addEventListener('click', () => {
     showMobileControls();

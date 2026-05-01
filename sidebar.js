@@ -135,3 +135,67 @@ window.toggleCategory = function (className, category) {
 };
 // Initialize
 renderSidebar();
+
+// ============================
+//  Dropdown Selection Logic
+// ============================
+// ============================
+//  Dropdown Selection Logic
+// ============================
+const homeworkDropdown = document.getElementById('homeworkDropdown');
+const lessonDropdown = document.getElementById('lessonDropdown');
+
+function renderDropdown(type) {
+  const dropdown = type === 'homework' ? homeworkDropdown : lessonDropdown;
+  const items = CLASSES_DATA[activeClass][type];
+  const currentDate = type === 'homework' ? dateBadge.textContent : lessonDateBadge.textContent;
+
+  let html = '';
+  items.forEach(item => {
+    html += `
+      <div class="dropdown-item ${item.date === currentDate ? 'active' : ''}" 
+           onclick="handleDropdownSelect('${activeClass}', '${type}', '${item.date}')">
+        ${item.date}
+      </div>
+    `;
+  });
+  dropdown.innerHTML = html;
+}
+
+window.handleDropdownSelect = function (className, type, date) {
+  if (type === 'homework') selectHomework(className, date);
+  else selectLesson(className, date);
+  closeAllDropdowns();
+};
+
+function toggleDropdown(type) {
+  const dropdown = type === 'homework' ? homeworkDropdown : lessonDropdown;
+  const isShowing = dropdown.classList.contains('show');
+  closeAllDropdowns();
+  if (!isShowing) {
+    renderDropdown(type);
+    dropdown.classList.add('show');
+    const badgeDropdown = dropdown.closest('.badge-dropdown');
+    if (badgeDropdown) badgeDropdown.classList.add('open');
+  }
+}
+
+function closeAllDropdowns() {
+  homeworkDropdown.classList.remove('show');
+  lessonDropdown.classList.remove('show');
+  document.querySelectorAll('.badge-dropdown.open').forEach(el => el.classList.remove('open'));
+}
+
+dateBadge.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleDropdown('homework');
+});
+
+lessonDateBadge.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleDropdown('lesson');
+});
+
+document.addEventListener('click', () => {
+  closeAllDropdowns();
+});
