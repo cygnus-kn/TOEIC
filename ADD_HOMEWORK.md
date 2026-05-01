@@ -167,12 +167,12 @@ A standard speaking session typically follows this order, but can be customized 
   questionLabel: "Questions 8-10",
   content: {
     imageUrl: "test-data/Part 4 audio/FILENAME.webp",
-    audioUrl: "test-data/Part 4 audio/FILENAME.webm",
-    timestamps: {
-      q8: 120, // Replace these with exact extracted seconds
-      q9: 135,
-      q10: 150
-    },
+    audioUrls: [
+      "test-data/Part 4 audio/Test XX/TXX_Q_08.webm",
+      "test-data/Part 4 audio/Test XX/TXX_Q_09.webm",
+      "test-data/Part 4 audio/Test XX/TXX_Q_10.webm"
+    ],
+    questionLabels: ["8", "9", "10"],
     question: "Question 8: ...\n\nQuestion 9: ...\n\nQuestion 10: ..."
   }
 }
@@ -190,11 +190,11 @@ A standard speaking session typically follows this order, but can be customized 
 > **Note for AI Assistant: Local Audio Transcript Extraction Guide**
 > When asked to construct a homework prompt containing Part 4 from local audio and image files, follow these exact steps:
 > 1. If images are provided as `.png` or `.jpg`, convert them to `.webp` format using a Python script with the `Pillow` library, and place them in the appropriate directory (e.g. `test-data/Part 4 audio/`).
-> 2. Transcribe the local audio file (`.webm` or `.m4a`) using the Whisper CLI to generate a JSON transcript. Run this exact terminal command:
+> 2. Transcribe each local audio file (`.webm` or `.m4a`) using the Whisper CLI to generate JSON transcripts. Run this exact terminal command for each file:
 >    `/opt/homebrew/bin/whisper "test-data/path/to/audio.webm" --model base --output_format json --output_dir scratch/`
 > 3. Read the generated `.json` file in the `scratch/` directory to find the exact timestamps and scenario phrasing.
->    - **CRITICAL FORMATTING RULE**: The `timestamps` mapping and `question` string formatting must follow the exact same rules as the YouTube guide above.
-> 4. Inject the `timestamps` property into your JSON construction, and use the `audioUrl` field (pointing to the local audio file) instead of `videoUrl`.
+>    - **CRITICAL FORMATTING RULE**: The `question` string formatting must follow the exact same reveal-text rules as the YouTube guide above.
+> 4. Inject the local clip paths into the `audioUrls` array, add matching `questionLabels`, and do not use `videoUrl` or the legacy single-file `audioUrl` field.
 > 5. **CRITICAL:** Run `rm -f scratch/*.json` to clean up your temporary transcript files once you are finished.
 ```js
 {

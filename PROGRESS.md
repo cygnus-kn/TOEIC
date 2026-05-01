@@ -117,7 +117,7 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 ### SW Class (Speaking & Writing)
 | Type     | Entries |
 | -------- | ------- |
-| Homework | 13 days |
+| Homework | 18 days |
 | Lessons  | 0 days  |
 
 ### Class S128 (Writing)
@@ -138,9 +138,6 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 
 - [ ] Add more homework entries as the course progresses
 - [ ] Add more class groups (e.g., S130, S131) when new cohorts begin
-- [ ] Sync `ADD_HOMEWORK.md` with the live local-audio `audioUrls` schema
-- [ ] Restore visible timer progress-ring CSS or remove the unused `--progress` updates from timer logic
-- [ ] Implement or remove the unused `notificationContainer` toast mount point
 - [ ] Consider adding a "mark as done" toggle per card for student self-tracking
 - [ ] Consider adding a review/notes text area per lesson entry
 - [ ] Accessibility: broader focus management and keyboard support beyond current arrow-key part navigation
@@ -234,9 +231,7 @@ Enable the user to click and drag the microphone navigation bar to any position 
 
 ## 🐛 Known Issues / Watch List
 
-- Documentation drift: `ADD_HOMEWORK.md` still documents local `respond-info-q` around a single `audioUrl` plus `timestamps`, while live `SW Class` data now uses `audioUrls` arrays for separate question clips.
-- Timer JS still updates a `--progress` CSS variable, but the current stylesheet does not render a visible progress ring from it.
-- `index.html` contains `notificationContainer`, but no toast notification implementation is currently present in `core.js` / `index.css`.
+- No active cleanup items currently tracked.
 
 ---
 
@@ -267,6 +262,7 @@ Enable the user to click and drag the microphone navigation bar to any position 
 | Apr 30 | **Refinement & Robustness**: Migrated the bottom navigation drag logic from `index.html` into `core.js` and resolved local development connectivity issues for mobile testing. **Universal Alignment**: Replaced hardcoded vertical positions with a mathematical CSS variable system (`--header-center-y`) that guarantees perfect icon alignment on both platforms. Reduced mobile sidebar width to 220px for improved viewport density. **Nav Interaction Fix**: Resolved a bug where the bottom nav would "stick" or expand incorrectly after dragging; implemented a system to clear fixed dimensions on `mouseup` to allow for dynamic growth when the seeker expands. Refined drag targets to prevent accidental movement. |
 | Apr 30 | **Naming Standardization**: Unified the homework and lesson naming convention to `[HW-XX] DD/MM` and `[Lesson-XX] DD/MM` across the entire platform. Updated `data.js`, all class JSON files, and documentation. Refined the sidebar rendering logic in `core.js` to preserve brackets in labels and updated recording filename regex to support the new naming scheme for robustness. |
 | May 01 | **Drafting Area Final Polish**: Implemented a professional **Theater Mode** with a dimming backdrop and blur effect. Standardized the platform's **z-index hierarchy** (Notepad: 2100, Backdrop: 2050, Nav: 2200) to eliminate transition flickering. Added intuitive exit paths including **Esc** key support and auto-exit on minimize. Integrated **Deepgram Nova-2** for pro-level, cross-browser voice transcription and refined all hover/active button states for a minimalist, premium look. |
+| May 01 | **Maintenance Cleanup**: Synced `ADD_HOMEWORK.md` with the live `audioUrls` local-audio schema, updated `SW Class` homework counts, removed the unused notification mount point, deleted unused timer progress-variable writes, and removed leftover focus-mode console logs. |
 
 ---
 

@@ -222,7 +222,6 @@ function clearAllTimers() {
     if (display && valueEl && currentParts[key]) {
       const part = currentParts[key];
       const totalTime = part.responseTime || RESPONSE_TIMES[part.type] || 45;
-      display.style.setProperty('--progress', '100%');
       display.classList.remove('running', 'finished');
       valueEl.textContent = formatTime(totalTime);
     }
@@ -759,7 +758,7 @@ window.toggleTimer = function (index, totalTime) {
     if (prepTime > 0) {
       startPrepTimer(index, prepTime, totalTime);
     } else {
-      startResponseTimer(index, totalTime, totalTime);
+      startResponseTimer(index, totalTime);
     }
   } else if (timers[index].running) {
     // Pause
@@ -769,14 +768,13 @@ window.toggleTimer = function (index, totalTime) {
   } else if (timers[index].remaining > 0) {
     // Resume
     if (timers[index].stage === 'prep') {
-      resumePrepTimer(index, prepTime, totalTime);
+      resumePrepTimer(index, totalTime);
     } else {
-      resumeResponseTimer(index, totalTime);
+      resumeResponseTimer(index);
     }
   } else {
     // Reset
     delete timers[index];
-    display.style.setProperty('--progress', '100%');
     display.classList.remove('running', 'finished', 'prep-stage');
     valueEl.textContent = formatTime(totalTime);
   }
@@ -795,24 +793,21 @@ function startPrepTimer(index, prepTime, responseTime) {
 
   display.classList.add('running', 'prep-stage');
   display.classList.remove('finished');
-  display.style.setProperty('--progress', '100%');
   valueEl.textContent = formatTime(prepTime);
 
   timers[index].interval = setInterval(() => {
     timers[index].remaining--;
-    const progress = (timers[index].remaining / prepTime) * 100;
-    display.style.setProperty('--progress', `${progress}%`);
     valueEl.textContent = formatTime(timers[index].remaining);
 
     if (timers[index].remaining <= 0) {
       clearInterval(timers[index].interval);
       display.classList.remove('prep-stage');
-      startResponseTimer(index, responseTime, responseTime);
+      startResponseTimer(index, responseTime);
     }
   }, 1000);
 }
 
-function resumePrepTimer(index, prepTime, responseTime) {
+function resumePrepTimer(index, responseTime) {
   const display = document.getElementById(`timer-display-${index}`);
   const valueEl = document.getElementById(`timer-value-${index}`);
 
@@ -821,19 +816,17 @@ function resumePrepTimer(index, prepTime, responseTime) {
 
   timers[index].interval = setInterval(() => {
     timers[index].remaining--;
-    const progress = (timers[index].remaining / prepTime) * 100;
-    display.style.setProperty('--progress', `${progress}%`);
     valueEl.textContent = formatTime(timers[index].remaining);
 
     if (timers[index].remaining <= 0) {
       clearInterval(timers[index].interval);
       display.classList.remove('prep-stage');
-      startResponseTimer(index, responseTime, responseTime);
+      startResponseTimer(index, responseTime);
     }
   }, 1000);
 }
 
-function startResponseTimer(index, responseTime, totalResponseTime) {
+function startResponseTimer(index, responseTime) {
   const display = document.getElementById(`timer-display-${index}`);
   const valueEl = document.getElementById(`timer-value-${index}`);
 
@@ -846,13 +839,10 @@ function startResponseTimer(index, responseTime, totalResponseTime) {
 
   display.classList.add('running');
   display.classList.remove('prep-stage', 'finished');
-  display.style.setProperty('--progress', '100%');
   valueEl.textContent = formatTime(responseTime);
 
   timers[index].interval = setInterval(() => {
     timers[index].remaining--;
-    const progress = (timers[index].remaining / totalResponseTime) * 100;
-    display.style.setProperty('--progress', `${progress}%`);
     valueEl.textContent = formatTime(timers[index].remaining);
 
     if (timers[index].remaining <= 0) {
@@ -865,7 +855,7 @@ function startResponseTimer(index, responseTime, totalResponseTime) {
   }, 1000);
 }
 
-function resumeResponseTimer(index, totalResponseTime) {
+function resumeResponseTimer(index) {
   const display = document.getElementById(`timer-display-${index}`);
   const valueEl = document.getElementById(`timer-value-${index}`);
 
@@ -874,8 +864,6 @@ function resumeResponseTimer(index, totalResponseTime) {
 
   timers[index].interval = setInterval(() => {
     timers[index].remaining--;
-    const progress = (timers[index].remaining / totalResponseTime) * 100;
-    display.style.setProperty('--progress', `${progress}%`);
     valueEl.textContent = formatTime(timers[index].remaining);
 
     if (timers[index].remaining <= 0) {
@@ -2449,7 +2437,6 @@ function initNotepad() {
   
   if (focusBtn && backdrop) {
     focusBtn.addEventListener('click', () => {
-      console.log('Focus Mode Toggled');
       const isNowActive = focusBtn.classList.toggle('active');
       backdrop.classList.toggle('show', isNowActive);
       
@@ -2457,7 +2444,6 @@ function initNotepad() {
       const overlay = document.getElementById('notepadOverlay');
       if (overlay) {
         overlay.classList.toggle('focused', isNowActive);
-        console.log('Focus state:', isNowActive);
       }
     });
 
