@@ -85,6 +85,7 @@ let isSeekingPlayback = false;
 const recordings = {}; // { taskKey: { blob, url, durationMs, mimeType } }
 const QUICK_REDO_WARNING_KEY = 'toeicQuickRedoWarningSeen';
 
+
 // ============================
 //  Markdown Helper
 // ============================
@@ -119,6 +120,7 @@ function formatMarkdown(text) {
   return htmlContent;
 }
 
+
 function getCurrentTaskKey() {
   const activeDate = activeType === 'homework' ? dateBadge.textContent : lessonDateBadge.textContent;
   if (!activeClass || !activeType || !activeDate || currentParts[currentPart] === undefined) return '';
@@ -133,6 +135,8 @@ function getCurrentRecording() {
   const key = getCurrentTaskKey();
   return key ? recordings[key] || null : null;
 }
+
+
 
 function getRecordingExtension(mimeType) {
   if (mimeType.includes('mp4')) return 'm4a';
@@ -216,6 +220,9 @@ function getSupportedRecordingMimeType() {
   ];
   return candidates.find(type => MediaRecorder.isTypeSupported(type)) || '';
 }
+
+
+
 
 function startVoiceTranscription() {
   if (!isVoiceNoteEnabled || isRecognitionActive || !mediaStream) return;
@@ -493,6 +500,8 @@ function saveCurrentRecording() {
   }
 }
 
+
+
 // ============================
 //  Audio Seek Helper
 // ============================
@@ -618,6 +627,7 @@ window.selectLesson = async function (className, date) {
   saveAppState(className, 'lesson', date, 0);
   updateBottomNavState();
 };
+
 
 // ============================
 //  Lesson Rendering
@@ -758,6 +768,7 @@ document.addEventListener('click', () => {
   closeAllDropdowns();
 });
 
+
 // ============================
 //  State Persistence
 // ============================
@@ -826,6 +837,9 @@ if (confirmSaveBtn) {
 }
 
 // Initialize auto-hide check globally
+
+
+
 
 // Protection for Scenario 2: App Backgrounding (Swiping to Home Screen)
 document.addEventListener('visibilitychange', () => {
