@@ -2956,6 +2956,7 @@ body.dark-theme .notepad-header {
   color: var(--color-text-tertiary);
   font-weight: 500;
   text-transform: lowercase;
+  padding-right: 6px;
 }
 
 .notepad-count-num {

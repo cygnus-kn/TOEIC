@@ -494,7 +494,7 @@ function startVoiceTranscription() {
   deepgramSocket.onmessage = (message) => {
     const received = JSON.parse(message.data);
     const transcript = received.channel.alternatives[0].transcript;
-    
+
     if (!transcript) return;
 
     if (received.is_final) {
@@ -505,7 +505,7 @@ function startVoiceTranscription() {
 
     const spaceForInterim = permanentTextBeforeResult && !permanentTextBeforeResult.endsWith(' ') && !received.is_final ? ' ' : '';
     notepadTextarea.value = permanentTextBeforeResult + (received.is_final ? '' : spaceForInterim + transcript);
-    
+
     notepadTextarea.scrollTop = notepadTextarea.scrollHeight;
     if (typeof updateWordCount === 'function') updateWordCount();
   };
@@ -2352,7 +2352,7 @@ function initNotepad() {
     if (minimized) {
       notepadOverlay.classList.add('hidden');
       if (restoreBtn) restoreBtn.classList.add('show');
-      
+
       // Auto-cancel Focus Mode if active when minimizing
       const focusBtn = document.getElementById('toggleFocusNotepad');
       if (focusBtn && focusBtn.classList.contains('active')) {
@@ -2441,12 +2441,12 @@ function initNotepad() {
   // 5. Focus Mode Toggle
   const focusBtn = document.getElementById('toggleFocusNotepad');
   const backdrop = document.getElementById('notepadBackdrop');
-  
+
   if (focusBtn && backdrop) {
     focusBtn.addEventListener('click', () => {
       const isNowActive = focusBtn.classList.toggle('active');
       backdrop.classList.toggle('show', isNowActive);
-      
+
       const overlay = document.getElementById('notepadOverlay');
       if (overlay) {
         overlay.classList.toggle('focused', isNowActive);
@@ -2495,21 +2495,21 @@ function initNotepad() {
       isVoiceNoteEnabled = !isVoiceNoteEnabled;
       toggleVoiceBtn.classList.toggle('active', isVoiceNoteEnabled);
       toggleVoiceBtn.title = isVoiceNoteEnabled ? "Voice-to-Text Enabled" : "Enable Voice-to-Text";
-      
+
       showNotepadToast(isVoiceNoteEnabled ? "Voice-to-text enabled" : "Voice-to-text disabled");
 
       const recordingActive = mediaRecorder?.state === 'recording';
       if (isVoiceNoteEnabled && recordingActive && !isRecognitionActive) {
-         startVoiceTranscription();
+        startVoiceTranscription();
       } else if (!isVoiceNoteEnabled && isRecognitionActive) {
-         stopVoiceTranscription();
+        stopVoiceTranscription();
       }
     });
 
     // Deepgram handles transcription via WebSockets
   }
 
-  const GEMINI_API_KEY = 'AIzaSyDnZwhBmJDWy4ZtnBAAEAcmQzohdlQIBHA';
+  const GEMINI_API_KEY = 'AIzaSyAdBhUYRH69RryDF7HmuNJPVveYEvQiaA8';
 
   const getCurrentTaskSummary = () => {
     const part = currentParts[currentPart];
@@ -2545,16 +2545,18 @@ function initNotepad() {
       Request: "${question}"
       
       Instructions:
-      1. CRITICAL: Provide ONLY the direct answer or feedback requested. 
-      2. FORBIDDEN: Do not include ANY introductory phrases, concluding summaries, or generic advice about TOEIC strategy.
-      3. FORBIDDEN: Do not mention "TOEIC", "graders", "high-scoring", "time limits", or "logical development".
-      4. Answer immediately in the first sentence. 
-      5. STRICT RULE: No Markdown (**bolding**, etc.). Pure plain text only.
-      6. STRICT RULE: Maximum 40 words.
+      1. Use clear, simple, and direct language suitable for high school students. Avoid overly complex words.
+      2. If the user's request is a general greeting (e.g., "hello", "hi"), respond briefly and professionally without forcing the homework context.
+      3. Only address the provided Task/Draft context if the user's request is relevant to it or asks for feedback/help.
+      4. Start your response with a brief acknowledgement (e.g., "Sure, for this question..." or "Hello! How can I help you today?").
+      5. Use simple bullet points (using - or *) when giving ideas or multiple suggestions.
+      6. STRICT RULE: No Markdown (**bolding**, etc.). Pure plain text only.
+      7. STRICT RULE: Limit your response to a maximum of 100 words.
     `.trim();
 
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${GEMINI_API_KEY}`, {
+      console.log('Sending request to Gemini...');
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -2562,13 +2564,18 @@ function initNotepad() {
         })
       });
 
-      if (!response.ok) throw new Error('API request failed');
-      
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Gemini API Error Response:', errorData);
+        throw new Error(`API request failed with status ${response.status}`);
+      }
+
       const data = await response.json();
+      console.log('Gemini Response received:', data);
       return data.candidates[0].content.parts[0].text.trim();
     } catch (err) {
-      console.error('Gemini Error:', err);
-      return "I'm sorry, I'm having trouble connecting to my brain right now. Please check your internet connection and try again.";
+      console.error('Gemini Connection Error:', err);
+      return "I'm sorry, I'm having trouble connecting to my brain right now. Please check your console for details.";
     }
   };
 
