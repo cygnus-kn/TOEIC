@@ -72,17 +72,17 @@ TOEIC homework usually follows one of two formats. However, **homework days are 
 
 A standard speaking session typically follows this order, but can be customized with any number of parts (e.g., just Part 1 or a mix of Parts 1-4):
 
-| #   | Type                   | Label                  | questionLabel      | responseTime    |
-| --- | ---------------------- | ---------------------- | ------------------ | --------------- |
-| 1   | `read-aloud`           | Read a Text Aloud      | `"Questions 1-2"`  | —               |
-| 2   | `read-aloud`           | Read a Text Aloud      | `"Questions 1-2"`  | —               |
-| 3   | `describe-picture`     | Describe a Picture     | —                  | —               |
-| 4   | `describe-picture`     | Describe a Picture     | —                  | —               |
-| 5   | `respond-questions-15` | Respond to Questions   | `"Questions 5-6"`  | `15`            |
-| 6   | `respond-questions-15` | Respond to Questions   | `"Questions 5-6"`  | `15`            |
-| 7   | `respond-questions-30` | Respond to Questions   | `"Question 7"`     | `30`            |
-| 8   | `respond-info-q`       | Respond to Information | `"Questions 8-10"` | —               |
-| 9   | `opinion`              | Express an Opinion     | `"Question 11"`    | `60` (optional) |
+| #   | Type                   | Label                  | questionLabel      | responseTime |
+| --- | ---------------------- | ---------------------- | ------------------ | ------------ |
+| 1   | `read-aloud`           | Read a Text Aloud      | `"Questions 1-2"`  | —            |
+| 2   | `read-aloud`           | Read a Text Aloud      | `"Questions 1-2"`  | —            |
+| 3   | `describe-picture`     | Describe a Picture     | `"Questions 3-4"`  | —            |
+| 4   | `describe-picture`     | Describe a Picture     | `"Questions 3-4"`  | —            |
+| 5   | `respond-questions-15` | Respond to Questions   | `"Questions 5-6"`  | `15`         |
+| 6   | `respond-questions-15` | Respond to Questions   | `"Questions 5-6"`  | `15`         |
+| 7   | `respond-questions-30` | Respond to Questions   | `"Question 7"`     | `30`         |
+| 8   | `respond-info-q`       | Respond to Information | `"Questions 8-10"` | —            |
+| 9   | `opinion`              | Express an Opinion     | `"Question 11"`    | `60`         |
 
 ---
 
@@ -105,8 +105,9 @@ A standard speaking session typically follows this order, but can be customized 
 {
   type: "describe-picture",
   label: "Describe a Picture",
+  questionLabel: "Questions 3-4",
   content: {
-    imageUrl: "test-data/speaking-pictures/FILENAME.png",  // path relative to project root
+    imageUrl: "test-data/speaking-pictures/FILENAME.webp",  // path relative to project root
     imagePlaceholder: "🖼️ Picture 1",            // fallback label if image missing
     prompt: "Describe the picture in as much detail as you can."
   }
@@ -230,6 +231,7 @@ A standard speaking session typically follows this order, but can be customized 
     {
       type: "describe-picture",
       label: "Describe a Picture",
+      questionLabel: "Questions 3-4",
       content: {
         imageUrl: "test-data/speaking-pictures/FILENAME-picture-1.png",
         imagePlaceholder: "🖼️ Picture 1",
@@ -239,6 +241,7 @@ A standard speaking session typically follows this order, but can be customized 
     {
       type: "describe-picture",
       label: "Describe a Picture",
+      questionLabel: "Questions 3-4",
       content: {
         imageUrl: "test-data/speaking-pictures/FILENAME-picture-2.png",
         imagePlaceholder: "🖼️ Picture 2",
@@ -310,12 +313,12 @@ A standard speaking session typically follows this order, but can be customized 
 
 **Recommended `responseTime` by preparation type:**
 
-| Preparing for…              | `responseTime` |
-| --------------------------- | -------------- |
-| Speaking Q5–6 (short)       | `15`           |
-| Speaking Q7 / general topic | `30`           |
-| Speaking Q11 (opinion)      | `60`           |
-| Writing essay (Q8)          | `60` or more   |
+| Preparing for…         | `responseTime` |
+| ---------------------- | -------------- |
+| Speaking Q5–6 (short)  | `15`           |
+| Speaking Q7            | `30`           |
+| Speaking Q11 (opinion) | `60`           |
+| Writing essay          | `60`           |
 
 
 ### Schema

@@ -2050,9 +2050,16 @@ body:not(body.dark-theme) .bottom-nav-btn-primary.active-media:hover {
   filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.08));
 }
 
-.bottom-recorder-shell.hidden {
+.bottom-recorder-shell.hidden,
+.bottom-recorder-shell.hidden-nav {
   opacity: 0;
-  transform: translate(-50%, 18px);
+  transform: translate(-50%, 40px);
+  pointer-events: none;
+}
+
+.bottom-recorder-handle.hidden-nav {
+  opacity: 0;
+  transform: translate(-50%, 40px);
   pointer-events: none;
 }
 

@@ -379,6 +379,24 @@ function updateRecordButtonIcon(mode = 'record') {
 function updateBottomNavState() {
   if (!bottomRecorderShell) return;
 
+  // Whitelist Logic: Show bottom nav ONLY for Speaking tasks, hide for everything else
+  const currentPartData = currentParts[currentPart];
+  let isSpeakingTask = false;
+
+  if (activeType === 'homework' && currentPartData) {
+    const category = TYPE_LABELS[currentPartData.type];
+    const isWritingOpinion = currentPartData.type === 'opinion' && currentPartData.label === 'Write an Opinion Essay';
+    
+    if (category === 'TOEIC Speaking' && !isWritingOpinion) {
+      isSpeakingTask = true;
+    }
+  }
+
+  const shouldHide = !isSpeakingTask;
+  
+  bottomRecorderShell.classList.toggle('hidden-nav', shouldHide);
+  if (bottomRecorderHandle) bottomRecorderHandle.classList.toggle('hidden-nav', shouldHide);
+
   const hasParts = currentParts.length > 0;
   const canRecord = currentPartSupportsRecording() && typeof navigator !== 'undefined' && !!navigator.mediaDevices && typeof MediaRecorder !== 'undefined';
   const hasRecording = !!getCurrentRecording();
