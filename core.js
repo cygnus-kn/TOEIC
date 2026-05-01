@@ -2341,11 +2341,12 @@ document.addEventListener('visibilitychange', () => {
 // ============================
 //  Notepad Logic
 // ============================
-const notepadOverlay = document.getElementById('notepadOverlay');
-const notepadTextarea = document.getElementById('notepadTextarea');
-const clearNotepadBtn = document.getElementById('clearNotepad');
 
 function initNotepad() {
+  const notepadOverlay = document.getElementById('notepadOverlay');
+  const notepadTextarea = document.getElementById('notepadTextarea');
+  const clearNotepadBtn = document.getElementById('clearNotepad');
+
   if (!notepadOverlay || !notepadTextarea) return;
 
   // 1. Load Content & Visibility
@@ -2363,6 +2364,12 @@ function initNotepad() {
     if (minimized) {
       notepadOverlay.classList.add('hidden');
       if (restoreBtn) restoreBtn.classList.add('show');
+      
+      // Auto-cancel Focus Mode if active when minimizing
+      const focusBtn = document.getElementById('toggleFocusNotepad');
+      if (focusBtn && focusBtn.classList.contains('active')) {
+        focusBtn.click();
+      }
     } else {
       notepadOverlay.classList.remove('hidden');
       if (restoreBtn) restoreBtn.classList.remove('show');
@@ -2435,7 +2442,41 @@ function initNotepad() {
     });
   }
 
-  // 5. Voice Transcription Initialization
+
+  // 5. Focus Mode Toggle
+  const focusBtn = document.getElementById('toggleFocusNotepad');
+  const backdrop = document.getElementById('notepadBackdrop');
+  
+  if (focusBtn && backdrop) {
+    focusBtn.addEventListener('click', () => {
+      console.log('Focus Mode Toggled');
+      const isNowActive = focusBtn.classList.toggle('active');
+      backdrop.classList.toggle('show', isNowActive);
+      
+      // Select overlay directly to ensure it exists in the scope
+      const overlay = document.getElementById('notepadOverlay');
+      if (overlay) {
+        overlay.classList.toggle('focused', isNowActive);
+        console.log('Focus state:', isNowActive);
+      }
+    });
+
+    backdrop.addEventListener('click', () => {
+      if (focusBtn.classList.contains('active')) {
+        focusBtn.click();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && focusBtn.classList.contains('active')) {
+        focusBtn.click();
+      }
+    });
+  } else {
+    console.warn('Focus Mode elements not found:', { focusBtn, backdrop });
+  }
+
+  // 6. Voice Transcription Initialization
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const toggleVoiceBtn = document.getElementById('toggleVoiceNote');
 
@@ -2657,5 +2698,7 @@ function initNotepad() {
   }
 }
 
-// Call init
-initNotepad();
+// Call init when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initNotepad();
+});

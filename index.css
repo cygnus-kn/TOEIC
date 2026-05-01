@@ -1724,7 +1724,7 @@ body.dark-theme .out-link-icon:hover {
   left: 50%;
   bottom: 18px;
   transform: translateX(-50%);
-  z-index: 1100;
+  z-index: 2200;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2499,7 +2499,7 @@ body.dark-theme .bookmark-dot:not(.active-bookmark):hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
-  z-index: 900;
+  z-index: 2100;
   overflow: visible;
   transition: 
     opacity var(--transition-smooth), 
@@ -2663,6 +2663,11 @@ body.dark-theme .notepad-header {
   color: var(--color-accent);
 }
 
+.notepad-action-btn.active {
+  color: var(--color-accent);
+  background: var(--color-accent-light);
+}
+
 .notepad-action-btn.destructive:hover {
   color: #ef4444;
 }
@@ -2673,6 +2678,31 @@ body.dark-theme .notepad-header {
   pointer-events: none;
   transform: translateY(12px);
 }
+
+.notepad-overlay.focused {
+  /* z-index swap removed to prevent flash */
+}
+
+.notepad-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2050;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-smooth);
+}
+
+.notepad-backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 
 .notepad-textarea {
   flex: 1;

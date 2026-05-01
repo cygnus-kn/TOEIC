@@ -37,12 +37,11 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 - [x] All timers reset when switching parts or homework dates
 - [x] State Persistence: App remembers the last viewed class, assignment, and specific part/page on reload
 
-- [x] **Smart Minimize**: Minimize to a compact floating toggle button in the bottom-right corner
-- [x] **Voice-to-Text (Pro)**: Integrated **Deepgram Nova-2** via WebSockets for ultra-fast, professional-grade live transcription with punctuation and filler-word support.
-- [x] **Live Feedback**: Real-time "interim" text streaming allows students to see their words appear instantly as they speak.
-- [x] **Cross-Browser Utility**: Fully unlocked transcription for Firefox, Safari, and Edge by moving away from browser-specific APIs.
-- [x] **Workflow Sync**: Automatically clears the notepad when deleting a recording (if Voice mode is ON) to ensure a fresh take.
-- [x] **Status Notifications**: Added minimalist, animated status toasts for toggling modes and a pulsing "listening" indicator.
+- [x] **Theater Mode**: Added a "Scan" focus button that dims the background with a soft blur to eliminate distractions.
+- [x] **Zero-Flash Transitions**: Overhauled the platform's z-index hierarchy (Notepad: 2100, Backdrop: 2050) to ensure seamless layering during mode shifts.
+- [x] **Intuitive Exit Paths**: Integrated **Esc** key, backdrop-click, and auto-exit on minimize to make Focus Mode effortless to manage.
+- [x] **Universal Transitions**: Synchronized all notepad property changes (color, border, blur) to match the global 150ms theme speed.
+- [x] **Pro-Level Transcription**: Integrated **Deepgram Nova-2** via WebSockets for professional accuracy and cross-browser support (Firefox/Safari).
 - [x] **Word & Copy Utility**: Integrated a minimalist footer with a real-time word counter and a one-click "Copy all" button with visual success feedback.
 
 ### 🃏 Question Card Types
@@ -267,7 +266,7 @@ Enable the user to click and drag the microphone navigation bar to any position 
 | Apr 29 | **Mobile UI Finalization**: Restored and refined the hybrid mobile auto-hide logic. Implemented the strict **"Empty Surface Only"** touch-to-reveal rule, ensuring that tapping background areas reveals the UI while swiping cards or reading text does not. Fought the **"Ghost Cache"** once more by using inline scripts for verification before moving back to `core.js`. Consolidated sidebar toggle definitions to prevent script crashes.                                                                                                                                                                                                                                                                                 |
 | Apr 30 | **Refinement & Robustness**: Migrated the bottom navigation drag logic from `index.html` into `core.js` and resolved local development connectivity issues for mobile testing. **Universal Alignment**: Replaced hardcoded vertical positions with a mathematical CSS variable system (`--header-center-y`) that guarantees perfect icon alignment on both platforms. Reduced mobile sidebar width to 220px for improved viewport density. **Nav Interaction Fix**: Resolved a bug where the bottom nav would "stick" or expand incorrectly after dragging; implemented a system to clear fixed dimensions on `mouseup` to allow for dynamic growth when the seeker expands. Refined drag targets to prevent accidental movement. |
 | Apr 30 | **Naming Standardization**: Unified the homework and lesson naming convention to `[HW-XX] DD/MM` and `[Lesson-XX] DD/MM` across the entire platform. Updated `data.js`, all class JSON files, and documentation. Refined the sidebar rendering logic in `core.js` to preserve brackets in labels and updated recording filename regex to support the new naming scheme for robustness. |
-| May 01 | **Drafting Area Pro Upgrade**: Replaced native SpeechRecognition with the **Deepgram Nova-2** engine for professional accuracy and cross-browser support (Firefox/Safari/Edge). Implemented ultra-live interim results for real-time feedback. Added minimalist status toasts, a pulsing microphone animation, and synchronized the notepad's theme transition (150ms) with the rest of the site. Integrated notepad clearing into the recording deletion workflow and refined all hover states to a minimalist icon-only design. |
+| May 01 | **Drafting Area Final Polish**: Implemented a professional **Theater Mode** with a dimming backdrop and blur effect. Standardized the platform's **z-index hierarchy** (Notepad: 2100, Backdrop: 2050, Nav: 2200) to eliminate transition flickering. Added intuitive exit paths including **Esc** key support and auto-exit on minimize. Integrated **Deepgram Nova-2** for pro-level, cross-browser voice transcription and refined all hover/active button states for a minimalist, premium look. |
 
 ---
 
