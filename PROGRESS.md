@@ -1,6 +1,6 @@
 # TOEIC Homework Platform — Progress Tracker
 
-> Last updated: 2026-04-30
+> Last updated: 2026-05-01
 
 ---
 
@@ -36,6 +36,14 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 - [x] Dropdown to switch between homework dates
 - [x] All timers reset when switching parts or homework dates
 - [x] State Persistence: App remembers the last viewed class, assignment, and specific part/page on reload
+
+### 📝 Student Drafting Area (Notepad)
+- [x] Floating glassmorphism overlay for jotting down notes during homework
+- [x] **Draggable Header**: Move the drafting area anywhere on the screen
+- [x] **Multi-Directional Resizing**: Invisible edge handles allow resizing from any side or corner
+- [x] **Smart Minimize**: Minimize to a compact floating toggle button in the bottom-right corner
+- [x] **Persistent State**: Notes content, position, dimensions, and visibility are all saved via `localStorage`
+- [x] **Input Isolation**: Global arrow-key navigation is automatically disabled while typing in the notepad
 
 ### 🃏 Question Card Types
 | Type                                    | Status |
@@ -259,6 +267,7 @@ Enable the user to click and drag the microphone navigation bar to any position 
 | Apr 29 | **Mobile UI Finalization**: Restored and refined the hybrid mobile auto-hide logic. Implemented the strict **"Empty Surface Only"** touch-to-reveal rule, ensuring that tapping background areas reveals the UI while swiping cards or reading text does not. Fought the **"Ghost Cache"** once more by using inline scripts for verification before moving back to `core.js`. Consolidated sidebar toggle definitions to prevent script crashes.                                                                                                                                                                                                                                                                                 |
 | Apr 30 | **Refinement & Robustness**: Migrated the bottom navigation drag logic from `index.html` into `core.js` and resolved local development connectivity issues for mobile testing. **Universal Alignment**: Replaced hardcoded vertical positions with a mathematical CSS variable system (`--header-center-y`) that guarantees perfect icon alignment on both platforms. Reduced mobile sidebar width to 220px for improved viewport density. **Nav Interaction Fix**: Resolved a bug where the bottom nav would "stick" or expand incorrectly after dragging; implemented a system to clear fixed dimensions on `mouseup` to allow for dynamic growth when the seeker expands. Refined drag targets to prevent accidental movement. |
 | Apr 30 | **Naming Standardization**: Unified the homework and lesson naming convention to `[HW-XX] DD/MM` and `[Lesson-XX] DD/MM` across the entire platform. Updated `data.js`, all class JSON files, and documentation. Refined the sidebar rendering logic in `core.js` to preserve brackets in labels and updated recording filename regex to support the new naming scheme for robustness. |
+| May 01 | **Student Drafting Area**: Implemented a persistent, draggable, and resizable glassmorphism notepad for student notes. Added multi-directional resizing from any edge/corner with cursor feedback. Integrated a smart minimize-to-corner FAB (Floating Action Button) and ensured full state persistence across sessions. Resolved keyboard navigation conflicts during text input. |
 
 ---
 
