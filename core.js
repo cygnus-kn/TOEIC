@@ -2447,7 +2447,6 @@ function initNotepad() {
       const isNowActive = focusBtn.classList.toggle('active');
       backdrop.classList.toggle('show', isNowActive);
       
-      // Select overlay directly to ensure it exists in the scope
       const overlay = document.getElementById('notepadOverlay');
       if (overlay) {
         overlay.classList.toggle('focused', isNowActive);
@@ -2468,6 +2467,8 @@ function initNotepad() {
   } else {
     console.warn('Focus Mode elements not found:', { focusBtn, backdrop });
   }
+
+  // 5.5 (Markdown removed)
 
   // 6. Voice Transcription Initialization
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -2506,9 +2507,9 @@ function initNotepad() {
     });
 
     // Deepgram handles transcription via WebSockets
-
-
   }
+
+  const GEMINI_API_KEY = 'AIzaSyDnZwhBmJDWy4ZtnBAAEAcmQzohdlQIBHA';
 
   const getCurrentTaskSummary = () => {
     const part = currentParts[currentPart];
@@ -2533,98 +2534,42 @@ function initNotepad() {
       .trim();
   };
 
-  const getContextStats = (text) => {
-    const words = text ? text.split(/\s+/).filter(Boolean) : [];
-    const paragraphs = text ? text.split(/\n\s*\n/).filter(block => block.trim().length > 0) : [];
-    const sentences = text ? text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0) : [];
-    return {
-      wordCount: words.length,
-      paragraphCount: paragraphs.length,
-      sentenceCount: sentences.length
-    };
-  };
+  const getGeminiResponse = async (question, contextText, currentTaskText) => {
+    const prompt = `
+      You are a professional TOEIC Speaking & Writing coach.
+      
+      Context:
+      - Task: "${currentTaskText || 'General'}"
+      - Student Draft: "${contextText || 'Empty'}"
+      
+      Request: "${question}"
+      
+      Instructions:
+      1. CRITICAL: Provide ONLY the direct answer or feedback requested. 
+      2. FORBIDDEN: Do not include ANY introductory phrases, concluding summaries, or generic advice about TOEIC strategy.
+      3. FORBIDDEN: Do not mention "TOEIC", "graders", "high-scoring", "time limits", or "logical development".
+      4. Answer immediately in the first sentence. 
+      5. STRICT RULE: No Markdown (**bolding**, etc.). Pure plain text only.
+      6. STRICT RULE: Maximum 40 words.
+    `.trim();
 
-  const getFirstSentence = (text) => {
-    const match = text.trim().match(/[^.!?]+[.!?]?/);
-    return match ? match[0].trim() : '';
-  };
+    try {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${GEMINI_API_KEY}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }]
+        })
+      });
 
-  const buildFeedbackReply = (contextText, currentTaskText) => {
-    if (!contextText) {
-      return 'I cannot give specific feedback yet because the drafting area is empty. Add your draft first, then ask again.';
+      if (!response.ok) throw new Error('API request failed');
+      
+      const data = await response.json();
+      return data.candidates[0].content.parts[0].text.trim();
+    } catch (err) {
+      console.error('Gemini Error:', err);
+      return "I'm sorry, I'm having trouble connecting to my brain right now. Please check your internet connection and try again.";
     }
-
-    const stats = getContextStats(contextText);
-    const lines = [];
-
-    if (stats.wordCount < 45) {
-      lines.push('You have a start, but it is still short. Add a clearer main point and one concrete supporting detail.');
-    } else {
-      lines.push('Your draft has a workable core idea. The next gain is making each sentence support the same main point.');
-    }
-
-    const firstSentence = getFirstSentence(contextText);
-    if (firstSentence) {
-      lines.push(`Opening: "${firstSentence}"`);
-    }
-
-    if (stats.paragraphCount < 2) {
-      lines.push('Organization: split your response into at least two parts so the reader can separate your claim from your support.');
-    } else {
-      lines.push('Organization: your paragraph split is present, but the transitions between ideas can be clearer.');
-    }
-
-    if (stats.sentenceCount < 4) {
-      lines.push('Development: add one example or explanation sentence so the answer does more than state the opinion.');
-    } else {
-      lines.push('Development: keep the strongest example and remove any sentence that repeats the same idea.');
-    }
-
-    if (currentTaskText) {
-      lines.push(`Task fit: keep your answer tied to this prompt focus: ${currentTaskText}`);
-    }
-
-    lines.push('Revision target: make the first sentence your direct answer, then follow it with one reason and one example.');
-    return lines.join('\n');
-  };
-
-  const buildAiReply = (question, contextText, currentTaskText) => {
-    const normalized = question.toLowerCase();
-
-    if (/(feedback|review|improve|essay|draft|opinion)/.test(normalized)) {
-      return buildFeedbackReply(contextText, currentTaskText);
-    }
-
-    if (/(grammar|fix|correct|rewrite)/.test(normalized)) {
-      if (!contextText) {
-        return 'There is no draft in the drafting area yet. Paste or write the text you want me to help revise.';
-      }
-      return 'I can help revise this draft. Start by tightening long sentences, making the first sentence your direct answer, and replacing repeated wording with one clear example.';
-    }
-
-    if (/(outline|structure|template)/.test(normalized)) {
-      return [
-        '1. State your answer directly in the first sentence.',
-        '2. Give one clear reason.',
-        '3. Add one short example.',
-        '4. End by repeating the main idea in one sentence.'
-      ].join('\n');
-    }
-
-    if (!contextText && currentTaskText) {
-      return `Focus on the current task first: ${currentTaskText}\n\nStart with a direct answer, then add one reason and one example.`;
-    }
-
-    if (!contextText) {
-      return 'Ask a more specific question or add a draft first. I work best when I can read the text already in the drafting area.';
-    }
-
-    const stats = getContextStats(contextText);
-    return [
-      `I read the draft first. It currently has about ${stats.wordCount} words.`,
-      'The fastest improvement is to make the first sentence your direct answer, then keep the rest of the draft supporting that answer.',
-      currentTaskText ? `Keep the response anchored to: ${currentTaskText}` : 'If you want a stronger answer, add one concrete example and remove repeated ideas.'
-    ].join('\n');
   };
 
   const typeIntoNotepad = async (text) => {
@@ -2681,15 +2626,17 @@ function initNotepad() {
 
     setAiBusyState(true);
 
-    const contextText = getDraftContext();
-    const currentTaskText = getCurrentTaskSummary();
-    const reply = buildAiReply(question, contextText, currentTaskText);
+    // Immediately push user question to notepad and clear input
     const trimmed = notepadTextarea.value.trimEnd();
     const intro = trimmed ? `${trimmed}\n\n` : '';
     notepadTextarea.value = `${intro}You: ${question}\n\nAI: `;
     syncNotepadContent();
     aiInput.value = '';
     updateAiSubmitState();
+
+    const contextText = getDraftContext();
+    const currentTaskText = getCurrentTaskSummary();
+    const reply = await getGeminiResponse(question, contextText, currentTaskText);
 
     await typeIntoNotepad(reply);
     notepadTextarea.value += '\n\n';
