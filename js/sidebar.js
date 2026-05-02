@@ -23,10 +23,7 @@ const toggleSidebar = () => {
 };
 
 collapseBtn.addEventListener('click', toggleSidebar);
-const collapseBtnInternal = document.getElementById('sidebarCollapseBtnInternal');
-if (collapseBtnInternal) {
-  collapseBtnInternal.addEventListener('click', toggleSidebar);
-}
+
 
 // Click outside to collapse (Mobile only)
 document.addEventListener('click', (e) => {
@@ -34,7 +31,7 @@ document.addEventListener('click', (e) => {
   if (window.innerWidth > 1024) return;
 
   const isSidebarOpen = !sidebar.classList.contains('collapsed');
-  const isToggleButton = collapseBtn.contains(e.target) || (collapseBtnInternal && collapseBtnInternal.contains(e.target));
+  const isToggleButton = collapseBtn.contains(e.target);
 
   // Check if click was outside sidebar AND not on the toggle buttons
   if (isSidebarOpen && !sidebar.contains(e.target) && !isToggleButton) {

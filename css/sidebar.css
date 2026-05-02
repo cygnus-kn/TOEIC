@@ -12,8 +12,9 @@
   flex-direction: column;
   overflow: hidden;
   position: fixed;
-  top: 16px;
+  top: var(--sidebar-top-offset);
   left: 16px;
+  height: calc(100dvh - var(--sidebar-top-offset) - 16px);
   transition: all var(--transition-smooth);
   z-index: 2000;
   border-radius: var(--radius-lg);
@@ -85,11 +86,9 @@ body.dark-theme .sidebar {
 /* Sidebar Toggle on Main */
 .main-top-bar {
   position: fixed;
-  /* Aligned to master center line minus half button height */
   top: calc(var(--header-center-y) - (var(--ui-toggle-size) / 2));
   left: 32px;
-  /* Consistent margin */
-  z-index: 1001;
+  z-index: 2001; /* above sidebar (2000) so button floats in front when sidebar open */
   pointer-events: none;
   transition: opacity var(--transition-smooth), transform var(--transition-smooth);
 }
@@ -189,7 +188,7 @@ body:not(body.dark-theme) .sidebar-toggle-btn:hover {
   align-items: center;
   justify-content: flex-end;
   /* Calculation: Master center minus sidebar top offset minus half button height */
-  padding: calc(var(--header-center-y) - var(--sidebar-top-offset) - (var(--ui-toggle-size) / 2)) 16px 8px;
+  padding: 68px 16px 8px;
   flex-shrink: 0;
 }
 

@@ -1,0 +1,72 @@
+/* ============================
+   Layout Toggle Button
+   ============================ */
+
+.layout-top-bar {
+  position: fixed;
+  /* Aligned to master center line minus half button height */
+  top: calc(var(--header-center-y) - (var(--ui-toggle-size) / 2));
+  right: 32px;
+  z-index: 1001;
+  pointer-events: none;
+  transition: opacity var(--transition-smooth), transform var(--transition-smooth);
+}
+
+@media (max-width: 600px) {
+  .layout-top-bar {
+    right: 16px;
+  }
+}
+
+.layout-toggle-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  cursor: pointer;
+  width: var(--ui-toggle-size) !important;
+  height: var(--ui-toggle-size) !important;
+  min-width: var(--ui-toggle-size);
+  min-height: var(--ui-toggle-size);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-smooth);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+body:not(body.dark-theme) .layout-toggle-btn {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: #000000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.layout-toggle-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+.layout-toggle-btn:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+body:not(body.dark-theme) .layout-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Mobile auto-hide styles - matching sidebar toggle behavior */
+@media (max-width: 1024px) {
+  body.mobile-controls-hidden .layout-top-bar {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-15px);
+  }
+}
