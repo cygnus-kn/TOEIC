@@ -9,6 +9,96 @@ function initNotepad() {
 
   if (!notepadOverlay || !notepadTextarea) return;
 
+  const NOTEPAD_SCREEN_PADDING = 16;
+  const NOTEPAD_MIN_WIDTH = 150;
+  const NOTEPAD_MIN_HEIGHT = 100;
+  let pendingViewportClamp = null;
+
+  const clampNumber = (value, min, max) => Math.min(max, Math.max(min, value));
+
+  const getViewportRect = () => {
+    const visualViewport = window.visualViewport;
+    return {
+      left: visualViewport?.offsetLeft || 0,
+      top: visualViewport?.offsetTop || 0,
+      width: visualViewport?.width || window.innerWidth,
+      height: visualViewport?.height || window.innerHeight
+    };
+  };
+
+  const getNotepadBounds = () => {
+    const viewport = getViewportRect();
+    const maxWidth = Math.max(NOTEPAD_MIN_WIDTH, viewport.width - NOTEPAD_SCREEN_PADDING * 2);
+    const maxHeight = Math.max(NOTEPAD_MIN_HEIGHT, viewport.height - NOTEPAD_SCREEN_PADDING * 2);
+    return {
+      minLeft: viewport.left + NOTEPAD_SCREEN_PADDING,
+      minTop: viewport.top + NOTEPAD_SCREEN_PADDING,
+      maxWidth,
+      maxHeight
+    };
+  };
+
+  const placeNotepadWithinViewport = (next = {}, persist = false) => {
+    const bounds = getNotepadBounds();
+    const rect = notepadOverlay.getBoundingClientRect();
+    const styles = window.getComputedStyle(notepadOverlay);
+    const styleWidth = parseFloat(notepadOverlay.style.width) || parseFloat(styles.width);
+    const styleHeight = parseFloat(notepadOverlay.style.height) || parseFloat(styles.height);
+    const styleLeft = parseFloat(notepadOverlay.style.left);
+    const styleTop = parseFloat(notepadOverlay.style.top);
+    const styleRight = parseFloat(notepadOverlay.style.right) || 0;
+    const currentWidth = rect.width || styleWidth || 280;
+    const currentHeight = rect.height || styleHeight || 480;
+    const currentLeft = Number.isFinite(rect.left) && rect.width
+      ? rect.left
+      : Number.isFinite(styleLeft)
+        ? styleLeft
+        : getViewportRect().left + getViewportRect().width - styleRight - currentWidth;
+    const currentTop = Number.isFinite(rect.top) && rect.height
+      ? rect.top
+      : Number.isFinite(styleTop)
+        ? styleTop
+        : 192;
+    const width = clampNumber(
+      Math.round(next.width ?? currentWidth),
+      Math.min(NOTEPAD_MIN_WIDTH, bounds.maxWidth),
+      bounds.maxWidth
+    );
+    const height = clampNumber(
+      Math.round(next.height ?? currentHeight),
+      Math.min(NOTEPAD_MIN_HEIGHT, bounds.maxHeight),
+      bounds.maxHeight
+    );
+    const maxLeft = bounds.minLeft + bounds.maxWidth - width;
+    const maxTop = bounds.minTop + bounds.maxHeight - height;
+    const left = clampNumber(Math.round(next.left ?? currentLeft), bounds.minLeft, maxLeft);
+    const top = clampNumber(Math.round(next.top ?? currentTop), bounds.minTop, maxTop);
+
+    Object.assign(notepadOverlay.style, {
+      width: width + 'px',
+      height: height + 'px',
+      left: left + 'px',
+      top: top + 'px',
+      right: 'auto',
+      bottom: 'auto'
+    });
+
+    if (persist) {
+      localStorage.setItem('toeicNotepadWidth', width);
+      localStorage.setItem('toeicNotepadHeight', height);
+      localStorage.setItem('toeicNotepadLeft', left + 'px');
+      localStorage.setItem('toeicNotepadTop', top + 'px');
+    }
+  };
+
+  const scheduleNotepadViewportClamp = () => {
+    if (pendingViewportClamp !== null) return;
+    pendingViewportClamp = requestAnimationFrame(() => {
+      pendingViewportClamp = null;
+      placeNotepadWithinViewport({}, true);
+    });
+  };
+
   // 1. Load Content & Visibility
   const savedContent = localStorage.getItem('toeicNotepadContent');
   if (savedContent) {
@@ -87,6 +177,8 @@ function initNotepad() {
     notepadOverlay.style.left = savedLeft;
     notepadOverlay.style.right = 'auto';
   }
+
+  placeNotepadWithinViewport({}, true);
 
   // 3. Save Content on Input
   notepadTextarea.addEventListener('input', () => {
@@ -421,18 +513,12 @@ function initNotepad() {
           newTop = startTop + dy;
         }
 
-        // Apply constraints
-        if (newWidth > 100) {
-          notepadOverlay.style.width = newWidth + 'px';
-          notepadOverlay.style.left = newLeft + 'px';
-        }
-        if (newHeight > 100) {
-          notepadOverlay.style.height = newHeight + 'px';
-          notepadOverlay.style.top = newTop + 'px';
-        }
-
-        notepadOverlay.style.right = 'auto';
-        notepadOverlay.style.bottom = 'auto';
+        placeNotepadWithinViewport({
+          width: newWidth,
+          height: newHeight,
+          left: newLeft,
+          top: newTop
+        });
       };
 
       const onEnd = () => {
@@ -444,10 +530,7 @@ function initNotepad() {
         notepadOverlay.style.transition = '';
 
         // Save final state
-        localStorage.setItem('toeicNotepadWidth', notepadOverlay.offsetWidth);
-        localStorage.setItem('toeicNotepadHeight', notepadOverlay.offsetHeight);
-        localStorage.setItem('toeicNotepadLeft', notepadOverlay.style.left);
-        localStorage.setItem('toeicNotepadTop', notepadOverlay.style.top);
+        placeNotepadWithinViewport({}, true);
       };
 
       document.documentElement.addEventListener('mousemove', onMove);
@@ -460,13 +543,30 @@ function initNotepad() {
     };
 
     edge.addEventListener('mousedown', startResizing);
-    edge.addEventListener('touchstart', startResizing, { passive: true });
+    edge.addEventListener('touchstart', startResizing, { passive: false });
   });
 
   // 9. Dragging Logic (via Header)
   const header = notepadOverlay.querySelector('.notepad-header');
   if (header) {
     let dragStartX, dragStartY, initialTop, initialLeft;
+    let holdReadyTimer = null;
+
+    const clearHoldReady = () => {
+      if (holdReadyTimer !== null) {
+        clearTimeout(holdReadyTimer);
+        holdReadyTimer = null;
+      }
+      notepadOverlay.classList.remove('hold-ready');
+    };
+
+    const scheduleHoldReady = () => {
+      clearHoldReady();
+      holdReadyTimer = setTimeout(() => {
+        holdReadyTimer = null;
+        notepadOverlay.classList.add('hold-ready');
+      }, 140);
+    };
 
     const startDragging = (e) => {
       if (e.target.closest('.notepad-clear-btn')) return;
@@ -487,6 +587,7 @@ function initNotepad() {
 
       notepadOverlay.classList.add('dragging');
       header.style.cursor = 'grabbing';
+      if (e.touches) scheduleHoldReady();
     };
 
     const draggingMove = (e) => {
@@ -500,13 +601,7 @@ function initNotepad() {
       let newTop = initialTop + dy;
       let newLeft = initialLeft + dx;
 
-      newTop = Math.max(0, Math.min(window.innerHeight - 50, newTop));
-      newLeft = Math.max(-100, Math.min(window.innerWidth - 50, newLeft));
-
-      notepadOverlay.style.top = newTop + 'px';
-      notepadOverlay.style.left = newLeft + 'px';
-      notepadOverlay.style.right = 'auto';
-      notepadOverlay.style.bottom = 'auto';
+      placeNotepadWithinViewport({ left: newLeft, top: newTop });
     };
 
     const draggingEnd = () => {
@@ -516,16 +611,20 @@ function initNotepad() {
       document.documentElement.removeEventListener('touchend', draggingEnd);
 
       notepadOverlay.classList.remove('dragging');
+      clearHoldReady();
       header.style.cursor = 'grab';
 
-      localStorage.setItem('toeicNotepadTop', notepadOverlay.style.top);
-      localStorage.setItem('toeicNotepadLeft', notepadOverlay.style.left);
+      placeNotepadWithinViewport({}, true);
       localStorage.removeItem('toeicNotepadRight');
     };
 
     header.addEventListener('mousedown', startDragging);
-    header.addEventListener('touchstart', startDragging, { passive: true });
+    header.addEventListener('touchstart', startDragging, { passive: false });
   }
+
+  window.addEventListener('resize', scheduleNotepadViewportClamp);
+  window.visualViewport?.addEventListener('resize', scheduleNotepadViewportClamp);
+  window.visualViewport?.addEventListener('scroll', scheduleNotepadViewportClamp);
 }
 
 // Call init when DOM is ready

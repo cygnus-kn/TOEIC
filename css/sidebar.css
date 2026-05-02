@@ -16,7 +16,7 @@
   left: 16px;
   height: calc(100dvh - var(--sidebar-top-offset) - 16px);
   transition: all var(--transition-smooth);
-  z-index: 2000;
+  z-index: 2300;
   border-radius: var(--radius-lg);
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.3),
@@ -88,8 +88,8 @@ body.dark-theme .sidebar {
   position: fixed;
   top: calc(var(--header-center-y) - (var(--ui-toggle-size) / 2));
   left: 32px;
-  z-index: 2001;
-  /* above sidebar (2000) so button floats in front when sidebar open */
+  z-index: 2301;
+  /* above sidebar (2300) so button floats in front when sidebar open */
   pointer-events: none;
   transition: opacity var(--transition-smooth), transform var(--transition-smooth);
 }
@@ -205,14 +205,12 @@ body:not(body.dark-theme) .sidebar-toggle-btn:hover {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  /* Calculation: Master center minus sidebar top offset minus half button height */
   padding: 68px 16px 8px;
   flex-shrink: 0;
 }
 
 @media (max-width: 600px) {
   .sidebar-header {
-    /* Automatically recalculates via --sidebar-top-offset override */
     padding-bottom: 8px !important;
   }
 }

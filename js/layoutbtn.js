@@ -18,6 +18,8 @@
 
   let currentMode = 'focus';
   let pendingExtendRaf = null; // track rAF so we can cancel it on mode switch
+  let pendingResizeRaf = null;
+  let pendingBottomNavTeleport = null;
 
   // ============================
   //  Shared Helpers
@@ -55,8 +57,50 @@
   function resetBottomNav() {
     const shell = document.getElementById('bottomRecorderShell');
     if (!shell) return;
-    ['position', 'left', 'top', 'bottom', 'right', 'margin', 'width', 'height', 'transform']
-      .forEach(p => shell.style[p] = '');
+    teleportBottomNav(shell, 'centered', () => {
+      ['position', 'left', 'top', 'bottom', 'right', 'margin', 'width', 'height', 'transform']
+        .forEach(p => shell.style[p] = '');
+    });
+  }
+
+  function teleportBottomNav(shell, finalPosition, applyFinalPosition) {
+    if (!shell || typeof applyFinalPosition !== 'function') return;
+
+    if (pendingBottomNavTeleport !== null) {
+      clearTimeout(pendingBottomNavTeleport);
+      pendingBottomNavTeleport = null;
+    }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      applyFinalPosition();
+      shell.classList.remove('layout-teleporting');
+      shell.dataset.layoutPosition = finalPosition;
+      return;
+    }
+
+    shell.dataset.layoutPosition = shell.style.transform === 'none' ? 'anchored' : 'centered';
+    shell.classList.add('layout-teleporting');
+
+    pendingBottomNavTeleport = setTimeout(() => {
+      applyFinalPosition();
+      shell.dataset.layoutPosition = finalPosition;
+      shell.offsetHeight;
+      shell.classList.remove('layout-teleporting');
+      pendingBottomNavTeleport = null;
+    }, 180);
+  }
+
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function getActiveCardHeaderTop() {
+    const track = document.getElementById('cardTrack');
+    const activeCard = track?.children?.[typeof currentPart === 'number' ? currentPart : 0];
+    const header = activeCard?.querySelector?.('.card-header-bar') || document.querySelector('.card-header-bar');
+    const headerTop = header?.getBoundingClientRect?.().top;
+    return Number.isFinite(headerTop) ? Math.round(headerTop) : null;
   }
 
   // ============================
@@ -67,6 +111,10 @@
     if (pendingExtendRaf !== null) {
       cancelAnimationFrame(pendingExtendRaf);
       pendingExtendRaf = null;
+    }
+    if (pendingResizeRaf !== null) {
+      cancelAnimationFrame(pendingResizeRaf);
+      pendingResizeRaf = null;
     }
     collapseSidebar();
     collapseNotepad();
@@ -80,16 +128,21 @@
   //  Extend Mode
   // ============================
   function applyExtendMode() {
+    if (pendingExtendRaf !== null) {
+      cancelAnimationFrame(pendingExtendRaf);
+      pendingExtendRaf = null;
+    }
+
     collapseSidebar();
 
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
     // Proportional values derived from 1470×797 reference layout
-    const npW = Math.round(vw * 0.393);  // ~577px @ 1470
+    const npW = clamp(Math.round(vw * 0.393), vw < 1100 ? 240 : 320, 580);  // ~577px @ 1470
     const npH = Math.round(vh * 0.491);  // ~391px @ 797
-    const npLeft = Math.round(vw * 0.543);  // ~798px @ 1470
-    const npTop = Math.round(vh * 0.244);  // ~210px @ 797
+    const npLeft = clamp(Math.round(vw * 0.543), 16, vw - npW - 16);  // ~798px @ 1470
+    const fallbackTop = Math.round(vh * 0.244);  // ~210px @ 797
 
     // Reset card to natural (centered) position first
     resetCardWindow();
@@ -99,6 +152,8 @@
       const win = document.getElementById('homeworkViewer');
       const notepad = document.getElementById('notepadOverlay');
       const shell = document.getElementById('bottomRecorderShell');
+      const cardHeaderTop = getActiveCardHeaderTop();
+      const npTop = clamp(cardHeaderTop ?? fallbackTop, 16, Math.max(16, vh - npH - 16));
 
       // --- Position notepad ---
       if (notepad) {
@@ -145,21 +200,31 @@
         const navLeft = Math.round(npLeft + npW / 2 - shellW / 2);
         const navTop = npTop + npH + 10;
 
-        Object.assign(shell.style, {
-          position: 'fixed',
-          margin: '0',
-          left: navLeft + 'px',
-          top: navTop + 'px',
-          bottom: 'auto',
-          right: 'auto',
-          transform: 'none',
-          width: '',
-          height: '',
+        teleportBottomNav(shell, 'anchored', () => {
+          Object.assign(shell.style, {
+            position: 'fixed',
+            margin: '0',
+            left: navLeft + 'px',
+            top: navTop + 'px',
+            bottom: 'auto',
+            right: 'auto',
+            transform: 'none',
+            width: '',
+            height: '',
+          });
         });
       }
 
       console.log('[Layout] extend');
       window.dispatchEvent(new CustomEvent('layoutChanged', { detail: { layout: 'extend' } }));
+    });
+  }
+
+  function scheduleExtendReflow() {
+    if (currentMode !== 'extend' || pendingResizeRaf !== null) return;
+    pendingResizeRaf = requestAnimationFrame(() => {
+      pendingResizeRaf = null;
+      applyExtendMode();
     });
   }
 
@@ -193,6 +258,8 @@
         applyFocusMode();
       }
     });
+
+    window.addEventListener('resize', scheduleExtendReflow);
   }
 
   if (document.readyState === 'loading') {

@@ -140,6 +140,14 @@ body.dark-theme .card-drag-handle-bar {
   box-shadow: var(--shadow-card-hover);
 }
 
+.homework-viewer.hold-ready .part-card {
+  border-color: rgba(147, 197, 253, 0.86);
+  box-shadow:
+    var(--shadow-card),
+    0 0 0 1px rgba(147, 197, 253, 0.62),
+    0 0 10px rgba(59, 130, 246, 0.22);
+}
+
 /* Card header — dark gradient bar */
 .card-header-bar {
   display: flex;

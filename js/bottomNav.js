@@ -21,25 +21,29 @@ let navOffsetY = 0;
 //  Nav Dragging
 // ============================
 function initNavDragging() {
-  const startDragging = (e) => {
-    if (!bottomNav || !bottomRecorderShell || e.button !== 0) return;
+  const HOLD_TO_DRAG_MS = 300;
+  const HOLD_READY_MS = 140;
+  const TOUCH_MOVE_CANCEL_PX = 8;
 
-    // Ensure we are clicking on the nav background or the handle, not buttons or seeker
-    const isTargetNav = e.target.closest('.bottom-nav') || e.target.closest('.bottom-recorder-handle');
-    if (!isTargetNav) return;
-    if (e.target.closest('button') && !e.target.closest('.bottom-recorder-handle')) return;
-    if (e.target.closest('.bottom-playback-seeker-wrapper')) return;
+  const isNavDragSource = (target) => {
+    if (!target) return false;
+    const isTargetNav = target.closest('.bottom-nav') || target.closest('.bottom-recorder-handle');
+    if (!isTargetNav) return false;
+    if (target.closest('button') && !target.closest('.bottom-recorder-handle')) return false;
+    if (target.closest('.bottom-playback-seeker-wrapper')) return false;
+    return true;
+  };
 
+  const beginDragging = (startX, startY, moveEventName, endEventNames, getPointFromMove) => {
     const rect = bottomRecorderShell.getBoundingClientRect();
-    const startX = e.clientX;
-    const startY = e.clientY;
     const initialX = rect.left;
     const initialY = rect.top;
 
     isDraggingNav = true;
     bottomNav.classList.add('dragging');
+    bottomRecorderShell.classList.add('dragging');
 
-    // Lock dimensions temporarily and switch to absolute screen coordinates
+    // Lock dimensions temporarily and switch to absolute screen coordinates.
     bottomRecorderShell.style.position = 'fixed';
     bottomRecorderShell.style.margin = '0';
     bottomRecorderShell.style.width = rect.width + 'px';
@@ -52,8 +56,12 @@ function initNavDragging() {
 
     const onMove = (moveEvent) => {
       if (!isDraggingNav) return;
-      const dx = moveEvent.clientX - startX;
-      const dy = moveEvent.clientY - startY;
+      const point = getPointFromMove(moveEvent);
+      if (!point) return;
+      if (moveEvent.cancelable) moveEvent.preventDefault();
+
+      const dx = point.clientX - startX;
+      const dy = point.clientY - startY;
       let newX = initialX + dx;
       let newY = initialY + dy;
 
@@ -68,20 +76,97 @@ function initNavDragging() {
     const onEnd = () => {
       isDraggingNav = false;
       bottomNav.classList.remove('dragging');
+      bottomRecorderShell.classList.remove('dragging');
+      bottomRecorderShell.classList.remove('hold-ready');
 
       // Unlock dimensions so it can grow/shrink (e.g. when seeker expands)
       bottomRecorderShell.style.width = '';
       bottomRecorderShell.style.height = '';
 
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseup', onEnd);
+      window.removeEventListener(moveEventName, onMove);
+      endEventNames.forEach(name => window.removeEventListener(name, onEnd));
     };
 
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onEnd);
+    window.addEventListener(moveEventName, onMove, { passive: false });
+    endEventNames.forEach(name => window.addEventListener(name, onEnd));
+  };
+
+  const startDragging = (e) => {
+    if (!bottomNav || !bottomRecorderShell || e.button !== 0) return;
+    if (!isNavDragSource(e.target)) return;
+    beginDragging(
+      e.clientX,
+      e.clientY,
+      'mousemove',
+      ['mouseup'],
+      moveEvent => moveEvent
+    );
+  };
+
+  const startTouchHoldDragging = (e) => {
+    if (!bottomNav || !bottomRecorderShell || !e.touches.length) return;
+    if (!isNavDragSource(e.target)) return;
+    if (e.cancelable) e.preventDefault();
+
+    const touch = e.touches[0];
+    const startX = touch.clientX;
+    const startY = touch.clientY;
+    let holdTimer = null;
+    let readyTimer = null;
+
+    const clearTouchHold = (clearReadyState = true) => {
+      if (holdTimer !== null) {
+        clearTimeout(holdTimer);
+        holdTimer = null;
+      }
+      if (readyTimer !== null) {
+        clearTimeout(readyTimer);
+        readyTimer = null;
+      }
+      document.body.classList.remove('nav-touch-hold');
+      if (clearReadyState) bottomRecorderShell.classList.remove('hold-ready');
+      window.removeEventListener('touchmove', onPreHoldMove);
+      window.removeEventListener('touchend', onPreHoldEnd);
+      window.removeEventListener('touchcancel', onPreHoldEnd);
+    };
+
+    const onPreHoldMove = (moveEvent) => {
+      if (!moveEvent.touches.length) return;
+      const moveTouch = moveEvent.touches[0];
+      const dx = moveTouch.clientX - startX;
+      const dy = moveTouch.clientY - startY;
+      if (Math.hypot(dx, dy) > TOUCH_MOVE_CANCEL_PX) clearTouchHold();
+    };
+
+    const onPreHoldEnd = () => clearTouchHold();
+
+    document.body.classList.add('nav-touch-hold');
+
+    readyTimer = setTimeout(() => {
+      readyTimer = null;
+      bottomRecorderShell.classList.add('hold-ready');
+    }, HOLD_READY_MS);
+
+    holdTimer = setTimeout(() => {
+      clearTouchHold(false);
+      bottomRecorderShell.classList.add('hold-ready');
+      beginDragging(
+        startX,
+        startY,
+        'touchmove',
+        ['touchend', 'touchcancel'],
+        moveEvent => moveEvent.touches[0]
+      );
+      if (navigator.vibrate) navigator.vibrate(8);
+    }, HOLD_TO_DRAG_MS);
+
+    window.addEventListener('touchmove', onPreHoldMove, { passive: true });
+    window.addEventListener('touchend', onPreHoldEnd);
+    window.addEventListener('touchcancel', onPreHoldEnd);
   };
 
   document.addEventListener('mousedown', startDragging);
+  document.addEventListener('touchstart', startTouchHoldDragging, { passive: false });
 }
 
 // ============================

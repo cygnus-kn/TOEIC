@@ -45,6 +45,14 @@ body.dark-theme .notepad-overlay {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
+.notepad-overlay.hold-ready {
+  border-color: rgba(147, 197, 253, 0.86);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(147, 197, 253, 0.62),
+    0 0 10px rgba(59, 130, 246, 0.22);
+}
+
 body.dark-theme .notepad-ai-bar {
   background: rgba(15, 23, 42, 0.72);
   border-color: rgba(255, 255, 255, 0.1);

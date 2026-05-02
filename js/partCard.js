@@ -77,6 +77,25 @@ function initCardWindowDragging() {
 
   restoreCardWindowOffset();
 
+  const HOLD_READY_MS = 140;
+  let holdReadyTimer = null;
+
+  const clearHoldReady = () => {
+    if (holdReadyTimer !== null) {
+      clearTimeout(holdReadyTimer);
+      holdReadyTimer = null;
+    }
+    cardWindow.classList.remove('hold-ready');
+  };
+
+  const scheduleHoldReady = () => {
+    clearHoldReady();
+    holdReadyTimer = setTimeout(() => {
+      holdReadyTimer = null;
+      cardWindow.classList.add('hold-ready');
+    }, HOLD_READY_MS);
+  };
+
   const clampValue = (value, bounds) => Math.min(bounds.max, Math.max(bounds.min, value));
 
   const getDragBounds = (start, end, viewportSize, initialOffset, minVisible = 72) => {
@@ -132,6 +151,7 @@ function initCardWindowDragging() {
     const onEnd = () => {
       isDraggingCardWindow = false;
       cardWindow.classList.remove('dragging');
+      clearHoldReady();
       document.body.style.cursor = '';
       document.body.style.userSelect = '';
       persistCardWindowOffset();
@@ -153,6 +173,7 @@ function initCardWindowDragging() {
 
   const startPointerDragging = (e) => {
     if (window.innerWidth <= 600) return;
+    if (isDraggingCardWindow) return;
     if (!isCardWindowDragSource(e.target)) return;
     if (e.pointerType === 'mouse' && e.button !== 0) return;
     e.preventDefault();
@@ -163,6 +184,7 @@ function initCardWindowDragging() {
     }
 
     beginDragging(e.clientX, e.clientY);
+    if (e.pointerType !== 'mouse') scheduleHoldReady();
   };
 
   const startTouchDragging = (e) => {
@@ -172,6 +194,7 @@ function initCardWindowDragging() {
     e.preventDefault();
     e.stopPropagation();
     beginDragging(e.touches[0].clientX, e.touches[0].clientY);
+    scheduleHoldReady();
   };
 
   cardDragHandle.addEventListener('pointerdown', startPointerDragging);
