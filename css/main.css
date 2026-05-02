@@ -84,12 +84,22 @@
   max-width: 720px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
-  /* Tightened gap between badge and card */
-  animation: fadeInUp var(--anim-duration-view) var(--anim-easing-smooth);
+  gap: 4px;
+  animation: fadeIn var(--anim-duration-view) var(--anim-easing-smooth);
   min-height: 0;
-  overflow-x: clip;
-  /* Clip horizontal only where possible */
+  overflow: visible;
+  transform: translate(var(--homework-window-offset-x, 0px), var(--homework-window-offset-y, 0px));
+  transition: transform var(--transition-smooth);
+}
+
+.homework-viewer.dragging {
+  transition: none;
+}
+
+.homework-top-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 @media (max-width: 600px) {
@@ -97,28 +107,46 @@
     width: 100%;
     flex: none;
     min-height: 0;
-    gap: 20px;
-    /* Space between badge and card */
+    gap: 6px;
   }
+
+  .homework-top-zone {
+    gap: 6px;
+  }
+}
+
+.homework-meta-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 0;
 }
 
 .viewer-header {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  padding: 0 4px;
-  order: 1;
-  /* Give badge room */
+  padding: 0 0 0 20px;
+  min-height: 44px;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 600px) {
+  .homework-meta-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    min-height: 0;
+  }
 
-  /* Align the date badge to the top-left of the card on mobile */
   .viewer-header {
     justify-content: flex-start;
-    margin-bottom: 0;
-    margin-top: 70px;
-    padding-left: 2px;
+    margin-top: 24px;
+    padding: 0 12px;
+    min-height: 0;
   }
 }
 

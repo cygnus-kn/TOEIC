@@ -5,7 +5,207 @@
 // --- DOM Elements ---
 const cardTrack = document.getElementById('cardTrack');
 const pagination = document.getElementById('pagination');
+const cardWindow = document.getElementById('homeworkViewer');
+const cardStage = document.getElementById('cardStage');
 const cardContainer = document.getElementById('cardContainer');
+const cardDragHandle = document.getElementById('cardDragHandle');
+const CARD_WINDOW_OFFSET_X_KEY = 'toeicCardWindowOffsetX';
+const CARD_WINDOW_OFFSET_Y_KEY = 'toeicCardWindowOffsetY';
+let cardWindowOffsetX = 0;
+let cardWindowOffsetY = 0;
+let isDraggingCardWindow = false;
+
+function applyCardWindowOffset() {
+  if (!cardWindow) return;
+  cardWindow.style.setProperty('--homework-window-offset-x', `${cardWindowOffsetX}px`);
+  cardWindow.style.setProperty('--homework-window-offset-y', `${cardWindowOffsetY}px`);
+}
+
+function persistCardWindowOffset() {
+  try {
+    localStorage.setItem(CARD_WINDOW_OFFSET_X_KEY, String(cardWindowOffsetX));
+    localStorage.setItem(CARD_WINDOW_OFFSET_Y_KEY, String(cardWindowOffsetY));
+  } catch (error) {
+    // Ignore storage failures and keep dragging usable.
+  }
+}
+
+function restoreCardWindowOffset() {
+  if (!cardWindow) return;
+  try {
+    const savedX = Number(localStorage.getItem(CARD_WINDOW_OFFSET_X_KEY));
+    const savedY = Number(localStorage.getItem(CARD_WINDOW_OFFSET_Y_KEY));
+    if (!Number.isNaN(savedX)) cardWindowOffsetX = savedX;
+    if (!Number.isNaN(savedY)) cardWindowOffsetY = savedY;
+  } catch (error) {
+    cardWindowOffsetX = 0;
+    cardWindowOffsetY = 0;
+  }
+  applyCardWindowOffset();
+}
+
+function clampCardWindowOffset() {
+  if (!cardWindow) return;
+  const rect = cardWindow.getBoundingClientRect();
+  const padding = 12;
+  let adjusted = false;
+
+  if (rect.left < padding) {
+    cardWindowOffsetX += padding - rect.left;
+    adjusted = true;
+  } else if (rect.right > window.innerWidth - padding) {
+    cardWindowOffsetX -= rect.right - (window.innerWidth - padding);
+    adjusted = true;
+  }
+
+  if (rect.top < padding) {
+    cardWindowOffsetY += padding - rect.top;
+    adjusted = true;
+  } else if (rect.bottom > window.innerHeight - padding) {
+    cardWindowOffsetY -= rect.bottom - (window.innerHeight - padding);
+    adjusted = true;
+  }
+
+  if (adjusted) {
+    applyCardWindowOffset();
+    persistCardWindowOffset();
+  }
+}
+
+function initCardWindowDragging() {
+  if (!cardWindow || !cardStage || !cardDragHandle) return;
+
+  restoreCardWindowOffset();
+
+  const clampValue = (value, bounds) => Math.min(bounds.max, Math.max(bounds.min, value));
+
+  const getDragBounds = (start, end, viewportSize, initialOffset, minVisible = 72) => {
+    const padding = 12;
+    const size = end - start;
+
+    if (size <= viewportSize - padding * 2) {
+      return {
+        min: initialOffset + (padding - start),
+        max: initialOffset + ((viewportSize - padding) - end)
+      };
+    }
+
+    return {
+      min: initialOffset + (padding - start),
+      max: initialOffset + ((viewportSize - padding - minVisible) - start)
+    };
+  };
+
+  const isCardWindowDragSource = (target) => {
+    if (target.closest('.card-drag-handle')) return true;
+    if (target.closest('.card-container') || target.closest('.pagination')) return false;
+    return target.closest('#cardStage') === cardStage;
+  };
+
+  const beginDragging = (startX, startY) => {
+    const initialOffsetX = cardWindowOffsetX;
+    const initialOffsetY = cardWindowOffsetY;
+    const rect = cardWindow.getBoundingClientRect();
+    const xBounds = getDragBounds(rect.left, rect.right, window.innerWidth, initialOffsetX);
+    const yBounds = getDragBounds(rect.top, rect.bottom, window.innerHeight, initialOffsetY);
+
+    isDraggingCardWindow = true;
+    cardWindow.classList.add('dragging');
+    document.body.style.cursor = 'grabbing';
+    document.body.style.userSelect = 'none';
+
+    const moveTo = (clientX, clientY) => {
+      const dx = clientX - startX;
+      const dy = clientY - startY;
+      cardWindowOffsetX = clampValue(initialOffsetX + dx, xBounds);
+      cardWindowOffsetY = clampValue(initialOffsetY + dy, yBounds);
+      applyCardWindowOffset();
+    };
+
+    const onPointerMove = (moveEvent) => moveTo(moveEvent.clientX, moveEvent.clientY);
+    const onTouchMove = (moveEvent) => {
+      if (!moveEvent.touches.length) return;
+      moveEvent.preventDefault();
+      moveTo(moveEvent.touches[0].clientX, moveEvent.touches[0].clientY);
+    };
+
+    const onEnd = () => {
+      isDraggingCardWindow = false;
+      cardWindow.classList.remove('dragging');
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+      persistCardWindowOffset();
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onEnd);
+      window.removeEventListener('pointercancel', onEnd);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onEnd);
+      window.removeEventListener('touchcancel', onEnd);
+    };
+
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointerup', onEnd);
+    window.addEventListener('pointercancel', onEnd);
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onEnd);
+    window.addEventListener('touchcancel', onEnd);
+  };
+
+  const startPointerDragging = (e) => {
+    if (!isCardWindowDragSource(e.target)) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (typeof cardWindow.setPointerCapture === 'function') {
+      cardWindow.setPointerCapture(e.pointerId);
+    }
+
+    beginDragging(e.clientX, e.clientY);
+  };
+
+  const startTouchDragging = (e) => {
+    if (!isCardWindowDragSource(e.target)) return;
+    if (!e.touches.length || isDraggingCardWindow) return;
+    e.preventDefault();
+    e.stopPropagation();
+    beginDragging(e.touches[0].clientX, e.touches[0].clientY);
+  };
+
+  cardDragHandle.addEventListener('pointerdown', startPointerDragging);
+  cardDragHandle.addEventListener('touchstart', startTouchDragging, { passive: false });
+  cardStage.addEventListener('pointerdown', startPointerDragging);
+  cardStage.addEventListener('touchstart', startTouchDragging, { passive: false });
+
+  window.addEventListener('resize', clampCardWindowOffset);
+}
+
+function updateActiveCardFrame() {
+  if (!cardStage || !cardTrack) return;
+  const activeCard = cardTrack.children[currentPart];
+  if (!activeCard) {
+    cardStage.style.removeProperty('--active-card-height');
+    return;
+  }
+
+  const cardRect = activeCard.getBoundingClientRect();
+  cardStage.style.setProperty('--active-card-height', `${cardRect.height}px`);
+}
+
+function scheduleActiveCardFrameUpdate() {
+  requestAnimationFrame(() => {
+    updateActiveCardFrame();
+    setTimeout(updateActiveCardFrame, 60);
+  });
+}
+
+function bindActiveCardMediaSizing() {
+  cardTrack.querySelectorAll('img').forEach(img => {
+    if (img.complete) return;
+    img.addEventListener('load', updateActiveCardFrame, { once: true });
+    img.addEventListener('error', updateActiveCardFrame, { once: true });
+  });
+}
 
 // ============================
 //  Card Rendering
@@ -167,7 +367,9 @@ function renderCards() {
 
   cardTrack.innerHTML = html;
   initAudioPlayers();
+  bindActiveCardMediaSizing();
   goToPart(0);
+  scheduleActiveCardFrameUpdate();
 }
 
 // ============================
@@ -327,6 +529,8 @@ window.goToPart = function (index) {
   currentPart = index;
   cardTrack.style.transform = `translateX(calc(-${index * 100}% - ${index * 32}px))`;
   updatePaginationDots();
+  setTimeout(updateActiveCardFrame, 450);
+  scheduleActiveCardFrameUpdate();
 
   // Save current part
   const activeDate = activeType === 'homework' ? dateBadge.textContent : lessonDateBadge.textContent;
@@ -372,10 +576,12 @@ let touchStartX = 0;
 let touchEndX = 0;
 
 cardContainer.addEventListener('touchstart', (e) => {
+  if (isDraggingCardWindow) return;
   touchStartX = e.changedTouches[0].screenX;
 }, { passive: true });
 
 cardContainer.addEventListener('touchend', (e) => {
+  if (isDraggingCardWindow) return;
   touchEndX = e.changedTouches[0].screenX;
   handleSwipe();
 }, { passive: true });
@@ -420,6 +626,9 @@ document.body.addEventListener('click', (e) => {
     openImageModal(e.target.src);
   }
 }, { passive: true });
+
+initCardWindowDragging();
+window.addEventListener('resize', updateActiveCardFrame);
 
 // ============================
 //  Lesson Rendering

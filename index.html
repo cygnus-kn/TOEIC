@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/index.css?v=40">
 </head>
 <body class="preload">
   <script>
@@ -92,21 +92,31 @@
 
       <!-- Homework viewer -->
       <div class="homework-viewer" id="homeworkViewer" style="display: none;">
-        <div class="viewer-header">
-          <div class="badge-dropdown">
-            <span class="date-badge" id="dateBadge"></span>
-            <div id="homeworkDropdown" class="dropdown-menu"></div>
+        <div class="homework-top-zone">
+          <button class="card-drag-handle" id="cardDragHandle" type="button" aria-label="Drag card area" title="Drag card area">
+            <span class="card-drag-handle-bar"></span>
+          </button>
+
+          <div class="homework-meta-row">
+            <div class="viewer-header">
+              <div class="badge-dropdown">
+                <span class="date-badge" id="dateBadge"></span>
+                <div id="homeworkDropdown" class="dropdown-menu"></div>
+              </div>
+            </div>
+
+            <div class="pagination" id="pagination">
+              <!-- Dots injected by JS -->
+            </div>
           </div>
         </div>
 
-        <div class="card-container" id="cardContainer">
-          <div class="card-track" id="cardTrack">
-            <!-- Part cards injected by JS -->
+        <div class="card-stage" id="cardStage">
+          <div class="card-container" id="cardContainer">
+            <div class="card-track" id="cardTrack">
+              <!-- Part cards injected by JS -->
+            </div>
           </div>
-        </div>
-
-        <div class="pagination" id="pagination">
-          <!-- Dots injected by JS -->
         </div>
       </div>
 
@@ -268,7 +278,8 @@
     // Critical: Set initial notepad visibility instantly to prevent "flash" on refresh
     (function() {
       try {
-        const minimized = localStorage.getItem('toeicNotepadMinimized') === 'true';
+        const minimizedPref = localStorage.getItem('toeicNotepadMinimized');
+        const minimized = minimizedPref === null ? true : minimizedPref === 'true';
         if (minimized) {
           document.getElementById('notepadOverlay').classList.add('hidden');
           document.getElementById('restoreNotepadBtn').classList.add('show');
@@ -302,10 +313,10 @@
   <script src="js/sidebar.js?v=22"></script>
   <script src="js/timers.js?v=22"></script>
   <script src="js/audioPlayers.js?v=22"></script>
-  <script src="js/partCard.js?v=22"></script>
+  <script src="js/partCard.js?v=31"></script>
   <script src="js/bottomNav.js?v=22"></script>
-  <script src="js/core.js?v=22"></script>
-  <script src="js/notepad.js?v=22"></script>
+  <script src="js/core.js?v=23"></script>
+  <script src="js/notepad.js?v=23"></script>
   <div class="notepad-backdrop" id="notepadBackdrop"></div>
 </body>
 </html>

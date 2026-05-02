@@ -513,9 +513,11 @@ function clearActiveEntries() {
 //  Show / Hide Viewers
 // ============================
 function showHomeworkViewer() {
+  const wasHidden = homeworkViewer.style.display === 'none';
   welcomeState.style.display = 'none';
   lessonViewer.style.display = 'none';
   homeworkViewer.style.display = 'flex';
+  if (!wasHidden) return;
   homeworkViewer.style.animation = 'none';
   homeworkViewer.offsetHeight;
   homeworkViewer.style.animation = '';

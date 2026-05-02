@@ -1,25 +1,90 @@
 /* ============================
    Card Container & Track
    ============================ */
-.card-container {
+.card-stage {
   width: 100%;
   order: 3;
   overflow: visible;
-  /* Allow vertical growth and shadows */
   min-height: 0;
-  padding: 4px 0 20vh;
-  /* Extra bottom padding to simulate space and ensure scroll-to-hide nav capability */
+  padding: 14px 20px 0;
+  position: relative;
+  transition: background-color var(--transition-fast);
+  cursor: grab;
 }
 
 @media (max-width: 600px) {
-  .card-container {
-    padding: 0;
+  .card-stage {
+    padding: 12px 12px 0;
     max-width: 100%;
     flex: none;
-    /* Don't stretch to fill remaining height */
     height: auto;
-    /* Let card grow naturally */
     overflow: visible;
+  }
+}
+
+.homework-viewer.dragging .card-stage,
+.homework-viewer.dragging .card-drag-handle {
+  cursor: grabbing;
+}
+
+.card-container {
+  width: 100%;
+  overflow: hidden;
+  min-height: 0;
+  height: var(--active-card-height, auto);
+  transition: height var(--transition-smooth);
+  cursor: auto;
+}
+
+.card-drag-handle {
+  position: relative;
+  align-self: center;
+  width: 88px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  box-shadow: none;
+  cursor: grab;
+  touch-action: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.card-drag-handle:active {
+  cursor: grabbing;
+}
+
+.card-drag-handle-bar {
+  width: 40px;
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--color-text-tertiary);
+  opacity: 0.65;
+}
+
+body.dark-theme .card-drag-handle {
+  background: transparent;
+}
+
+body.dark-theme .card-drag-handle-bar {
+  background: rgba(236, 236, 241, 0.34);
+}
+
+.homework-top-zone:hover .card-drag-handle,
+.homework-viewer.dragging .card-drag-handle,
+.card-drag-handle:focus-visible {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .card-drag-handle {
+    opacity: 1;
   }
 }
 
@@ -733,23 +798,32 @@ body.dark-theme .out-link-icon:hover {
    Pagination
    ============================ */
 .pagination {
-  position: relative;
-  order: 2;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: var(--space-sm);
-  width: 100%;
-  margin: -4px 0 6px;
+  width: max-content;
+  min-height: 44px;
+  margin: 0;
   z-index: 1;
   pointer-events: auto;
+  cursor: auto;
   transition: all var(--transition-smooth);
 }
 
 @media (max-width: 600px) {
   .pagination {
     position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
     justify-content: center;
-    padding: 0;
+    min-height: 0;
+    padding: 0 12px;
     margin: 0;
     z-index: 1;
     background: transparent;

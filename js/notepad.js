@@ -15,7 +15,8 @@ function initNotepad() {
     notepadTextarea.value = savedContent;
   }
 
-  const isMinimized = localStorage.getItem('toeicNotepadMinimized') === 'true';
+  const minimizedPref = localStorage.getItem('toeicNotepadMinimized');
+  const isMinimized = minimizedPref === null ? true : minimizedPref === 'true';
   const restoreBtn = document.getElementById('restoreNotepadBtn');
   const minimizeBtn = document.getElementById('minimizeNotepad');
   const headerIcon = document.querySelector('.notepad-minimize-icon');
