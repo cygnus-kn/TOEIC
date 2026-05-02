@@ -23,7 +23,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-1.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-03-2023-picture-1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -32,7 +32,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-2.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-03-2023-picture-2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -66,7 +66,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-3.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-03-2023-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/fMDRgKYFzWY?start=619&enablejsapi=1",
             "timestamps": {
               "q8": 619,
@@ -109,7 +109,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2023-picture-1.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-02-2023-picture-1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -118,7 +118,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2023-picture-2.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-02-2023-picture-2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -152,7 +152,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2023-picture-3.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-02-2023-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/kmHuOysUsyM?start=628&enablejsapi=1",
             "timestamps": {
               "q8": 628,
@@ -195,7 +195,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-01-2023-picture-1.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -204,7 +204,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-01-2023-picture-2.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -238,7 +238,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-01-2023-picture-3.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/3jmaksYCoxQ?start=617&enablejsapi=1",
             "timestamps": {
               "q8": 617,

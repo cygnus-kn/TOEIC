@@ -23,7 +23,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2024-picture-1.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-02-2024-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -32,7 +32,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2024-picture-2.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-02-2024-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -66,7 +66,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2024-picture-3.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-02-2024-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/8DR7Cjv-AZo?start=626&enablejsapi=1",
             "timestamps": {
               "q8": 626,
@@ -230,7 +230,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-05-2023-picture-1.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-05-2023-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -239,7 +239,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-05-2023-picture-2.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-05-2023-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -273,7 +273,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2024-picture-3.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-03-2024-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/mxSOVXhIrls?start=622&enablejsapi=1",
             "timestamps": {
               "q8": 622,
@@ -334,7 +334,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-3.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-03-2023-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/fMDRgKYFzWY?start=619&enablejsapi=1",
             "timestamps": {
               "q8": 619,
@@ -349,7 +349,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-07-2023-picture-3.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-07-2023-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/PTT0RWjgbpk?start=619&enablejsapi=1",
             "timestamps": {
               "q8": 619,
@@ -364,7 +364,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-09-2023-picture-3.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-09-2023-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/-gf8cJ5oHEI?start=617&enablejsapi=1",
             "timestamps": {
               "q8": 617,
@@ -379,7 +379,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-04-2023-picture-3.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-04-2023-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/e0DNbA4B4Y0?start=618&enablejsapi=1",
             "timestamps": {
               "q8": 618,
@@ -409,7 +409,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-04-2023-picture-1.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-04-2023-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -418,7 +418,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-04-2023-picture-2.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-04-2023-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -458,12 +458,12 @@
           "label": "Questions 7-9: Respond to Information",
           "questionLabel": "Question 8-10",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 01.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 01.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 01 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 01/T01_Q_07.webm",
-              "test-data/Part 4 audio/Test 01/T01_Q_08.webm",
-              "test-data/Part 4 audio/Test 01/T01_Q_09.webm"
+              "assets/Part 4 audio/Test 01/T01_Q_07.webm",
+              "assets/Part 4 audio/Test 01/T01_Q_08.webm",
+              "assets/Part 4 audio/Test 01/T01_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -478,12 +478,12 @@
           "label": "Questions 7-9: Respond to Information",
           "questionLabel": "Question 8-10",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 02.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 02.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 02 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 02/T02_Q_07.webm",
-              "test-data/Part 4 audio/Test 02/T02_Q_08.webm",
-              "test-data/Part 4 audio/Test 02/T02_Q_09.webm"
+              "assets/Part 4 audio/Test 02/T02_Q_07.webm",
+              "assets/Part 4 audio/Test 02/T02_Q_08.webm",
+              "assets/Part 4 audio/Test 02/T02_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -498,12 +498,12 @@
           "label": "Questions 7-9: Respond to Information",
           "questionLabel": "Question 8-10",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 03.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 03.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 03 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 03/T03_Q_07.webm",
-              "test-data/Part 4 audio/Test 03/T03_Q_08.webm",
-              "test-data/Part 4 audio/Test 03/T03_Q_09.webm"
+              "assets/Part 4 audio/Test 03/T03_Q_07.webm",
+              "assets/Part 4 audio/Test 03/T03_Q_08.webm",
+              "assets/Part 4 audio/Test 03/T03_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -518,12 +518,12 @@
           "label": "Questions 7-9: Respond to Information",
           "questionLabel": "Question 8-10",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 04.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 04.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 04 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 04/T04_Q_07.webm",
-              "test-data/Part 4 audio/Test 04/T04_Q_08.webm",
-              "test-data/Part 4 audio/Test 04/T04_Q_09.webm"
+              "assets/Part 4 audio/Test 04/T04_Q_07.webm",
+              "assets/Part 4 audio/Test 04/T04_Q_08.webm",
+              "assets/Part 4 audio/Test 04/T04_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -538,12 +538,12 @@
           "label": "Questions 7-9: Respond to Information",
           "questionLabel": "Question 8-10",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 05.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 05.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 05 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 05/T05_Q_07.webm",
-              "test-data/Part 4 audio/Test 05/T05_Q_08.webm",
-              "test-data/Part 4 audio/Test 05/T05_Q_09.webm"
+              "assets/Part 4 audio/Test 05/T05_Q_07.webm",
+              "assets/Part 4 audio/Test 05/T05_Q_08.webm",
+              "assets/Part 4 audio/Test 05/T05_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -558,12 +558,12 @@
           "label": "Questions 7-9: Respond to Information",
           "questionLabel": "Question 8-10",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 06.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 06.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 06 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 06/T06_Q_07.webm",
-              "test-data/Part 4 audio/Test 06/T06_Q_08.webm",
-              "test-data/Part 4 audio/Test 06/T06_Q_09.webm"
+              "assets/Part 4 audio/Test 06/T06_Q_07.webm",
+              "assets/Part 4 audio/Test 06/T06_Q_08.webm",
+              "assets/Part 4 audio/Test 06/T06_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -578,12 +578,12 @@
           "label": "Questions 7-9: Respond to Information",
           "questionLabel": "Question 8-10",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 07.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 07.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 07 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 07/T07_Q_07.webm",
-              "test-data/Part 4 audio/Test 07/T07_Q_08.webm",
-              "test-data/Part 4 audio/Test 07/T07_Q_09.webm"
+              "assets/Part 4 audio/Test 07/T07_Q_07.webm",
+              "assets/Part 4 audio/Test 07/T07_Q_08.webm",
+              "assets/Part 4 audio/Test 07/T07_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -598,12 +598,12 @@
           "label": "Questions 7-9: Respond to Information",
           "questionLabel": "Question 8-10",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 08.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 08.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 08 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 08/T08_Q_07.webm",
-              "test-data/Part 4 audio/Test 08/T08_Q_08.webm",
-              "test-data/Part 4 audio/Test 08/T08_Q_09.webm"
+              "assets/Part 4 audio/Test 08/T08_Q_07.webm",
+              "assets/Part 4 audio/Test 08/T08_Q_08.webm",
+              "assets/Part 4 audio/Test 08/T08_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -618,12 +618,12 @@
           "label": "Questions 7-9: Respond to Information",
           "questionLabel": "Question 8-10",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 09.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 09.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 09 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 09/T09_Q_07.webm",
-              "test-data/Part 4 audio/Test 09/T09_Q_08.webm",
-              "test-data/Part 4 audio/Test 09/T09_Q_09.webm"
+              "assets/Part 4 audio/Test 09/T09_Q_07.webm",
+              "assets/Part 4 audio/Test 09/T09_Q_08.webm",
+              "assets/Part 4 audio/Test 09/T09_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -638,12 +638,12 @@
           "label": "Questions 7-9: Respond to Information",
           "questionLabel": "Question 8-10",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 picture - Test 10.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 10.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 10 Picture",
             "audioUrls": [
-              "test-data/Part 4 audio/Test 10/T10_Q_07.webm",
-              "test-data/Part 4 audio/Test 10/T10_Q_08.webm",
-              "test-data/Part 4 audio/Test 10/T10_Q_09.webm"
+              "assets/Part 4 audio/Test 10/T10_Q_07.webm",
+              "assets/Part 4 audio/Test 10/T10_Q_08.webm",
+              "assets/Part 4 audio/Test 10/T10_Q_09.webm"
             ],
             "questionLabels": [
               "7",
@@ -678,7 +678,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-1.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-03-2023-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -687,7 +687,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-03-2023-picture-2.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-03-2023-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -721,12 +721,12 @@
           "label": "Respond to Information",
           "questionLabel": "Practice 1",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 - Practice 1.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 - Practice 1.webp",
             "imagePlaceholder": "🖼️ Practice 1 Table",
             "audioUrls": [
-              "test-data/Part 4 audio/Practice 1/Practice 1-q8.webm",
-              "test-data/Part 4 audio/Practice 1/Practice 1-q9.webm",
-              "test-data/Part 4 audio/Practice 1/Practice 1-q10.webm"
+              "assets/Part 4 audio/Practice 1/Practice 1-q8.webm",
+              "assets/Part 4 audio/Practice 1/Practice 1-q9.webm",
+              "assets/Part 4 audio/Practice 1/Practice 1-q10.webm"
             ],
             "questionLabels": ["8", "9", "10"],
             "question": "Question 8: Hello, this is Lucy, the resort manager speaking. I know you're working on the new employee orientation schedule, and I wanted to ask you a few questions about it. What date is the orientation scheduled, and what time will it be over?\n\nQuestion 9: I think we need more time for the resort tour. Do you think it is possible to extend the time?\n\nQuestion 10: I can't stay for the whole orientation. Can you give me all the details of what is scheduled after lunch?"
@@ -737,12 +737,12 @@
           "label": "Respond to Information",
           "questionLabel": "Practice 2",
           "content": {
-            "imageUrl": "test-data/Part 4 audio/Part 4 - Practice 2.webp",
+            "imageUrl": "assets/Part 4 audio/Part 4 - Practice 2.webp",
             "imagePlaceholder": "🖼️ Practice 2 Table",
             "audioUrls": [
-              "test-data/Part 4 audio/Practice 2/Practice 2-q8.webm",
-              "test-data/Part 4 audio/Practice 2/Practice 2-q9.webm",
-              "test-data/Part 4 audio/Practice 2/Practice 2-q10.webm"
+              "assets/Part 4 audio/Practice 2/Practice 2-q8.webm",
+              "assets/Part 4 audio/Practice 2/Practice 2-q9.webm",
+              "assets/Part 4 audio/Practice 2/Practice 2-q10.webm"
             ],
             "questionLabels": ["8", "9", "10"],
             "question": "Question 8: Hi, this is Mandy. I haven't received my schedule for May 23rd yet. Can I ask you some questions so that I can confirm a few things? When does the first meeting start? And who will I meet?\n\nQuestion 9: I'm aware that I'm having lunch at noon with Andrew Simmons. Is that right?\n\nQuestion 10: I know I have things to do in the afternoon. Can you tell me the schedule after lunch?"
@@ -773,7 +773,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2023-picture-1.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-02-2023-picture-1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -783,7 +783,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-02-2023-picture-2.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-02-2023-picture-2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -856,7 +856,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-01-2023-picture-1.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -866,7 +866,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-01-2023-picture-2.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -937,7 +937,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-07-2023-picture-1.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-07-2023-picture-1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -947,7 +947,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/speaking-pictures/GwenTV-07-2023-picture-2.webp",
+            "imageUrl": "assets/speaking-pictures/GwenTV-07-2023-picture-2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1001,7 +1001,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 06-pic1.webp",
+            "imageUrl": "assets/homework pictures/HW Day 06-pic1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1011,7 +1011,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 06-pic2.webp",
+            "imageUrl": "assets/homework pictures/HW Day 06-pic2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1130,7 +1130,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic1.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1140,7 +1140,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic2.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1150,7 +1150,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic3.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic3.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 3",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1160,7 +1160,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic4.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic4.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 4",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1170,7 +1170,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic5.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic5.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 5",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1180,7 +1180,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic6.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic6.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 6",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1190,7 +1190,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic7.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic7.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 7",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1200,7 +1200,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic8.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic8.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 8",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1210,7 +1210,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic9.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic9.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 9",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1220,7 +1220,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic10.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic10.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 10",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1230,7 +1230,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic11.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic11.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 11",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1240,7 +1240,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic12.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic12.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 12",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1250,7 +1250,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic13.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic13.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 13",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1260,7 +1260,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic14.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic14.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 14",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1270,7 +1270,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic15.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic15.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 15",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1280,7 +1280,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic16.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic16.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 16",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1290,7 +1290,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic17.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic17.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 17",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1300,7 +1300,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic18.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic18.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 18",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1310,7 +1310,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic19.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic19.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 19",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1320,7 +1320,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 05-pic20.webp",
+            "imageUrl": "assets/homework pictures/HW Day 05-pic20.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 20",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1359,7 +1359,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 04-pic1.webp",
+            "imageUrl": "assets/homework pictures/HW Day 04-pic1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1369,7 +1369,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 04-pic2.webp",
+            "imageUrl": "assets/homework pictures/HW Day 04-pic2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1379,7 +1379,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 04-pic3.webp",
+            "imageUrl": "assets/homework pictures/HW Day 04-pic3.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 3",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1389,7 +1389,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 04-pic4.webp",
+            "imageUrl": "assets/homework pictures/HW Day 04-pic4.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 4",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1399,7 +1399,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 04-pic5.webp",
+            "imageUrl": "assets/homework pictures/HW Day 04-pic5.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 5",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1409,7 +1409,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 04-pic6.webp",
+            "imageUrl": "assets/homework pictures/HW Day 04-pic6.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 6",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -1425,7 +1425,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Question 3-4",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 03-pic1.webp",
+            "imageUrl": "assets/homework pictures/HW Day 03-pic1.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -1435,7 +1435,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Question 3-4",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 03-pic2.webp",
+            "imageUrl": "assets/homework pictures/HW Day 03-pic2.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -1445,7 +1445,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Question 3-4",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 03-pic3.webp",
+            "imageUrl": "assets/homework pictures/HW Day 03-pic3.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 3",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -1455,7 +1455,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Question 3-4",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 03-pic4.webp",
+            "imageUrl": "assets/homework pictures/HW Day 03-pic4.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 4",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -1465,7 +1465,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Question 3-4",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 03-pic5.webp",
+            "imageUrl": "assets/homework pictures/HW Day 03-pic5.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 5",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -1475,7 +1475,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Question 3-4",
           "content": {
-            "imageUrl": "test-data/homework pictures/HW Day 03-pic6.webp",
+            "imageUrl": "assets/homework pictures/HW Day 03-pic6.webp",
             "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 6",
             "prompt": "Describe the picture in as much detail as you can."
           }

@@ -1,0 +1,332 @@
+/* ============================
+   Main Content Area
+   ============================ */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 80px var(--space-lg) 168px;
+  margin: 30px 16px 16px;
+  /* Balanced top margin */
+  background: var(--color-page-bg);
+  border-radius: 20px;
+  position: relative;
+  width: auto;
+  max-width: 100%;
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: 45px var(--space-lg) 168px;
+    margin: 12px;
+    width: calc(100% - 24px);
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    margin: 12px;
+    padding: 20px var(--space-lg) 168px;
+  }
+}
+
+/* Welcome state */
+.welcome-state {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  padding-top: 10vh;
+  /* Nudge down to center visually */
+  animation: fadeInUp var(--anim-duration-view) var(--anim-easing-smooth);
+}
+
+@media (max-width: 600px) {
+
+  /* Welcome state: fill remaining space and center itself,
+     independent of the parent's flex-start alignment */
+  .welcome-state {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    /* Fallback: always center vertically in viewport */
+  }
+}
+
+.welcome-icon {
+  color: var(--color-text-tertiary);
+}
+
+.welcome-text {
+  font-size: 15px;
+  color: var(--color-text-tertiary);
+  font-weight: 400;
+}
+
+/* ============================
+   Homework Viewer
+   ============================ */
+.homework-viewer {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  /* Tightened gap between badge and card */
+  animation: fadeInUp var(--anim-duration-view) var(--anim-easing-smooth);
+  min-height: 0;
+  overflow-x: clip;
+  /* Clip horizontal only where possible */
+}
+
+@media (max-width: 600px) {
+  .homework-viewer {
+    width: 100%;
+    flex: none;
+    min-height: 0;
+    gap: 20px;
+    /* Space between badge and card */
+  }
+}
+
+.viewer-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0 4px;
+  order: 1;
+  /* Give badge room */
+}
+
+@media (max-width: 600px) {
+
+  /* Align the date badge to the top-left of the card on mobile */
+  .viewer-header {
+    justify-content: flex-start;
+    margin-bottom: 0;
+    margin-top: 70px;
+    padding-left: 2px;
+  }
+}
+
+/* ============================
+   Date Badge & Dropdown
+   ============================ */
+.badge-dropdown {
+  position: relative;
+}
+
+.date-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  user-select: none;
+}
+
+@media (max-width: 600px) {
+  .date-badge {
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 20px;
+  }
+}
+
+.date-badge:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-strong);
+  transform: translateY(-1px);
+}
+
+.date-badge:active {
+  transform: translateY(0);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 6px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  min-width: 100%;
+  z-index: 1000;
+  display: none;
+  padding: 4px;
+  max-height: 165px;
+  overflow-y: auto;
+}
+
+body.dark-theme .dropdown-menu {
+  background: rgba(28, 28, 30, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu.show {
+  display: block;
+  animation: fadeInDown var(--transition-smooth);
+}
+
+.dropdown-item {
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 6px;
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-item.active {
+  background: #007aff;
+  color: #ffffff;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.question-type-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+}
+
+/* ============================
+   Lesson Viewer
+   ============================ */
+.lesson-viewer {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  animation: fadeInUp var(--anim-duration-view) var(--anim-easing-smooth);
+}
+
+.lesson-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  order: 2;
+}
+
+.lesson-section {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-card);
+}
+
+.lesson-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.2px;
+}
+
+/* Vocabulary list */
+.vocab-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.vocab-item {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.vocab-word {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.vocab-def {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+}
+
+.vocab-example {
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+/* Structures */
+.structure-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.structure-item {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+}
+
+.structure-pattern {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 4px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.structure-example {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}

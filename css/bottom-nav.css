@@ -1,0 +1,439 @@
+/* ============================
+   Bottom Recorder Overlay
+   ============================ */
+.bottom-recorder-shell {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 2200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+@media (min-width: 1025px) {
+  .bottom-recorder-shell {
+    bottom: 48px;
+  }
+}
+
+/* ============================
+   Playback Seeker
+   ============================ */
+.bottom-playback-seeker-wrapper {
+  width: 100%;
+  align-self: stretch;
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.35s ease,
+    padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 16px;
+  background: transparent;
+  border-bottom: none;
+}
+
+.bottom-playback-seeker-wrapper.expanded {
+  height: 30px;
+  opacity: 1;
+  pointer-events: auto;
+  padding: 12px 16px 0 16px;
+  overflow: visible;
+}
+
+.bottom-seeker-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  position: relative;
+  transition: height 0.2s ease;
+}
+
+.bottom-playback-seeker-wrapper:hover .bottom-seeker-bar {
+  height: 8px;
+}
+
+body:not(body.dark-theme) .bottom-seeker-bar {
+  background: rgba(15, 23, 42, 0.1);
+}
+
+.bottom-seeker-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #2563eb;
+  border-radius: 6px;
+  width: 0%;
+}
+
+.bottom-seeker-knob {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 14px;
+  height: 14px;
+  background: #94a3b8;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+}
+
+.bottom-playback-seeker-wrapper:hover .bottom-seeker-knob {
+  width: 16px;
+  height: 16px;
+}
+
+body:not(body.dark-theme) .bottom-seeker-knob {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-theme .bottom-seeker-knob {
+  background: #f8fafc;
+}
+
+/* ============================
+   Recording Status
+   ============================ */
+.recording-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  opacity: 1;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #f8fafc;
+  font-size: 13.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: auto;
+  transition: opacity 0.3s ease;
+}
+
+.recording-status[hidden] {
+  opacity: 0.3;
+  /* Instead of hiding, make it dim when inactive? Or just keep it visible. */
+  pointer-events: none;
+}
+
+body:not(body.dark-theme) .recording-status {
+  color: rgba(15, 23, 42, 0.92);
+}
+
+.recording-status span:last-child {
+  min-width: 36px;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .recording-status {
+    gap: 4px;
+  }
+
+  .recording-status span:last-child {
+    min-width: 32px;
+  }
+}
+
+.recording-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #f97316;
+  box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.45);
+}
+
+.recording-status.recording.pulsing .recording-status-dot {
+  background: #ff453a;
+  animation: recordingPulse 1.4s infinite;
+}
+
+.recording-status.playback.pulsing .recording-status-dot {
+  background: #34c759;
+  animation: playbackPulse 1.4s infinite;
+}
+
+.recording-status.playback .recording-status-dot {
+  background: #34c759;
+}
+
+/* ============================
+   Bottom Nav Bar
+   ============================ */
+.bottom-nav,
+#bottomNav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: 48px;
+  transition: min-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 14px;
+  background: rgba(23, 30, 46, 0.95);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  width: auto;
+  min-width: 240px;
+  max-width: 95vw;
+  pointer-events: auto;
+  cursor: grab !important;
+  user-select: none;
+}
+
+.bottom-nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  min-height: 48px;
+  flex: none;
+}
+
+.bottom-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body:not(body.dark-theme) .bottom-nav,
+body:not(body.dark-theme) #bottomNav {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================
+   Bottom Nav Buttons
+   ============================ */
+.bottom-nav-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast), opacity var(--transition-fast);
+  padding: 0;
+}
+
+body:not(body.dark-theme) .bottom-nav-btn {
+  color: #1d1d1f;
+}
+
+body.dark-theme .bottom-nav-btn {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bottom-nav-btn:hover {
+  transform: translateY(-1px) scale(1.03);
+  background: transparent;
+  color: #ffffff;
+}
+
+body:not(body.dark-theme) .bottom-nav-btn:hover {
+  background: transparent;
+  color: #0f172a;
+}
+
+/* Destructive Action (Delete) */
+#bottomDeleteBtn {
+  color: #1d1d1f;
+}
+
+#bottomDeleteBtn:not(:disabled):hover {
+  color: #ff3b30;
+  opacity: 1;
+}
+
+body.dark-theme #bottomDeleteBtn {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.dark-theme #bottomDeleteBtn:not(:disabled):hover {
+  color: #ff453a;
+  opacity: 1;
+}
+
+.bottom-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.bottom-nav-btn-primary {
+  width: 40px;
+  height: 40px;
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.32);
+}
+
+body:not(body.dark-theme) .bottom-nav-btn-primary,
+body:not(body.dark-theme) .bottom-nav-btn-primary:hover,
+body:not(body.dark-theme) .bottom-nav-btn-primary.active-media,
+body:not(body.dark-theme) .bottom-nav-btn-primary.active-media:hover {
+  color: #ffffff;
+}
+
+body:not(body.dark-theme) .bottom-nav-btn-primary:hover {
+  background: #2563eb;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.38);
+}
+
+.bottom-nav-btn-primary:hover {
+  background: #2563eb;
+  color: #ffffff;
+  transform: none;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.38);
+}
+
+.bottom-nav-btn-primary.active-media {
+  background: #ff453a;
+  box-shadow: 0 8px 18px rgba(255, 69, 58, 0.3);
+}
+
+.bottom-nav-btn-primary.active-media:hover {
+  background: #ff453a;
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(255, 69, 58, 0.36);
+}
+
+body:not(body.dark-theme) .bottom-nav-btn-primary.active-media,
+body:not(body.dark-theme) .bottom-nav-btn-primary.active-media:hover {
+  background: #ff453a;
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(255, 69, 58, 0.36);
+}
+
+.bottom-nav-btn-primary.recording .record-icon {
+  transform: scale(0.9);
+}
+
+.bottom-nav-btn-primary svg,
+.bottom-nav-btn svg {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.bottom-nav-btn:not(.bottom-nav-btn-primary) svg {
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.08));
+}
+
+/* ============================
+   Hidden States
+   ============================ */
+.bottom-recorder-shell.hidden,
+.bottom-recorder-shell.hidden-nav {
+  opacity: 0;
+  transform: translate(-50%, 40px);
+  pointer-events: none;
+}
+
+.bottom-recorder-handle.hidden-nav {
+  opacity: 0;
+  transform: translate(-50%, 40px);
+  pointer-events: none;
+}
+
+/* ============================
+   Bottom Handle (Mobile)
+   ============================ */
+.bottom-recorder-handle {
+  position: fixed;
+  left: 50%;
+  bottom: 7px;
+  width: 64px;
+  height: 6px;
+  transform: translate(-50%, 16px);
+  border: none;
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.7);
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.18), 0 6px 18px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+  z-index: 1101;
+  transition: opacity var(--transition-smooth), transform var(--transition-smooth), background var(--transition-fast);
+}
+
+.bottom-recorder-handle:hover {
+  background: rgba(203, 213, 225, 0.95);
+}
+
+body:not(.dark-theme) .bottom-recorder-handle {
+  background: rgba(15, 23, 42, 0.35);
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08), 0 6px 18px rgba(15, 23, 42, 0.12);
+}
+
+@media (max-width: 600px) {
+  .bottom-recorder-shell {
+    bottom: 14px;
+  }
+
+  .bottom-nav,
+  #bottomNav {
+    padding: 0;
+  }
+
+  .bottom-recorder-handle {
+    bottom: 6px;
+    width: 56px;
+  }
+}
+
+/* ============================
+   Animations
+   ============================ */
+@keyframes recordingPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 69, 58, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 8px rgba(255, 69, 58, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 69, 58, 0);
+  }
+}
+
+@keyframes playbackPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 8px rgba(52, 199, 89, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 199, 89, 0);
+  }
+}

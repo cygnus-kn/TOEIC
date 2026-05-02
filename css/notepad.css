@@ -1,0 +1,583 @@
+/* ============================
+   Notepad Overlay
+   ============================ */
+.notepad-overlay {
+  position: fixed;
+  top: 192px;
+  right: 48px;
+  width: 280px;
+  height: 480px;
+  min-width: 150px;
+  min-height: 100px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  z-index: 2100;
+  overflow: visible;
+  transition:
+    opacity var(--transition-smooth),
+    transform var(--transition-smooth),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    backdrop-filter var(--transition-fast);
+}
+
+@media (max-width: 1024px) {
+  .notepad-overlay {
+    display: none !important;
+  }
+}
+
+.notepad-overlay.dragging {
+  transition: none;
+  opacity: 0.9;
+  cursor: grabbing !important;
+}
+
+body.dark-theme .notepad-overlay {
+  background: rgba(30, 41, 59, 0.65);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .notepad-ai-bar {
+  background: rgba(15, 23, 42, 0.72);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+}
+
+body.dark-theme .notepad-ai-submit {
+  background: #6f7f86;
+  color: #aeb9bf;
+  box-shadow: none;
+}
+
+body.dark-theme .notepad-ai-submit.has-text {
+  background: #e6eaee;
+  color: #073847;
+}
+
+body.dark-theme .notepad-ai-submit.generating {
+  background: #e6eaee;
+  color: #073847;
+}
+
+/* ============================
+   Notepad Header
+   ============================ */
+.notepad-header {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.3);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+  cursor: grab;
+  user-select: none;
+}
+
+/* Invisible Resize Edges */
+.notepad-edge {
+  position: absolute;
+  z-index: 100;
+  /* background: rgba(255, 0, 0, 0.2); */
+  /* Uncomment for debugging */
+}
+
+.notepad-edge.n {
+  top: -4px;
+  left: 10px;
+  right: 10px;
+  height: 8px;
+  cursor: n-resize;
+}
+
+.notepad-edge.s {
+  bottom: -4px;
+  left: 10px;
+  right: 10px;
+  height: 8px;
+  cursor: s-resize;
+}
+
+.notepad-edge.e {
+  right: -4px;
+  top: 10px;
+  bottom: 10px;
+  width: 8px;
+  cursor: e-resize;
+}
+
+.notepad-edge.w {
+  left: -4px;
+  top: 10px;
+  bottom: 10px;
+  width: 8px;
+  cursor: w-resize;
+}
+
+.notepad-edge.nw {
+  top: -4px;
+  left: -4px;
+  width: 14px;
+  height: 14px;
+  cursor: nw-resize;
+  z-index: 101;
+}
+
+.notepad-edge.ne {
+  top: -4px;
+  right: -4px;
+  width: 14px;
+  height: 14px;
+  cursor: ne-resize;
+  z-index: 101;
+}
+
+.notepad-edge.sw {
+  bottom: -4px;
+  left: -4px;
+  width: 14px;
+  height: 14px;
+  cursor: sw-resize;
+  z-index: 101;
+}
+
+.notepad-edge.se {
+  bottom: -4px;
+  right: -4px;
+  width: 14px;
+  height: 14px;
+  cursor: se-resize;
+  z-index: 101;
+}
+
+body.dark-theme .notepad-header {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.notepad-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.notepad-minimize-icon {
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.notepad-minimize-icon:hover {
+  opacity: 0.6;
+}
+
+.notepad-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.notepad-action-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.notepad-action-btn:hover {
+  color: var(--color-accent);
+}
+
+.notepad-action-btn.active {
+  color: var(--color-accent);
+  background: var(--color-accent-light);
+}
+
+.notepad-action-btn.destructive:hover {
+  color: #ef4444;
+}
+
+.notepad-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+
+.notepad-overlay.focused {
+  /* z-index swap removed to prevent flash */
+}
+
+/* ============================
+   Notepad Backdrop (Focus Mode)
+   ============================ */
+.notepad-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2050;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-smooth);
+}
+
+.notepad-backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================
+   Notepad Textarea
+   ============================ */
+.notepad-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.notepad-textarea::placeholder {
+  color: var(--color-text-tertiary);
+  opacity: 0.6;
+}
+
+/* ============================
+   Notepad AI Bar
+   ============================ */
+.notepad-ai-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 0;
+  max-height: 0;
+  margin: 0 8px;
+  padding: 0 4px 0 12px;
+  border: 0 solid var(--color-border-strong);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.52);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateY(10px) scale(0.98);
+  visibility: hidden;
+  transition:
+    max-height var(--transition-smooth),
+    margin var(--transition-smooth),
+    padding var(--transition-smooth),
+    border-width var(--transition-smooth),
+    opacity var(--transition-smooth),
+    transform var(--transition-smooth),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    visibility 0ms linear 300ms;
+}
+
+.notepad-overlay.ai-mode .notepad-ai-bar {
+  min-height: 36px;
+  max-height: 44px;
+  margin: 2px 8px 6px;
+  padding: 3px 4px 3px 12px;
+  border-width: 1px;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-4px) scale(1);
+  visibility: visible;
+  transition:
+    max-height var(--transition-smooth),
+    margin var(--transition-smooth),
+    padding var(--transition-smooth),
+    border-width var(--transition-smooth),
+    opacity var(--transition-smooth),
+    transform var(--transition-smooth),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    visibility 0ms linear 0ms;
+}
+
+.notepad-ai-input {
+  flex: 1;
+  min-width: 0;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  font-size: 13px;
+  line-height: 28px;
+  outline: none;
+}
+
+.notepad-ai-input::placeholder {
+  color: var(--color-text-tertiary);
+  opacity: 0.75;
+}
+
+.notepad-ai-submit {
+  position: relative;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: #d9dde1;
+  color: #9ca3af;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: none;
+  transition:
+    background-color var(--transition-smooth),
+    color var(--transition-smooth),
+    opacity var(--transition-smooth),
+    transform var(--transition-fast);
+}
+
+.notepad-ai-submit:hover:not(:disabled) {
+  background: #d9dde1;
+  color: #9ca3af;
+}
+
+.notepad-ai-submit.has-text {
+  background: #e6eaee;
+  color: #073847;
+}
+
+.notepad-ai-submit.generating {
+  background: #e6eaee;
+  color: #073847;
+}
+
+.notepad-ai-submit.has-text:hover:not(:disabled) {
+  background: #e6eaee;
+  color: #073847;
+}
+
+.notepad-ai-send-icon,
+.notepad-ai-stop-icon {
+  transition:
+    opacity var(--transition-smooth),
+    transform var(--transition-smooth);
+}
+
+.notepad-ai-stop-icon {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: #111827;
+  opacity: 0;
+  transform: scale(0.72);
+}
+
+.notepad-ai-submit.generating .notepad-ai-send-icon {
+  opacity: 0;
+  transform: scale(0.72);
+}
+
+.notepad-ai-submit.generating .notepad-ai-stop-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.notepad-ai-submit:disabled,
+.notepad-ai-input:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.notepad-ai-submit.generating:disabled {
+  opacity: 1;
+  background: #e6eaee;
+  color: #073847;
+}
+
+/* ============================
+   Notepad Footer
+   ============================ */
+.notepad-footer {
+  padding: 4px 8px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+}
+
+.notepad-footer-actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.notepad-footer-btn {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.notepad-footer-btn:hover {
+  color: var(--color-accent);
+}
+
+.notepad-footer-btn.active {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.notepad-footer-btn.active.listening {
+  animation: mic-pulse 2s infinite;
+}
+
+@keyframes mic-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+    color: #ef4444;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.notepad-footer-btn.success {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+#notepadWordCount {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+  text-transform: lowercase;
+  padding-right: 6px;
+  margin-left: 8px;
+}
+
+.notepad-count-num {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.notepad-status-toast {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  color: var(--color-text-primary);
+  font-size: 11px;
+  font-weight: 500;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.notepad-overlay.ai-mode .notepad-status-toast {
+  bottom: 84px;
+}
+
+.notepad-status-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================
+   Floating Notepad Toggle Button
+   ============================ */
+.floating-notepad-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 47px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--color-surface);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-secondary);
+  /* Grey color like nav buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition:
+    opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8) translateY(20px);
+}
+
+.floating-notepad-btn.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+}
+
+.floating-notepad-btn:hover {
+  background: var(--color-accent);
+  color: white;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
+}
+
+body.dark-theme .floating-notepad-btn {
+  background: rgba(30, 41, 59, 0.8);
+}

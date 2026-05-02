@@ -1,6 +1,6 @@
 # TOEIC Homework Platform — Progress Tracker
 
-> Last updated: 2026-05-02
+> Last updated: 2026-05-02 (May 2)
 
 ---
 
@@ -8,8 +8,8 @@
 
 A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing homework and class notes. Built with vanilla HTML, CSS, and JavaScript — no frameworks.
 
-**Stack:** `index.html` · `index.css` · `core.js` · `data.js` · `data/` (JSON)  
-**Hosted at:** GitHub (`/Users/cygnus/Documents/GitHub/Homework`)
+**Stack:** `index.html` · `css/` (partials) · `js/` (modules) · `data/` (JSON) · `assets/` (media)  
+**Hosted at:** GitHub Pages (`/Users/cygnus/Documents/GitHub/Homework`)
 
 ---
 
@@ -60,7 +60,7 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 
 ### ⏱ Response Timers
 - [x] Per-card countdown timers (click to start/pause/resume/reset cycle)
-- [x] Prep time stage (yellow) → Response time stage (default)
+- [x] ~~Prep time stage (yellow) → Response time stage (default)~~ — **removed** (dead code, `prepTime` never used in data)
 - [x] Topic preparation cards each get independent timers
 - [x] "Finished" state when timer reaches zero
 
@@ -269,6 +269,10 @@ Enable the user to click and drag the microphone navigation bar to any position 
 | May 01 | **Maintenance Cleanup**: Synced `ADD_HOMEWORK.md` with the live `audioUrls` local-audio schema, updated `SW Class` homework counts, removed the unused notification mount point, deleted unused timer progress-variable writes, and removed leftover focus-mode console logs. |
 | May 01 | **Notepad AI Assist**: Restored the AI notepad feature with contextual draft scanning, smooth prompt animation, elevated compact input styling, two-sparkle AI footer icon, and polished send-button states. Replaced all hardcoded template/mock responses with a live **Gemini Cloud API** integration (`gemini-flash-latest`). Removed `buildAiReply`, `buildFeedbackReply`, and all static heuristic logic. |
 | May 02 | **Major Architectural Refactor**: Successfully modularized the platform by extracting concerns from `core.js` into dedicated modules: `sidebar.js` (nav UI/resize), `partCard.js` (rendering/timers/lessons), `bottomNav.js` (recorder controls/dragging), and `notepad.js` (AI/Notepad). Cleaned up stale logic, unused variables, and redundant blank lines. `core.js` reduced from ~2900 to ~750 lines, now acting as a lean central orchestrator. |
+| May 02 | **CSS Modularization**: Split the monolithic `index.css` (64 KB, 3050 lines) into 9 focused partials under `css/` (`tokens`, `base`, `animations`, `sidebar`, `main`, `cards`, `bottom-nav`, `modals`, `notepad`) with `css/index.css` as the `@import` entry point. Updated `index.html` to point to `css/index.css`. |
+| May 02 | **JS Modularization & Cleanup**: Extracted timer logic into `js/timers.js` and audio player logic (YouTube + local HTML5) into `js/audioPlayers.js`, slimming `partCard.js` by ~18 KB. Removed the unused prep-timer stage (dead code — `prepTime` never appears in any JSON). Moved all JS to `js/` folder and deleted the old root-level `.js` files. |
+| May 02 | **File Structure Cleanup**: Moved `ADD_HOMEWORK.md` and `PROGRESS.md` to `docs/`. Renamed `test-data/` → `assets/` and updated all path references across every JSON data file via `sed`. Root now contains only `index.html`, `favicon.svg`, and the four clean directories (`css/`, `js/`, `data/`, `assets/`, `docs/`). |
+| May 02 | **Sidebar Wrapping Bugfix**: Fixed a visual glitch where "SW Class" wrapped to two lines mid-animation (collapsed → expanded) while shorter labels like "S129" did not. Added `white-space: nowrap` and `overflow: hidden` to `.class-header` in `css/sidebar.css`. |
 
 ---
 
