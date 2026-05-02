@@ -75,25 +75,9 @@ window.toggleTimer = function (index, totalTime) {
     timers[index].running = false;
     display.classList.remove('running');
 
-  } else if (timers[index].remaining > 0) {
-    // Resume
-    timers[index].running = true;
-    display.classList.add('running');
-
-    timers[index].interval = setInterval(() => {
-      timers[index].remaining--;
-      valueEl.textContent = formatTime(timers[index].remaining);
-      if (timers[index].remaining <= 0) {
-        clearInterval(timers[index].interval);
-        timers[index].running = false;
-        display.classList.remove('running');
-        display.classList.add('finished');
-        valueEl.textContent = '00:00';
-      }
-    }, 1000);
-
   } else {
-    // Reset
+    // Reset (if was paused or finished)
+    if (timers[index].interval) clearInterval(timers[index].interval);
     delete timers[index];
     display.classList.remove('running', 'finished');
     valueEl.textContent = formatTime(totalTime);
@@ -134,25 +118,9 @@ window.toggleTopicTimer = function (key, responseTime) {
     topicTimers[key].running = false;
     display.classList.remove('running');
 
-  } else if (topicTimers[key].remaining > 0) {
-    // Resume
-    topicTimers[key].running = true;
-    display.classList.add('running');
-
-    topicTimers[key].interval = setInterval(() => {
-      topicTimers[key].remaining--;
-      valueEl.textContent = formatTime(topicTimers[key].remaining);
-      if (topicTimers[key].remaining <= 0) {
-        clearInterval(topicTimers[key].interval);
-        topicTimers[key].running = false;
-        display.classList.remove('running');
-        display.classList.add('finished');
-        valueEl.textContent = '00:00';
-      }
-    }, 1000);
-
   } else {
-    // Reset
+    // Reset (if was paused or finished)
+    if (topicTimers[key].interval) clearInterval(topicTimers[key].interval);
     delete topicTimers[key];
     display.classList.remove('running', 'finished');
     valueEl.textContent = formatTime(responseTime);
