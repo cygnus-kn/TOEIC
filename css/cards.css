@@ -103,6 +103,9 @@ body.dark-theme .card-drag-handle-bar {
 }
 
 @media (max-width: 600px) {
+  .homework-viewer {
+    padding-top: 64px;
+  }
   .card-track {
     height: auto;
     /* Allow track to be as tall as the card */
