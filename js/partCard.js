@@ -152,6 +152,7 @@ function initCardWindowDragging() {
   };
 
   const startPointerDragging = (e) => {
+    if (window.innerWidth <= 600) return;
     if (!isCardWindowDragSource(e.target)) return;
     if (e.pointerType === 'mouse' && e.button !== 0) return;
     e.preventDefault();
@@ -165,6 +166,7 @@ function initCardWindowDragging() {
   };
 
   const startTouchDragging = (e) => {
+    if (window.innerWidth <= 600) return;
     if (!isCardWindowDragSource(e.target)) return;
     if (!e.touches.length || isDraggingCardWindow) return;
     e.preventDefault();

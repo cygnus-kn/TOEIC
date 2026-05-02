@@ -19,6 +19,10 @@
     flex: none;
     height: auto;
     overflow: visible;
+    cursor: default;
+  }
+  .card-drag-handle {
+    display: none !important;
   }
 }
 
@@ -125,22 +129,7 @@ body.dark-theme .card-drag-handle-bar {
 
 @media (max-width: 600px) {
   .part-card {
-    zoom: 0.88;
     border-radius: 20px;
-    max-height: none;
-    /* Card grows freely */
-    overflow: hidden;
-    /* Must stay hidden to clip the header and preserve rounded corners */
-  }
-}
-
-@supports not (zoom: 1) {
-  @media (max-width: 600px) {
-    .part-card {
-      transform: scale(0.88);
-      transform-origin: center top;
-      margin-bottom: -15%;
-    }
   }
 }
 
@@ -818,6 +807,7 @@ body.dark-theme .out-link-icon:hover {
     left: auto;
     top: auto;
     transform: none;
+    width: 100%;
     justify-content: center;
     min-height: 0;
     padding: 0 12px;
