@@ -74,7 +74,6 @@ function initNotepad() {
   const savedHeight = localStorage.getItem('toeicNotepadHeight');
   const savedTop = localStorage.getItem('toeicNotepadTop');
   const savedLeft = localStorage.getItem('toeicNotepadLeft');
-  const savedRight = localStorage.getItem('toeicNotepadRight');
 
   if (savedWidth) notepadOverlay.style.width = savedWidth + 'px';
   if (savedHeight) notepadOverlay.style.height = savedHeight + 'px';
@@ -86,9 +85,6 @@ function initNotepad() {
   if (savedLeft) {
     notepadOverlay.style.left = savedLeft;
     notepadOverlay.style.right = 'auto';
-  } else if (savedRight) {
-    notepadOverlay.style.right = savedRight;
-    notepadOverlay.style.left = 'auto';
   }
 
   // 3. Save Content on Input
@@ -143,7 +139,6 @@ function initNotepad() {
   // 5.5 (Markdown removed)
 
   // 6. Voice Transcription Initialization
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const toggleVoiceBtn = document.getElementById('toggleVoiceNote');
   const toggleAiBtn = document.getElementById('toggleAiAssist');
   const aiInput = document.getElementById('notepadAiInput');
@@ -227,7 +222,6 @@ function initNotepad() {
     `.trim();
 
     try {
-      console.log('Sending request to Gemini...');
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -243,7 +237,6 @@ function initNotepad() {
       }
 
       const data = await response.json();
-      console.log('Gemini Response received:', data);
       return data.candidates[0].content.parts[0].text.trim();
     } catch (err) {
       console.error('Gemini Connection Error:', err);
@@ -377,7 +370,7 @@ function initNotepad() {
     });
   }
 
-  // 6. Save Dimensions on Resize
+  // 7. Save Dimensions on Resize
   const resizeObserver = new ResizeObserver(entries => {
     for (let entry of entries) {
       const width = notepadOverlay.offsetWidth;
@@ -388,7 +381,7 @@ function initNotepad() {
   });
   resizeObserver.observe(notepadOverlay);
 
-  // 6. Multi-directional Invisible Edge Resize
+  // 8. Multi-directional Invisible Edge Resize
   const edges = notepadOverlay.querySelectorAll('.notepad-edge');
   edges.forEach(edge => {
     let startX, startY, startWidth, startHeight, startTop, startLeft;
@@ -469,7 +462,7 @@ function initNotepad() {
     edge.addEventListener('touchstart', startResizing, { passive: true });
   });
 
-  // 7. Dragging Logic (via Header)
+  // 9. Dragging Logic (via Header)
   const header = notepadOverlay.querySelector('.notepad-header');
   if (header) {
     let dragStartX, dragStartY, initialTop, initialLeft;

@@ -4,9 +4,7 @@
 //  Theme Logic
 // ============================
 const themeToggle = document.getElementById('themeToggle');
-const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
-const currentTheme = localStorage.getItem('theme');
 
 // Initial theme application is now handled by an inline script in index.html to prevent FOUC
 
@@ -25,7 +23,7 @@ let currentPart = 0;
 let currentParts = [];
 let activeClass = '';
 let activeType = ''; // 'homework' or 'lesson'
-let recognition = null; // Still kept for compatibility check
+let recognition = null; // Legacy Web Speech API stub — kept for any external compatibility checks
 let deepgramSocket = null;
 let dgStreamRecorder = null;
 let isVoiceNoteEnabled = false;
@@ -80,7 +78,6 @@ const confirmSaveBtn = document.getElementById('confirmSave');
 // --- Recorder state ---
 let mediaRecorder = null;
 let mediaStream = null;
-let mediaChunks = [];
 let recordingStartedAt = 0;
 let recordingTicker = null;
 let recordingLimitTimeout = null;
@@ -438,14 +435,6 @@ function stopRecording() {
   }
 }
 
-async function toggleRecording() {
-  if (mediaRecorder?.state === 'recording') {
-    stopRecording();
-  } else {
-    if (mediaRecorder !== null) return;
-    await startRecording();
-  }
-}
 
 // ============================
 //  Playback

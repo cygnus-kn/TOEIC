@@ -139,9 +139,6 @@ renderSidebar();
 // ============================
 //  Dropdown Selection Logic
 // ============================
-// ============================
-//  Dropdown Selection Logic
-// ============================
 const homeworkDropdown = document.getElementById('homeworkDropdown');
 const lessonDropdown = document.getElementById('lessonDropdown');
 

@@ -136,7 +136,6 @@ function updateBottomNavState() {
   bottomRecorderShell.classList.toggle('hidden-nav', shouldHide);
   if (bottomRecorderHandle) bottomRecorderHandle.classList.toggle('hidden-nav', shouldHide);
 
-  const hasParts = currentParts.length > 0;
   const canRecord = currentPartSupportsRecording() && typeof navigator !== 'undefined' && !!navigator.mediaDevices && typeof MediaRecorder !== 'undefined';
   const hasRecording = !!getCurrentRecording();
 
@@ -177,21 +176,14 @@ function updateBottomNavState() {
     setRecordingStatus('00:00', { visible: true, recording: false });
   }
 
-  updateDeleteButton();
 
   // Seeker management
   if (bottomPlaybackSeeker && bottomSeekerProgress && bottomSeekerKnob) {
-    const isPlaying = currentRecordingAudio && !currentRecordingAudio.paused;
     bottomPlaybackSeeker.classList.toggle('expanded', hasRecording);
 
     const recording = getCurrentRecording();
-    if (isPlaying && recording && recording.durationMs && !isSeekingPlayback) {
-      const duration = recording.durationMs / 1000;
-      const progress = (currentRecordingAudio.currentTime / duration) * 100;
-      bottomSeekerProgress.style.width = `${progress}%`;
-      bottomSeekerKnob.style.left = `${progress}%`;
-    } else if (!isPlaying && currentRecordingAudio && recording && recording.durationMs && !isSeekingPlayback) {
-      // Keep progress visible if paused
+    if (currentRecordingAudio && recording && recording.durationMs && !isSeekingPlayback) {
+      // Update progress whether playing or paused
       const duration = recording.durationMs / 1000;
       const progress = (currentRecordingAudio.currentTime / duration) * 100;
       bottomSeekerProgress.style.width = `${progress}%`;
@@ -323,14 +315,6 @@ if (bottomPlaybackSeeker) {
 }
 // Initialize dragging
 initNavDragging();
-// ============================
-//  Mobile UI Auto-Hide & Helpers
-// ============================
-function updateDeleteButton() {
-  if (!bottomDeleteBtn) return;
-  bottomDeleteBtn.setAttribute('aria-label', 'Delete latest recording');
-  bottomDeleteBtn.setAttribute('title', 'Delete latest recording');
-}
 // ============================
 //  Mobile UI Auto-Hide
 // ============================
