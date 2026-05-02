@@ -88,7 +88,8 @@ body.dark-theme .sidebar {
   position: fixed;
   top: calc(var(--header-center-y) - (var(--ui-toggle-size) / 2));
   left: 32px;
-  z-index: 2001; /* above sidebar (2000) so button floats in front when sidebar open */
+  z-index: 2001;
+  /* above sidebar (2000) so button floats in front when sidebar open */
   pointer-events: none;
   transition: opacity var(--transition-smooth), transform var(--transition-smooth);
 }
@@ -143,6 +144,17 @@ body:not(body.dark-theme) .sidebar-toggle-btn {
 
 body:not(body.dark-theme) .sidebar-toggle-btn:hover {
   background: rgba(255, 255, 255, 0.8);
+}
+
+/* Smooth Icon Fill Animation */
+.sidebar-icon-fill {
+  fill: currentColor;
+  fill-opacity: 0;
+  transition: fill-opacity var(--transition-smooth);
+}
+
+.sidebar-toggle-btn.is-extended .sidebar-icon-fill {
+  fill-opacity: 1;
 }
 
 .theme-toggle-wrapper {
@@ -439,6 +451,33 @@ body.dark-theme .class-header:hover {
   color: var(--color-text-tertiary);
   transition: transform var(--transition-smooth);
   flex-shrink: 0;
+}
+
+.class-count-badge {
+  display: inline-block;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--color-border);
+  padding: 2px 0;
+  border-radius: 999px;
+  width: 39px;
+  min-width: 39px;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.class-header:hover .class-count-badge {
+  background: var(--color-surface-hover);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+body.dark-theme .class-count-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .class-group.expanded .class-chevron {

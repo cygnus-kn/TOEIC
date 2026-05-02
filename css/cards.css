@@ -222,7 +222,6 @@ body.dark-theme .card-drag-handle-bar {
 }
 
 .response-timer:hover .timer-display:not(.running):not(.prep-stage) {
-  transform: scale(1.02);
   background: var(--color-surface-hover);
   border-color: var(--color-accent);
   color: var(--color-accent);
@@ -230,12 +229,10 @@ body.dark-theme .card-drag-handle-bar {
 
 .response-timer:hover .timer-display.running,
 .response-timer:hover .timer-display.prep-stage {
-  transform: scale(1.02);
   background: linear-gradient(90deg, rgba(62, 55, 113, 0.85) 0%, rgba(142, 26, 82, 0.85) 100%);
 }
 
 .response-timer:active .timer-display {
-  transform: scale(0.98);
 }
 
 /* Keep gradient + white text when pressed while running/finished */
