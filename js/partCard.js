@@ -201,6 +201,10 @@ function scheduleActiveCardFrameUpdate() {
   });
 }
 
+// Export for inline onclick handlers
+window.updateActiveCardFrame = updateActiveCardFrame;
+window.scheduleActiveCardFrameUpdate = scheduleActiveCardFrameUpdate;
+
 function bindActiveCardMediaSizing() {
   cardTrack.querySelectorAll('img').forEach(img => {
     if (img.complete) return;
@@ -430,7 +434,7 @@ function renderPartContent(part, partIndex) {
         ` : ''}
         ${part.content.question ? `
           <div class="reveal-section">
-            <button class="reveal-btn" onclick="const q = this.nextElementSibling; q.classList.toggle('visible')">Transcript</button>
+            <button class="reveal-btn" onclick="const q = this.nextElementSibling; q.classList.toggle('visible'); if(window.scheduleActiveCardFrameUpdate) window.scheduleActiveCardFrameUpdate();">Transcript</button>
             <div class="question-text reveal-content" style="text-align:left; font-size:16px;">${formatMarkdown(part.content.question)}</div>
           </div>
         ` : ''}
