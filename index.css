@@ -2487,12 +2487,10 @@ body.dark-theme .bookmark-dot:not(.active-bookmark):hover {
   position: fixed;
   top: 192px;
   right: 48px;
-  width: 360px;
+  width: 280px;
   height: 480px;
-  min-width: 250px;
-  max-width: 600px;
-  min-height: 200px;
-  max-height: 80vh;
+  min-width: 150px;
+  min-height: 100px;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);

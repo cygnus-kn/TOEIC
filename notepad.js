@@ -428,11 +428,11 @@ function initNotepad() {
         }
 
         // Apply constraints
-        if (newWidth > 200 && newWidth < 800) {
+        if (newWidth > 100) {
           notepadOverlay.style.width = newWidth + 'px';
           notepadOverlay.style.left = newLeft + 'px';
         }
-        if (newHeight > 150 && newHeight < 800) {
+        if (newHeight > 100) {
           notepadOverlay.style.height = newHeight + 'px';
           notepadOverlay.style.top = newTop + 'px';
         }
