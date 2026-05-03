@@ -13,6 +13,7 @@ function initNotepad() {
   const NOTEPAD_MIN_WIDTH = 150;
   const NOTEPAD_MIN_HEIGHT = 100;
   let pendingViewportClamp = null;
+  let preKeyboardPlacement = null;
 
   const clampNumber = (value, min, max) => Math.min(max, Math.max(min, value));
 
@@ -23,6 +24,23 @@ function initNotepad() {
       top: visualViewport?.offsetTop || 0,
       width: visualViewport?.width || window.innerWidth,
       height: visualViewport?.height || window.innerHeight
+    };
+  };
+
+  const isKeyboardViewportActive = () => {
+    const visualViewport = window.visualViewport;
+    if (!visualViewport) return false;
+    const layoutHeight = Math.max(window.innerHeight, document.documentElement.clientHeight);
+    return visualViewport.height < layoutHeight - 80 || visualViewport.offsetTop > 20;
+  };
+
+  const captureNotepadPlacement = () => {
+    const rect = notepadOverlay.getBoundingClientRect();
+    return {
+      width: Math.round(rect.width || notepadOverlay.offsetWidth || 280),
+      height: Math.round(rect.height || notepadOverlay.offsetHeight || 480),
+      left: Math.round(rect.left),
+      top: Math.round(rect.top)
     };
   };
 
@@ -95,6 +113,18 @@ function initNotepad() {
     if (pendingViewportClamp !== null) return;
     pendingViewportClamp = requestAnimationFrame(() => {
       pendingViewportClamp = null;
+      if (isKeyboardViewportActive()) {
+        if (!preKeyboardPlacement) preKeyboardPlacement = captureNotepadPlacement();
+        placeNotepadWithinViewport({}, false);
+        return;
+      }
+
+      if (preKeyboardPlacement) {
+        placeNotepadWithinViewport(preKeyboardPlacement, true);
+        preKeyboardPlacement = null;
+        return;
+      }
+
       placeNotepadWithinViewport({}, true);
     });
   };
@@ -484,6 +514,7 @@ function initNotepad() {
 
   // 7. Save Dimensions on Resize
   const resizeObserver = new ResizeObserver(entries => {
+    if (isKeyboardViewportActive()) return;
     for (let entry of entries) {
       const width = notepadOverlay.offsetWidth;
       const height = notepadOverlay.offsetHeight;

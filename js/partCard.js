@@ -116,6 +116,8 @@ function initCardWindowDragging() {
   };
 
   const isCardWindowDragSource = (target) => {
+    const isTouchCapable = navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
+    if (isTouchCapable) return !!target.closest('.card-drag-handle');
     if (target.closest('.card-drag-handle')) return true;
     if (target.closest('.card-container') || target.closest('.pagination')) return false;
     return target.closest('#cardStage') === cardStage;
@@ -174,6 +176,7 @@ function initCardWindowDragging() {
   const startPointerDragging = (e) => {
     if (window.innerWidth <= 600) return;
     if (isDraggingCardWindow) return;
+    if (e.pointerType !== 'mouse' && !e.target.closest('.card-drag-handle')) return;
     if (!isCardWindowDragSource(e.target)) return;
     if (e.pointerType === 'mouse' && e.button !== 0) return;
     e.preventDefault();
@@ -189,6 +192,7 @@ function initCardWindowDragging() {
 
   const startTouchDragging = (e) => {
     if (window.innerWidth <= 600) return;
+    if (!e.target.closest('.card-drag-handle')) return;
     if (!isCardWindowDragSource(e.target)) return;
     if (!e.touches.length || isDraggingCardWindow) return;
     e.preventDefault();
@@ -603,11 +607,22 @@ function updatePaginationDots() {
 // ============================
 let touchStartX = 0;
 let touchEndX = 0;
+let touchStartY = 0;
 
 cardContainer.addEventListener('touchstart', (e) => {
   if (isDraggingCardWindow) return;
   touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
 }, { passive: true });
+
+cardContainer.addEventListener('touchmove', (e) => {
+  if (isDraggingCardWindow || !e.touches.length) return;
+  const dx = e.touches[0].screenX - touchStartX;
+  const dy = e.touches[0].screenY - touchStartY;
+  if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
+    e.preventDefault();
+  }
+}, { passive: false });
 
 cardContainer.addEventListener('touchend', (e) => {
   if (isDraggingCardWindow) return;

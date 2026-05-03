@@ -38,6 +38,7 @@
   height: var(--active-card-height, auto);
   transition: height var(--transition-smooth);
   cursor: auto;
+  touch-action: pan-y;
 }
 
 .card-drag-handle {
