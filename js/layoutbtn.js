@@ -12,12 +12,6 @@
   // ============================
   //  Icons
   // ============================
-  const ICON_FOCUS = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>`;
-
-  // Filled layout icon: left tall card | right top notepad + right bottom nav bar
-  const ICON_EXTEND = `<svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="5" height="14" rx="1"/><rect x="8" y="1" width="7" height="8" rx="1"/><rect x="8" y="11" width="7" height="4" rx="1"/></svg>`;
-  const ICON_SIMPLE = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="M2 2l20 20"/></svg>`;
-
   let currentMode = 'focus';
   let pendingExtendRaf = null; // track rAF so we can cancel it on mode switch
   let pendingResizeRaf = null;
@@ -293,33 +287,19 @@
   // ============================
   //  Menu & Button
   // ============================
-  function updateBtn(btn) {
-    if (currentMode === 'focus') {
-      btn.innerHTML = ICON_FOCUS;
-      btn.title = 'Focus Mode';
-    } else if (currentMode === 'extend') {
-      btn.innerHTML = ICON_EXTEND;
-      btn.title = 'Extend Mode';
-    } else {
-      btn.innerHTML = ICON_SIMPLE;
-      btn.title = 'Simple Mode';
-    }
-  }
-
   function updateMenu(menu) {
     if (!menu) return;
-    menu.querySelectorAll('[data-layout-mode]').forEach(item => {
+    menu.querySelectorAll('[data-layout-mode]').forEach((item, index) => {
       const isActive = item.dataset.layoutMode === currentMode;
       item.classList.toggle('active', isActive);
       item.setAttribute('aria-checked', String(isActive));
+      item.style.order = isActive ? '0' : String(index + 1);
     });
   }
 
   function applyLayoutMode(mode) {
     currentMode = mode;
-    const btn = document.getElementById('layoutToggleBtn');
     const menu = document.getElementById('layoutMenu');
-    if (btn) updateBtn(btn);
     updateMenu(menu);
 
     if (currentMode === 'extend') {
@@ -333,30 +313,27 @@
 
   function setMenuOpen(open) {
     const topBar = document.querySelector('.layout-top-bar');
-    const btn = document.getElementById('layoutToggleBtn');
     const menu = document.getElementById('layoutMenu');
-    if (!btn || !menu) return;
+    if (!menu) return;
     topBar?.classList.toggle('menu-open', open);
     menu.classList.toggle('show', open);
-    btn.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-expanded', String(open));
   }
 
   function initLayoutToggle() {
-    const btn = document.getElementById('layoutToggleBtn');
     const menu = document.getElementById('layoutMenu');
-    if (!btn) return;
+    if (!menu) return;
 
-    updateBtn(btn);
     updateMenu(menu);
 
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      setMenuOpen(!menu?.classList.contains('show'));
-    });
-
-    menu?.addEventListener('click', (e) => {
+    menu.addEventListener('click', (e) => {
       const item = e.target.closest('[data-layout-mode]');
       if (!item) return;
+      const isOpen = menu.classList.contains('show');
+      if (item.dataset.layoutMode === currentMode) {
+        setMenuOpen(!isOpen);
+        return;
+      }
       applyLayoutMode(item.dataset.layoutMode);
       setMenuOpen(false);
     });

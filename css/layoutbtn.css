@@ -21,83 +21,48 @@
     right: 16px;
   }
 
-  body.layout-simple #layoutToggleBtn {
+  body:not(.layout-simple) #layoutMenu {
+    display: none !important;
+  }
+
+  body.layout-simple #layoutMenu {
     display: flex !important;
   }
 }
 
-.layout-toggle-btn {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  cursor: pointer;
-  width: var(--ui-toggle-size) !important;
-  height: var(--ui-toggle-size) !important;
-  min-width: var(--ui-toggle-size);
-  min-height: var(--ui-toggle-size);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: auto;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: all var(--transition-smooth);
-  padding: 0;
-  flex-shrink: 0;
-}
-
-body:not(body.dark-theme) .layout-toggle-btn {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  color: #000000;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.layout-toggle-btn svg {
-  width: 20px;
-  height: 20px;
-  stroke-width: 2;
-}
-
-.layout-toggle-btn:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-body:not(body.dark-theme) .layout-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.8);
-}
-
 .layout-menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
+  position: relative;
   width: 48px;
+  height: 48px;
   padding: 5px;
   border-radius: 9999px;
-  background: rgba(23, 30, 46, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  opacity: 0;
-  transform: translateY(-4px);
-  pointer-events: none;
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  overflow: hidden;
+  pointer-events: auto;
+  transition:
+    height var(--transition-smooth),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .layout-menu.show {
-  opacity: 1;
-  transform: translateY(0);
+  height: 128px;
   pointer-events: auto;
 }
 
 body:not(body.dark-theme) .layout-menu {
-  background: rgba(255, 255, 255, 0.82);
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .layout-menu-item {
@@ -112,6 +77,20 @@ body:not(body.dark-theme) .layout-menu {
   justify-content: center;
   padding: 0;
   cursor: pointer;
+  flex: 0 0 38px;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity var(--transition-smooth),
+    transform var(--transition-smooth),
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.layout-menu:not(.show) .layout-menu-item:not(.active) {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.82);
 }
 
 body:not(body.dark-theme) .layout-menu-item {
@@ -176,7 +155,7 @@ body.layout-nav-suppressed .bottom-recorder-shell {
     transform: none;
   }
 
-  body.layout-simple.mobile-controls-hidden .layout-toggle-btn {
+  body.layout-simple.mobile-controls-hidden #layoutMenu {
     pointer-events: auto;
   }
 }

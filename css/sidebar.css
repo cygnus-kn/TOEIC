@@ -101,11 +101,6 @@ body.dark-theme .sidebar {
     left: 32px;
   }
 
-  /* Hide layout and notepad controls on mobile */
-  #layoutToggleBtn,
-  #restoreNotepadBtn {
-    display: none !important;
-  }
 }
 
 .sidebar-toggle-btn {
