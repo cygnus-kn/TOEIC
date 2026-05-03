@@ -683,8 +683,12 @@ async function restoreAppState() {
 }
 
 // Initialize
-restoreAppState();
-updateBottomNavState();
+restoreAppState().finally(() => {
+  if (typeof window.reapplyLayoutMode === 'function') {
+    window.reapplyLayoutMode();
+  }
+  updateBottomNavState();
+});
 
 // ============================
 //  Save Modal Listeners

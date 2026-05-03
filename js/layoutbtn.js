@@ -12,6 +12,8 @@
   // ============================
   //  Icons
   // ============================
+  const LAYOUT_MODE_KEY = 'toeicLayoutMode';
+  const VALID_LAYOUT_MODES = new Set(['focus', 'simple', 'extend']);
   let currentMode = 'focus';
   let pendingExtendRaf = null; // track rAF so we can cancel it on mode switch
   let pendingResizeRaf = null;
@@ -297,8 +299,23 @@
     });
   }
 
+  function getSavedLayoutMode() {
+    try {
+      const savedMode = localStorage.getItem(LAYOUT_MODE_KEY);
+      return VALID_LAYOUT_MODES.has(savedMode) ? savedMode : currentMode;
+    } catch (_) {
+      return currentMode;
+    }
+  }
+
+  function saveLayoutMode(mode) {
+    try { localStorage.setItem(LAYOUT_MODE_KEY, mode); } catch (_) { }
+  }
+
   function applyLayoutMode(mode) {
+    if (!VALID_LAYOUT_MODES.has(mode)) mode = 'focus';
     currentMode = mode;
+    saveLayoutMode(currentMode);
     const menu = document.getElementById('layoutMenu');
     updateMenu(menu);
 
@@ -310,6 +327,10 @@
       applyFocusMode();
     }
   }
+
+  window.reapplyLayoutMode = function () {
+    applyLayoutMode(currentMode);
+  };
 
   function setMenuOpen(open) {
     const topBar = document.querySelector('.layout-top-bar');
@@ -324,7 +345,7 @@
     const menu = document.getElementById('layoutMenu');
     if (!menu) return;
 
-    updateMenu(menu);
+    applyLayoutMode(getSavedLayoutMode());
 
     menu.addEventListener('click', (e) => {
       const item = e.target.closest('[data-layout-mode]');
