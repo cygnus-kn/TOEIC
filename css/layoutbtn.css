@@ -16,6 +16,10 @@
   .layout-top-bar {
     right: 16px;
   }
+
+  body.layout-simple #layoutToggleBtn {
+    display: flex !important;
+  }
 }
 
 .layout-toggle-btn {
@@ -62,11 +66,39 @@ body:not(body.dark-theme) .layout-toggle-btn:hover {
   background: rgba(255, 255, 255, 0.8);
 }
 
+/* Simple layout keeps homework navigation controls and the active card visible. */
+body.layout-simple .main-top-bar,
+body.layout-simple .theme-toggle-wrapper,
+body.layout-simple .lesson-viewer,
+body.layout-simple .welcome-state,
+body.layout-simple .bottom-recorder-shell,
+body.layout-simple .bottom-recorder-handle,
+body.layout-simple .notepad-overlay,
+body.layout-simple .floating-notepad-btn,
+body.layout-simple .notepad-backdrop {
+  display: none !important;
+}
+
+body.layout-simple .card-drag-handle {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
 /* Mobile auto-hide styles - matching sidebar toggle behavior */
 @media (max-width: 1024px) {
   body.mobile-controls-hidden .layout-top-bar {
     opacity: 0;
     pointer-events: none;
     transform: translateY(-15px);
+  }
+
+  body.layout-simple.mobile-controls-hidden .layout-top-bar {
+    opacity: 1;
+    pointer-events: none;
+    transform: none;
+  }
+
+  body.layout-simple.mobile-controls-hidden .layout-toggle-btn {
+    pointer-events: auto;
   }
 }

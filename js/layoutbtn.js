@@ -1,9 +1,10 @@
 /**
  * Layout Toggle Button Module
- * Cycles through layout presets: focus → extend → focus → …
+ * Cycles through layout presets: focus → simple → extend → focus → …
  *
- *  focus  — card centred, notepad collapsed, nav default, sidebar collapsed
+ *  focus  — card centered, notepad collapsed, nav default, sidebar collapsed
  *  extend — card left, notepad open (right), nav below notepad
+ *  simple — homework header controls and the active part card are shown
  */
 
 (function () {
@@ -15,6 +16,7 @@
 
   // Filled layout icon: left tall card | right top notepad + right bottom nav bar
   const ICON_EXTEND = `<svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="5" height="14" rx="1"/><rect x="8" y="1" width="7" height="8" rx="1"/><rect x="8" y="11" width="7" height="4" rx="1"/></svg>`;
+  const ICON_SIMPLE = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="M2 2l20 20"/></svg>`;
 
   let currentMode = 'focus';
   let pendingExtendRaf = null; // track rAF so we can cancel it on mode switch
@@ -61,6 +63,10 @@
       ['position', 'left', 'top', 'bottom', 'right', 'margin', 'width', 'height', 'transform']
         .forEach(p => shell.style[p] = '');
     });
+  }
+
+  function setSimpleChromeHidden(hidden) {
+    document.body.classList.toggle('layout-simple', hidden);
   }
 
   function teleportBottomNav(shell, finalPosition, applyFinalPosition) {
@@ -116,6 +122,7 @@
       cancelAnimationFrame(pendingResizeRaf);
       pendingResizeRaf = null;
     }
+    setSimpleChromeHidden(false);
     collapseSidebar();
     collapseNotepad();
     resetCardWindow();
@@ -132,6 +139,7 @@
       cancelAnimationFrame(pendingExtendRaf);
       pendingExtendRaf = null;
     }
+    setSimpleChromeHidden(false);
 
     collapseSidebar();
 
@@ -228,6 +236,27 @@
     });
   }
 
+  // ============================
+  //  Simple Mode
+  // ============================
+  function applySimpleMode() {
+    if (pendingExtendRaf !== null) {
+      cancelAnimationFrame(pendingExtendRaf);
+      pendingExtendRaf = null;
+    }
+    if (pendingResizeRaf !== null) {
+      cancelAnimationFrame(pendingResizeRaf);
+      pendingResizeRaf = null;
+    }
+    collapseSidebar();
+    collapseNotepad();
+    resetCardWindow();
+    resetBottomNav();
+    setSimpleChromeHidden(true);
+    console.log('[Layout] simple');
+    window.dispatchEvent(new CustomEvent('layoutChanged', { detail: { layout: 'simple' } }));
+  }
+
 
   // ============================
   //  Cycle & Button
@@ -235,10 +264,13 @@
   function updateBtn(btn) {
     if (currentMode === 'focus') {
       btn.innerHTML = ICON_FOCUS;
-      btn.title = 'Focus Mode — Click to switch to Extend';
-    } else {
+      btn.title = 'Focus Mode — Click to switch to Simple';
+    } else if (currentMode === 'extend') {
       btn.innerHTML = ICON_EXTEND;
       btn.title = 'Extend Mode — Click to switch to Focus';
+    } else {
+      btn.innerHTML = ICON_SIMPLE;
+      btn.title = 'Simple Mode — Click to switch to Extend';
     }
   }
 
@@ -249,11 +281,13 @@
     updateBtn(btn);
 
     btn.addEventListener('click', () => {
-      currentMode = (currentMode === 'focus') ? 'extend' : 'focus';
+      currentMode = currentMode === 'focus' ? 'simple' : currentMode === 'simple' ? 'extend' : 'focus';
       updateBtn(btn);
 
       if (currentMode === 'extend') {
         applyExtendMode();
+      } else if (currentMode === 'simple') {
+        applySimpleMode();
       } else {
         applyFocusMode();
       }
