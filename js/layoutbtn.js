@@ -342,10 +342,20 @@
   }
 
   function initLayoutToggle() {
+    const topBar = document.querySelector('.layout-top-bar');
     const menu = document.getElementById('layoutMenu');
     if (!menu) return;
+    const desktopHoverQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
 
     applyLayoutMode(getSavedLayoutMode());
+
+    topBar?.addEventListener('pointerenter', () => {
+      if (desktopHoverQuery.matches) setMenuOpen(true);
+    });
+
+    topBar?.addEventListener('pointerleave', () => {
+      if (desktopHoverQuery.matches) setMenuOpen(false);
+    });
 
     menu.addEventListener('click', (e) => {
       const item = e.target.closest('[data-layout-mode]');
