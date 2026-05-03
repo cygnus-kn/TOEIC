@@ -105,12 +105,19 @@ body:not(body.dark-theme) .layout-menu-item {
 
 body:not(body.dark-theme) .layout-menu-item:hover,
 body:not(body.dark-theme) .layout-menu-item.active {
-  background: rgba(0, 122, 255, 0.1);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+body:not(body.dark-theme) .layout-menu-item:hover {
   color: #007aff;
 }
 
+body:not(body.dark-theme) .layout-menu-item.active {
+  color: #1d1d1f;
+}
+
 body.dark-theme .layout-menu-item.active {
-  color: var(--color-accent);
+  color: #ffffff;
 }
 
 .layout-menu-item svg {
