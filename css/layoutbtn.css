@@ -128,6 +128,65 @@ body:not(body.dark-theme) .layout-menu-item.active {
   height: 20px;
 }
 
+.layout-menu-item .layout-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.layout-focus-inactive {
+  position: relative;
+  display: block;
+}
+
+.layout-focus-inactive .layout-focus-echo {
+  position: absolute;
+  inset: 0;
+}
+
+.layout-focus-inactive .layout-focus-echo-front {
+  opacity: 0.78;
+  filter: none;
+  transform: translate(0, 0);
+}
+
+.layout-focus-inactive .layout-focus-echo-mid {
+  opacity: 0.38;
+  filter: none;
+  transform: translate(3px, 2.25px);
+}
+
+.layout-focus-inactive .layout-focus-echo-back {
+  opacity: 0.26;
+  filter: none;
+  transform: translate(-3px, -2.25px);
+}
+
+body.dark-theme .layout-focus-inactive .layout-focus-echo-mid {
+  color: rgba(190, 220, 255, 0.82);
+  opacity: 0.48;
+  filter: none;
+}
+
+body.dark-theme .layout-focus-inactive .layout-focus-echo-back {
+  color: rgba(170, 205, 255, 0.72);
+  opacity: 0.36;
+  filter: none;
+}
+
+.layout-menu-item .layout-icon-active {
+  display: none;
+}
+
+.layout-menu-item.active .layout-icon-inactive,
+.layout-menu-item:not(.active):hover .layout-icon-inactive {
+  display: none;
+}
+
+.layout-menu-item.active .layout-icon-active,
+.layout-menu-item:not(.active):hover .layout-icon-active {
+  display: block;
+}
+
 /* Simple layout keeps homework navigation controls and the active card visible. */
 body.layout-simple .main-top-bar,
 body.layout-simple .theme-toggle-wrapper,
