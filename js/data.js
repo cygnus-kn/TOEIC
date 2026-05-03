@@ -3,6 +3,34 @@
    ============================ */
 
 const CLASSES_DATA = {
+  S136: {
+    homework: [],
+    lesson: []
+  },
+  S133: {
+    homework: [],
+    lesson: []
+  },
+  S129: {
+    homework: [
+      { date: "[HW-05] 03/31" },
+      { date: "[HW-04] 04/13" },
+      { date: "[HW-03] 04/12" }
+    ],
+    lesson: [
+      { date: "[Lesson-02] 04/10" },
+      { date: "[Lesson-01] 04/07" }
+    ]
+  },
+  S128: {
+    homework: [
+      { date: "[HW-03] 04/13" },
+      { date: "[HW-01] 04/10" }
+    ],
+    lesson: [
+      { date: "[Lesson-01] 04/09" }
+    ]
+  },
   "S001": {
     homework: [
       { date: "[HW-18]" },
@@ -25,25 +53,5 @@ const CLASSES_DATA = {
       { date: "[HW-01]" }
     ],
     lesson: []
-  },
-  S129: {
-    homework: [
-      { date: "[HW-05] 03/31" },
-      { date: "[HW-04] 04/13" },
-      { date: "[HW-03] 04/12" }
-    ],
-    lesson: [
-      { date: "[Lesson-02] 04/10" },
-      { date: "[Lesson-01] 04/07" }
-    ]
-  },
-  S128: {
-    homework: [
-      { date: "[HW-03] 04/13" },
-      { date: "[HW-01] 04/10" }
-    ],
-    lesson: [
-      { date: "[Lesson-01] 04/09" }
-    ]
   }
 };
