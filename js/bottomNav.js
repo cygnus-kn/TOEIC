@@ -10,6 +10,7 @@ const bottomRedoBtn = document.getElementById('bottomRedoBtn');
 const bottomRecordBtn = document.getElementById('bottomRecordBtn');
 const bottomDeleteBtn = document.getElementById('bottomDeleteBtn');
 const bottomSaveBtn = document.getElementById('bottomSaveBtn');
+const bottomMinimizeBtn = document.getElementById('bottomMinimizeBtn');
 const bottomPlaybackSeeker = document.getElementById('bottomPlaybackSeeker');
 const bottomSeekerProgress = document.getElementById('bottomSeekerProgress');
 const bottomSeekerKnob = document.getElementById('bottomSeekerKnob');
@@ -285,12 +286,21 @@ function updateBottomNavState() {
 // ============================
 if (bottomRecorderHandle) {
   bottomRecorderHandle.addEventListener('click', () => {
+    document.body.classList.remove('bottom-nav-minimized');
     showMobileControls();
   });
 
   bottomRecorderHandle.addEventListener('touchstart', () => {
+    document.body.classList.remove('bottom-nav-minimized');
     showMobileControls();
   }, { passive: true });
+}
+
+if (bottomMinimizeBtn) {
+  bottomMinimizeBtn.addEventListener('click', () => {
+    document.body.classList.add('bottom-nav-minimized');
+    resetControlTimer();
+  });
 }
 
 if (bottomRecordBtn) {

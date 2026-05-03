@@ -71,12 +71,37 @@
       </div>
 
       <div class="layout-top-bar">
-        <button class="layout-toggle-btn" id="layoutToggleBtn" aria-label="Toggle layout">
+        <button class="layout-toggle-btn" id="layoutToggleBtn" aria-label="Select layout" aria-haspopup="menu" aria-expanded="false">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
             <path d="M3 9h18M9 21V9"></path>
           </svg>
         </button>
+        <div class="layout-menu" id="layoutMenu" role="menu" aria-label="Layout options">
+          <button class="layout-menu-item" type="button" role="menuitemradio" data-layout-mode="focus" aria-label="Focus layout" title="Focus layout">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
+              <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+              <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
+              <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+            </svg>
+          </button>
+          <button class="layout-menu-item" type="button" role="menuitemradio" data-layout-mode="simple" aria-label="Simple layout" title="Simple layout">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+              <path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+              <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>
+              <path d="M2 2l20 20"/>
+            </svg>
+          </button>
+          <button class="layout-menu-item" type="button" role="menuitemradio" data-layout-mode="extend" aria-label="Extend layout" title="Extend layout">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <rect x="1" y="1" width="5" height="14" rx="1"/>
+              <rect x="8" y="1" width="7" height="8" rx="1"/>
+              <rect x="8" y="11" width="7" height="4" rx="1"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <!-- Content injected by app.js -->
@@ -149,9 +174,17 @@
 
       <!-- Unified Media Player Controls (Bottom) -->
       <div class="bottom-nav-controls">
-        <div class="recording-status" id="recordingStatus">
-          <span class="recording-status-dot"></span>
-          <span id="recordingStatusText">00:00</span>
+        <div class="bottom-nav-left">
+          <button class="bottom-nav-btn" id="bottomMinimizeBtn" aria-label="Close recording controls" title="Close recording controls">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 6 6 18"/>
+              <path d="m6 6 12 12"/>
+            </svg>
+          </button>
+          <div class="recording-status" id="recordingStatus">
+            <span class="recording-status-dot"></span>
+            <span id="recordingStatusText">00:00</span>
+          </div>
         </div>
         
         <div class="bottom-nav-btns">
@@ -178,11 +211,20 @@
               <path d="M14 10.2v5.6"/>
             </svg>
           </button>
+        </div>
+
+        <div class="bottom-nav-right">
           <button class="bottom-nav-btn" id="bottomSaveBtn" aria-label="Save latest recording" title="Save latest recording">
             <svg class="save-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 3v12"/>
               <path d="m7 10 5 5 5-5"/>
               <path d="M5 18v1.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V18"/>
+            </svg>
+          </button>
+          <button class="bottom-nav-btn" id="bottomNotepadToggleBtn" aria-label="Show Notepad" title="Show Notepad">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="3" width="16" height="18" rx="3"></rect>
+              <path d="M8 8h8M8 12h8M8 16h5"></path>
             </svg>
           </button>
         </div>
@@ -267,14 +309,6 @@
     <div class="notepad-edge se" data-edge="se"></div>
   </div>
 
-  <!-- Floating Notepad Toggle -->
-  <button class="floating-notepad-btn" id="restoreNotepadBtn" aria-label="Show Notepad" title="Show Notepad">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="4" y="3" width="16" height="18" rx="3"></rect>
-      <path d="M8 8h8M8 12h8M8 16h5"></path>
-    </svg>
-  </button>
-
   <script>
     // Critical: Set initial notepad visibility instantly to prevent "flash" on refresh
     (function() {
@@ -283,13 +317,21 @@
         const minimized = minimizedPref === null ? true : minimizedPref === 'true';
         if (minimized) {
           document.getElementById('notepadOverlay').classList.add('hidden');
-          document.getElementById('restoreNotepadBtn').classList.add('show');
+          const restoreBtn = document.getElementById('restoreNotepadBtn');
+          if (restoreBtn) restoreBtn.classList.add('show');
         }
       } catch (e) {}
     })();
   </script>
 
-  <button class="bottom-recorder-handle" id="bottomRecorderHandle" aria-label="Show recording controls" title="Show recording controls"></button>
+  <button class="bottom-recorder-handle" id="bottomRecorderHandle" aria-label="Show recording controls" title="Show recording controls">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/>
+      <path d="M5 11a7 7 0 0 0 14 0"/>
+      <path d="M12 18v3"/>
+      <path d="M8.5 21h7"/>
+    </svg>
+  </button>
   <!-- Image Modal -->
   <div id="imageModal" class="image-modal" onclick="this.classList.remove('active')">
     <img id="imageModalContent" alt="Zoomed picture" onclick="event.stopPropagation()">

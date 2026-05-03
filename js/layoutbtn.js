@@ -56,6 +56,16 @@
     if (typeof cardWindowOffsetY !== 'undefined') cardWindowOffsetY = 0;
   }
 
+  function resetCardWindowForMeasurement() {
+    const win = document.getElementById('homeworkViewer');
+    if (!win) return;
+    const previousTransition = win.style.transition;
+    win.style.transition = 'none';
+    resetCardWindow();
+    win.offsetHeight;
+    win.style.transition = previousTransition;
+  }
+
   function resetBottomNav() {
     const shell = document.getElementById('bottomRecorderShell');
     if (!shell) return;
@@ -67,6 +77,10 @@
 
   function setSimpleChromeHidden(hidden) {
     document.body.classList.toggle('layout-simple', hidden);
+  }
+
+  function setLayoutNavSuppressed(suppressed) {
+    document.body.classList.toggle('layout-nav-suppressed', suppressed);
   }
 
   function teleportBottomNav(shell, finalPosition, applyFinalPosition) {
@@ -89,10 +103,14 @@
     shell.classList.add('layout-teleporting');
 
     pendingBottomNavTeleport = setTimeout(() => {
+      shell.classList.add('layout-positioning');
       applyFinalPosition();
       shell.dataset.layoutPosition = finalPosition;
       shell.offsetHeight;
       shell.classList.remove('layout-teleporting');
+      setTimeout(() => {
+        shell.classList.remove('layout-positioning');
+      }, 220);
       pendingBottomNavTeleport = null;
     }, 180);
   }
@@ -122,6 +140,7 @@
       cancelAnimationFrame(pendingResizeRaf);
       pendingResizeRaf = null;
     }
+    setLayoutNavSuppressed(false);
     setSimpleChromeHidden(false);
     collapseSidebar();
     collapseNotepad();
@@ -139,6 +158,8 @@
       cancelAnimationFrame(pendingExtendRaf);
       pendingExtendRaf = null;
     }
+    const wasSimpleMode = document.body.classList.contains('layout-simple');
+    if (wasSimpleMode) setLayoutNavSuppressed(true);
     setSimpleChromeHidden(false);
 
     collapseSidebar();
@@ -152,8 +173,8 @@
     const npLeft = clamp(Math.round(vw * 0.543), 16, vw - npW - 16);  // ~798px @ 1470
     const fallbackTop = Math.round(vh * 0.244);  // ~210px @ 797
 
-    // Reset card to natural (centered) position first
-    resetCardWindow();
+    // Reset synchronously so repeated Extend selections measure the true centered position.
+    resetCardWindowForMeasurement();
 
     pendingExtendRaf = requestAnimationFrame(() => {
       pendingExtendRaf = null;
@@ -207,8 +228,7 @@
         const shellW = shell.offsetWidth || 252;
         const navLeft = Math.round(npLeft + npW / 2 - shellW / 2);
         const navTop = npTop + npH + 10;
-
-        teleportBottomNav(shell, 'anchored', () => {
+        const applyAnchoredBottomNav = () => {
           Object.assign(shell.style, {
             position: 'fixed',
             margin: '0',
@@ -220,7 +240,18 @@
             width: '',
             height: '',
           });
-        });
+        };
+
+        if (wasSimpleMode) {
+          applyAnchoredBottomNav();
+          shell.dataset.layoutPosition = 'anchored';
+          shell.classList.remove('layout-teleporting');
+          requestAnimationFrame(() => setLayoutNavSuppressed(false));
+        } else {
+          teleportBottomNav(shell, 'anchored', applyAnchoredBottomNav);
+        }
+      } else {
+        setLayoutNavSuppressed(false);
       }
 
       console.log('[Layout] extend');
@@ -252,6 +283,7 @@
     collapseNotepad();
     resetCardWindow();
     resetBottomNav();
+    setLayoutNavSuppressed(false);
     setSimpleChromeHidden(true);
     console.log('[Layout] simple');
     window.dispatchEvent(new CustomEvent('layoutChanged', { detail: { layout: 'simple' } }));
@@ -259,38 +291,83 @@
 
 
   // ============================
-  //  Cycle & Button
+  //  Menu & Button
   // ============================
   function updateBtn(btn) {
     if (currentMode === 'focus') {
       btn.innerHTML = ICON_FOCUS;
-      btn.title = 'Focus Mode — Click to switch to Simple';
+      btn.title = 'Focus Mode';
     } else if (currentMode === 'extend') {
       btn.innerHTML = ICON_EXTEND;
-      btn.title = 'Extend Mode — Click to switch to Focus';
+      btn.title = 'Extend Mode';
     } else {
       btn.innerHTML = ICON_SIMPLE;
-      btn.title = 'Simple Mode — Click to switch to Extend';
+      btn.title = 'Simple Mode';
     }
+  }
+
+  function updateMenu(menu) {
+    if (!menu) return;
+    menu.querySelectorAll('[data-layout-mode]').forEach(item => {
+      const isActive = item.dataset.layoutMode === currentMode;
+      item.classList.toggle('active', isActive);
+      item.setAttribute('aria-checked', String(isActive));
+    });
+  }
+
+  function applyLayoutMode(mode) {
+    currentMode = mode;
+    const btn = document.getElementById('layoutToggleBtn');
+    const menu = document.getElementById('layoutMenu');
+    if (btn) updateBtn(btn);
+    updateMenu(menu);
+
+    if (currentMode === 'extend') {
+      applyExtendMode();
+    } else if (currentMode === 'simple') {
+      applySimpleMode();
+    } else {
+      applyFocusMode();
+    }
+  }
+
+  function setMenuOpen(open) {
+    const topBar = document.querySelector('.layout-top-bar');
+    const btn = document.getElementById('layoutToggleBtn');
+    const menu = document.getElementById('layoutMenu');
+    if (!btn || !menu) return;
+    topBar?.classList.toggle('menu-open', open);
+    menu.classList.toggle('show', open);
+    btn.setAttribute('aria-expanded', String(open));
   }
 
   function initLayoutToggle() {
     const btn = document.getElementById('layoutToggleBtn');
+    const menu = document.getElementById('layoutMenu');
     if (!btn) return;
 
     updateBtn(btn);
+    updateMenu(menu);
 
-    btn.addEventListener('click', () => {
-      currentMode = currentMode === 'focus' ? 'simple' : currentMode === 'simple' ? 'extend' : 'focus';
-      updateBtn(btn);
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setMenuOpen(!menu?.classList.contains('show'));
+    });
 
-      if (currentMode === 'extend') {
-        applyExtendMode();
-      } else if (currentMode === 'simple') {
-        applySimpleMode();
-      } else {
-        applyFocusMode();
-      }
+    menu?.addEventListener('click', (e) => {
+      const item = e.target.closest('[data-layout-mode]');
+      if (!item) return;
+      applyLayoutMode(item.dataset.layoutMode);
+      setMenuOpen(false);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.layout-top-bar')) return;
+      setMenuOpen(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setMenuOpen(false);
     });
 
     window.addEventListener('resize', scheduleExtendReflow);

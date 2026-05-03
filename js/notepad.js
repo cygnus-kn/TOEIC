@@ -108,8 +108,17 @@ function initNotepad() {
   const minimizedPref = localStorage.getItem('toeicNotepadMinimized');
   const isMinimized = minimizedPref === null ? true : minimizedPref === 'true';
   const restoreBtn = document.getElementById('restoreNotepadBtn');
+  const bottomToggleBtn = document.getElementById('bottomNotepadToggleBtn');
   const minimizeBtn = document.getElementById('minimizeNotepad');
   const headerIcon = document.querySelector('.notepad-minimize-icon');
+
+  const syncBottomToggleState = () => {
+    if (!bottomToggleBtn) return;
+    const minimized = notepadOverlay.classList.contains('hidden');
+    bottomToggleBtn.classList.toggle('active-notepad', !minimized);
+    bottomToggleBtn.setAttribute('aria-label', minimized ? 'Show Notepad' : 'Hide Notepad');
+    bottomToggleBtn.setAttribute('title', minimized ? 'Show Notepad' : 'Hide Notepad');
+  };
 
   const setNotepadVisibility = (minimized) => {
     if (minimized) {
@@ -125,6 +134,7 @@ function initNotepad() {
       notepadOverlay.classList.remove('hidden');
       if (restoreBtn) restoreBtn.classList.remove('show');
     }
+    syncBottomToggleState();
     localStorage.setItem('toeicNotepadMinimized', minimized);
   };
 
@@ -145,6 +155,10 @@ function initNotepad() {
 
   // Initial Visibility & Word Count
   setNotepadVisibility(isMinimized);
+  if (bottomToggleBtn) {
+    const visibilityObserver = new MutationObserver(syncBottomToggleState);
+    visibilityObserver.observe(notepadOverlay, { attributes: true, attributeFilter: ['class'] });
+  }
   updateWordCount();
 
   if (minimizeBtn) {
@@ -158,6 +172,11 @@ function initNotepad() {
   }
   if (restoreBtn) {
     restoreBtn.addEventListener('click', () => setNotepadVisibility(false));
+  }
+  if (bottomToggleBtn) {
+    bottomToggleBtn.addEventListener('click', () => {
+      setNotepadVisibility(!notepadOverlay.classList.contains('hidden'));
+    });
   }
 
   // 2. Load Dimensions & Position

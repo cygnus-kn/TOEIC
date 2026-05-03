@@ -587,6 +587,10 @@ body.dark-theme .notepad-header {
   transform: scale(1) translateY(0);
 }
 
+body:not(.bottom-nav-minimized) #bottomRecorderShell:not(.hidden-nav) ~ #restoreNotepadBtn.show {
+  display: none;
+}
+
 .floating-notepad-btn:hover {
   background: var(--color-accent);
   color: white;

@@ -39,11 +39,10 @@
 
 .bottom-recorder-shell.layout-teleporting {
   opacity: 0;
-  transform: translateX(-50%) scale(0.94);
 }
 
-.bottom-recorder-shell.layout-teleporting[data-layout-position="anchored"] {
-  transform: scale(0.94);
+.bottom-recorder-shell.layout-positioning {
+  transition: opacity 180ms ease-in-out !important;
 }
 
 .bottom-recorder-shell.dragging {
@@ -71,7 +70,7 @@ body.nav-touch-hold * {
 
 @media (min-width: 1025px) {
   .bottom-recorder-shell {
-    bottom: 48px;
+    bottom: 80px;
   }
 }
 
@@ -254,7 +253,7 @@ body:not(body.dark-theme) .recording-status {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   width: auto;
-  min-width: 240px;
+  min-width: 0;
   max-width: 95vw;
   pointer-events: auto;
   cursor: grab !important;
@@ -264,16 +263,37 @@ body:not(body.dark-theme) .recording-status {
 .bottom-nav-controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 6px 16px;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px 8px;
   min-height: 48px;
   flex: none;
 }
 
+.bottom-nav-left,
+.bottom-nav-right,
 .bottom-nav-btns {
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+.bottom-nav-left,
+.bottom-nav-right,
+.bottom-nav-btns {
+  gap: 2px;
+}
+
+@media (max-width: 600px) {
+  .bottom-nav,
+  #bottomNav {
+    max-width: calc(100vw - 24px);
+  }
+
+  .bottom-nav-controls {
+    gap: 1px;
+    padding: 6px 6px;
+  }
 }
 
 body:not(body.dark-theme) .bottom-nav,
@@ -318,6 +338,14 @@ body.dark-theme .bottom-nav-btn {
 body:not(body.dark-theme) .bottom-nav-btn:hover {
   background: transparent;
   color: #0f172a;
+}
+
+#bottomMinimizeBtn:not(:disabled):hover {
+  color: #ff3b30;
+}
+
+body.dark-theme #bottomMinimizeBtn:not(:disabled):hover {
+  color: #ff453a;
 }
 
 /* Destructive Action (Delete) */
@@ -383,6 +411,21 @@ body:not(body.dark-theme) .bottom-nav-btn-primary:hover {
   box-shadow: 0 10px 22px rgba(255, 69, 58, 0.36);
 }
 
+.bottom-nav-btn.active-notepad {
+  color: var(--color-accent);
+  background: transparent;
+}
+
+body:not(body.dark-theme) .bottom-nav-btn.active-notepad {
+  color: var(--color-accent);
+  background: transparent;
+}
+
+body.dark-theme .bottom-nav-btn.active-notepad {
+  color: var(--color-accent);
+  background: transparent;
+}
+
 body:not(body.dark-theme) .bottom-nav-btn-primary.active-media,
 body:not(body.dark-theme) .bottom-nav-btn-primary.active-media:hover {
   background: #ff453a;
@@ -408,16 +451,23 @@ body:not(body.dark-theme) .bottom-nav-btn-primary.active-media:hover {
    Hidden States
    ============================ */
 .bottom-recorder-shell.hidden,
-.bottom-recorder-shell.hidden-nav {
+.bottom-recorder-shell.hidden-nav,
+body.bottom-nav-minimized .bottom-recorder-shell {
   opacity: 0;
-  transform: translate(-50%, 40px);
   pointer-events: none;
 }
 
-.bottom-recorder-handle.hidden-nav {
+.bottom-recorder-handle.hidden-nav,
+body:not(.bottom-nav-minimized) .bottom-recorder-handle {
   opacity: 0;
-  transform: translate(-50%, 40px);
+  transform: scale(0.8) translateY(20px);
   pointer-events: none;
+}
+
+body.bottom-nav-minimized .bottom-recorder-handle:not(.hidden-nav) {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
 }
 
 /* ============================
@@ -425,29 +475,44 @@ body:not(body.dark-theme) .bottom-nav-btn-primary.active-media:hover {
    ============================ */
 .bottom-recorder-handle {
   position: fixed;
-  left: 50%;
-  bottom: 7px;
-  width: 64px;
-  height: 6px;
-  transform: translate(-50%, 16px);
+  right: 24px;
+  bottom: 47px;
+  width: var(--ui-toggle-size) !important;
+  height: var(--ui-toggle-size) !important;
+  min-width: var(--ui-toggle-size);
+  min-height: var(--ui-toggle-size);
+  transform: scale(0.8) translateY(20px);
   border: none;
-  border-radius: 9999px;
-  background: rgba(148, 163, 184, 0.7);
-  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.18), 0 6px 18px rgba(0, 0, 0, 0.18);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   opacity: 0;
   pointer-events: none;
   cursor: pointer;
   z-index: 1101;
-  transition: opacity var(--transition-smooth), transform var(--transition-smooth), background var(--transition-fast);
+  transition: opacity var(--transition-smooth), transform var(--transition-smooth), background var(--transition-fast), color var(--transition-fast);
 }
 
 .bottom-recorder-handle:hover {
-  background: rgba(203, 213, 225, 0.95);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 body:not(.dark-theme) .bottom-recorder-handle {
-  background: rgba(15, 23, 42, 0.35);
-  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08), 0 6px 18px rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: #000000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+body:not(.dark-theme) .bottom-recorder-handle:hover {
+  background: rgba(255, 255, 255, 0.8);
 }
 
 @media (max-width: 600px) {
@@ -461,8 +526,8 @@ body:not(.dark-theme) .bottom-recorder-handle {
   }
 
   .bottom-recorder-handle {
-    bottom: 6px;
-    width: 56px;
+    right: 16px;
+    bottom: 22px;
   }
 }
 
