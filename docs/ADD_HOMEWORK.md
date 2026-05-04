@@ -166,11 +166,11 @@ A standard speaking session typically follows this order, but can be customized 
   label: "Respond to Information",
   questionLabel: "Questions 8-10",
   content: {
-    imageUrl: "test-data/Part 4 audio/FILENAME.webp",
+    imageUrl: "assets/Part 4 audio/Part 4 picture - Test XX.webp",
     audioUrls: [
-      "test-data/Part 4 audio/Test XX/TXX_Q_08.webm",
-      "test-data/Part 4 audio/Test XX/TXX_Q_09.webm",
-      "test-data/Part 4 audio/Test XX/TXX_Q_10.webm"
+      "assets/Part 4 audio/Test XX/TXX_Q_08.webm",
+      "assets/Part 4 audio/Test XX/TXX_Q_09.webm",
+      "assets/Part 4 audio/Test XX/TXX_Q_10.webm"
     ],
     questionLabels: ["8", "9", "10"],
     question: "Question 8: ...\n\nQuestion 9: ...\n\nQuestion 10: ..."
@@ -189,13 +189,24 @@ A standard speaking session typically follows this order, but can be customized 
 > 
 > **Note for AI Assistant: Local Audio Transcript Extraction Guide**
 > When asked to construct a homework prompt containing Part 4 from local audio and image files, follow these exact steps:
-> 1. If images are provided as `.png` or `.jpg`, convert them to `.webp` format using a Python script with the `Pillow` library, and place them in the appropriate directory (e.g. `test-data/Part 4 audio/`).
-> 2. Transcribe each local audio file (`.webm` or `.m4a`) using the Whisper CLI to generate JSON transcripts. Run this exact terminal command for each file:
->    `/opt/homebrew/bin/whisper "test-data/path/to/audio.webm" --model base --output_format json --output_dir scratch/`
-> 3. Read the generated `.json` file in the `scratch/` directory to find the exact timestamps and scenario phrasing.
+> 1. Place the Part 4 image in `assets/Part 4 audio/`. If the source image is `.png` or `.jpg`, convert it to `.webp` first. Use names like `Part 4 picture - Test 13.webp` or `Part 4 - Practice 3.webp`.
+> 2. Place each local question clip in its own folder under `assets/Part 4 audio/`, for example:
+>    - `assets/Part 4 audio/Test 13/T13_Q_08.webm`
+>    - `assets/Part 4 audio/Test 13/T13_Q_09.webm`
+>    - `assets/Part 4 audio/Test 13/T13_Q_10.webm`
+> 3. The app expects Part 4 local clips to be audio-only WebM/Opus files. Do not upload WebM files that contain a video stream. If a source file is `.m4a`, `.mp3`, `.mp4`, or a WebM with embedded video/artwork, convert it with:
+>    `ffmpeg -y -i "SOURCE_FILE" -vn -map 0:a:0 -c:a libopus -b:a 96k "assets/Part 4 audio/Test XX/TXX_Q_08.webm"`
+> 4. Verify each uploaded/converted clip before editing JSON:
+>    - Audio stream must exist and be Opus:
+>      `ffprobe -v error -select_streams a -show_entries stream=codec_name -of csv=p=0 "assets/Part 4 audio/Test XX/TXX_Q_08.webm"`
+>    - Video stream check must print nothing:
+>      `ffprobe -v error -select_streams v -show_entries stream=codec_type -of csv=p=0 "assets/Part 4 audio/Test XX/TXX_Q_08.webm"`
+> 5. Transcribe each final `.webm` file using the Whisper CLI to generate JSON transcripts. Run this exact terminal command for each file:
+>    `/opt/homebrew/bin/whisper "assets/Part 4 audio/Test XX/TXX_Q_08.webm" --model base --output_format json --output_dir scratch/`
+> 6. Read the generated `.json` file in the `scratch/` directory to find the exact timestamps and scenario phrasing.
 >    - **CRITICAL FORMATTING RULE**: The `question` string formatting must follow the exact same reveal-text rules as the YouTube guide above.
-> 4. Inject the local clip paths into the `audioUrls` array, add matching `questionLabels`, and do not use `videoUrl` or the legacy single-file `audioUrl` field.
-> 5. **CRITICAL:** Run `rm -f scratch/*.json` to clean up your temporary transcript files once you are finished.
+> 7. Inject the final local clip paths into the `audioUrls` array in the same order as `questionLabels`. For local audio, use `audioUrls` only; do not use `videoUrl` or the legacy single-file `audioUrl` field.
+> 8. **CRITICAL:** Run `rm -f scratch/*.json` to clean up your temporary transcript files once you are finished.
 ```js
 {
   type: "opinion",

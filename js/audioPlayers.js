@@ -9,6 +9,29 @@ let audioPoller = null;
 window.isUserSeeking = false;
 
 let youtubeAPILoaded = false;
+const PLAY_ICON = '<path d="M8 5v14l11-7z"/>';
+const PAUSE_ICON = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+
+function setLocalAudioPlayingState(index, isPlaying) {
+  const btn = document.getElementById(`audio-btn-${index}`);
+  const ctrl = document.getElementById(`audio-ctrl-${index}`);
+  const icon = btn ? btn.querySelector('svg') : null;
+
+  if (icon) icon.innerHTML = isPlaying ? PAUSE_ICON : PLAY_ICON;
+  if (ctrl) ctrl.classList.toggle('playing', isPlaying);
+}
+
+async function playLocalAudio(index, audio) {
+  try {
+    await audio.play();
+    setLocalAudioPlayingState(index, true);
+    return true;
+  } catch (err) {
+    setLocalAudioPlayingState(index, false);
+    console.warn('Unable to play local Part 4 audio:', audio.currentSrc || audio.src, err);
+    return false;
+  }
+}
 
 // ============================
 //  YouTube API Loader
@@ -62,15 +85,18 @@ async function initAudioPlayers() {
     if (part.type === 'respond-info-q' && part.content.audioUrls) {
       // Local audio: load first file (Q7) by default
       const audio = new Audio(part.content.audioUrls[0]);
+      audio.preload = 'metadata';
       audio._urls = part.content.audioUrls;
       audio._currentTrack = 0;
       localAudioPlayers[index] = audio;
 
       audio.addEventListener('ended', () => {
-        const btn = document.getElementById(`audio-btn-${index}`);
-        if (btn) btn.querySelector('svg').innerHTML = '<path d="M8 5v14l11-7z"/>';
-        const ctrl = document.getElementById(`audio-ctrl-${index}`);
-        if (ctrl) ctrl.classList.remove('playing');
+        setLocalAudioPlayingState(index, false);
+      });
+
+      audio.addEventListener('error', () => {
+        setLocalAudioPlayingState(index, false);
+        console.warn('Local Part 4 audio failed to load:', audio.currentSrc || audio.src, audio.error);
       });
 
       audio.addEventListener('timeupdate', () => {
@@ -200,21 +226,12 @@ window.seekAudioToTime = async function (index, trackIndex) {
   if (local) {
     const urls = local._urls;
     if (!urls || trackIndex >= urls.length) return;
-    const wasPlaying = !local.paused;
     local.pause();
     local._currentTrack = trackIndex;
     local.src = urls[trackIndex];
     local.load();
-    if (wasPlaying) {
-      local.play();
-    } else {
-      // Also play immediately when bookmark is tapped (mirrors YouTube UX)
-      local.play();
-      const btn = document.getElementById(`audio-btn-${index}`);
-      const ctrl = document.getElementById(`audio-ctrl-${index}`);
-      if (btn) btn.querySelector('svg').innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-      if (ctrl) ctrl.classList.add('playing');
-    }
+    // Also play immediately when a bookmark is tapped (mirrors YouTube UX).
+    await playLocalAudio(index, local);
     return;
   }
   const player = await ensureYouTubePlayer(index);
@@ -227,16 +244,11 @@ window.toggleAudio = async function (index) {
   // Local HTML5 audio
   const local = localAudioPlayers[index];
   if (local) {
-    const btn = document.getElementById(`audio-btn-${index}`);
-    const ctrl = document.getElementById(`audio-ctrl-${index}`);
     if (local.paused) {
-      local.play();
-      if (btn) btn.querySelector('svg').innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-      if (ctrl) ctrl.classList.add('playing');
+      await playLocalAudio(index, local);
     } else {
       local.pause();
-      if (btn) btn.querySelector('svg').innerHTML = '<path d="M8 5v14l11-7z"/>';
-      if (ctrl) ctrl.classList.remove('playing');
+      setLocalAudioPlayingState(index, false);
     }
     return;
   }
