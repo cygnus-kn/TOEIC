@@ -8,7 +8,9 @@ const CLASSES_DATA = {
     lesson: []
   },
   S133: {
-    homework: [],
+    homework: [
+      { date: "[HW-19] 20/04" }
+    ],
     lesson: []
   },
   S129: {

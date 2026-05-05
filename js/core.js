@@ -41,6 +41,7 @@ const RESPONSE_TIMES = {
   'opinion': 60,
   'email-response': 600,
   'sentence-picture': 300,
+  'translation': 300,
   'topic-prep': 30,
   'topic-prep-item': 30,
 };
@@ -56,6 +57,7 @@ const TYPE_LABELS = {
   'opinion': 'TOEIC Speaking',
   'email-response': 'TOEIC Writing',
   'sentence-picture': 'TOEIC Writing',
+  'translation': 'TOEIC Writing',
   'topic-prep': 'Topic Preparation',
   'topic-prep-item': 'Topic Preparation',
 };

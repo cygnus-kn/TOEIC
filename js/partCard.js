@@ -318,7 +318,7 @@ function renderCards() {
 
     // Footer with response timer or audio control
     const hasAudio = part.content && (part.content.videoUrl || part.content.audioUrls);
-    const hasTimer = part.type !== 'sentence-picture' && part.type !== 'topic-prep' && (part.prepTime || part.responseTime || (part.type !== 'respond-info-q' && RESPONSE_TIMES[part.type]));
+    const hasTimer = part.type !== 'sentence-picture' && part.type !== 'translation' && part.type !== 'topic-prep' && (part.prepTime || part.responseTime || (part.type !== 'respond-info-q' && RESPONSE_TIMES[part.type]));
     if (hasAudio || hasTimer) {
       if (hasAudio && part.type === 'respond-info-q') {
         html += `<div class="card-footer" style="flex-direction: column; align-items: center; gap: 4px;">`;
@@ -494,7 +494,22 @@ function renderPartContent(part, partIndex) {
           : `<div style="display:flex;align-items:center;justify-content:center;height:200px;font-size:48px;">${part.content.imagePlaceholder || '🖼️'}</div>`
         }
         </div>
-        ${part.content.words ? `<div class="sentence-words">${part.content.words[0]} / ${part.content.words[1]}</div>` : ''}
+        ${part.content.wordPairs 
+          ? `<div class="sentence-words-list" style="display:flex; flex-direction:column; gap:8px;">
+              ${part.content.wordPairs.map((pair, idx) => `<div class="sentence-words" style="padding:0; font-size:20px;">${idx + 1}. ${pair[0]} / ${pair[1]}</div>`).join('')}
+             </div>`
+          : (part.content.words ? `<div class="sentence-words">${part.content.words[0]} / ${part.content.words[1]}</div>` : '')}
+      `;
+
+    case 'translation':
+      return `
+        <div class="picture-container">
+          ${part.content.imageUrl
+          ? `<img src="${part.content.imageUrl}" alt="Translate sentence based on this picture" title="Expand">`
+          : `<div style="display:flex;align-items:center;justify-content:center;height:200px;font-size:48px;">${part.content.imagePlaceholder || '🖼️'}</div>`
+        }
+        </div>
+        ${part.content.text ? `<div class="sentence-words">${part.content.text}</div>` : ''}
       `;
 
     case 'topic-prep': {
