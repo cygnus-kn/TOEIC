@@ -1,6 +1,70 @@
 {
   "homework": [
     {
+      "date": "[HW-15] 24/04",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "“It is necessary to have a college degree to be successful.” Do you agree or disagree with that statement?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Do you agree or disagree that arts and music should be required subjects just like math and science?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Do you agree or disagree with the following statement? “It is better to stay with the same job for many years than to switch jobs frequently.”"
+          }
+        }
+      ]
+    },
+    {
+      "date": "[HW-14] 22/04",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Do you think open office spaces or private offices are better for employee productivity? Why?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Do you think that employee satisfaction is vital to a company’s success? Give reasons for your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Do you think students learn better through online or in-person classes? Give reasons for your preference."
+          }
+        }
+      ]
+    },
+    {
       "date": "[HW-13] 20/04",
       "parts": [
         {
