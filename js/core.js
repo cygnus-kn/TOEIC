@@ -535,72 +535,65 @@ function showLessonViewer() {
 }
 
 // ============================
-//  Data Cache
+//  Data Cache (lazy per-entry)
 // ============================
-const dataCache = {};
+const entryCache = {}; // key: "S001::hw::[HW16] 04/05" or "S001::lessons"
 
 /**
- * Build the filename for a split homework file.
- * Examples:
- *   S001, "[HW18]"          → "S001/S001-[HW18].json"
- *   S136, "[HW16] 04/05"   → "S136/S136-[HW16] 04-05.json"
+ * Build the file path for a split homework file.
+ * e.g. ("S136", "[HW16] 04/05") → "data/S136/S136-[HW16] 04-05.json"
  */
 function splitFileName(className, dateStr) {
   const m = dateStr.match(/\[HW(\d+)\](.*)/);
   if (!m) return null;
-  const num      = m[1].padStart(2, '0');   // "16"
-  const datePart = m[2].trim().replace(/\//g, '-'); // "04-05" or ""
+  const num      = m[1].padStart(2, '0');
+  const datePart = m[2].trim().replace(/\//g, '-');
   const suffix   = datePart ? ` ${datePart}` : '';
   return `data/${className}/${className}-[HW${num}]${suffix}.json`;
 }
 
-async function getClassData(className) {
-  if (dataCache[className]) return dataCache[className];
+/**
+ * Fetch and cache a single homework entry by date string.
+ * Returns { date, parts } or null.
+ */
+async function getHomeworkEntry(className, dateStr) {
+  const cacheKey = `${className}::hw::${dateStr}`;
+  if (entryCache[cacheKey]) return entryCache[cacheKey];
+
+  const path = splitFileName(className, dateStr);
+  if (!path) return null;
 
   try {
-    // Get the manifest of dates for this class from CLASSES_DATA
-    const manifest = (typeof CLASSES_DATA !== 'undefined' && CLASSES_DATA[className]) || null;
-    if (!manifest) throw new Error(`No manifest for ${className}`);
-
-    // Fetch all split homework files in parallel
-    const hwDates = (manifest.homework || []).map(e => e.date);
-    const hwResults = await Promise.all(
-      hwDates.map(async (date) => {
-        const path = splitFileName(className, date);
-        if (!path) return null;
-        try {
-          const res  = await fetch(path);
-          const json = await res.json();
-          // Each file has { homework: [entry] }
-          return (json.homework && json.homework[0]) || null;
-        } catch (e) {
-          console.warn(`Could not load ${path}:`, e);
-          return null;
-        }
-      })
-    );
-
-    // lesson entries still live in the original per-class file if present,
-    // but for classes that have lessons we keep them in CLASSES_DATA manifest
-    // (lessons are not split — they remain inline in S128/S129 lesson section).
-    // Try to load a combined lesson file if one exists; otherwise use empty array.
-    let lessonEntries = [];
-    try {
-      const lessonRes  = await fetch(`data/${className}/${className}-lessons.json`);
-      const lessonJson = await lessonRes.json();
-      lessonEntries = lessonJson.lesson || [];
-    } catch (_) { /* no lesson file — that's fine */ }
-
-    const assembled = {
-      homework: hwResults.filter(Boolean),
-      lesson:   lessonEntries
-    };
-
-    dataCache[className] = assembled;
-    return assembled;
-  } catch (err) {
-    console.error(`Failed to load data for ${className}:`, err);
+    const res  = await fetch(path);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    const entry = (json.homework && json.homework[0]) || null;
+    if (entry) entryCache[cacheKey] = entry;
+    return entry;
+  } catch (e) {
+    console.error(`Could not load ${path}:`, e);
     return null;
+  }
+}
+
+/**
+ * Fetch and cache all lesson entries for a class.
+ * Lessons are one file per class — already efficient, no need to split further.
+ * Returns an array of lesson objects, or [] if none exist.
+ */
+async function getLessonEntries(className) {
+  const cacheKey = `${className}::lessons`;
+  if (entryCache[cacheKey]) return entryCache[cacheKey];
+
+  try {
+    const res  = await fetch(`data/${className}/${className}-lessons.json`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    const entries = json.lesson || [];
+    entryCache[cacheKey] = entries;
+    return entries;
+  } catch (_) {
+    return []; // No lesson file — fine for classes without lessons
   }
 }
 
@@ -619,10 +612,7 @@ window.selectHomework = async function (className, date) {
   const entry = document.getElementById(`entry-${className}-homework-${date}`);
   if (entry) entry.classList.add('active');
 
-  const classData = await getClassData(className);
-  if (!classData) return;
-
-  const homework = classData.homework.find(hw => hw.date === date);
+  const homework = await getHomeworkEntry(className, date);
   if (!homework) return;
 
   currentParts = homework.parts;
@@ -653,10 +643,8 @@ window.selectLesson = async function (className, date) {
   const entry = document.getElementById(`entry-${className}-lesson-${date}`);
   if (entry) entry.classList.add('active');
 
-  const classData = await getClassData(className);
-  if (!classData) return;
-
-  const lesson = classData.lesson.find(l => l.date === date);
+  const lessons = await getLessonEntries(className);
+  const lesson = lessons.find(l => l.date === date);
   if (!lesson) return;
 
   activeClass = className;
