@@ -56,6 +56,7 @@
 
 .layout-menu.show {
   height: 128px;
+  overflow: visible;
   pointer-events: auto;
 }
 
@@ -116,7 +117,7 @@ body:not(body.dark-theme) .layout-menu {
   border-radius: var(--radius-sm);
   /* Glassmorphic dark default */
   background: rgba(30, 35, 50, 0.82);
-  color: rgba(236, 236, 241, 0.95);
+  color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
