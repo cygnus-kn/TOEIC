@@ -1,4 +1,56 @@
 {
-  "homework": [],
+  "homework": [
+    {
+      "date": "[HW-13] 20/04",
+      "parts": [
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": { "question": "When did you move to your neighborhood? Why did you choose to live there?" }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": { "question": "When was the last time you were invited to visit a neighbor's house?" }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": { "question": "What are some ways to get to know your neighbors better?" }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-06-2023-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/ZUZhozLSbhc?start=614&enablejsapi=1",
+            "timestamps": {
+              "q8": 614,
+              "q9": 657,
+              "q10": 688
+            },
+            "question": "Question 8: How much does it cost to watch a movie at your theater?\n\nQuestion 9: It seems like we could afford some time to visit on the 15th of July. What movie is scheduled to be played on that day?\n\nQuestion 10: My family loves adventure movies. What movies do you recommend for people like us?"
+          }
+        },
+        {
+          "type": "topic-prep",
+          "label": "Topic Preparation",
+          "questionLabel": "Next Session",
+          "topic": "Opinion",
+          "instruction": "Think about your answers to the following questions. You will discuss these topics in the next class. Take 60 seconds to prepare each one.",
+          "questions": [
+            "Do you think open office spaces or private offices are better for employee productivity? Why?",
+            "Do you think that employee satisfaction is vital to a company’s success? Give reasons for your opinion.",
+            "Do you think students learn better through online or in-person classes? Give reasons for your preference."
+          ],
+          "responseTime": 60
+        }
+      ]
+    }
+  ],
   "lesson": []
 }
