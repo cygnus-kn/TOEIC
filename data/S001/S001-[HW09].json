@@ -1,0 +1,85 @@
+{
+  "homework": [
+    {
+      "date": "[HW09]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Good morning, and welcome to Weather Watch. I'm your host, Diana Santos. After weeks of warm, sunny weather, a major weather event is approaching. A large storm moving in from the northwest is expected to bring heavy rain and high winds to our area tonight. Residents should prepare for possible power outages. And for those of you planning outdoor events this weekend, you may want to make alternate plans."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Hello, this message is for Kevin Cho. This is Grace Patel calling from Akins Computer School. You recently contacted us about our evening computer classes. I wanted to let you know that our new schedule is now available on our website. We've added several new courses this semester, including web design and data analysis. Please visit our website or call us back at this number if you would like to register or need more information."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-02-2023-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-02-2023-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Do you prefer to live in the city or in the countryside?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Do you think that online shops are a good place to buy clothes?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What are the advantages of watching TV?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What are the important things you would consider when moving to a new place?\n- Low rent\n- Convenient location\n- Services offered"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Which factor is most important to you when deciding to continue seeing an advertisement?\n- Fun content\n- Catchy music\n- Interesting product"
+          }
+        }
+      ]
+    }
+  ]
+}

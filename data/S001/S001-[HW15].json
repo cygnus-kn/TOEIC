@@ -1,0 +1,33 @@
+{
+  "homework": [
+    {
+      "date": "[HW15]",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Is traveling by car or airplane better for vacation in your opinion?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you think TV or online advertisements influence customers more effectively? Explain your choice."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Is a laptop or tablet better for your daily tasks and enjoyment? Explain your choice."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "homework": [
+    {
+      "date": "[HW03]",
+      "parts": [
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic3.webp",
+            "imagePlaceholder": "🖼️ Picture 3",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic4.webp",
+            "imagePlaceholder": "🖼️ Picture 4",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic5.webp",
+            "imagePlaceholder": "🖼️ Picture 5",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic6.webp",
+            "imagePlaceholder": "🖼️ Picture 6",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Attention, all staff! I am pleased to announce that the construction of our indoor fitness facility is finally finished. The new gym is located on the fifth floor in the main building. Anyone who would like to have the benefit of using it is free to do so any time since it will be open every day, 24 hours a day. Administrative assistants in each department will help you upgrade your current identification card or have a new one issued."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "It's my pleasure to welcome everyone to the coolest sightseeing in Manhattan. As you probably have already read in the catalog, Manhattan is famous for its many distinct skyscrapers, not to mention dazzling neon signs at night. I recommend you bring a video camera and record the many precious moments of your trip. The weather is cooperating with a gentle wind from the ocean, and we will see live performances by the street artists who live in the western district of Manhattan, called Little Argentina. As you might have noticed, we changed today's itinerary. You are all invited to a complimentary dinner buffet to celebrate this hotel's 20th anniversary."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Of all the locations we've seen so far, I strongly advise that you select this sandwich shop and convert it to your new Italian restaurant. The store has a friendly, comfortable, cozy, and welcoming atmosphere. The interior decorations are so spotlessly clean and elegant that you might even want to keep everything as it is. The rent is quite reasonable, considering its priceless location right in the heart of downtown. Why don't we take a closer look at this immaculate store while we have lunch here? Let's first find a parking space."
+          }
+        }
+      ]
+    }
+  ]
+}

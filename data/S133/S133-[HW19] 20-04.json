@@ -1,0 +1,123 @@
+{
+  "homework": [
+    {
+      "date": "[HW19] 20/04",
+      "parts": [
+        {
+          "type": "translation",
+          "label": "Translate to English",
+          "questionLabel": "Question 1",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW19-p127-pic-1.webp",
+            "text": "Người phụ nữ đang sử dụng máy vi tính trong văn phòng."
+          }
+        },
+        {
+          "type": "translation",
+          "label": "Translate to English",
+          "questionLabel": "Question 2",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW19-p127-pic-2.webp",
+            "text": "Người phụ nữ đang đạp xe đạp vào buổi sáng."
+          }
+        },
+        {
+          "type": "translation",
+          "label": "Translate to English",
+          "questionLabel": "Question 3",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW19-p127-pic-3.webp",
+            "text": "Có 3 nhân viên đang ngồi xung quanh bàn và thảo luận về những công việc quan trọng."
+          }
+        },
+        {
+          "type": "translation",
+          "label": "Translate to English",
+          "questionLabel": "Question 4",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW19-p127-pic-4.webp",
+            "text": "Có một người đàn ông mặc áo thun màu cam đang đứng đợi thức ăn."
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 5",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-1.webp",
+            "wordPairs": [
+              [
+                "picture",
+                "between"
+              ],
+              [
+                "table",
+                "front"
+              ],
+              [
+                "Vase",
+                "on"
+              ],
+              [
+                "Picture",
+                "on"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 6",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-2.webp",
+            "wordPairs": [
+              [
+                "table",
+                "on"
+              ],
+              [
+                "board",
+                "on"
+              ],
+              [
+                "chair",
+                "under"
+              ],
+              [
+                "Clock",
+                "on"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 7",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-3.webp",
+            "wordPairs": [
+              [
+                "on",
+                "merchandise"
+              ],
+              [
+                "in",
+                "supermarket"
+              ],
+              [
+                "price tag",
+                "on"
+              ],
+              [
+                "front",
+                "booth"
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

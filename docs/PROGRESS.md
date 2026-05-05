@@ -1,6 +1,6 @@
 # TOEIC Homework Platform — Progress Tracker
 
-> Last updated: 2026-05-02 (May 2)
+> Last updated: 2026-05-05 (May 5)
 
 ---
 
@@ -8,7 +8,7 @@
 
 A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing homework and class notes. Built with vanilla HTML, CSS, and JavaScript — no frameworks.
 
-**Stack:** `index.html` · `css/` (partials) · `js/` (modules) · `data/` (JSON) · `assets/` (media)  
+**Stack:** `index.html` · `css/` (partials) · `js/` (modules) · `data/{CLASS}/` (split JSON) · `assets/` (media)  
 **Hosted at:** GitHub Pages (`/Users/cygnus/Documents/GitHub/Homework`)
 
 ---
@@ -98,7 +98,7 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 
 ### ⚡ Optimization & Performance
 - [x] **Lazy-Loaded Audio**: YouTube IFrame API now only loads when a task requiring audio is active.
-- [x] **Modular Data Architecture**: Monolithic `data.js` split into a lightweight manifest + per-class JSON files.
+- [x] **Modular Data Architecture**: Lightweight manifest in `data.js` + per-entry split JSON files organised under `data/{CLASS}/`.
 - [x] **Demand-Driven Loading**: Assignment details are fetched via `fetch()` only when the student selects them.
 - [x] **Script Consolidation**: Merged multiple JS files into a single `core.js` to reduce HTTP requests.
 - [x] **Mobile UX Polish**: Eliminated phantom tap-highlight boxes globally and implemented a hybrid scroll-directional auto-hiding navigation bar.
@@ -116,25 +116,32 @@ A macOS-inspired, open-access web portal for delivering TOEIC Speaking & Writing
 
 ---
 
-## 🗄 Data (`data.js`)
+## 🗄 Data Structure
 
-### SW Class (Speaking & Writing)
-| Type     | Entries |
-| -------- | ------- |
-| Homework | 18 days |
-| Lessons  | 0 days  |
+Homework is stored as **one JSON file per entry** inside a class subfolder:
 
-### Class S128 (Writing)
-| Type     | Entries       |
-| -------- | ------------- |
-| Homework | 2 days        |
-| Lessons  | 1 day (Apr 9) |
+```
+data/
+  S001/   S001-[HW01].json … S001-[HW18].json        (no dates — legacy class)
+  S128/   S128-[HW01] 04-10.json, S128-[HW03] 04-13.json, S128-lessons.json
+  S129/   S129-[HW03] 04-12.json … S129-[HW05] 03-31.json, S129-lessons.json
+  S133/   S133-[HW19] 20-04.json … S133-[HW21] 24-04.json
+  S136/   S136-[HW13] 20-04.json … S136-[HW16] 04-05.json
+```
 
-### Class S129 (Speaking)
-| Type     | Entries |
-| -------- | ------- |
-| Homework | 3 days  |
-| Lessons  | 2 days  |
+**Naming convention:** `{CLASS}-[HW{NN}] DD-MM.json` (e.g. `S136-[HW16] 04-05.json`)  
+**Date separator:** `/` is replaced with `-` for filesystem safety; the `date` field inside the file retains `DD/MM`.
+
+`data.js` still acts as the **sidebar manifest** — it holds only `{ date }` pointer objects. `core.js` reads these pointers to build the fetch paths at runtime.
+
+### Class Summary
+| Class | Type     | Files                                    |
+| ----- | -------- | ---------------------------------------- |
+| S001  | Homework | 18 split files (`[HW01]`–`[HW18]`)       |
+| S128  | Homework | 2 split files + 1 lesson file            |
+| S129  | Homework | 3 split files + 1 lesson file            |
+| S133  | Homework | 3 split files                            |
+| S136  | Homework | 4 split files                            |
 
 ---
 
@@ -274,6 +281,7 @@ Enable the user to click and drag the microphone navigation bar to any position 
 | May 02 | **File Structure Cleanup**: Moved `ADD_HOMEWORK.md` and `PROGRESS.md` to `docs/`. Renamed `test-data/` → `assets/` and updated all path references across every JSON data file via `sed`. Root now contains only `index.html`, `favicon.svg`, and the four clean directories (`css/`, `js/`, `data/`, `assets/`, `docs/`). |
 | May 02 | **Sidebar Wrapping Bugfix**: Fixed a visual glitch where "S001" wrapped to two lines mid-animation (collapsed → expanded) while shorter labels like "S129" did not. Added `white-space: nowrap` and `overflow: hidden` to `.class-header` in `css/sidebar.css`. |
 | May 02 | **Layout Toggle**: Implemented a layout toggle button in the top navigation bar to switch between different homework card layouts. Ensured the top bar remains clean and responsive across desktop and mobile viewports. |
+| May 05 | **Split-File Data Architecture**: Divided each monolithic class JSON (`S001.json`, `S128.json`, `S129.json`, `S133.json`, `S136.json`) into individual per-entry files using the naming convention `{CLASS}-[HW{NN}] DD-MM.json`. Files are organised into class subfolders under `data/`. Lesson data for S128/S129 preserved in `{CLASS}-lessons.json`. Updated `core.js` `getClassData()` to fetch all split files in parallel via `Promise.all` and assemble them into the existing `{ homework, lesson }` shape — no other application code required changes. |
 
 ---
 

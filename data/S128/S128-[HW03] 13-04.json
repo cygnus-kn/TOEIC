@@ -1,7 +1,7 @@
 {
   "homework": [
     {
-      "date": "[HW-03] 04/13",
+      "date": "[HW03] 13/04",
       "parts": [
         {
           "type": "sentence-picture",
@@ -9,7 +9,10 @@
           "questionLabel": "Questions 1-5",
           "content": {
             "imageUrl": "assets/writing-pictures/test-1-2025-pic-1.jpg",
-            "words": ["sit", "on"]
+            "words": [
+              "sit",
+              "on"
+            ]
           }
         },
         {
@@ -18,7 +21,10 @@
           "questionLabel": "Questions 1-5",
           "content": {
             "imageUrl": "assets/writing-pictures/test-1-2025-pic-2.jpg",
-            "words": ["wind", "hard"]
+            "words": [
+              "wind",
+              "hard"
+            ]
           }
         },
         {
@@ -27,7 +33,10 @@
           "questionLabel": "Questions 1-5",
           "content": {
             "imageUrl": "assets/writing-pictures/test-1-2025-pic-3.jpg",
-            "words": ["if", "fit"]
+            "words": [
+              "if",
+              "fit"
+            ]
           }
         },
         {
@@ -36,7 +45,10 @@
           "questionLabel": "Questions 1-5",
           "content": {
             "imageUrl": "assets/writing-pictures/test-1-2025-pic-4.jpg",
-            "words": ["while", "phone"]
+            "words": [
+              "while",
+              "phone"
+            ]
           }
         },
         {
@@ -45,7 +57,10 @@
           "questionLabel": "Questions 1-5",
           "content": {
             "imageUrl": "assets/writing-pictures/test-1-2025-pic-5.jpg",
-            "words": ["box", "heavy"]
+            "words": [
+              "box",
+              "heavy"
+            ]
           }
         },
         {
@@ -83,43 +98,6 @@
             "prompt": "When it comes to workplace, we normally think we have to go there to work. A lot of us commute to work every day. However, there are some people who work remotely at their homes or away from their offices. What do you think is the reason why some companies permit their employees to work this way?"
           }
         }
-      ]
-    },
-    {
-      "date": "[HW-01] 04/10",
-      "parts": [
-        {
-          "type": "email-response",
-          "label": "Respond to a Written Request",
-          "content": {
-            "from": "Sarah Johnson, HR Department",
-            "to": "All Employees",
-            "subject": "Annual Company Picnic",
-            "body": "Dear Team,\n\nWe are planning the annual company picnic for next month. Please let us know your preferred date (June 15 or June 22), any dietary restrictions, and whether you will bring family members.",
-            "instruction": "Respond to the email. In your response, answer ALL of the questions asked."
-          }
-        },
-        {
-          "type": "opinion",
-          "label": "Write an Opinion Essay",
-          "content": {
-            "prompt": "Do you agree or disagree with the following statement?\n\n\"Technology has made people's lives more complicated rather than simpler.\"\n\nSupport your opinion with reasons and examples."
-          }
-        }
-      ]
-    }
-  ],
-  "lesson": [
-    {
-      "date": "[Lesson-01] 04/09",
-      "vocab": [
-        { "word": "dietary", "definition": "(adj.) relating to diet or food", "example": "Please inform us of any dietary restrictions." },
-        { "word": "complicated", "definition": "(adj.) consisting of many connected parts; complex", "example": "The instructions were too complicated to follow." },
-        { "word": "restriction", "definition": "(n.) a limiting condition or rule", "example": "There are no restrictions on the number of guests." }
-      ],
-      "structures": [
-        { "pattern": "I would like to + verb", "example": "I would like to attend the company picnic.\nI would like to suggest June 22 as the date." },
-        { "pattern": "In addition / Furthermore / Moreover", "example": "The hotel has a pool. In addition, there is a gym.\nThe product is affordable. Furthermore, it is high quality." }
       ]
     }
   ]

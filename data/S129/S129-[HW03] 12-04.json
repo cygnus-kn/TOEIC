@@ -1,0 +1,91 @@
+{
+  "homework": [
+    {
+      "date": "[HW03] 12/04",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Thank you for joining the number one source for your local weather forecast. It seems like Richmond will be having a rainy weekend. Make sure to gear up with an umbrella, a rain coat or rainboots when going outdoors this weekend. Stay tuned for sports news after hearing a word from our sponsor."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Ladies and gentlemen, welcome to the grand opening of The Taco Joint. We started off as a food truck in Fresno in 2011. Thanks to all of you, we now have a store here on the Fifth Street. I just hope that we could provide locals with good food, drinks and snacks for years to come. Make sure to come by The Taco Joint when you feel like having some authentic Mexican food."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-7",
+          "content": {
+            "question": "What was your first ever job how long did you do it for?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-7",
+          "content": {
+            "question": "Do you prefer to work during the daytime or during the night time? Why?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-7",
+          "content": {
+            "question": "What are some advantages of working in a busy city rather than working in a quiet area?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/3jmaksYCoxQ?start=617&enablejsapi=1",
+            "timestamps": {
+              "q8": 617,
+              "q9": 659,
+              "q10": 687
+            },
+            "question": "Question 8: What time will the orientation start and end?\n\nQuestion 9: Will I have to bring my own lunch?\n\nQuestion 10: I was told that I will be leading an education session in the afternoon. Can you tell me the details of the session that I will be leading?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Some people think that the company should increase the salary of all the employees every year. Others think that the company should increase the salary of the employees who only bring good results? What is your opinion on this matter."
+          }
+        }
+      ]
+    }
+  ]
+}

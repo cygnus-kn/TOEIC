@@ -1,0 +1,60 @@
+{
+  "homework": [
+    {
+      "date": "[HW07]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Are you looking for fine dining at an affordable price? Stop by Mr. Wu's Chinese Restaurant, located downtown on Main Street. We are famous for our dumplings, noodles, and desserts. For your convenience, our restaurant offers takeout and delivery services!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "And now for this week's weather forecast. In the Midvale region, we are expecting heavy rain, lower temperatures, and wind from the northwest. Because rainfall last month was much lower than expected, this forecast should be welcome news to our local farmers."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-07-2023-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-07-2023-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "topic-prep",
+          "label": "Topic Preparation",
+          "questionLabel": "Question 7",
+          "topic": "Speaking Part 3",
+          "instruction": "Prepare your answers for the following Question 7 topics. Take 30 seconds to prepare each one.",
+          "questions": [
+            "Do you prefer watching sports live or on television?",
+            "Do you think fast food is popular in Vietnam? Why or why not?",
+            "People exercise in many different ways. What are some advantages of choosing walking instead of other forms of exercise?",
+            "What is the most important thing to prevent health issue?\n- Exercise\n- Diet\n- Sleep",
+            "If you were deciding where to eat, which of the following factors would most influence your decision? Why?\n- The menu\n- The atmosphere\n- The review"
+          ],
+          "responseTime": 30
+        }
+      ]
+    }
+  ]
+}

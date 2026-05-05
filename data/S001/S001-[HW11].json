@@ -1,0 +1,209 @@
+{
+  "homework": [
+    {
+      "date": "[HW11]",
+      "parts": [
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 01.webp",
+            "imagePlaceholder": "🖼️ Test 01 Picture",
+            "audioUrls": [
+              "assets/Part 4 audio/Test 01/T01_Q_07.webm",
+              "assets/Part 4 audio/Test 01/T01_Q_08.webm",
+              "assets/Part 4 audio/Test 01/T01_Q_09.webm"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hello, one of my friends was telling me about your August event calendar. I'm calling to learn a little more about the events you're having. What is the date of the lecture about early farming practices? And what time does it start?\n\nQuestion 8: I'm really excited about the Food History Festival on August 27th. That starts at 11 o'clock in the morning, right?\n\nQuestion 9: Events that take place in the morning are especially convenient for me. Can you give me all the details about the events that take place in the morning?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 02.webp",
+            "imagePlaceholder": "🖼️ Test 02 Picture",
+            "audioUrls": [
+              "assets/Part 4 audio/Test 02/T02_Q_07.webm",
+              "assets/Part 4 audio/Test 02/T02_Q_08.webm",
+              "assets/Part 4 audio/Test 02/T02_Q_09.webm"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, I'm attending our law firm's annual retreat, but I lost my schedule. I'm hoping you can answer some of my questions. When is the dinner and who is giving the closing remarks?\n\nQuestion 8: I need to make a phone call at 2 o'clock. Will that be a problem?\n\nQuestion 9: I'm really looking forward to participating in some competitions. Can you give me all the details of the competitions that are scheduled?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 03.webp",
+            "imagePlaceholder": "🖼️ Test 03 Picture",
+            "audioUrls": [
+              "assets/Part 4 audio/Test 03/T03_Q_07.webm",
+              "assets/Part 4 audio/Test 03/T03_Q_08.webm",
+              "assets/Part 4 audio/Test 03/T03_Q_09.webm"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, I heard about your rafting trips and I'd like to get some information. Where are you located and at what months do you have rafting trips?\n\nQuestion 8: I don't own any rafting equipment. Do I need to buy any to go on one of your rafting trips?\n\nQuestion 9: My son has never been rafting before. Can you give me all the details of any trips that are appropriate for a beginner?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 04.webp",
+            "imagePlaceholder": "🖼️ Test 04 Picture",
+            "audioUrls": [
+              "assets/Part 4 audio/Test 04/T04_Q_07.webm",
+              "assets/Part 4 audio/Test 04/T04_Q_08.webm",
+              "assets/Part 4 audio/Test 04/T04_Q_09.webm"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, this is Brad Peterson. I'm visiting Oak Hedge in a few weeks, and I'd like more information about your company's tours. I heard that your old town walking tour is great. Can you tell me how long that tour is and how much it costs?\n\nQuestion 8: There are four people in my group. We can get a discount because we have four people, right?\n\nQuestion 9: I'm particularly interested in your bus tours. Could you give me all of the details of any bus tours you offer?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 05.webp",
+            "imagePlaceholder": "🖼️ Test 05 Picture",
+            "audioUrls": [
+              "assets/Part 4 audio/Test 05/T05_Q_07.webm",
+              "assets/Part 4 audio/Test 05/T05_Q_08.webm",
+              "assets/Part 4 audio/Test 05/T05_Q_09.webm"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, I'm attending the corporate retreat this week, but I left the schedule in my office. I was hoping you could give me some information. Can you tell me what time the first event starts and what the topic is?\n\nQuestion 8: Someone in my department said that I need to bring my own lunch. Is that right?\n\nQuestion 9: I believe the schedule said that there are going to be some workshops. Can you give me all the details about any workshops at the retreat?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 06.webp",
+            "imagePlaceholder": "🖼️ Test 06 Picture",
+            "audioUrls": [
+              "assets/Part 4 audio/Test 06/T06_Q_07.webm",
+              "assets/Part 4 audio/Test 06/T06_Q_08.webm",
+              "assets/Part 4 audio/Test 06/T06_Q_09.webm"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, I like to attend events at your community center, but I don't think I received a copy of the October schedule. I'm hoping you can answer my questions. I really like your monthly folk music event. On what date will folk music night take place in October and what time will it start?\n\nQuestion 8: I heard you're having a poetry competition this month. If I want to participate, I can just sign up when I arrive that night, right?\n\nQuestion 9: My friend is coming to visit at the beginning of the month, and I'd like to bring him to some events while he's here. Can you give me all the details of any events taking place before October 10th?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 07.webp",
+            "imagePlaceholder": "🖼️ Test 07 Picture",
+            "audioUrls": [
+              "assets/Part 4 audio/Test 07/T07_Q_07.webm",
+              "assets/Part 4 audio/Test 07/T07_Q_08.webm",
+              "assets/Part 4 audio/Test 07/T07_Q_09.webm"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hello, I know you're working on the schedule for the monthly staff meeting and I have some questions for you. What is the date of the meeting and where will it be held?\n\nQuestion 8: I know we have some new staff members that will be introduced at this meeting. Mary Irwin will be making those introductions, right?\n\nQuestion 9: A colleague said she might need my help preparing for the meeting. Could you give me all the details of sessions that she will be leading?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 08.webp",
+            "imagePlaceholder": "🖼️ Test 08 Picture",
+            "audioUrls": [
+              "assets/Part 4 audio/Test 08/T08_Q_07.webm",
+              "assets/Part 4 audio/Test 08/T08_Q_08.webm",
+              "assets/Part 4 audio/Test 08/T08_Q_09.webm"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hello, I'm interviewing applicants tomorrow for our Student Internship Program, but I forgot the schedule on my desk and I was hoping you could take a look at it for me. Where will the interviews be held and what time is the first one?\n\nQuestion 8: I know we've had some good interns from Boulder University in the past. We don't have any applicants from Boulder, do we?\n\nQuestion 9: I'm particularly interested in getting good interns for the art department. Can you give me all the details about the interviews with applicants applying to work in the art department?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 09.webp",
+            "imagePlaceholder": "🖼️ Test 09 Picture",
+            "audioUrls": [
+              "assets/Part 4 audio/Test 09/T09_Q_07.webm",
+              "assets/Part 4 audio/Test 09/T09_Q_08.webm",
+              "assets/Part 4 audio/Test 09/T09_Q_09.webm"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi, I'm interested in taking a group exercise class, and I'm hoping you can give me some information. How much does it cost to take a class?\n\nQuestion 8: I'm interested in the water exercise class. That's on Wednesdays, right?\n\nQuestion 9: I heard you offer a dance for fitness class. Could you give me all the details about any dance for fitness classes you'll be offering?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 7-9: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/Part 4 audio/Part 4 picture - Test 10.webp",
+            "imagePlaceholder": "🖼️ Test 10 Picture",
+            "audioUrls": [
+              "assets/Part 4 audio/Test 10/T10_Q_07.webm",
+              "assets/Part 4 audio/Test 10/T10_Q_08.webm",
+              "assets/Part 4 audio/Test 10/T10_Q_09.webm"
+            ],
+            "questionLabels": [
+              "7",
+              "8",
+              "9"
+            ],
+            "question": "Question 7: Hi there. I'm interested in attending the Leadership Conference this April, but I can't find any details about the agenda online. I hope you can answer some of my questions. What are the dates of the conference and where is it being held?\n\nQuestion 8: If I can only attend one day of the conference, do I still have to pay for the full conference?\n\nQuestion 9: Pedro Marquez is a good friend of mine, so I'd like to attend as many of his sessions as I can. Can you give me all the details about the sessions Pedro will be leading?"
+          }
+        }
+      ]
+    }
+  ]
+}

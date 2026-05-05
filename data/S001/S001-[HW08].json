@@ -1,0 +1,87 @@
+{
+  "homework": [
+    {
+      "date": "[HW08]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "responseTime": 30,
+          "content": {
+            "passage": "Thank you for attending this press conference. It's my pleasure to present our company's new director, Linda Smith. Ms. Smith will focus on expanding our client base, supporting our employees, and improving our products. Since she has over thirty years' experience in our field, I'm confident she will provide valuable leadership. Now, please welcome Ms. Linda Smith."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "responseTime": 30,
+          "content": {
+            "passage": "Are you thinking of taking a trip? Let the team at Travel Smart help you find the best deals on airline tickets, hotel reservations, and tours. For more than thirty years, our agency has been providing personalized service and convenience to travelers. Whether your destination is international or domestic, we can make your trip a success."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Do you prefer watching sports live or on television?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Do you think fast food is popular in Vietnam? Why or why not?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "People exercise in many different ways. What are some advantages of choosing walking instead of other forms of exercise?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What is the most important thing to prevent health issue?\n- Exercise\n- Diet\n- Sleep"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "If you were deciding where to eat, which of the following factors would most influence your decision? Why?\n- The menu\n- The atmosphere\n- The review"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -7,10 +7,10 @@ Read the user's prompt to determine: the **class ID**, the **test type** (Speaki
 
 ## 1. Where to Add It
 
-Adding homework requires updating **two** files: `data.js` for the sidebar menu navigation, and `data/CLASS_ID.json` for the actual payload content.
+Adding homework requires updating **two** things: `data.js` for the sidebar menu, and a **new split JSON file** for the actual content.
 
 ### Step 1: Update `data.js`
-Open `data.js`. Find the class entry by its ID inside `CLASSES_DATA` and insert a new pointer object with just the `date` at the top of the `homework` array:
+Open `data.js`. Find the class entry by its ID inside `CLASSES_DATA` and insert a new pointer object with just the `date` at the **top** of the `homework` array (newest first):
 
 ```js
 const CLASSES_DATA = {
@@ -24,25 +24,40 @@ const CLASSES_DATA = {
 }
 ```
 
-> If the class ID does not exist yet, create a new entry following the shape of an existing one.
+> If the class ID does not exist yet, create a new entry following the shape of an existing one and create its `data/CLASS_ID/` subfolder.
 
-### Step 2: Update `data/CLASS_ID.json`
-Open the corresponding JSON file in the `data/` folder (e.g., `data/S129.json`). If it doesn't exist, create it. Insert the new homework entry with its full `parts` array at the top of the `homework` array. 
-**Important:** Because this is a `.json` file, you MUST use strict JSON formatting (double quotes for all property keys and string values).
+### Step 2: Create a new split JSON file
+
+Each homework entry lives in its **own file** inside the class subfolder. The filename must follow this convention:
+
+```
+data/{CLASS_ID}/{CLASS_ID}-[HW{NN}] DD-MM.json
+```
+
+| Part      | Rule                                                               |
+| --------- | ------------------------------------------------------------------ |
+| `{NN}`    | Zero-padded HW number, e.g. `01`, `13`                            |
+| `DD-MM`   | Day and month with **dash** separator (no slashes in filenames)   |
+| Inside file | The `date` field uses the original `DD/MM` slash format          |
+
+**Example:** For class S136, HW-16 assigned on May 4th:
+- Filename: `data/S136/S136-[HW16] 04-05.json`
+- Contents:
 
 ```json
 {
   "homework": [
     {
-      "date": "[HW-XX] DD/MM",
+      "date": "[HW-16] 04/05",
       "parts": [
         // ← INSERT CONTENT PARTS HERE
       ]
     }
-  ],
-  "lesson": [ ... ]
+  ]
 }
 ```
+
+> **Note:** Unlike the old structure, there is no `lesson` array in split files. Lessons live in a separate `{CLASS}-lessons.json` file inside the same subfolder.
 
 ---
 
@@ -107,7 +122,7 @@ A standard speaking session typically follows this order, but can be customized 
   label: "Describe a Picture",
   questionLabel: "Questions 3-4",
   content: {
-    imageUrl: "test-data/speaking-pictures/FILENAME.webp",  // path relative to project root
+    imageUrl: "assets/speaking-pictures/FILENAME.webp",  // path relative to project root
     imagePlaceholder: "🖼️ Picture 1",            // fallback label if image missing
     prompt: "Describe the picture in as much detail as you can."
   }
@@ -149,7 +164,7 @@ A standard speaking session typically follows this order, but can be customized 
   label: "Respond to Information",
   questionLabel: "Questions 8-10",
   content: {
-    imageUrl: "test-data/speaking-pictures/FILENAME.png",
+    imageUrl: "assets/speaking-pictures/FILENAME.png",
     videoUrl: "https://www.youtube.com/embed/VIDEO_ID?start=SECONDS&enablejsapi=1",
     timestamps: {
       q8: 120, // Replace these with exact extracted seconds
@@ -244,7 +259,7 @@ A standard speaking session typically follows this order, but can be customized 
       label: "Describe a Picture",
       questionLabel: "Questions 3-4",
       content: {
-        imageUrl: "test-data/speaking-pictures/FILENAME-picture-1.png",
+        imageUrl: "assets/speaking-pictures/FILENAME-picture-1.png",
         imagePlaceholder: "🖼️ Picture 1",
         prompt: "Describe the picture in as much detail as you can."
       }
@@ -254,7 +269,7 @@ A standard speaking session typically follows this order, but can be customized 
       label: "Describe a Picture",
       questionLabel: "Questions 3-4",
       content: {
-        imageUrl: "test-data/speaking-pictures/FILENAME-picture-2.png",
+        imageUrl: "assets/speaking-pictures/FILENAME-picture-2.png",
         imagePlaceholder: "🖼️ Picture 2",
         prompt: "Describe the picture in as much detail as you can."
       }
@@ -282,7 +297,7 @@ A standard speaking session typically follows this order, but can be customized 
       label: "Respond to Information",
       questionLabel: "Questions 8-10",
       content: {
-        imageUrl: "test-data/speaking-pictures/FILENAME-picture-3.png",
+        imageUrl: "assets/speaking-pictures/FILENAME-picture-3.png",
         videoUrl: "https://www.youtube.com/embed/VIDEO_ID?start=SECONDS&enablejsapi=1",
         timestamps: {
           q8: 120, // Replace these with exact extracted seconds
@@ -402,7 +417,7 @@ A standard writing session typically follows this order (individual parts or mix
   label: "Write a Sentence Based on a Picture",
   questionLabel: "Questions 1-5",
   content: {
-    imageUrl: "test-data/writing-pictures/FILENAME.jpg",  // path relative to project root
+    imageUrl: "assets/writing-pictures/FILENAME.jpg",  // path relative to project root
     words: ["word1", "word2"]                              // two words students must use
   }
 }
@@ -455,31 +470,31 @@ A standard writing session typically follows this order (individual parts or mix
       type: "sentence-picture",
       label: "Write a Sentence Based on a Picture",
       questionLabel: "Questions 1-5",
-      content: { imageUrl: "test-data/writing-pictures/FILENAME-pic-1.jpg", words: ["word1", "word2"] }
+      content: { imageUrl: "assets/writing-pictures/FILENAME-pic-1.jpg", words: ["word1", "word2"] }
     },
     {
       type: "sentence-picture",
       label: "Write a Sentence Based on a Picture",
       questionLabel: "Questions 1-5",
-      content: { imageUrl: "test-data/writing-pictures/FILENAME-pic-2.jpg", words: ["word3", "word4"] }
+      content: { imageUrl: "assets/writing-pictures/FILENAME-pic-2.jpg", words: ["word3", "word4"] }
     },
     {
       type: "sentence-picture",
       label: "Write a Sentence Based on a Picture",
       questionLabel: "Questions 1-5",
-      content: { imageUrl: "test-data/writing-pictures/FILENAME-pic-3.jpg", words: ["word5", "word6"] }
+      content: { imageUrl: "assets/writing-pictures/FILENAME-pic-3.jpg", words: ["word5", "word6"] }
     },
     {
       type: "sentence-picture",
       label: "Write a Sentence Based on a Picture",
       questionLabel: "Questions 1-5",
-      content: { imageUrl: "test-data/writing-pictures/FILENAME-pic-4.jpg", words: ["word7", "word8"] }
+      content: { imageUrl: "assets/writing-pictures/FILENAME-pic-4.jpg", words: ["word7", "word8"] }
     },
     {
       type: "sentence-picture",
       label: "Write a Sentence Based on a Picture",
       questionLabel: "Questions 1-5",
-      content: { imageUrl: "test-data/writing-pictures/FILENAME-pic-5.jpg", words: ["word9", "word10"] }
+      content: { imageUrl: "assets/writing-pictures/FILENAME-pic-5.jpg", words: ["word9", "word10"] }
     },
     {
       type: "email-response",
@@ -522,16 +537,18 @@ A standard writing session typically follows this order (individual parts or mix
 
 ## Quick Reference
 
-| Need                     | Rule                                                                                 |
-| ------------------------ | ------------------------------------------------------------------------------------ |
-| Where to insert          | `data.js` for date pointers; `data/CLASS_ID.json` for full text content              |
-| New class doesn't exist  | Create a new key in `CLASSES_DATA` and initialize matching `data/CLASS_ID.json` file |
-| Image paths — Speaking   | `test-data/speaking-pictures/*.png`                                                  |
-| Image paths — Writing    | `test-data/writing-pictures/*.jpg`                                                   |
-| YouTube `start=`         | In seconds: `(minutes × 60) + seconds`                                               |
-| `responseTime` unit      | Always in **seconds**                                                                |
-| Bullet list in questions | Use `\n- Item` in the question string                                                |
-| Speaking opinion label   | `"Express an Opinion"`                                                               |
-| Writing opinion label    | `"Write an Opinion Essay"`                                                           |
-| `topic-prep` placement   | Can appear **anywhere** in the `parts` array                                         |
-| `topic-prep` questions   | Any count works; one string per array entry — stacked into separate cards            |
+| Need                     | Rule                                                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------------------------------- |
+| Where to insert          | `data.js` for date pointers; **new** `data/{CLASS}/{CLASS}-[HW{NN}] DD-MM.json` for full content       |
+| File naming              | `{CLASS}-[HW{NN}] DD-MM.json` — use `-` not `/` in filename; `DD/MM` slash stays inside the file       |
+| New class doesn't exist  | Create a new key in `CLASSES_DATA`, a `data/{CLASS}/` subfolder, and the first split JSON file          |
+| Lesson data              | Lives in `data/{CLASS}/{CLASS}-lessons.json` (separate from split homework files)                       |
+| Image paths — Speaking   | `assets/speaking-pictures/*.webp`                                                                       |
+| Image paths — Writing    | `assets/writing-pictures/*.jpg`                                                                         |
+| YouTube `start=`         | In seconds: `(minutes × 60) + seconds`                                                                  |
+| `responseTime` unit      | Always in **seconds**                                                                                   |
+| Bullet list in questions | Use `\n- Item` in the question string                                                                   |
+| Speaking opinion label   | `"Express an Opinion"`                                                                                  |
+| Writing opinion label    | `"Write an Opinion Essay"`                                                                              |
+| `topic-prep` placement   | Can appear **anywhere** in the `parts` array                                                            |
+| `topic-prep` questions   | Any count works; one string per array entry — stacked into separate cards                               |

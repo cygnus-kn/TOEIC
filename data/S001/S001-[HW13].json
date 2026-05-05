@@ -1,0 +1,122 @@
+{
+  "homework": [
+    {
+      "date": "[HW13]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Attention, students. This Friday night, the Maytown School's yearly fund-raising dinner will be held in the cafeteria. Tickets are ten dollars per person. All money raised will benefit programs like sports, performing arts, and student government. To enjoy a delicious dinner and support our schools, purchase your tickets today!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Are you looking for a place to live? Green Meadows is a new apartment complex that can meet your needs. Our homes feature modern kitchens, hardwood floors, and spacious bedrooms. Additionally, our apartments are conveniently located near several restaurants and shops. If you're interested in visiting our properties, call Green Meadows today!"
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-05-2023-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-05-2023-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "When was the last time you went on vacation? Where did you go for your vacation?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you like to stay at one location when you go on vacation? Why or why not?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What would be the best thing about traveling abroad during your vacation?\n- Eating new kinds of food\n- Meeting other travelers\n- Visiting museums"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-03-2024-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/mxSOVXhIrls?start=622&enablejsapi=1",
+            "timestamps": {
+              "q8": 622,
+              "q9": 666,
+              "q10": 700
+            },
+            "question": "Question 8: When will it be held and what time will the first session start on the first day?\n\nQuestion 9: My friend is also interested in attending the conference but she will only be available on the second day. Will she be required to pay for both days?\n\nQuestion 10: Last year's workshop was incredibly helpful. Could you provide information about all the workshops scheduled for this year's conference?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Should companies allow employees to work from home 2 days per week? Why or why not?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you think teachers should strictly limit students' mobile phone use in school?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you agree or disagree with the following statement?\n\"Teachers with a lot of experience will have more effect on their students.\""
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "When you are looking for work, what are the advantages of finding information about jobs online? Use specific ideas and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you agree the best way to deal with work stress is talking to a supervisor?"
+          }
+        }
+      ]
+    }
+  ]
+}

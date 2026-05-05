@@ -1,0 +1,33 @@
+{
+  "homework": [
+    {
+      "date": "[HW14]",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "\"It is necessary to have a college degree to be successful.\" Do you agree or disagree with that statement? Give specific reasons and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you agree or disagree that arts and music should be required subjects just like math and science?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you agree or disagree that having fun office events helps workers enjoy their jobs more?"
+          }
+        }
+      ]
+    }
+  ]
+}

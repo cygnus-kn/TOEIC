@@ -1,0 +1,133 @@
+{
+  "homework": [
+    {
+      "date": "[HW06]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "When we return from the commercial break, I'll be talking with Maria Gonzalez about the housing market. As an experienced real estate agent, Maria has seen nearly every situation you may encounter. She'll be sharing her best tips for renters, sellers, and buyers Stay tuned. We'll be right back!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "In local news, officials at City Hall have commissioned several sculptures to be displayed in Mason Park. The sculptures will be located near the basketball, tennis, and handball courts. Because the works are being created outdoors, the general public is welcome to come by and take photographs."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "You have reached Benny's Shoe Store. Unfortunately, no one is available to take your call at this time. For information about our hours, location, and special discounts, please visit our Web site. If you would like to communicate with a store associate, please press \"one\" and leave a detailed message. An available associate will contact you shortly."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 06-pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 06-pic2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 1",
+          "content": {
+            "question": "Where do you usually study?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 2",
+          "content": {
+            "question": "Do you listen to music when you study?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 3",
+          "content": {
+            "question": "What time of day do you feel you concentrate the best?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 4",
+          "content": {
+            "question": "Do you take breaks while studying?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 5",
+          "content": {
+            "question": "Do you make shopping lists before going shopping?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 6",
+          "content": {
+            "question": "Where do you like to go shopping?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What are your hobbies?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 8",
+          "content": {
+            "question": "How much money do you invest in your hobbies?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 9",
+          "content": {
+            "question": "Where is your hometown located?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 10",
+          "content": {
+            "question": "How long have you lived in your current house?"
+          }
+        }
+      ]
+    }
+  ]
+}

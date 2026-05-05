@@ -1,0 +1,49 @@
+{
+  "homework": [
+    {
+      "date": "[HW01]",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "The Madeleine Hotel is proud to announce the completion of its new Convention Center. With advanced audio-visual equipment, dining facilities, and plenty of space, it’s the perfect location for any corporate event. To reserve the Madeleine Hotel Convention Center, simply call one of our friendly customer service agents at 1-800-555-9973. You can also arrange a tour of the facilities with the centre manager, Jennifer. Call today!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Don't settle for just any old dinner. We can help guide you to the best restaurants near our Chincoteague /ʃɪŋkəˈti:g/ hotel. With the Atlantic Ocean at Chincoteague's back door, it's no wonder that seafood abounds in the local fare. Chincoteague Island has long been renowned for its fresh, local seafood - especially Tom's Cove Clams and Oysters. In Chincoteague, seafood goes straight from the local waters to your plate. You can't get it any fresher than that!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Ladies and gentlemen, this is Christine and I’m your chief flight attendant. Welcome aboard British Airways bound for Florence. We are here to make sure you have a relaxed, comfortable, and enjoyable flight. Our flight time will be of approximately 3 hours and 15 minutes. We will be flying at an altitude of 30.000 feet. Your portable electronic devices must be set to ‘airplane’ mode until an announcement is made upon arrival. Now, we will be showing you a safety video so please give us your full attention. Thank you."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Let’s look at the weather. Temperatures have gone down lower than we expect at this time of year, and today it’ll snow in most places. Eastern areas will see particularly heavy snow. Many schools and offices have announced closings due to the weather and public transportation is experiencing cancellations. Government officials recommend that residents not travel far away from home. Keep you updated by listening for more announcements throughout the day."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Good evening, ladies and gentlemen. We are all here to thank one of our most valued employees, Mike Smith, our Regional Marketing Manager in Hong Kong, who is retiring next month. As you may all know, Mike was your first Regional Marketing Rep. Thanks to Mike, we have had excellent sales in Hong Kong and extended our wide network of regional sales offices around East Asia. And now we want to sincerely thank Mike for his 35 years of service and for all his contribution to overseas sales, which have become a central part of our business today."
+          }
+        }
+      ]
+    }
+  ]
+}

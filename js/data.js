@@ -5,61 +5,61 @@
 const CLASSES_DATA = {
   S136: {
     homework: [
-      { date: "[HW-16] 04/05" },
-      { date: "[HW-15] 24/04" },
-      { date: "[HW-14] 22/04" },
-      { date: "[HW-13] 20/04" }
+      { date: "[HW16] 04/05" },
+      { date: "[HW15] 24/04" },
+      { date: "[HW14] 22/04" },
+      { date: "[HW13] 20/04" }
     ],
     lesson: []
   },
   S133: {
     homework: [
-      { date: "[HW-21] 24/04" },
-      { date: "[HW-20] 22/04" },
-      { date: "[HW-19] 20/04" }
+      { date: "[HW21] 24/04" },
+      { date: "[HW20] 22/04" },
+      { date: "[HW19] 20/04" }
     ],
     lesson: []
   },
   S129: {
     homework: [
-      { date: "[HW-05] 03/31" },
-      { date: "[HW-04] 04/13" },
-      { date: "[HW-03] 04/12" }
+      { date: "[HW05] 31/03" },
+      { date: "[HW04] 13/04" },
+      { date: "[HW03] 12/04" }
     ],
     lesson: [
-      { date: "[Lesson-02] 04/10" },
-      { date: "[Lesson-01] 04/07" }
+      { date: "[Lesson-02] 10/04" },
+      { date: "[Lesson-01] 07/04" }
     ]
   },
   S128: {
     homework: [
-      { date: "[HW-03] 04/13" },
-      { date: "[HW-01] 04/10" }
+      { date: "[HW03] 13/04" },
+      { date: "[HW01] 10/04" }
     ],
     lesson: [
-      { date: "[Lesson-01] 04/09" }
+      { date: "[Lesson-01] 09/04" }
     ]
   },
   "S001": {
     homework: [
-      { date: "[HW-18]" },
-      { date: "[HW-17]" },
-      { date: "[HW-16]" },
-      { date: "[HW-15]" },
-      { date: "[HW-14]" },
-      { date: "[HW-13]" },
-      { date: "[HW-12]" },
-      { date: "[HW-11]" },
-      { date: "[HW-10]" },
-      { date: "[HW-09]" },
-      { date: "[HW-08]" },
-      { date: "[HW-07]" },
-      { date: "[HW-06]" },
-      { date: "[HW-05]" },
-      { date: "[HW-04]" },
-      { date: "[HW-03]" },
-      { date: "[HW-02]" },
-      { date: "[HW-01]" }
+      { date: "[HW18]" },
+      { date: "[HW17]" },
+      { date: "[HW16]" },
+      { date: "[HW15]" },
+      { date: "[HW14]" },
+      { date: "[HW13]" },
+      { date: "[HW12]" },
+      { date: "[HW11]" },
+      { date: "[HW10]" },
+      { date: "[HW09]" },
+      { date: "[HW08]" },
+      { date: "[HW07]" },
+      { date: "[HW06]" },
+      { date: "[HW05]" },
+      { date: "[HW04]" },
+      { date: "[HW03]" },
+      { date: "[HW02]" },
+      { date: "[HW01]" }
     ],
     lesson: []
   }

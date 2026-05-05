@@ -1,0 +1,33 @@
+{
+  "homework": [
+    {
+      "date": "[HW16]",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "What advantages can a company receive when it collects online reviews from its customers?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "What are the advantages of using public transportation?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "What are the disadvantages of playing video games regularly?"
+          }
+        }
+      ]
+    }
+  ]
+}

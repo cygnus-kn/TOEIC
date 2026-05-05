@@ -1,0 +1,33 @@
+{
+  "homework": [
+    {
+      "date": "[HW17]",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "If you were to give feedback to your colleague in order to improve their work productivity, what would you like to talk about?\n- Communication skills\n- Work motivation\n- Teamwork"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "What is the most important factor a business owner should have to become successful?\n- Background knowledge of the industry\n- Strong leadership skills\n- Innovation and creativity"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "What is the most important factor that should be considered when choosing a job?\n- Friendly co-workers\n- Learning opportunities\n- Career future"
+          }
+        }
+      ]
+    }
+  ]
+}

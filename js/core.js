@@ -539,14 +539,65 @@ function showLessonViewer() {
 // ============================
 const dataCache = {};
 
+/**
+ * Build the filename for a split homework file.
+ * Examples:
+ *   S001, "[HW18]"          → "S001/S001-[HW18].json"
+ *   S136, "[HW16] 04/05"   → "S136/S136-[HW16] 04-05.json"
+ */
+function splitFileName(className, dateStr) {
+  const m = dateStr.match(/\[HW(\d+)\](.*)/);
+  if (!m) return null;
+  const num      = m[1].padStart(2, '0');   // "16"
+  const datePart = m[2].trim().replace(/\//g, '-'); // "04-05" or ""
+  const suffix   = datePart ? ` ${datePart}` : '';
+  return `data/${className}/${className}-[HW${num}]${suffix}.json`;
+}
+
 async function getClassData(className) {
   if (dataCache[className]) return dataCache[className];
 
   try {
-    const response = await fetch(`data/${className}.json`);
-    const data = await response.json();
-    dataCache[className] = data;
-    return data;
+    // Get the manifest of dates for this class from CLASSES_DATA
+    const manifest = (typeof CLASSES_DATA !== 'undefined' && CLASSES_DATA[className]) || null;
+    if (!manifest) throw new Error(`No manifest for ${className}`);
+
+    // Fetch all split homework files in parallel
+    const hwDates = (manifest.homework || []).map(e => e.date);
+    const hwResults = await Promise.all(
+      hwDates.map(async (date) => {
+        const path = splitFileName(className, date);
+        if (!path) return null;
+        try {
+          const res  = await fetch(path);
+          const json = await res.json();
+          // Each file has { homework: [entry] }
+          return (json.homework && json.homework[0]) || null;
+        } catch (e) {
+          console.warn(`Could not load ${path}:`, e);
+          return null;
+        }
+      })
+    );
+
+    // lesson entries still live in the original per-class file if present,
+    // but for classes that have lessons we keep them in CLASSES_DATA manifest
+    // (lessons are not split — they remain inline in S128/S129 lesson section).
+    // Try to load a combined lesson file if one exists; otherwise use empty array.
+    let lessonEntries = [];
+    try {
+      const lessonRes  = await fetch(`data/${className}/${className}-lessons.json`);
+      const lessonJson = await lessonRes.json();
+      lessonEntries = lessonJson.lesson || [];
+    } catch (_) { /* no lesson file — that's fine */ }
+
+    const assembled = {
+      homework: hwResults.filter(Boolean),
+      lesson:   lessonEntries
+    };
+
+    dataCache[className] = assembled;
+    return assembled;
   } catch (err) {
     console.error(`Failed to load data for ${className}:`, err);
     return null;

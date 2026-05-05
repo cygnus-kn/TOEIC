@@ -1,0 +1,72 @@
+{
+  "homework": [
+    {
+      "date": "[HW16] 04/05",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Are you planning an overseas trip this summer? Air Georgia is offering great deals on any flights bound for major cities in Europe, Asia and Africa. Come check out our website for information before choosing a destination for your next trip abroad."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Thank you for calling Madison Health Clinic, your trusted partner in healthcare. We apologize for not being able to take your call right now. Please leave a detailed message with your name, contact number, and the reason for your call. One of our staff members will get back to you as soon as possible."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-07-2023-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-07-2023-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Is traveling by car or airplane better for vacation in your opinion?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Do you prefer individual or group exercise when working out?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Do you think it is more valuable to focus on improving one thing at work or experience various things at work? Why?"
+          }
+        }
+      ]
+    }
+  ]
+}
