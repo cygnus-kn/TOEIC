@@ -449,7 +449,7 @@ body.dark-theme .timer-display.prep-stage {
 
 .picture-container img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 65vh;
   width: auto;
   height: auto;
   display: block;
