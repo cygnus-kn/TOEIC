@@ -1,0 +1,112 @@
+{
+  "homework": [
+    {
+      "date": "[HW17] 06/05",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "What are the advantages of using public transportation?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "What are the disadvantages of using public transportation?"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Good morning and welcome to Danton Village! I want to express my heartfelt gratitude to all the volunteers, organizations, and sponsors who have come together to make this event possible. Now, let's put on our work gloves, grab our tools, and show the world what the power of community can achieve."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Good evening, I'm Lindsay Fey, and welcome to Channel 12 local news for the latest updates on our city's reconstruction plans. These projects involve the repair and expansion of roads, bridges, and public transportation. Please stay tuned for further updates on the progress of these projects and their impact on our community."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2023-10-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2023-10-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "What time do you usually leave for work or school? Do you always depart at the same time?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "When commuting to work or school, do you prefer to drive or take public transportation? Why?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Would you consider car pooling for long-distance travel? Why or why not?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2023-10-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/AcM1ENo_QjE?start=621&enablejsapi=1",
+            "timestamps": {
+              "q8": 621,
+              "q9": 668,
+              "q10": 701
+            },
+            "question": "Question 8: what time is the first interview and who is the applicant?\n\nQuestion 9: as far as I remember I am scheduled to interview a candidate for the HR manager position in the afternoon am I right?\n\nQuestion 10: based on my previous experiences individuals from anchor advisers have shown exceptional competence in their roles are there any candidates from anchor advisors scheduled for interviews this time?"
+          }
+        },
+
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Do you agree or disagree that college students should actively participate in extracurricular activities such as playing sports, volunteering, and taking on internships?"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -71,7 +71,43 @@ Example: `"[HW-05] 15/04"`
 
 ---
 
-## 3. Test Types & Flexibility
+## 3. Converting Images to WebP
+
+All speaking pictures must be saved as `.webp` before referencing them in JSON. Use **Python Pillow** — the installed `ffmpeg` build does **not** include the WebP encoder.
+
+### Converting a single file
+
+```bash
+python3 -c "from PIL import Image; Image.open('SOURCE.png').save('OUTPUT.webp', 'WEBP', quality=90)"
+```
+
+### Converting multiple files at once
+
+```bash
+python3 -c "
+from PIL import Image
+
+files = [
+    'assets/speaking-pictures/FILENAME-picture-1.png',
+    'assets/speaking-pictures/FILENAME-picture-2.png',
+    'assets/speaking-pictures/FILENAME-picture-3.png',
+]
+
+for f in files:
+    out = f.replace('.png', '.webp').replace('.jpg', '.webp')
+    Image.open(f).save(out, 'WEBP', quality=90)
+    print(f'Converted: {out}')
+"
+```
+
+> After confirming the `.webp` files look correct, delete the originals with `rm SOURCE.png`.
+
+> [!NOTE]
+> This method works for `.png`, `.jpg`, and most other common image formats. Output quality `90` is a good default — raise it to `95` for images with fine text.
+
+---
+
+## 4. Test Types & Flexibility
 
 TOEIC homework usually follows one of two formats. However, **homework days are flexible**: you can provide partial sets (e.g., just Q1–2), mixed Speaking and Writing tasks, or even just a single part.
 
