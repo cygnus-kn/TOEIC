@@ -287,12 +287,15 @@ body:not(body.dark-theme) .recording-status {
 @media (max-width: 600px) {
   .bottom-nav,
   #bottomNav {
-    max-width: calc(100vw - 24px);
+    /* Match part-card width: 100vw − main margin (24) − main padding (32) − card-stage padding (24) */
+    width: calc(100vw - 80px);
+    max-width: calc(100vw - 80px);
   }
 
   .bottom-nav-controls {
-    gap: 1px;
-    padding: 6px 6px;
+    justify-content: center;
+    gap: 2px;
+    padding: 6px 8px;
   }
 }
 

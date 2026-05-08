@@ -416,6 +416,7 @@ body.dark-theme .date-entry.active {
   margin: 8px 8px 4px;
   border-radius: 9999px;
   cursor: pointer;
+  user-select: none;
   font-size: 13px;
   font-weight: 600;
   color: var(--color-text-secondary);
@@ -448,6 +449,7 @@ body.dark-theme .class-header:hover {
   width: 16px;
   height: 16px;
   color: var(--color-text-tertiary);
+  transform: rotate(90deg); /* Collapsed: Left */
   transition: transform var(--transition-smooth);
   flex-shrink: 0;
 }
@@ -480,7 +482,7 @@ body.dark-theme .class-count-badge {
 }
 
 .class-group.expanded .class-chevron {
-  transform: rotate(90deg);
+  transform: rotate(0deg); /* Expanded: Down */
 }
 
 .class-children {
@@ -519,12 +521,13 @@ body.dark-theme .class-count-badge {
   width: 14px;
   height: 14px;
   color: var(--color-text-tertiary);
+  transform: rotate(90deg); /* Collapsed: Left */
   transition: transform var(--transition-smooth);
   flex-shrink: 0;
 }
 
 .category-group.expanded .category-chevron {
-  transform: rotate(90deg);
+  transform: rotate(0deg); /* Expanded: Down */
 }
 
 .category-children {
