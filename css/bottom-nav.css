@@ -270,32 +270,12 @@ body:not(body.dark-theme) .recording-status {
   flex: none;
 }
 
-.bottom-nav-left,
-.bottom-nav-right,
-.bottom-nav-btns {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.bottom-nav-left,
-.bottom-nav-right,
-.bottom-nav-btns {
-  gap: 2px;
-}
-
 @media (max-width: 600px) {
   .bottom-nav,
   #bottomNav {
     /* Match part-card width: 100vw − main margin (24) − main padding (32) − card-stage padding (24) */
     width: calc(100vw - 80px);
     max-width: calc(100vw - 80px);
-  }
-
-  .bottom-nav-controls {
-    justify-content: center;
-    gap: 2px;
-    padding: 6px 8px;
   }
 }
 

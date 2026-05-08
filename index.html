@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="css/index.css?v=104">
+  <link rel="stylesheet" href="css/index.css?v=105">
 </head>
 <body class="preload">
   <script>
@@ -195,61 +195,53 @@
         </div>
       </div>
 
-      <!-- Unified Media Player Controls (Bottom) -->
+      <!-- Controls Row (flat layout — no sub-groups) -->
       <div class="bottom-nav-controls">
-        <div class="bottom-nav-left">
-          <button class="bottom-nav-btn" id="bottomMinimizeBtn" aria-label="Close recording controls" title="Close recording controls">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-              <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z" clip-rule="evenodd"/>
-            </svg>
-          </button>
-          <div class="recording-status" id="recordingStatus">
-            <span class="recording-status-dot"></span>
-            <span id="recordingStatusText">00:00</span>
-          </div>
+        <button class="bottom-nav-btn" id="bottomMinimizeBtn" aria-label="Close recording controls" title="Close recording controls">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+        <div class="recording-status" id="recordingStatus">
+          <span class="recording-status-dot"></span>
+          <span id="recordingStatusText">00:00</span>
         </div>
-        
-        <div class="bottom-nav-btns">
-          <button class="bottom-nav-btn" id="bottomRedoBtn" aria-label="Record again" title="Record again">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-              <path d="M3 3v5h5"/>
-            </svg>
-          </button>
-          <button class="bottom-nav-btn bottom-nav-btn-primary" id="bottomRecordBtn" aria-label="Record answer" title="Record answer">
-            <svg class="record-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/>
-              <path d="M5 11a7 7 0 0 0 14 0"/>
-              <path d="M12 18v3"/>
-              <path d="M8.5 21h7"/>
-            </svg>
-          </button>
-          <button class="bottom-nav-btn" id="bottomDeleteBtn" aria-label="Delete latest recording" title="Delete latest recording">
-            <svg class="delete-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 6h18"/>
-              <path d="M8 6V4.8c0-.66.54-1.2 1.2-1.2h5.6c.66 0 1.2.54 1.2 1.2V6"/>
-              <path d="M18 6v12.2c0 .99-.81 1.8-1.8 1.8H7.8C6.81 20 6 19.19 6 18.2V6"/>
-              <path d="M10 10.2v5.6"/>
-              <path d="M14 10.2v5.6"/>
-            </svg>
-          </button>
-        </div>
-
-        <div class="bottom-nav-right">
-          <button class="bottom-nav-btn" id="bottomSaveBtn" aria-label="Save latest recording" title="Save latest recording">
-            <svg class="save-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3v12"/>
-              <path d="m7 10 5 5 5-5"/>
-              <path d="M5 18v1.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V18"/>
-            </svg>
-          </button>
-          <button class="bottom-nav-btn" id="bottomNotepadToggleBtn" aria-label="Show Notepad" title="Show Notepad">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="5" y="3" width="14" height="18" rx="2"></rect>
-              <path d="M8 8h8M8 12h8M8 16h5"></path>
-            </svg>
-          </button>
-        </div>
+        <button class="bottom-nav-btn" id="bottomRedoBtn" aria-label="Record again" title="Record again">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+        </button>
+        <button class="bottom-nav-btn bottom-nav-btn-primary" id="bottomRecordBtn" aria-label="Record answer" title="Record answer">
+          <svg class="record-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 15a4 4 0 0 0 4-4V7a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"/>
+            <path d="M5 11a7 7 0 0 0 14 0"/>
+            <path d="M12 18v3"/>
+            <path d="M8.5 21h7"/>
+          </svg>
+        </button>
+        <button class="bottom-nav-btn" id="bottomDeleteBtn" aria-label="Delete latest recording" title="Delete latest recording">
+          <svg class="delete-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.95" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 6h18"/>
+            <path d="M8 6V4.8c0-.66.54-1.2 1.2-1.2h5.6c.66 0 1.2.54 1.2 1.2V6"/>
+            <path d="M18 6v12.2c0 .99-.81 1.8-1.8 1.8H7.8C6.81 20 6 19.19 6 18.2V6"/>
+            <path d="M10 10.2v5.6"/>
+            <path d="M14 10.2v5.6"/>
+          </svg>
+        </button>
+        <button class="bottom-nav-btn" id="bottomSaveBtn" aria-label="Save latest recording" title="Save latest recording">
+          <svg class="save-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12"/>
+            <path d="m7 10 5 5 5-5"/>
+            <path d="M5 18v1.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V18"/>
+          </svg>
+        </button>
+        <button class="bottom-nav-btn" id="bottomNotepadToggleBtn" aria-label="Show Notepad" title="Show Notepad">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="5" y="3" width="14" height="18" rx="2"></rect>
+            <path d="M8 8h8M8 12h8M8 16h5"></path>
+          </svg>
+        </button>
       </div>
     </div>
   </div>
@@ -374,15 +366,15 @@
     </div>
   </div>
 
-  <script src="js/data.js?v=104"></script>
-  <script src="js/sidebar.js?v=104"></script>
-  <script src="js/timers.js?v=104"></script>
-  <script src="js/audioPlayers.js?v=104"></script>
-  <script src="js/partCard.js?v=104"></script>
-  <script src="js/bottomNav.js?v=104"></script>
-  <script src="js/layoutbtn.js?v=104"></script>
-  <script src="js/core.js?v=104"></script>
-  <script src="js/notepad.js?v=104"></script>
+  <script src="js/data.js?v=105"></script>
+  <script src="js/sidebar.js?v=105"></script>
+  <script src="js/timers.js?v=105"></script>
+  <script src="js/audioPlayers.js?v=105"></script>
+  <script src="js/partCard.js?v=105"></script>
+  <script src="js/bottomNav.js?v=105"></script>
+  <script src="js/layoutbtn.js?v=105"></script>
+  <script src="js/core.js?v=105"></script>
+  <script src="js/notepad.js?v=105"></script>
   <div class="notepad-backdrop" id="notepadBackdrop"></div>
 </body>
 </html>
