@@ -1,0 +1,165 @@
+{
+  "homework": [
+    {
+      "date": "[HW18] 11/05",
+      "parts": [
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 1",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-1.webp",
+            "wordPairs": [
+              [
+                "picture",
+                "between"
+              ],
+              [
+                "table",
+                "front"
+              ],
+              [
+                "Vase",
+                "on"
+              ],
+              [
+                "Picture",
+                "on"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 2",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-2.webp",
+            "wordPairs": [
+              [
+                "table",
+                "on"
+              ],
+              [
+                "board",
+                "on"
+              ],
+              [
+                "chair",
+                "under"
+              ],
+              [
+                "Clock",
+                "on"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 3",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-3.webp",
+            "wordPairs": [
+              [
+                "on",
+                "merchandise"
+              ],
+              [
+                "in",
+                "supermarket"
+              ],
+              [
+                "price tag",
+                "on"
+              ],
+              [
+                "front",
+                "booth"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 4",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW18-workbook-p40-pic-1.webp",
+            "wordPairs": [
+              [
+                "pedestrian",
+                "pavement"
+              ],
+              [
+                "tree",
+                "along"
+              ],
+              [
+                "streetlights",
+                "be"
+              ],
+              [
+                "man",
+                "look"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 5",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW18-workbook-p40-pic-2.webp",
+            "wordPairs": [
+              [
+                "get",
+                "on"
+              ],
+              [
+                "Children",
+                "happy"
+              ],
+              [
+                "students",
+                "board"
+              ],
+              [
+                "Backpack",
+                "wear"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 6",
+          "content": {
+            "imageUrl": "assets/writing-pictures/HW18-workbook-p40-pic-3.webp",
+            "wordPairs": [
+              [
+                "Play",
+                "on"
+              ],
+              [
+                "Sit",
+                "on"
+              ],
+              [
+                "Look",
+                "at"
+              ],
+              [
+                "Talk",
+                "to"
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "homework": [
+    {
+      "date": "[HW22] 11/05",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "M. Lee",
+            "to": "Explore The City Tour Company",
+            "subject": "Sightseeing tours",
+            "sent": "June 14, 9:46 A.M.",
+            "body": "Hello,\nI will be staying in your city for five days in July. I'd like to see some interesting places\nduring that time. Could you please give me some information about the sightseeing tours\nthat your company offers?\nThanks,\nM. Lee",
+            "instruction": "Respond to the e-mail as if you work for a tour company. In your e-mail, give TWO pieces of information and ask ONE question."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "What are some disadvantages of attending a school located far from your hometown?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "content": {
+            "prompt": "Do you prefer to buy products at a convenience store or a supermarket? Why?"
+          }
+        }
+      ]
+    }
+  ]
+}
