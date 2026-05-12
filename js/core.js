@@ -141,6 +141,32 @@ function getCurrentRecording() {
   return key ? recordings[key] || null : null;
 }
 
+function getActiveRespondInfoSubQuestionNumber(partIndex, part) {
+  if (!part || part.type !== 'respond-info-q') return 1;
+
+  const container = document.getElementById(`bookmarks-${partIndex}`);
+  const bookmarks = Array.from(container?.querySelectorAll('button.bookmark-dot') || []);
+  const activeBookmarkIndex = bookmarks.findIndex(bookmark => bookmark.classList.contains('active-bookmark'));
+  if (activeBookmarkIndex >= 0) return activeBookmarkIndex + 1;
+
+  const localAudio = typeof localAudioPlayers !== 'undefined' ? localAudioPlayers[partIndex] : null;
+  if (Number.isInteger(localAudio?._currentTrack)) {
+    return localAudio._currentTrack + 1;
+  }
+
+  return 1;
+}
+
+function getCurrentRecordingNameParts() {
+  const part = currentParts[currentPart];
+  return {
+    questionNumber: currentPart + 1,
+    subQuestionNumber: part?.type === 'respond-info-q'
+      ? getActiveRespondInfoSubQuestionNumber(currentPart, part)
+      : null
+  };
+}
+
 function getRecordingExtension(mimeType) {
   if (mimeType.includes('mp4')) return 'm4a';
   if (mimeType.includes('ogg')) return 'ogg';
@@ -358,6 +384,7 @@ async function startRecording() {
     const localChunks = [];
     const mimeType = getSupportedRecordingMimeType();
     const recordingTaskKey = getCurrentTaskKey();
+    const recordingNameParts = getCurrentRecordingNameParts();
     const localRecorder = mimeType ? new MediaRecorder(mediaStream, { mimeType }) : new MediaRecorder(mediaStream);
     mediaRecorder = localRecorder;
 
@@ -399,7 +426,9 @@ async function startRecording() {
           blob,
           url: URL.createObjectURL(blob),
           durationMs,
-          mimeType: mime
+          mimeType: mime,
+          questionNumber: recordingNameParts.questionNumber,
+          subQuestionNumber: recordingNameParts.subQuestionNumber
         };
       }
 
@@ -485,9 +514,17 @@ function saveCurrentRecording() {
     dayStamp = `Day-${dayMatch[1].padStart(2, '0')}`;
   }
 
-  // --- 2. Determine Question Number (By Card Order) ---
-  const qNumber = currentPart + 1;
-  const defaultName = `${dayStamp}-Q${qNumber}`;
+  // --- 2. Determine Question Number ---
+  const nameParts = getCurrentRecordingNameParts();
+  const isRespondInfoRecording = currentParts[currentPart]?.type === 'respond-info-q';
+  const qNumber = isRespondInfoRecording && recording.subQuestionNumber == null
+    ? nameParts.questionNumber
+    : recording.questionNumber || nameParts.questionNumber;
+  const subQuestionNumber = isRespondInfoRecording
+    ? recording.subQuestionNumber || nameParts.subQuestionNumber
+    : null;
+  const subQuestionSuffix = subQuestionNumber ? ` (${subQuestionNumber})` : '';
+  const defaultName = `${dayStamp}-Q${qNumber}${subQuestionSuffix}`;
 
   const extension = getRecordingExtension(recording.mimeType || 'audio/webm');
 
