@@ -15,8 +15,17 @@ let cardWindowOffsetX = 0;
 let cardWindowOffsetY = 0;
 let isDraggingCardWindow = false;
 
+function isMobileCardLayout() {
+  return window.innerWidth <= 600;
+}
+
 function applyCardWindowOffset() {
   if (!cardWindow) return;
+  if (isMobileCardLayout()) {
+    cardWindow.style.removeProperty('--homework-window-offset-x');
+    cardWindow.style.removeProperty('--homework-window-offset-y');
+    return;
+  }
   cardWindow.style.setProperty('--homework-window-offset-x', `${cardWindowOffsetX}px`);
   cardWindow.style.setProperty('--homework-window-offset-y', `${cardWindowOffsetY}px`);
 }
@@ -32,6 +41,10 @@ function persistCardWindowOffset() {
 
 function restoreCardWindowOffset() {
   if (!cardWindow) return;
+  if (isMobileCardLayout()) {
+    applyCardWindowOffset();
+    return;
+  }
   try {
     const savedX = Number(localStorage.getItem(CARD_WINDOW_OFFSET_X_KEY));
     const savedY = Number(localStorage.getItem(CARD_WINDOW_OFFSET_Y_KEY));
@@ -46,6 +59,10 @@ function restoreCardWindowOffset() {
 
 function clampCardWindowOffset() {
   if (!cardWindow) return;
+  if (isMobileCardLayout()) {
+    applyCardWindowOffset();
+    return;
+  }
   const rect = cardWindow.getBoundingClientRect();
   const padding = 12;
   let adjusted = false;
@@ -625,12 +642,14 @@ let touchEndX = 0;
 let touchStartY = 0;
 
 cardContainer.addEventListener('touchstart', (e) => {
+  if (isImageModalActive()) return;
   if (isDraggingCardWindow) return;
   touchStartX = e.changedTouches[0].screenX;
   touchStartY = e.changedTouches[0].screenY;
 }, { passive: true });
 
 cardContainer.addEventListener('touchmove', (e) => {
+  if (isImageModalActive()) return;
   if (isDraggingCardWindow || !e.touches.length) return;
   const dx = e.touches[0].screenX - touchStartX;
   const dy = e.touches[0].screenY - touchStartY;
@@ -640,6 +659,7 @@ cardContainer.addEventListener('touchmove', (e) => {
 }, { passive: false });
 
 cardContainer.addEventListener('touchend', (e) => {
+  if (isImageModalActive()) return;
   if (isDraggingCardWindow) return;
   touchEndX = e.changedTouches[0].screenX;
   handleSwipe();
@@ -660,31 +680,435 @@ function handleSwipe() {
 // ============================
 //  Image Modal
 // ============================
+const IMAGE_MODAL_MIN_SCALE = 1;
+const IMAGE_MODAL_MAX_SCALE = 4;
+const IMAGE_MODAL_DOUBLE_TAP_SCALE = 2.5;
+const IMAGE_MODAL_DISMISS_SWIPE_THRESHOLD = 80;
+const IMAGE_MODAL_DISMISS_ANIMATION_MS = 180;
+let imageModalScale = 1;
+let imageModalTranslateX = 0;
+let imageModalTranslateY = 0;
+let imageModalStartScale = 1;
+let imageModalStartTranslateX = 0;
+let imageModalStartTranslateY = 0;
+let imageModalStartDistance = 0;
+let imageModalPinchOffsetX = 0;
+let imageModalPinchOffsetY = 0;
+let imageModalPanStartX = 0;
+let imageModalPanStartY = 0;
+let imageModalGestureStartX = 0;
+let imageModalGestureStartY = 0;
+let imageModalDismissTranslateX = 0;
+let imageModalDismissTranslateY = 0;
+let imageModalDismissScale = 1;
+let imageModalTouchMoved = false;
+let imageModalDidPinchGesture = false;
+let imageModalLastTapAt = 0;
+let imageModalScrollY = 0;
+let imageModalPreviousBodyStyles = null;
+let imageModalDismissTimer = null;
+
+function isImageModalActive() {
+  const modal = document.getElementById('imageModal');
+  return !!modal && modal.classList.contains('active');
+}
+
+function clampImageModalScale(scale) {
+  return Math.min(IMAGE_MODAL_MAX_SCALE, Math.max(IMAGE_MODAL_MIN_SCALE, scale));
+}
+
+function getTouchDistance(touchA, touchB) {
+  return Math.hypot(touchB.clientX - touchA.clientX, touchB.clientY - touchA.clientY);
+}
+
+function getTouchCenter(touchA, touchB) {
+  return {
+    x: (touchA.clientX + touchB.clientX) / 2,
+    y: (touchA.clientY + touchB.clientY) / 2
+  };
+}
+
+function clampImageModalPan() {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('imageModalContent');
+  if (!modal || !modalImg) return;
+
+  if (imageModalScale <= IMAGE_MODAL_MIN_SCALE) {
+    imageModalScale = IMAGE_MODAL_MIN_SCALE;
+    imageModalTranslateX = 0;
+    imageModalTranslateY = 0;
+    return;
+  }
+
+  const modalRect = modal.getBoundingClientRect();
+  const maxX = Math.max(0, ((modalImg.offsetWidth * imageModalScale) - modalRect.width) / 2);
+  const maxY = Math.max(0, ((modalImg.offsetHeight * imageModalScale) - modalRect.height) / 2);
+  imageModalTranslateX = Math.min(maxX, Math.max(-maxX, imageModalTranslateX));
+  imageModalTranslateY = Math.min(maxY, Math.max(-maxY, imageModalTranslateY));
+}
+
+function applyImageModalTransform() {
+  const modalImg = document.getElementById('imageModalContent');
+  if (!modalImg) return;
+  clampImageModalPan();
+  const totalTranslateX = imageModalTranslateX + imageModalDismissTranslateX;
+  const totalTranslateY = imageModalTranslateY + imageModalDismissTranslateY;
+  const totalScale = imageModalScale * imageModalDismissScale;
+  modalImg.style.transform = `translate3d(${totalTranslateX}px, ${totalTranslateY}px, 0) scale(${totalScale})`;
+}
+
+function setImageModalBackdropOpacity(opacity) {
+  const modal = document.getElementById('imageModal');
+  if (!modal) return;
+  modal.style.setProperty('--image-modal-backdrop-opacity', String(opacity));
+}
+
+function resetImageModalDismissTransform() {
+  imageModalDismissTranslateX = 0;
+  imageModalDismissTranslateY = 0;
+  imageModalDismissScale = 1;
+  setImageModalBackdropOpacity(0.75);
+}
+
+function resetImageModalTransform() {
+  imageModalScale = 1;
+  imageModalTranslateX = 0;
+  imageModalTranslateY = 0;
+  resetImageModalDismissTransform();
+  imageModalTouchMoved = false;
+  imageModalDidPinchGesture = false;
+  imageModalLastTapAt = 0;
+  applyImageModalTransform();
+}
+
+function setImageModalDismissProgress(deltaX, deltaY) {
+  const modal = document.getElementById('imageModal');
+  if (!modal) return;
+  modal.classList.remove('is-animating');
+  imageModalDismissTranslateX = deltaX * 0.12;
+  imageModalDismissTranslateY = deltaY;
+  imageModalDismissScale = Math.max(0.86, 1 - (Math.abs(deltaY) / 1000));
+  const backdropOpacity = Math.max(0.14, 0.75 * (1 - (Math.abs(deltaY) / 420)));
+  setImageModalBackdropOpacity(backdropOpacity);
+  applyImageModalTransform();
+}
+
+function animateImageModalDismiss(deltaY) {
+  const modal = document.getElementById('imageModal');
+  if (!modal) return;
+  if (imageModalDismissTimer) clearTimeout(imageModalDismissTimer);
+
+  const direction = deltaY < 0 ? -1 : 1;
+  modal.classList.add('is-animating');
+  imageModalDismissTranslateY = direction * (window.innerHeight * 0.72 + 120);
+  imageModalDismissScale = 0.82;
+  setImageModalBackdropOpacity(0);
+  applyImageModalTransform();
+
+  imageModalDismissTimer = setTimeout(() => {
+    imageModalDismissTimer = null;
+    closeImageModal();
+  }, IMAGE_MODAL_DISMISS_ANIMATION_MS);
+}
+
+function animateImageModalDismissCancel() {
+  const modal = document.getElementById('imageModal');
+  if (!modal) return;
+  modal.classList.add('is-animating');
+  resetImageModalDismissTransform();
+  applyImageModalTransform();
+  setTimeout(() => {
+    modal.classList.remove('is-animating');
+  }, IMAGE_MODAL_DISMISS_ANIMATION_MS);
+}
+
+function lockImageModalPage() {
+  if (imageModalPreviousBodyStyles) return;
+  imageModalScrollY = window.scrollY || window.pageYOffset || 0;
+  imageModalPreviousBodyStyles = {
+    position: document.body.style.position,
+    top: document.body.style.top,
+    left: document.body.style.left,
+    right: document.body.style.right,
+    width: document.body.style.width,
+    overflow: document.body.style.overflow
+  };
+  document.body.classList.add('image-modal-open');
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${imageModalScrollY}px`;
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
+  document.body.style.overflow = 'hidden';
+}
+
+function unlockImageModalPage() {
+  if (!imageModalPreviousBodyStyles) return;
+  document.body.classList.remove('image-modal-open');
+  document.body.style.position = imageModalPreviousBodyStyles.position;
+  document.body.style.top = imageModalPreviousBodyStyles.top;
+  document.body.style.left = imageModalPreviousBodyStyles.left;
+  document.body.style.right = imageModalPreviousBodyStyles.right;
+  document.body.style.width = imageModalPreviousBodyStyles.width;
+  document.body.style.overflow = imageModalPreviousBodyStyles.overflow;
+  imageModalPreviousBodyStyles = null;
+  window.scrollTo(0, imageModalScrollY);
+}
+
 function openImageModal(src) {
   const modal = document.getElementById('imageModal');
   const modalImg = document.getElementById('imageModalContent');
   if (modal && modalImg) {
+    resetImageModalTransform();
     modalImg.src = src;
     modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    lockImageModalPage();
   }
 }
+
+function closeImageModal() {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('imageModalContent');
+  if (modal && modal.classList.contains('active')) {
+    if (imageModalDismissTimer) {
+      clearTimeout(imageModalDismissTimer);
+      imageModalDismissTimer = null;
+    }
+    modal.classList.remove('active', 'is-panning', 'is-animating');
+    modal.setAttribute('aria-hidden', 'true');
+    modal.style.removeProperty('--image-modal-backdrop-opacity');
+    if (modalImg) modalImg.removeAttribute('style');
+    resetImageModalTransform();
+    unlockImageModalPage();
+  }
+}
+
+function zoomImageModalAtPoint(nextScale, pointX, pointY) {
+  const modal = document.getElementById('imageModal');
+  if (!modal) return;
+
+  const modalRect = modal.getBoundingClientRect();
+  const centerX = modalRect.left + modalRect.width / 2;
+  const centerY = modalRect.top + modalRect.height / 2;
+  const previousScale = imageModalScale;
+  const scale = clampImageModalScale(nextScale);
+  const ratio = scale / previousScale;
+
+  imageModalTranslateX = pointX - centerX - ((pointX - centerX - imageModalTranslateX) * ratio);
+  imageModalTranslateY = pointY - centerY - ((pointY - centerY - imageModalTranslateY) * ratio);
+  imageModalScale = scale;
+  applyImageModalTransform();
+}
+
+function beginImageModalPinch(touches) {
+  const modal = document.getElementById('imageModal');
+  if (!modal || touches.length < 2) return;
+
+  const center = getTouchCenter(touches[0], touches[1]);
+  const modalRect = modal.getBoundingClientRect();
+  const modalCenterX = modalRect.left + modalRect.width / 2;
+  const modalCenterY = modalRect.top + modalRect.height / 2;
+
+  imageModalStartScale = imageModalScale;
+  imageModalStartTranslateX = imageModalTranslateX;
+  imageModalStartTranslateY = imageModalTranslateY;
+  imageModalStartDistance = getTouchDistance(touches[0], touches[1]);
+  imageModalPinchOffsetX = center.x - modalCenterX - imageModalTranslateX;
+  imageModalPinchOffsetY = center.y - modalCenterY - imageModalTranslateY;
+}
+
+function handleImageModalTouchStart(e) {
+  if (!isImageModalActive()) return;
+  e.preventDefault();
+  e.stopPropagation();
+  const modal = document.getElementById('imageModal');
+  if (modal) modal.classList.remove('is-panning', 'is-animating');
+  resetImageModalDismissTransform();
+  if (e.touches.length === 1) imageModalDidPinchGesture = false;
+  imageModalTouchMoved = false;
+
+  if (e.touches.length >= 2) {
+    imageModalDidPinchGesture = true;
+    beginImageModalPinch(e.touches);
+    return;
+  }
+
+  if (e.touches.length === 1) {
+    imageModalStartTranslateX = imageModalTranslateX;
+    imageModalStartTranslateY = imageModalTranslateY;
+    imageModalPanStartX = e.touches[0].clientX;
+    imageModalPanStartY = e.touches[0].clientY;
+    imageModalGestureStartX = e.touches[0].clientX;
+    imageModalGestureStartY = e.touches[0].clientY;
+    if (modal && imageModalScale > IMAGE_MODAL_MIN_SCALE) modal.classList.add('is-panning');
+  }
+}
+
+function handleImageModalTouchMove(e) {
+  if (!isImageModalActive()) return;
+  e.preventDefault();
+  e.stopPropagation();
+  imageModalTouchMoved = true;
+
+  if (e.touches.length >= 2 && imageModalStartDistance > 0) {
+    imageModalDidPinchGesture = true;
+    const modal = document.getElementById('imageModal');
+    if (!modal) return;
+    const center = getTouchCenter(e.touches[0], e.touches[1]);
+    const modalRect = modal.getBoundingClientRect();
+    const modalCenterX = modalRect.left + modalRect.width / 2;
+    const modalCenterY = modalRect.top + modalRect.height / 2;
+    const nextScale = clampImageModalScale(imageModalStartScale * (getTouchDistance(e.touches[0], e.touches[1]) / imageModalStartDistance));
+    const ratio = nextScale / imageModalStartScale;
+
+    imageModalScale = nextScale;
+    imageModalTranslateX = center.x - modalCenterX - (imageModalPinchOffsetX * ratio);
+    imageModalTranslateY = center.y - modalCenterY - (imageModalPinchOffsetY * ratio);
+    applyImageModalTransform();
+    return;
+  }
+
+  if (e.touches.length === 1 && imageModalScale > IMAGE_MODAL_MIN_SCALE) {
+    imageModalTranslateX = imageModalStartTranslateX + (e.touches[0].clientX - imageModalPanStartX);
+    imageModalTranslateY = imageModalStartTranslateY + (e.touches[0].clientY - imageModalPanStartY);
+    applyImageModalTransform();
+    return;
+  }
+
+  if (e.touches.length === 1 && imageModalScale <= IMAGE_MODAL_MIN_SCALE) {
+    if (imageModalDidPinchGesture) return;
+    const dismissDx = e.touches[0].clientX - imageModalGestureStartX;
+    const dismissDy = e.touches[0].clientY - imageModalGestureStartY;
+    if (Math.abs(dismissDy) > 6 && Math.abs(dismissDy) > Math.abs(dismissDx) * 0.75) {
+      setImageModalDismissProgress(dismissDx, dismissDy);
+    }
+  }
+}
+
+function handleImageModalTouchEnd(e) {
+  if (!isImageModalActive()) return;
+  e.preventDefault();
+  e.stopPropagation();
+  const modal = document.getElementById('imageModal');
+  if (modal) modal.classList.remove('is-panning');
+
+  if (e.touches.length >= 2) {
+    imageModalDidPinchGesture = true;
+    beginImageModalPinch(e.touches);
+    return;
+  }
+
+  if (e.touches.length === 1) {
+    if (imageModalDidPinchGesture) {
+      resetImageModalDismissTransform();
+      applyImageModalTransform();
+    }
+    imageModalStartTranslateX = imageModalTranslateX;
+    imageModalStartTranslateY = imageModalTranslateY;
+    imageModalPanStartX = e.touches[0].clientX;
+    imageModalPanStartY = e.touches[0].clientY;
+    return;
+  }
+
+  const changedTouch = e.changedTouches[0];
+  const now = Date.now();
+  if (imageModalDidPinchGesture) {
+    imageModalDidPinchGesture = false;
+    animateImageModalDismissCancel();
+    return;
+  }
+
+  if (changedTouch && imageModalScale <= IMAGE_MODAL_MIN_SCALE && imageModalTouchMoved) {
+    const swipeDx = changedTouch.clientX - imageModalGestureStartX;
+    const swipeDy = changedTouch.clientY - imageModalGestureStartY;
+    const isVerticalDismiss = Math.abs(swipeDy) > IMAGE_MODAL_DISMISS_SWIPE_THRESHOLD && Math.abs(swipeDy) > Math.abs(swipeDx) * 1.25;
+    if (isVerticalDismiss) {
+      animateImageModalDismiss(swipeDy);
+      return;
+    }
+  }
+
+  if (!imageModalTouchMoved && e.target === modal) {
+    closeImageModal();
+    return;
+  }
+
+  if (!imageModalTouchMoved && changedTouch && now - imageModalLastTapAt < 280) {
+    const nextScale = imageModalScale > IMAGE_MODAL_MIN_SCALE ? IMAGE_MODAL_MIN_SCALE : IMAGE_MODAL_DOUBLE_TAP_SCALE;
+    zoomImageModalAtPoint(nextScale, changedTouch.clientX, changedTouch.clientY);
+    imageModalLastTapAt = 0;
+    return;
+  }
+
+  imageModalLastTapAt = now;
+  if (imageModalDismissTranslateY !== 0) {
+    animateImageModalDismissCancel();
+    return;
+  }
+  applyImageModalTransform();
+}
+
+function initImageModalGestures() {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('imageModalContent');
+  if (!modal || !modalImg) return;
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeImageModal();
+  });
+
+  modal.addEventListener('touchstart', handleImageModalTouchStart, { passive: false });
+  modal.addEventListener('touchmove', handleImageModalTouchMove, { passive: false });
+  modal.addEventListener('touchend', handleImageModalTouchEnd, { passive: false });
+  modal.addEventListener('touchcancel', handleImageModalTouchEnd, { passive: false });
+
+  modal.addEventListener('wheel', (e) => {
+    if (!isImageModalActive()) return;
+    e.preventDefault();
+    const direction = e.deltaY > 0 ? -0.2 : 0.2;
+    zoomImageModalAtPoint(imageModalScale + direction, e.clientX, e.clientY);
+  }, { passive: false });
+
+  modalImg.addEventListener('dragstart', (e) => e.preventDefault());
+  modalImg.addEventListener('load', resetImageModalTransform);
+}
+
+initImageModalGestures();
+
+document.addEventListener('gesturestart', (e) => {
+  if (isImageModalActive()) e.preventDefault();
+}, { passive: false });
+
+document.addEventListener('gesturechange', (e) => {
+  if (isImageModalActive()) e.preventDefault();
+}, { passive: false });
+
+document.addEventListener('gestureend', (e) => {
+  if (isImageModalActive()) e.preventDefault();
+}, { passive: false });
+
+document.addEventListener('touchmove', (e) => {
+  if (isImageModalActive() && e.target.closest?.('#imageModal')) {
+    e.preventDefault();
+  }
+}, { passive: false });
 
 // Close modal with Escape key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
-    const modal = document.getElementById('imageModal');
-    if (modal && modal.classList.contains('active')) {
-      modal.classList.remove('active');
-    }
+    closeImageModal();
   }
 });
 
 // Image click interceptor
 document.body.addEventListener('click', (e) => {
   if (e.target.tagName === 'IMG' && e.target.closest('.main') && !e.target.closest('#imageModal')) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
     openImageModal(e.target.src);
   }
-}, { passive: true });
+});
 
 initCardWindowDragging();
 window.addEventListener('resize', updateActiveCardFrame);

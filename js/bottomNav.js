@@ -480,6 +480,8 @@ window.addEventListener('scroll', () => {
 
 // Any click on the page should immediately reveal the UI if it's currently hidden
 document.body.addEventListener('click', (e) => {
+  if (document.getElementById('imageModal')?.classList.contains('active') || e.target.closest?.('#imageModal')) return;
+
   if (document.body.classList.contains('mobile-controls-hidden')) {
     // Exclude timer interactions from summoning the UI while a test is running.
     if (!e.target.closest('.timer-display')) {
@@ -495,6 +497,8 @@ document.body.addEventListener('click', (e) => {
 }, { passive: true });
 
 document.body.addEventListener('touchstart', (e) => {
+  if (document.getElementById('imageModal')?.classList.contains('active') || e.target.closest?.('#imageModal')) return;
+
   if (e.target.closest('.sidebar-toggle-btn') || e.target.closest('.theme-toggle-wrapper') || e.target.closest('.bottom-recorder-shell') || e.target.closest('.bottom-recorder-handle')) {
     resetControlTimer();
   }

@@ -41,6 +41,12 @@
   touch-action: pan-y;
 }
 
+@media (max-width: 600px) {
+  .card-container {
+    transition: none;
+  }
+}
+
 .card-drag-handle {
   position: relative;
   align-self: center;
