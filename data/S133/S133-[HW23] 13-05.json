@@ -1,0 +1,38 @@
+{
+  "homework": [
+    {
+      "date": "[HW23] 13/05",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Fresh Mart",
+            "subject": "Your suggestion",
+            "sent": "September 23rd",
+            "body": "Thank you for using Fresh Mart!\nAs you are a regular customer of our supermarket, we would like to receive your suggestion so that we can enhance our service. Please email us if you have anything you want us to improve.\nThank you,\nBrian Wilson",
+            "instruction": "Respond to this email as if you are Johnson Holden. In your email, make THREE suggestions."
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What do you believe is the key to maintaining a healthy lifestyle?\n- Regular exercise\n- Balanced diet\n- Sufficient sleep"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Do you think online shops are a good place to buy clothes?"
+          }
+        }
+      ]
+    }
+  ]
+}
