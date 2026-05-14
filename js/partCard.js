@@ -707,6 +707,8 @@ let imageModalLastTapAt = 0;
 let imageModalScrollY = 0;
 let imageModalPreviousBodyStyles = null;
 let imageModalDismissTimer = null;
+let imageModalSourceRect = null;
+let imageModalSourceFilter = 'none';
 
 function isImageModalActive() {
   const modal = document.getElementById('imageModal');
@@ -763,11 +765,18 @@ function setImageModalBackdropOpacity(opacity) {
   modal.style.setProperty('--image-modal-backdrop-opacity', String(opacity));
 }
 
+function setImageModalBackdropBlur(blurPx) {
+  const modal = document.getElementById('imageModal');
+  if (!modal) return;
+  modal.style.setProperty('--image-modal-backdrop-blur', `${blurPx}px`);
+}
+
 function resetImageModalDismissTransform() {
   imageModalDismissTranslateX = 0;
   imageModalDismissTranslateY = 0;
   imageModalDismissScale = 1;
   setImageModalBackdropOpacity(0.75);
+  setImageModalBackdropBlur(4);
 }
 
 function resetImageModalTransform() {
@@ -788,21 +797,59 @@ function setImageModalDismissProgress(deltaX, deltaY) {
   imageModalDismissTranslateX = deltaX * 0.12;
   imageModalDismissTranslateY = deltaY;
   imageModalDismissScale = Math.max(0.86, 1 - (Math.abs(deltaY) / 1000));
-  const backdropOpacity = Math.max(0.14, 0.75 * (1 - (Math.abs(deltaY) / 420)));
+  const dismissProgress = Math.min(1, Math.abs(deltaY) / 420);
+  const backdropOpacity = Math.max(0.14, 0.75 * (1 - dismissProgress));
   setImageModalBackdropOpacity(backdropOpacity);
+  setImageModalBackdropBlur(Math.max(0, 4 * (1 - dismissProgress)));
   applyImageModalTransform();
+}
+
+function getImageModalSourceTarget() {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('imageModalContent');
+  if (!modal || !modalImg || !imageModalSourceRect) return null;
+
+  const modalRect = modal.getBoundingClientRect();
+  const baseWidth = modalImg.offsetWidth;
+  const baseHeight = modalImg.offsetHeight;
+  if (!baseWidth || !baseHeight) return null;
+
+  const targetCenterX = imageModalSourceRect.left + imageModalSourceRect.width / 2;
+  const targetCenterY = imageModalSourceRect.top + imageModalSourceRect.height / 2;
+  const modalCenterX = modalRect.left + modalRect.width / 2;
+  const modalCenterY = modalRect.top + modalRect.height / 2;
+  const targetScale = Math.max(0.12, Math.min(
+    imageModalSourceRect.width / baseWidth,
+    imageModalSourceRect.height / baseHeight
+  ));
+
+  return {
+    x: targetCenterX - modalCenterX,
+    y: targetCenterY - modalCenterY,
+    scale: targetScale
+  };
 }
 
 function animateImageModalDismiss(deltaY) {
   const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('imageModalContent');
   if (!modal) return;
   if (imageModalDismissTimer) clearTimeout(imageModalDismissTimer);
 
+  const sourceTarget = getImageModalSourceTarget();
   const direction = deltaY < 0 ? -1 : 1;
   modal.classList.add('is-animating');
-  imageModalDismissTranslateY = direction * (window.innerHeight * 0.72 + 120);
-  imageModalDismissScale = 0.82;
+  if (sourceTarget) {
+    if (modalImg) modalImg.style.filter = imageModalSourceFilter;
+    imageModalDismissTranslateX = sourceTarget.x - imageModalTranslateX;
+    imageModalDismissTranslateY = sourceTarget.y - imageModalTranslateY;
+    imageModalDismissScale = sourceTarget.scale / imageModalScale;
+  } else {
+    imageModalDismissTranslateY = direction * (window.innerHeight * 0.72 + 120);
+    imageModalDismissScale = 0.82;
+  }
   setImageModalBackdropOpacity(0);
+  setImageModalBackdropBlur(0);
   applyImageModalTransform();
 
   imageModalDismissTimer = setTimeout(() => {
@@ -855,11 +902,13 @@ function unlockImageModalPage() {
   window.scrollTo(0, imageModalScrollY);
 }
 
-function openImageModal(src) {
+function openImageModal(src, sourceElement = null) {
   const modal = document.getElementById('imageModal');
   const modalImg = document.getElementById('imageModalContent');
   if (modal && modalImg) {
     resetImageModalTransform();
+    imageModalSourceRect = sourceElement ? sourceElement.getBoundingClientRect() : null;
+    imageModalSourceFilter = sourceElement ? getComputedStyle(sourceElement).filter : 'none';
     modalImg.src = src;
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
@@ -878,8 +927,11 @@ function closeImageModal() {
     modal.classList.remove('active', 'is-panning', 'is-animating');
     modal.setAttribute('aria-hidden', 'true');
     modal.style.removeProperty('--image-modal-backdrop-opacity');
+    modal.style.removeProperty('--image-modal-backdrop-blur');
     if (modalImg) modalImg.removeAttribute('style');
     resetImageModalTransform();
+    imageModalSourceRect = null;
+    imageModalSourceFilter = 'none';
     unlockImageModalPage();
   }
 }
@@ -1106,7 +1158,7 @@ document.body.addEventListener('click', (e) => {
   if (e.target.tagName === 'IMG' && e.target.closest('.main') && !e.target.closest('#imageModal')) {
     e.preventDefault();
     e.stopImmediatePropagation();
-    openImageModal(e.target.src);
+    openImageModal(e.target.src, e.target);
   }
 });
 

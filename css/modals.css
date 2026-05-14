@@ -12,13 +12,15 @@
   z-index: 10000;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(var(--image-modal-backdrop-blur, 4px));
+  -webkit-backdrop-filter: blur(var(--image-modal-backdrop-blur, 4px));
   cursor: zoom-out;
   opacity: 0;
   transition:
     opacity var(--anim-duration-modal) var(--anim-easing-smooth),
-    background-color 160ms ease;
+    background-color 160ms ease,
+    backdrop-filter 160ms ease,
+    -webkit-backdrop-filter 160ms ease;
   overflow: hidden;
   touch-action: none;
   overscroll-behavior: contain;
@@ -52,13 +54,17 @@
 }
 
 .image-modal.is-animating img {
-  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 180ms ease;
 }
 
 .image-modal.is-animating {
   transition:
     opacity 180ms ease,
-    background-color 180ms ease;
+    background-color 180ms ease,
+    backdrop-filter 180ms ease,
+    -webkit-backdrop-filter 180ms ease;
 }
 
 body.image-modal-open {
