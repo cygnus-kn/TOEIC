@@ -1,0 +1,51 @@
+{
+  "homework": [
+    {
+      "date": "[HW24] 15/05",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "update@dailyjobseeker.com",
+            "to": "Anna Billings",
+            "subject": "Daily Jobseeker update",
+            "sent": "March 14, 20--",
+            "body": "Dear Daily Jobseeker subscriber,\n\nHere is the most recent job opening: Marleyhome Inc. is looking for an experienced accountant to fill a vacancy in its Accounting Department. The company needs someone with an accounting degree and at least three years of experience.\n\nContact Ralph Kramer, r_kramer@marleyhome.com.",
+            "instruction": "Respond to the e-mail as if you are interested in applying for the position. Make TWO requests for information about the job."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Mark Brown, Marketing Manager, CallingAfordable",
+            "to": "Mailing list",
+            "subject": "Great Off-peak Plan",
+            "sent": "January 9, 9:05 A.M.",
+            "body": "Dear CallingAfordable customer,\n\nCallingAfordable is offering an impressive new cell phone plan. The plan is just 10$ a month. Users can call other subscriptions when they use the same network as you without any charge. Furthermore, users get 3GB of cellular Data per day freely. This deal can’t be missed. Please contact us right away if you have any questions about this amazing offer!\n\nYours faithfully,\nMark Brown\nMarketing Manger, CallingAffordable",
+            "instruction": "Respond to the email as if you are a user. In your email to the company, you should include at least 3 questions."
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What is the best way for a company to improve its sales?\n- By introducing a new product\n- By improving its customer service\n- By launching an advertising campaign"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Do you agree or disagree with the following statement \"It is better to stay with the same job for many years than to switch jobs frequently.\""
+          }
+        }
+      ]
+    }
+  ]
+}

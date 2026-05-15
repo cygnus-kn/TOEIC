@@ -24,12 +24,11 @@
           }
         },
         {
-          "type": "opinion",
-          "label": "Express an Opinion",
-          "questionLabel": "Question 11",
-          "responseTime": 60,
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
           "content": {
-            "prompt": "Do you think online shops are a good place to buy clothes?"
+            "question": "Do you think online shops are a good place to buy clothes?"
           }
         }
       ]
