@@ -1,0 +1,75 @@
+{
+  "homework": [
+    {
+      "date": "[HW21] 18/05",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Jason Vornas, Best Vacation Rentals",
+            "to": "Pearl Seine",
+            "subject": "Vacation Rental Inquiry",
+            "sent": "March 4, 10:01 A.M.",
+            "body": "Thank you for expressing interest in our vacation rental houses. If you provide details\nabout what you're looking for, we can suggest rental houses that would fit your needs. We're happy to answer any questions.",
+            "instruction": "Respond to the e-mail as if you are looking for a vacation rental house. In your e-mail, ask THREE questions."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Gail Rogers",
+            "to": "City Convention Hall",
+            "subject": "Fundraising Concert",
+            "sent": "Sep 11th",
+            "body": "Hi, I heard that there is a concert in the City sometime this month. I want to join this\nconcert. Please email me with some further details.\nThank you",
+            "instruction": "Respond to this email as if you are an employee of City Convention Hall. In your email, provide at least THREE pieces of information about the concert."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2024-06-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2024-06-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2024-07-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 3",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2024-07-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 4",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -302,7 +302,7 @@ function renderCards() {
     const responseTime = part.responseTime || RESPONSE_TIMES[part.type] || 45;
 
     // Fix: If it's an Opinion Essay (Writing Q8), label it as Writing instead of Speaking
-    if (part.type === 'opinion' && part.label === 'Write an Opinion Essay') {
+    if (part.type === 'opinion' && (part.label === 'Write an Opinion Essay' || part.label === 'Write an Opinion')) {
       typeCategory = 'TOEIC Writing';
     }
 
