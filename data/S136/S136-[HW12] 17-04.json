@@ -1,0 +1,68 @@
+{
+  "homework": [
+    {
+      "date": "[HW12] 17/04",
+      "parts": [
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2023-05-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2023-05-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "When was the last time you went on a vacation? Where did you go for your vacation?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you like to stay at one location when you go on vacation? Why or Why not?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What would be the best thing about traveling abroad during your vacation?\n- Eat new kinds of food\n- Meeting other travelers\n- Visiting museums"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2023-05-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/drjmeeLYTaI?start=624&enablejsapi=1",
+            "timestamps": {
+              "q8": 624,
+              "q9": 667,
+              "q10": 698
+            },
+            "question": "Question 8: What are the exact date of the conference and where will it take place?\n\nQuestion 9: I was told that there will be a discussion on making budgets for short films. Will it be held on the second day?\n\nQuestion 10: During which sessions do I get to hear from Edgar Boyce at the conference?"
+          }
+        }
+      ]
+    }
+  ]
+}

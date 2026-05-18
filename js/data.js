@@ -18,7 +18,8 @@ const CLASSES_DATA = {
       { date: "[HW16] 04/05" },
       { date: "[HW15] 24/04" },
       { date: "[HW14] 22/04" },
-      { date: "[HW13] 20/04" }
+      { date: "[HW13] 20/04" },
+      { date: "[HW12] 17/04" }
     ],
     lesson: []
   },
