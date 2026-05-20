@@ -1,0 +1,75 @@
+{
+  "homework": [
+    {
+      "date": "[HW22] 20/05",
+      "parts": [
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2024-08-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2024-08-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2024-08b-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 3",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2024-08b-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 4",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Adam Jones, Director of Customer Relations",
+            "to": "Customer Relations Team",
+            "subject": "Grand Opening",
+            "sent": "December 20th",
+            "body": "Hello,\nI’m writing to remind you that our Grand Opening Ceremony will be happening at the\nBusiness Center tomorrow. I would like all of you to come earlier in the morning to prepare for the event. If you have any last-minute requests, please contact me immediately.\n\nBest regards,\nAdam Jones\nDirector of Customer Relations",
+            "instruction": "Respond to this email as if you are an employee. In your email, make THREE requests."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Sara Williams, Great Tour",
+            "to": "Mackenzy",
+            "subject": "Your feedback",
+            "sent": "January 12th",
+            "body": "Thank you for travelling with Great Tour during your Winter vacation. We would like to receive your feedback so that we can better our service more and more. Please email me back with your opinion about your trip.\n\nThank you,\nSara Williams",
+            "instruction": "Respond to this email as if you are Mackenzy. In your email, make THREE suggestions."
+          }
+        }
+      ]
+    }
+  ]
+}
