@@ -39,26 +39,7 @@ const CLASSES_DATA = {
     ],
     lesson: []
   },
-  S129: {
-    homework: [
-      { date: "[HW05] 31/03" },
-      { date: "[HW04] 13/04" },
-      { date: "[HW03] 12/04" }
-    ],
-    lesson: [
-      { date: "[Lesson-02] 10/04" },
-      { date: "[Lesson-01] 07/04" }
-    ]
-  },
-  S128: {
-    homework: [
-      { date: "[HW03] 13/04" },
-      { date: "[HW01] 10/04" }
-    ],
-    lesson: [
-      { date: "[Lesson-01] 09/04" }
-    ]
-  },
+
   "S001": {
     homework: [
       { date: "[HW18]" },
