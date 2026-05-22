@@ -1,0 +1,48 @@
+{
+  "homework": [
+    {
+      "date": "[HW27] 22/05",
+      "parts": [
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2024-08-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/-vNh1zAnMVU?start=618&enablejsapi=1",
+            "timestamps": {
+              "q8": 618,
+              "q9": 668,
+              "q10": 699
+            },
+            "question": "Question 8: Where will the interviews be held, and what time will the first interview start?\n\nQuestion 9: I heard that there are two applicants for the registered nurse position. Could you please check if I've got the right information?\n\nQuestion 10: Many of our employees think highly of people who previously worked for Lancaster General Hospital. Do we have any applicants on the schedule who have experience working there this time?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2023-12-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/dioRyNUokBM?start=629&enablejsapi=1",
+            "timestamps": {
+              "q8": 629,
+              "q9": 669,
+              "q10": 699
+            },
+            "question": "Question 8: What is the first session of the conference and when does it start and end?\n\nQuestion 9: I heard there's a buffet lunch for participants. Is there an extra cost for that?\n\nQuestion 10: I really enjoyed last year's workshops. What workshops are planned for this year?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Some people like taking a long vacation each year. Others enjoy several shorter vacations.\nWhich do you prefer? Give reasons and examples to support your opinion."
+          }
+        }
+      ]
+    }
+  ]
+}

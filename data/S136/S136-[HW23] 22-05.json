@@ -1,0 +1,51 @@
+{
+  "homework": [
+    {
+      "date": "[HW23] 22/05",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Justin Thimble",
+            "to": "John Harlow, Safety Division Manager",
+            "subject": "Volunteer workshop",
+            "sent": "January 1st",
+            "body": "Dear Mr. Halow,\nAs you suggested in the last meeting, you will organize a workshop about the Safety Procedure and it is advised that all of us should attend to gain more experience. Before signing to the workshop, I want to know more about it. Please email me back with further details. Hope to hear from you soon!",
+            "instruction": "Respond to this email as if you are John Harlow. In your email, provide at least THREE pieces of information about the workshop."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Robert Bremen",
+            "to": "Glenn Cameras Customer Service",
+            "subject": "Product return",
+            "sent": "February 9, 10:51 A.M.",
+            "body": "To who it may concern,\nI recently purchased a battery for my camera from your Web site. The online description said that the battery would be compatible with my camera, but it's the wrong size. What do I need to do to return this battery and get the right one for my camera?\nThanks,\nRobert Bremen",
+            "instruction": "Respond to the e-mail as if you are a customer service representative. In your e-mail, give TWO pieces of information and ask ONE question."
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Which of the following activities do you think you must try when visiting a new city?\n- Eating at a local restaurant\n- Shopping in the neighborhood\n- Going on a guided tour"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What are some disadvantages of attending a school located far from your hometown?"
+          }
+        }
+      ]
+    }
+  ]
+}
