@@ -485,8 +485,7 @@ function renderPartContent(part, partIndex) {
       `;
 
     case 'opinion': {
-      const isEssay = part.label === 'Write an Opinion Essay';
-      return `<div class="opinion-prompt">${isEssay ? '<strong>Essay:</strong> ' : ''}${formatMarkdown(part.content.prompt)}</div>`;
+      return `<div class="opinion-prompt">${formatMarkdown(part.content.prompt)}</div>`;
     }
 
     case 'email-response':

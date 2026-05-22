@@ -491,7 +491,6 @@ A standard writing session typically follows this order (individual parts or mix
   }
 }
 ```
-> The app automatically prepends a bold **"Essay:"** label when the `label` is `"Write an Opinion Essay"`.  
 > **Never add "Essay:" manually to the `prompt` text.** For Speaking Q11 (`"Express an Opinion"`), no label is shown.
 
 ---
