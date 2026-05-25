@@ -1,0 +1,51 @@
+{
+  "homework": [
+    {
+      "date": "[HW24] 25/05",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "S.Ramsey@lindco.com.au",
+            "to": "E.Mayer@lindco.com.au",
+            "subject": "Employee training session",
+            "sent": "June 4, 11:21 A.M.",
+            "body": "Dear Ms. Mayer,\nI received a memo telling me to attend a customer service training session next Saturday. That is outside my normal working hours. As you are my manager, could you please tell me more about this training and why I'm being asked to take it?\nThanks,\nSheila Ramsey",
+            "instruction": "Respond to the e-mail as if you are Sheila Ramsey's manager. In your e-mail, give TWO pieces of information and ONE reason."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Megan Piume, Project Manager",
+            "to": "All editors",
+            "subject": "Changes to cover",
+            "sent": "March 23, 5:21 P.M.",
+            "body": "Hi, everyone. I’ve decided we need to make some changes to the cover of “Business Success”, the book we are scheduled to send to the client for confirmation. I am looking for your ideas about how to improve the cover, so please email them to me by the end of the day.",
+            "instruction": "Respond to the email as if you are an editor. In your email to Megan Plume, make at least THREE suggestions."
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What are some advantages of working in a busy city rather than working in a quiet area?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What is the most important thing that you would consider when buying new shoes?\n- Comfort\n- Durability\n- Appearance"
+          }
+        }
+      ]
+    }
+  ]
+}

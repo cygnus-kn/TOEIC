@@ -1,0 +1,48 @@
+{
+  "homework": [
+    {
+      "date": "[HW28] 25/05",
+      "parts": [
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2024-09b-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/uN6SiFjMpao?start=623&enablejsapi=1",
+            "timestamps": {
+              "q8": 623,
+              "q9": 665,
+              "q10": 697
+            },
+            "question": "Question 8: When will the event take place? What time will it start and end?\n\nQuestion 9: I heard that there will be time to socialize and get to know the other participants during lunch. Is that correct?\n\nQuestion 10: What hands-on workshops will be available where I can actually learn how to make bakery items?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2024-10-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/MwMvTnc9noc?start=623&enablejsapi=1",
+            "timestamps": {
+              "q8": 623,
+              "q9": 668,
+              "q10": 701
+            },
+            "question": "Question 8: When will the interviews take place? Where should I go to participate in the interviews?\n\nQuestion 9: One of my colleagues mentioned that there is only one interview for the software engineer position scheduled for the afternoon. What time will it start?\n\nQuestion 10: I've heard that people who used to work at Innovatech are competent and well-trained. Are we interviewing anyone who has worked there this time?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "What do you think are the advantages and disadvantages of working from home? Give reasons and examples to support your opinion."
+          }
+        }
+      ]
+    }
+  ]
+}
