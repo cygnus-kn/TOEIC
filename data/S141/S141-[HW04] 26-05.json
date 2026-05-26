@@ -1,0 +1,93 @@
+{
+  "homework": [
+    {
+      "date": "[HW04] 26/05",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "On Monday, May 7, we will start installing new telephone lines in most of your offices. Unfortunately, you won't be able to use your telephones until the work is completed later in the week. This will affect your work on Monday, Tuesday, and Wednesday morning However, you can use the telephones in the main reception area during that time."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "All right everyone, we've come to the end of our tour of the downtown area, and we're about to enter the public gardens, where we'll take a short break. There's a café here, where you can rest, get something to drink, and look over the schedule for the rest of the day. Let me know if you have any questions."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Thank you for calling Madison Cinema, Bristol’s favorite movie theater.This week, we are offering special discounts on popcorn, sweets, and other snacks. Please press one to hear the list of this week’s movies, or press two to buy tickets in advance. If you have any other requests, press three to speak to our staff member."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic3.webp",
+            "imagePlaceholder": "🖼️ Picture 3",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic4.webp",
+            "imagePlaceholder": "🖼️ Picture 4",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic5.webp",
+            "imagePlaceholder": "🖼️ Picture 5",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 03-pic6.webp",
+            "imagePlaceholder": "🖼️ Picture 6",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        }
+      ]
+    }
+  ]
+}
