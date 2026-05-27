@@ -512,7 +512,7 @@ function renderPartContent(part, partIndex) {
         </div>
         ${part.content.wordPairs 
           ? `<div class="sentence-words-list" style="display:flex; flex-direction:column; gap:8px;">
-              ${part.content.wordPairs.map((pair, idx) => `<div class="sentence-words" style="padding:0; font-size:20px;">${idx + 1}. ${pair[0]} / ${pair[1]}</div>`).join('')}
+              ${part.content.wordPairs.map((pair, idx) => `<div class="sentence-words" style="padding:0; font-size:20px;">${pair[0]} / ${pair[1]}</div>`).join('')}
              </div>`
           : (part.content.words ? `<div class="sentence-words">${part.content.words[0]} / ${part.content.words[1]}</div>` : '')}
       `;

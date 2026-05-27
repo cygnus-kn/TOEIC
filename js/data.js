@@ -14,6 +14,7 @@ const CLASSES_DATA = {
   },
   S136: {
     homework: [
+      { date: "[HW25] 27/05" },
       { date: "[HW24] 25/05" },
       { date: "[HW23] 22/05" },
       { date: "[HW22] 20/05" },
@@ -32,6 +33,7 @@ const CLASSES_DATA = {
   },
   S133: {
     homework: [
+      { date: "[HW29] 27/05" },
       { date: "[HW28] 25/05" },
       { date: "[HW27] 22/05" },
       { date: "[HW26] 20/05" },
