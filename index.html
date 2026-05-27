@@ -49,10 +49,14 @@
       (function() {
         try {
           var sidebar = document.getElementById('sidebar');
+          var collapseBtn = document.getElementById('sidebarCollapseBtn');
           var savedWidth = localStorage.getItem('sidebarWidth');
           if (savedWidth) sidebar.style.width = savedWidth;
-          if (localStorage.getItem('sidebarCollapsed') === 'true') {
+          var isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+          if (isCollapsed) {
             sidebar.classList.add('collapsed');
+          } else {
+            if (collapseBtn) collapseBtn.classList.add('is-extended');
           }
           sidebar.style.transition = 'none';
         } catch (e) {}
