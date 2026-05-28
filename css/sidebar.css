@@ -184,6 +184,13 @@ body:not(body.dark-theme) .sidebar-toggle-btn:hover {
     pointer-events: none;
     transform: translateY(-15px);
   }
+
+  /* Exception: on the welcome screen, always show the sidebar button */
+  body.mobile-controls-hidden.on-welcome-screen .main-top-bar {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
 }
 
 /* Logic to show/hide buttons based on sidebar state (simplified for top-bar) */

@@ -556,6 +556,7 @@ function showHomeworkViewer() {
   welcomeState.style.display = 'none';
   lessonViewer.style.display = 'none';
   homeworkViewer.style.display = 'flex';
+  document.body.classList.remove('on-welcome-screen');
   if (!wasHidden) return;
   homeworkViewer.style.animation = 'none';
   homeworkViewer.offsetHeight;
@@ -566,6 +567,7 @@ function showLessonViewer() {
   welcomeState.style.display = 'none';
   homeworkViewer.style.display = 'none';
   lessonViewer.style.display = 'flex';
+  document.body.classList.remove('on-welcome-screen');
   lessonViewer.style.animation = 'none';
   lessonViewer.offsetHeight;
   lessonViewer.style.animation = '';
@@ -760,7 +762,8 @@ async function restoreAppState() {
   }
 }
 
-// Initialize
+// Initialize — mark welcome screen until a viewer is shown
+document.body.classList.add('on-welcome-screen');
 restoreAppState().finally(() => {
   if (typeof window.reapplyLayoutMode === 'function') {
     window.reapplyLayoutMode();

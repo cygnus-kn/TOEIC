@@ -1,0 +1,93 @@
+{
+  "homework": [
+    {
+      "date": "[HW05] 28/05",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Good evening and welcome to our performance. On behalf of the Woodson Dance Company, I'd like to thank you for supporting the arts. Tonight's program will feature the folk music, traditional costumes, and visual art of the Caribbean. Because this is the final show of our season, there will be a reception in the lobby after our program."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Are you looking for accommodations in Stanton Beach for your summer vacation? During the months of June, July, and August, hotel prices can be extremely high. But Bondwell Rentals offers furnished houses and apartments for large groups at very reasonable prices. And all of our properties are just steps away from the ocean. To learn more, contact our office today!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "In weather news this week, the Cooperstown area is going to get significantly cooler. After having such a hot and humid August, it will be a nice change to see some lower temperatures. Expect cool breezes, cloudy skies, and occasional rain showers."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 04-pic3.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 04-pic6.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 05-pic3.webp",
+            "imagePlaceholder": "🖼️ Picture 3",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 05-pic5.webp",
+            "imagePlaceholder": "🖼️ Picture 4",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 05-pic6.webp",
+            "imagePlaceholder": "🖼️ Picture 5",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/homework pictures/HW Day 05-pic7.webp",
+            "imagePlaceholder": "🖼️ Picture 6",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        }
+      ]
+    }
+  ]
+}
