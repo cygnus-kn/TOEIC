@@ -98,6 +98,22 @@
             "body": "It is time for a meeting of the Social Committee. We need to start planning the annual year-end party. I would like all members of the committee to meet next Friday morning from 9 to 11 in Conference Room A. Please let me know as soon as possible if you are available to attend this meeting.\n\nThank you.\nGeorge Pinkney\nSocial Committee Chair",
             "instruction": "Respond to the e-mail as if you are a member of the Social Committee. In your e-mail, explain ONE problem and make TWO suggestions."
           }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Do you prefer to buy products at a convenience store or a supermarket? Why?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What do you believe is the key to maintaining a healthy lifestyle?\n- Regular exercise\n- Balanced diet\n- Sufficient sleep"
+          }
         }
       ]
     }
