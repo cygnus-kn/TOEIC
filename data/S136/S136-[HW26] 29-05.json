@@ -1,0 +1,33 @@
+{
+  "homework": [
+    {
+      "date": "[HW26] 29/05",
+      "parts": [
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Do you think online shops are a good place to buy clothes?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Do you agree or disagree with the following statement \"It is better to stay with the same job for many years than to switch jobs frequently.\""
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "content": {
+            "prompt": "Do you agree or disagree with the following statement:\nSuccess is measured by how much money you make.\nGive reasons or examples to support your opinion."
+          }
+        }
+      ]
+    }
+  ]
+}
