@@ -1,0 +1,33 @@
+{
+  "homework": [
+    {
+      "date": "[HW27] 01/06",
+      "parts": [
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What are some advantages of working in a busy city rather than working in a quiet area?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Do you prefer to keep your old clothes or books that you don't use anymore instead of getting rid of them? Why?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "content": {
+            "prompt": "Some people like taking a long vacation each year. Others enjoy several shorter vacations.\nWhich do you prefer? Give reasons and examples to support your opinion."
+          }
+        }
+      ]
+    }
+  ]
+}
