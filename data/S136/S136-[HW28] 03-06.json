@@ -1,0 +1,38 @@
+{
+  "homework": [
+    {
+      "date": "[HW28] 03/06",
+      "parts": [
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "responseTime": 30,
+          "content": {
+            "question": "What is the most important thing that you would consider when buying new shoes?\n- Comfort\n- Durability\n- Appearance"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "responseTime": 30,
+          "content": {
+            "question": "Which of the following would you consider the most when choosing a hotel to stay:\n- Free parking\n- Friendly staff members\n- Convenient location"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "More employees prefer to work from home instead of going to the office. What do you think are the pros and cons of working remotely? Give reasons and examples to support your opinion."
+          }
+        }
+      ]
+    }
+  ]
+}
