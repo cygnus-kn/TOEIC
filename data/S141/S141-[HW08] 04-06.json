@@ -1,0 +1,117 @@
+{
+  "homework": [
+    {
+      "date": "[HW08] 04/06",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Thank you for attending this press conference. It's my pleasure to present our company's new director, Linda Smith. Ms. Smith will focus on expanding our client base, supporting our employees, and improving our products. Since she has over thirty years' experience in our field, I'm confident she will provide valuable leadership. Now, please welcome Ms. Linda Smith."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Are you thinking of taking a trip? Let the team at Travel Smart help you find the best deals on airline tickets, hotel reservations, and tours. For more than thirty years, our agency has been providing personalized service and convenience to travelers. Whether your destination is international or domestic, we can make your trip a success."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Question 3-4",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-01-2023-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "prepTime": 15,
+          "content": {
+            "question": "Where do you currently live, and what are the main attractions there?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "prepTime": 15,
+          "content": {
+            "question": "If you could live anywhere, where would you like to live?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "prepTime": 15,
+          "content": {
+            "question": "Which town do you live in, and how long have you been living there?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "prepTime": 15,
+          "content": {
+            "question": "Do you have a plan to move out in the near future? Why or why not?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "prepTime": 15,
+          "content": {
+            "question": "What kind of discount coupons are you most likely to use?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "prepTime": 15,
+          "content": {
+            "question": "Do you use discount coupons more often now than you did in the past? Why or why not?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "prepTime": 15,
+          "content": {
+            "question": "How often do you go to a convenience store, and where is the nearest one from your house?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "prepTime": 15,
+          "content": {
+            "question": "What do you normally buy at convenience stores?"
+          }
+        }
+      ]
+    }
+  ]
+}
