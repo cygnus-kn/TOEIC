@@ -80,6 +80,7 @@ const confirmSaveBtn = document.getElementById('confirmSave');
 // --- Recorder state ---
 let mediaRecorder = null;
 let mediaStream = null;
+let wakeLock = null;
 let recordingStartedAt = 0;
 let recordingTicker = null;
 let recordingLimitTimeout = null;
@@ -414,6 +415,11 @@ async function startRecording() {
 
       stopVoiceTranscription();
 
+      if (wakeLock !== null) {
+        wakeLock.release().catch(err => console.warn('Wake Lock release error:', err));
+        wakeLock = null;
+      }
+
       const previous = recordingTaskKey ? recordings[recordingTaskKey] : null;
       if (previous?.url) URL.revokeObjectURL(previous.url);
 
@@ -441,6 +447,14 @@ async function startRecording() {
     localRecorder.start(1000);
     startVoiceTranscription();
     updateBottomNavState();
+
+    try {
+      if ('wakeLock' in navigator) {
+        wakeLock = await navigator.wakeLock.request('screen');
+      }
+    } catch (err) {
+      console.warn('Wake Lock error:', err);
+    }
 
     recordingTicker = setInterval(() => {
       updateBottomNavState();
