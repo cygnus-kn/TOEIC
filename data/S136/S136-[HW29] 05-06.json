@@ -1,0 +1,66 @@
+{
+  "homework": [
+    {
+      "date": "[HW29] 05/06",
+      "parts": [
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2023-08-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/GA-sxd6_i7s?start=628&enablejsapi=1",
+            "timestamps": {
+              "q8": 628,
+              "q9": 673,
+              "q10": 702
+            },
+            "question": "Question 8: Who will be delivering the first lecture, and what will it cover?\n\nQuestion 9: Are there any opportunities to receive a discount on the registration fee?\n\nQuestion 10: I am very interested in improving my flexibility. Could you recommend any sessions that would be beneficial for someone like me?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/speaking-pictures/GwenTV-2023-10-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/AcM1ENo_QjE?start=621&enablejsapi=1",
+            "timestamps": {
+              "q8": 621,
+              "q9": 668,
+              "q10": 701
+            },
+            "question": "Question 8: What time is the first interview and who is the applicant?\n\nQuestion 9: As far as I remember, I am scheduled to interview a candidate for the HR manager position in the afternoon. Am I right?\n\nQuestion 10: Based on my previous experiences, individuals from Anchor Advisors have shown exceptional competence in their roles. Are there any candidates from Anchor Advisors scheduled for interviews this time?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Topic 1",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Do you think it is important to take a class on public speaking?\nWhy or why not? Give reasons and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Topic 2",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Some people find that listening to music help them focus while other find them distracting.\nDo you think music can help people to focus or not? Give reasons and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Topic 3",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "More people are using electric-powered devices because it is eco-friendly.\nIn your opinion, which electric device benefits the environment the most? Give reasons and examples to support your opinion."
+          }
+        }
+      ]
+    }
+  ]
+}
