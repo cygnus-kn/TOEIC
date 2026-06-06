@@ -1,50 +1,54 @@
 {
-  "date": "[HW09] 06/06",
-  "parts": [
+  "homework": [
     {
-      "type": "respond-questions-30",
-      "label": "Respond to Questions",
-      "questionLabel": "Question 7",
-      "prepTime": 30,
-      "content": {
-        "question": "Do you prefer watching sports live or on television?"
-      }
-    },
-    {
-      "type": "respond-questions-30",
-      "label": "Respond to Questions",
-      "questionLabel": "Question 7",
-      "prepTime": 30,
-      "content": {
-        "question": "Do you think fast food is popular in Vietnam? Why or why not?"
-      }
-    },
-    {
-      "type": "respond-questions-30",
-      "label": "Respond to Questions",
-      "questionLabel": "Question 7",
-      "prepTime": 30,
-      "content": {
-        "question": "People exercise in many different ways. What are some advantages of choosing walking instead of other forms of exercise?"
-      }
-    },
-    {
-      "type": "respond-questions-30",
-      "label": "Respond to Questions",
-      "questionLabel": "Question 7",
-      "prepTime": 30,
-      "content": {
-        "question": "What is the most important thing to prevent health issue?\n- Exercise\n- Diet\n- Sleep"
-      }
-    },
-    {
-      "type": "respond-questions-30",
-      "label": "Respond to Questions",
-      "questionLabel": "Question 7",
-      "prepTime": 30,
-      "content": {
-        "question": "If you were deciding where to eat, which of the following factors would most influence your decision? Why?\n- The menu\n- The atmosphere\n- The review"
-      }
+      "date": "[HW09] 06/06",
+      "parts": [
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "Do you prefer watching sports live or on television?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "Do you think fast food is popular in Vietnam? Why or why not?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "People exercise in many different ways. What are some advantages of choosing walking instead of other forms of exercise?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "What is the most important thing to prevent health issue?\n- Exercise\n- Diet\n- Sleep"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "If you were deciding where to eat, which of the following factors would most influence your decision? Why?\n- The menu\n- The atmosphere\n- The review"
+          }
+        }
+      ]
     }
   ]
 }
