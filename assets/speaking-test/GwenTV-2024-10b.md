@@ -10,10 +10,10 @@ Attention passengers. We are encountering a bit of turbulence. For your safety, 
 ### Part 2: Describe a picture
 
 Question 3:
-![Describe a picture](/Users/cygnus/Documents/GitHub/Homework/assets/speaking-pictures/GwenTV-2024-10b-picture-1.png)
+![Describe a picture](/Users/cygnus/Documents/GitHub/Homework/assets/speaking-pictures/GwenTV-2024-10b-picture-1.webp)
 
 Question 4:
-![Describe a picture](/Users/cygnus/Documents/GitHub/Homework/assets/speaking-pictures/GwenTV-2024-10b-picture-2.png)
+![Describe a picture](/Users/cygnus/Documents/GitHub/Homework/assets/speaking-pictures/GwenTV-2024-10b-picture-2.webp)
 
 ### Part 3: Response to questions
 
@@ -33,7 +33,7 @@ Which of the following activities would you enjoy the most while traveling:
 
 https://www.youtube.com/watch?v=0qTnwcE4vOc
 
-![Respond to questions using information provided](/Users/cygnus/Documents/GitHub/Homework/assets/speaking-pictures/GwenTV-2024-10b-picture-3.png)
+![Respond to questions using information provided](/Users/cygnus/Documents/GitHub/Homework/assets/speaking-pictures/GwenTV-2024-10b-picture-3.webp)
 
 Question 8:
 When are the first and last days of the December program? What is the registration deadline?

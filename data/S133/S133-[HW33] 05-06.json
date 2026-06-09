@@ -8,7 +8,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 1",
           "content": {
-            "imageUrl": "assets/writing-pictures/Test-01/test-1-pic-1.webp",
+            "imageUrl": "assets/writing-pictures/Practice-Test-01/Practice-Test-01-pic-1.webp",
             "wordPairs": [
               [
                 "sit",
@@ -22,7 +22,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 2",
           "content": {
-            "imageUrl": "assets/writing-pictures/Test-01/test-1-pic-2.webp",
+            "imageUrl": "assets/writing-pictures/Practice-Test-01/Practice-Test-01-pic-2.webp",
             "wordPairs": [
               [
                 "wind",
@@ -36,7 +36,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 3",
           "content": {
-            "imageUrl": "assets/writing-pictures/Test-01/test-1-pic-3.webp",
+            "imageUrl": "assets/writing-pictures/Practice-Test-01/Practice-Test-01-pic-3.webp",
             "wordPairs": [
               [
                 "if",
@@ -50,7 +50,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 4",
           "content": {
-            "imageUrl": "assets/writing-pictures/Test-01/test-1-pic-4.webp",
+            "imageUrl": "assets/writing-pictures/Practice-Test-01/Practice-Test-01-pic-4.webp",
             "wordPairs": [
               [
                 "while",
@@ -64,7 +64,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 5",
           "content": {
-            "imageUrl": "assets/writing-pictures/Test-01/test-1-pic-5.webp",
+            "imageUrl": "assets/writing-pictures/Practice-Test-01/Practice-Test-01-pic-5.webp",
             "wordPairs": [
               [
                 "box",
