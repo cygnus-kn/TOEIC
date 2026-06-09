@@ -8,7 +8,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-03-2023-picture-3.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-03-2023-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/fMDRgKYFzWY?start=619&enablejsapi=1",
             "timestamps": {
               "q8": 619,
@@ -23,7 +23,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-07-2023-picture-3.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-07-2023-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/PTT0RWjgbpk?start=619&enablejsapi=1",
             "timestamps": {
               "q8": 619,
@@ -38,7 +38,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-09-2023-picture-3.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-09-2023-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/-gf8cJ5oHEI?start=617&enablejsapi=1",
             "timestamps": {
               "q8": 617,
@@ -53,7 +53,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-04-2023-picture-3.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-04-2023-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/e0DNbA4B4Y0?start=618&enablejsapi=1",
             "timestamps": {
               "q8": 618,
@@ -83,7 +83,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-04-2023-picture-1.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-04-2023-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -92,7 +92,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-04-2023-picture-2.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-04-2023-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }

@@ -8,7 +8,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 1",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-1.webp",
+            "imageUrl": "assets/pictures (writing)/HW19-workbook-p39-pic-1.webp",
             "wordPairs": [
               [
                 "picture",
@@ -34,7 +34,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 2",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-2.webp",
+            "imageUrl": "assets/pictures (writing)/HW19-workbook-p39-pic-2.webp",
             "wordPairs": [
               [
                 "table",
@@ -60,7 +60,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 3",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-3.webp",
+            "imageUrl": "assets/pictures (writing)/HW19-workbook-p39-pic-3.webp",
             "wordPairs": [
               [
                 "on",
@@ -86,7 +86,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 4",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW18-workbook-p40-pic-1.webp",
+            "imageUrl": "assets/pictures (writing)/HW18-workbook-p40-pic-1.webp",
             "wordPairs": [
               [
                 "pedestrian",
@@ -112,7 +112,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 5",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW18-workbook-p40-pic-2.webp",
+            "imageUrl": "assets/pictures (writing)/HW18-workbook-p40-pic-2.webp",
             "wordPairs": [
               [
                 "get",
@@ -138,7 +138,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 6",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW18-workbook-p40-pic-3.webp",
+            "imageUrl": "assets/pictures (writing)/HW18-workbook-p40-pic-3.webp",
             "wordPairs": [
               [
                 "Play",

@@ -34,14 +34,14 @@
           "topic": "Describe a Picture",
           "instruction": "Think about how you would describe these pictures. Take 45 seconds to prepare each one.",
           "questions": [
-            "<img src=\"assets/speaking-pictures/S141-HW03-page26-3.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
-            "<img src=\"assets/speaking-pictures/S141-HW03-page26-5.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
-            "<img src=\"assets/homework pictures/HW Day 03-pic1.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
-            "<img src=\"assets/homework pictures/HW Day 03-pic2.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
-            "<img src=\"assets/homework pictures/HW Day 03-pic3.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
-            "<img src=\"assets/homework pictures/HW Day 03-pic4.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
-            "<img src=\"assets/homework pictures/HW Day 03-pic5.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
-            "<img src=\"assets/homework pictures/HW Day 03-pic6.webp\" style=\"max-width: 100%; border-radius: 8px;\">"
+            "<img src=\"assets/pictures (speaking)/S141-HW03-page26-3.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
+            "<img src=\"assets/pictures (speaking)/S141-HW03-page26-5.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
+            "<img src=\"assets/pictures (speaking)/HW Day 03-pic1.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
+            "<img src=\"assets/pictures (speaking)/HW Day 03-pic2.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
+            "<img src=\"assets/pictures (speaking)/HW Day 03-pic3.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
+            "<img src=\"assets/pictures (speaking)/HW Day 03-pic4.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
+            "<img src=\"assets/pictures (speaking)/HW Day 03-pic5.webp\" style=\"max-width: 100%; border-radius: 8px;\">",
+            "<img src=\"assets/pictures (speaking)/HW Day 03-pic6.webp\" style=\"max-width: 100%; border-radius: 8px;\">"
           ],
           "responseTime": 45
         }

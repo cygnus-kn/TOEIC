@@ -23,7 +23,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-02-2024-picture-1.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-02-2024-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -32,7 +32,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-02-2024-picture-2.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-02-2024-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -66,7 +66,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-02-2024-picture-3.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-02-2024-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/8DR7Cjv-AZo?start=626&enablejsapi=1",
             "timestamps": {
               "q8": 626,

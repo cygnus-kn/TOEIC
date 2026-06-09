@@ -8,7 +8,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Questions 3-4",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-2023-05-picture-1.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2023-05-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -18,7 +18,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Questions 3-4",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-2023-05-picture-2.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2023-05-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -52,7 +52,7 @@
           "label": "Respond to Information",
           "questionLabel": "Questions 8-10",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-2023-05-picture-3.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2023-05-picture-3.webp",
             "videoUrl": "https://www.youtube.com/embed/drjmeeLYTaI?start=624&enablejsapi=1",
             "timestamps": {
               "q8": 624,

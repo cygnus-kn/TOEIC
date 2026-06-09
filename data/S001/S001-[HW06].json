@@ -31,7 +31,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/homework pictures/HW Day 06-pic1.webp",
+            "imageUrl": "assets/pictures (speaking)/HW Day 06-pic1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -41,7 +41,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/homework pictures/HW Day 06-pic2.webp",
+            "imageUrl": "assets/pictures (speaking)/HW Day 06-pic2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           },

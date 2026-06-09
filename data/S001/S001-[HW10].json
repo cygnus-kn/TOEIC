@@ -23,7 +23,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-03-2023-picture-1.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-03-2023-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -32,7 +32,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-03-2023-picture-2.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-03-2023-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -66,12 +66,12 @@
           "label": "Respond to Information",
           "questionLabel": "Practice 1",
           "content": {
-            "imageUrl": "assets/Part 4 audio/Part 4 - Practice 1.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Part 4 - Practice 1.webp",
             "imagePlaceholder": "🖼️ Practice 1 Table",
             "audioUrls": [
-              "assets/Part 4 audio/Practice 1/Practice 1-q8.webm",
-              "assets/Part 4 audio/Practice 1/Practice 1-q9.webm",
-              "assets/Part 4 audio/Practice 1/Practice 1-q10.webm"
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 1/Practice 1-q8.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 1/Practice 1-q9.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 1/Practice 1-q10.webm"
             ],
             "questionLabels": [
               "8",
@@ -86,12 +86,12 @@
           "label": "Respond to Information",
           "questionLabel": "Practice 2",
           "content": {
-            "imageUrl": "assets/Part 4 audio/Part 4 - Practice 2.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Part 4 - Practice 2.webp",
             "imagePlaceholder": "🖼️ Practice 2 Table",
             "audioUrls": [
-              "assets/Part 4 audio/Practice 2/Practice 2-q8.webm",
-              "assets/Part 4 audio/Practice 2/Practice 2-q9.webm",
-              "assets/Part 4 audio/Practice 2/Practice 2-q10.webm"
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 2/Practice 2-q8.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 2/Practice 2-q9.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 2/Practice 2-q10.webm"
             ],
             "questionLabels": [
               "8",

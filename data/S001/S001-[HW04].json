@@ -31,7 +31,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/homework pictures/HW Day 04-pic1.webp",
+            "imageUrl": "assets/pictures (speaking)/HW Day 04-pic1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -41,7 +41,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/homework pictures/HW Day 04-pic2.webp",
+            "imageUrl": "assets/pictures (speaking)/HW Day 04-pic2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -51,7 +51,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/homework pictures/HW Day 04-pic3.webp",
+            "imageUrl": "assets/pictures (speaking)/HW Day 04-pic3.webp",
             "imagePlaceholder": "🖼️ Picture 3",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -61,7 +61,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/homework pictures/HW Day 04-pic4.webp",
+            "imageUrl": "assets/pictures (speaking)/HW Day 04-pic4.webp",
             "imagePlaceholder": "🖼️ Picture 4",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -71,7 +71,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/homework pictures/HW Day 04-pic5.webp",
+            "imageUrl": "assets/pictures (speaking)/HW Day 04-pic5.webp",
             "imagePlaceholder": "🖼️ Picture 5",
             "prompt": "Describe the picture in as much detail as you can."
           },
@@ -81,7 +81,7 @@
           "type": "describe-picture",
           "label": "Describe a Picture",
           "content": {
-            "imageUrl": "assets/homework pictures/HW Day 04-pic6.webp",
+            "imageUrl": "assets/pictures (speaking)/HW Day 04-pic6.webp",
             "imagePlaceholder": "🖼️ Picture 6",
             "prompt": "Describe the picture in as much detail as you can."
           },

@@ -8,7 +8,7 @@
           "label": "Translate to English",
           "questionLabel": "Question 1",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW19-p127-pic-1.webp",
+            "imageUrl": "assets/pictures (writing)/HW19-p127-pic-1.webp",
             "text": "Người phụ nữ đang sử dụng máy vi tính trong văn phòng."
           }
         },
@@ -17,7 +17,7 @@
           "label": "Translate to English",
           "questionLabel": "Question 2",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW19-p127-pic-2.webp",
+            "imageUrl": "assets/pictures (writing)/HW19-p127-pic-2.webp",
             "text": "Người phụ nữ đang đạp xe đạp vào buổi sáng."
           }
         },
@@ -26,7 +26,7 @@
           "label": "Translate to English",
           "questionLabel": "Question 3",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW19-p127-pic-3.webp",
+            "imageUrl": "assets/pictures (writing)/HW19-p127-pic-3.webp",
             "text": "Có 3 nhân viên đang ngồi xung quanh bàn và thảo luận về những công việc quan trọng."
           }
         },
@@ -35,7 +35,7 @@
           "label": "Translate to English",
           "questionLabel": "Question 4",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW19-p127-pic-4.webp",
+            "imageUrl": "assets/pictures (writing)/HW19-p127-pic-4.webp",
             "text": "Có một người đàn ông mặc áo thun màu cam đang đứng đợi thức ăn."
           }
         },
@@ -44,7 +44,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 5",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-1.webp",
+            "imageUrl": "assets/pictures (writing)/HW19-workbook-p39-pic-1.webp",
             "wordPairs": [
               [
                 "picture",
@@ -70,7 +70,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 6",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-2.webp",
+            "imageUrl": "assets/pictures (writing)/HW19-workbook-p39-pic-2.webp",
             "wordPairs": [
               [
                 "table",
@@ -96,7 +96,7 @@
           "label": "Write a Sentence Based on a Picture",
           "questionLabel": "Question 7",
           "content": {
-            "imageUrl": "assets/writing-pictures/HW19-workbook-p39-pic-3.webp",
+            "imageUrl": "assets/pictures (writing)/HW19-workbook-p39-pic-3.webp",
             "wordPairs": [
               [
                 "on",

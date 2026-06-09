@@ -34,7 +34,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Questions 3-4",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-2024-06-picture-1.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2024-06-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 1",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -44,7 +44,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Questions 3-4",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-2024-06-picture-2.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2024-06-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 2",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -54,7 +54,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Questions 3-4",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-2024-07-picture-1.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2024-07-picture-1.webp",
             "imagePlaceholder": "🖼️ Picture 3",
             "prompt": "Describe the picture in as much detail as you can."
           }
@@ -64,7 +64,7 @@
           "label": "Describe a Picture",
           "questionLabel": "Questions 3-4",
           "content": {
-            "imageUrl": "assets/speaking-pictures/GwenTV-2024-07-picture-2.webp",
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2024-07-picture-2.webp",
             "imagePlaceholder": "🖼️ Picture 4",
             "prompt": "Describe the picture in as much detail as you can."
           }
