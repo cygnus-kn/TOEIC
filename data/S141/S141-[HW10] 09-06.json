@@ -1,0 +1,45 @@
+{
+  "homework": [
+    {
+      "date": "[HW10] 09/06",
+      "parts": [
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "Do you prefer to buy products at a convenience store or a supermarket?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "What are the important things you would consider when moving to a new place?\n- low rent\n- convenient location\n- services offered"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "What are the advantages of watching TV?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "Do you think that eating at a restaurant is more expensive than eating fast food?"
+          }
+        }
+      ]
+    }
+  ]
+}
