@@ -98,14 +98,6 @@
             "body": "We do Australia because we know Australia. Now it's time to talk to the Australia specialist and book your Christmas and New Year's holidays. Also, we're offering special deals to Sydney, Melbourne, and many more tourist attractions in Australia. Call 24 hours a day, 7 days a week. Please visit our Web site www.kangaroo.co.au. We hope to hear from you soon!",
             "instruction": "Respond to the e-mail as if you are a customer. In your e-mail, ask TWO questions about the travel packages and make ONE request."
           }
-        },
-        {
-          "type": "opinion",
-          "label": "Write an Opinion Essay",
-          "questionLabel": "Question 8",
-          "content": {
-            "prompt": "When it comes to workplace, we normally think we have to go there to work. A lot of us commute to work every day. However, there are some people who work remotely at their homes or away from their offices. What do you think is the reason why some companies permit their employees to work this way?"
-          }
         }
       ]
     }
