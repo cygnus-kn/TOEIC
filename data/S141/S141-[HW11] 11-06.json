@@ -1,0 +1,66 @@
+{
+  "homework": [
+    {
+      "date": "[HW11] 11/06",
+      "parts": [
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "prepTime": 15,
+          "content": {
+            "question": "When was the last time you visited a new city? Who did you go there with?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "prepTime": 15,
+          "content": {
+            "question": "When you visit a new city, would you prefer to stay at a hotel or find a place where you could stay with your friends and family?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "Which of the following activities do you think you must try when visiting a new city?\n- Eating at a local restaurant\n- Shopping in the neighborhood\n- Going on a guided tour"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2025-04b-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/jp7U3ysPBEo?start=608&enablejsapi=1",
+            "timestamps": {
+              "q8": 608,
+              "q9": 649,
+              "q10": 681
+            },
+            "question": "Question 8: What time does the first session start and who's the first speaker?\n\nQuestion 9: I heard that Mark Feldman is going to be talking about toy safety regulations before lunch. Is that true?\n\nQuestion 10: I'm interested in the workshops, especially the ones led by people from toy companies. Could you please give me all the details related to the workshops that would be helpful for people like me?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2025-01b-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/qFG-EaUNOQo?start=596&enablejsapi=1",
+            "timestamps": {
+              "q8": 596,
+              "q9": 642,
+              "q10": 672
+            },
+            "question": "Question 8: What will be the last session of the seminar and what time will it start and end?\n\nQuestion 9: Last year I remember that participants had to bring their own lunch. Will it be the same this year?\n\nQuestion 10: I'm really interested in improving my magic skills through the workshops. Which session would be most helpful for someone like me?"
+          }
+        }
+      ]
+    }
+  ]
+}
