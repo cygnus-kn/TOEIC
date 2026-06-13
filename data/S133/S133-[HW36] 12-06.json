@@ -1,0 +1,81 @@
+{
+  "homework": [
+    {
+      "date": "[HW36] 12/06",
+      "parts": [
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "When was the last time you bought a gift for someone? Who was it for?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Of all the gifts you’ve received, which one is the most memorable to you? Why?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Which of the following do you considered the most important when choosing a gift for someone?\n- Purpose\n- Creativity\n- Usefulness"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you currently live in an apartment or a house? How long have you lived there?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you live in an environment where it is easy to get along with your neighbors?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Which of the following do you think should be improved to make your neighborhood a more convenient place to live?\n- Public transportation\n- Restaurants\n- Shopping venue"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you prefer to start work early or later in the day?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you work better in a quiet environment or a lively, energetic one?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Which of the following do you consider the most important when choosing a job?\n- Opportunities for promotion\n- Opportunities to travel\n- Opportunities to learn and growth"
+          }
+        }
+      ]
+    }
+  ]
+}
