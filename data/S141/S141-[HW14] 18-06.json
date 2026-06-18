@@ -1,0 +1,59 @@
+{
+  "homework": [
+    {
+      "date": "[HW14] 18/06",
+      "parts": [
+        {
+          "type": "topic-prep",
+          "label": "Topic Preparation",
+          "questionLabel": "Next Session",
+          "topic": "Express an Opinion",
+          "instruction": "Think about your answers to the following questions. You will discuss these topics in the next class. Take 60 seconds to prepare each one.",
+          "questions": [
+            "Is laptop or tablet better for your daily tasks and enjoyment?",
+            "What advantages can a company receive when it collects online reviews from its customers?",
+            "What are the advantages of using public transportation?",
+            "What are the disadvantages of playing video games regularly?"
+          ],
+          "responseTime": 60
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Welcome to Dixon National Park! In a couple of minutes, we'll begin our bicycle tour around the park. While biking through the Dixon Forest, please remain on the path. The tour should conclude at approximately noon. You'll then have an opportunity to eat, drink, and see the displays at the visitor's center. I hope everyone's excited!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Is your computer starting to slow down? Would you like a larger screen? If so, stop by Bennington Computer Emporium. We carry an enormous selection of the latest models of desktops, laptops, and tablets. We also carry a huge selection of accessories. What's more, if you come in today, you'll receive an additional twenty percent off."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-04-2023-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-04-2023-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        }
+      ]
+    }
+  ]
+}

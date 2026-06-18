@@ -1,0 +1,65 @@
+{
+  "homework": [
+    {
+      "date": "[HW02] 16/06",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Why don't you treat yourself to a holiday at the Hotel Hampton in Virginia? For just $225 per person, you can fly to sunny Virginia and enjoy a wonderful 3-night stay. The Hotel Hampton is a 5-star resort with great facilities including a swimming pool, a gymnasium, a business center and an 18-hole golf course. This promotion is only available for a limited time, so you'd better reserve your place today! The number to call is 605-0317 or you can visit www.hamptonhotel.com for more information."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Good afternoon, everyone and welcome to the Chinatown historic district. My name is George and I'll be your guide today. The district was first founded by Cantonese immigrants around 1920. Later, however, it received immigrants from many other countries looking for work. During the tour, you're allowed to take pictures. We will see many fine examples of Chinese architecture, and many Chinese restaurants and grocery stores. We will also see a Greek church and a Turkish mosque. Now let's start our tour."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "At the company's anniversary dinner, you will all be sitting with your departments. Company shuttle buses will be available at the main entrance at 5 P.M. For those of you who will not take the shuttle bus, a map with directions will be posted in the lobby and also on the third, ninth, and twelfth floors. Remember, everyone is required to attend this ceremony. If for some reason you are unable to attend, please contact the HR department and state your reason."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Rock Radio is proud to present an hour-long interview with Collin Taylor, world famous singer and song writer. The interview will be broadcast live on Rock Radio, 98.7, on March 18th at 7 P.M. We'll discuss the music industry, Mr. Taylor early career, and his latest album. After the interview, Mr. Taylor will be answering questions from listeners who call in. You won't want to miss this one. 7 P.M., March 18th, on Rock Radio."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Hello, you have reached the Customer Service Department at Neo Industries Incorporated. Our customer service center is temporarily unavailable due to technical difficulties with our computer system. We are currently working in the problem, and we hope to have the system up and running again within the hour. If you're calling to find out about your order status, our new products, or any other information, please visit our website and click on the appropriate link. We apologize for any inconvenience, and thank you for calling Neo Industries Incorporated."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Are you interested in losing weight but don't want to spend all of your valuable time stuck inside a gym? Fortunately, Hard Line Fitness is now accepting new members for discounted rates. If you and a friend register for a six-month membership within the next five weeks you will only have to pay 50% of the regular membership fee. Hard Line Fitness has expert trainers who are fit, enthusiastic and friendly, and our fitness equipment is top-of-the-line. Call now to get more information about us at 1-800-988-3355"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "This is Marilyn Smith from Pacific Flight 55. Regrettably, I need to report some unfortunate news. Due to treacherous weather, the connecting flight will be delayed until after midnight. I have been informed that a hurricane will pass through this area. On behalf of Pacific Air, I would like to offer everyone on the connecting flight food vouchers that can be used at all of the restaurants in the terminal."
+          }
+        }
+      ]
+    }
+  ]
+}
