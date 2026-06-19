@@ -4,51 +4,58 @@
 Question 1
 
 ![Question 1](../pictures (writing)/Practice-Test-02/Practice-Test-02-pic-1.webp)
-sit/on
+people/wait
 
 Question 2
 
 ![Question 2](../pictures (writing)/Practice-Test-02/Practice-Test-02-pic-2.webp)
-wind/hard
+two/play
 
 Question 3
 ![Question 3](../pictures (writing)/Practice-Test-02/Practice-Test-02-pic-3.webp)
-if/fit
+taxi/between
 
 Question 4
 
 ![Question 4](../pictures (writing)/Practice-Test-02/Practice-Test-02-pic-4.webp)
-while/phone
+sew/clothes
 
 Question 5
 
 ![Question 5](../pictures (writing)/Practice-Test-02/Practice-Test-02-pic-5.webp)
-box/heavy
+boat/at
 
 ### Part 2: Respond to an Email
 
 Question 6
 
-From: Sandra Smith
-To: White Appliances
-Subject: Unsatisfactory service
-Sent: March 17th, 2:10 P.M.
+From: Susan Tucker
+To: Potential employee
+Subject: Job posting
+Sent: July 20th, 2:30 P.M.
 
-White Appliances:
-I'm writing to complain about the unsatisfactory service I received at your store. Two weeks ago, I purchased a newly launched model of washing machine. But; I found when I unpacked it that it had been damaged on the right side of the door. Also, when I was doing my laundry it automatically stopped and I couldn't get it to start again. So, I tried to call the repair center over 5 times, but I still haven't received any repair service. I think this is not a good way to treat customers. Please write back soon and let's discuss this matter.
 
-Direction: Respond to the e-mail as if you are a worker at White Appliances. In your e-mail, give at least ONE explanation and make TWO compensations.
+Marketing Specialist Americas – USA
+We are searching for a Marketing Specialist to support a Global Marketing Manager to execute strategies for generating new business leads, while building brand recognition. The Marketing Specialist will be a member of the Global Marketing team with primarily responsibility for North America events, media planning, research and analysis of data. Thank you.
+
+
+Yours truly,
+Susan Tucker
+Human Resources Manager
+
+
+Instruction: Respond to the e-mail as if you are a job candidate. In your e-mail, describe TWO of your job qualifications and ask ONE question.
 
 Question 7
 
-From: Kangaroo Travel Agency
-To: Potential traveler
-Subject: It's time to travel!!!
-Sent: November 3rd, 10:05 A.M.
+From: TechHub Support 
+To: New Customer 
+Subject: Welcome to TechHub 
+Sent: August 12, 2:15 P.M. 
 
-We do Australia because we know Australia. Now it's time to talk to the Australia specialist and book your Christmas and New Year's holidays. Also, we're offering special deals to Sydney, Melbourne, and many more tourist attractions in Australia. Call 24 hours a day, 7 days a week. Please visit our Web site www.kangaroo.co.au. We hope to hear from you soon!
+We appreciate your purchase of the ProWave Laptop from TechHub. We hope you are pleased with both the product and the customer service you received. If you experience any issues with the laptop, please contact us through our company website. Thank you!
 
-Direction: Respond to the e-mail as if you are a customer. In your e-mail, ask TWO questions about the travel packages and make ONE request.
+Instruction: Respond to the email as if you are a customer. In your email, describe TWO problems you have encountered with the laptop and make ONE request for information.
 
 ### Part 3: Write an essay
 
