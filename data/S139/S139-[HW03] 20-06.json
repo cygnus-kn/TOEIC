@@ -1,0 +1,65 @@
+{
+  "date": "[HW03] 20/06",
+  "parts": [
+    {
+      "type": "describe-picture",
+      "label": "Describe a Picture",
+      "questionLabel": "Questions 3-4",
+      "content": {
+        "imageUrl": "assets/pictures (speaking)/HW Day 03-pic1.webp",
+        "imagePlaceholder": "🖼️ Picture 1",
+        "prompt": "Describe the picture in as much detail as you can."
+      }
+    },
+    {
+      "type": "describe-picture",
+      "label": "Describe a Picture",
+      "questionLabel": "Questions 3-4",
+      "content": {
+        "imageUrl": "assets/pictures (speaking)/HW Day 03-pic2.webp",
+        "imagePlaceholder": "🖼️ Picture 2",
+        "prompt": "Describe the picture in as much detail as you can."
+      }
+    },
+    {
+      "type": "describe-picture",
+      "label": "Describe a Picture",
+      "questionLabel": "Questions 3-4",
+      "content": {
+        "imageUrl": "assets/pictures (speaking)/HW Day 03-pic3.webp",
+        "imagePlaceholder": "🖼️ Picture 3",
+        "prompt": "Describe the picture in as much detail as you can."
+      }
+    },
+    {
+      "type": "describe-picture",
+      "label": "Describe a Picture",
+      "questionLabel": "Questions 3-4",
+      "content": {
+        "imageUrl": "assets/pictures (speaking)/HW Day 03-pic4.webp",
+        "imagePlaceholder": "🖼️ Picture 4",
+        "prompt": "Describe the picture in as much detail as you can."
+      }
+    },
+    {
+      "type": "describe-picture",
+      "label": "Describe a Picture",
+      "questionLabel": "Questions 3-4",
+      "content": {
+        "imageUrl": "assets/pictures (speaking)/HW Day 03-pic5.webp",
+        "imagePlaceholder": "🖼️ Picture 5",
+        "prompt": "Describe the picture in as much detail as you can."
+      }
+    },
+    {
+      "type": "describe-picture",
+      "label": "Describe a Picture",
+      "questionLabel": "Questions 3-4",
+      "content": {
+        "imageUrl": "assets/pictures (speaking)/HW Day 03-pic6.webp",
+        "imagePlaceholder": "🖼️ Picture 6",
+        "prompt": "Describe the picture in as much detail as you can."
+      }
+    }
+  ]
+}
