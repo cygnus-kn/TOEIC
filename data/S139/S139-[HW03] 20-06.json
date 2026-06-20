@@ -1,5 +1,7 @@
 {
-  "date": "[HW03] 20/06",
+  "homework": [
+    {
+      "date": "[HW03] 20/06",
   "parts": [
     {
       "type": "describe-picture",
@@ -60,6 +62,7 @@
         "imagePlaceholder": "🖼️ Picture 6",
         "prompt": "Describe the picture in as much detail as you can."
       }
+    }
     }
   ]
 }
