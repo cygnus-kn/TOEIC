@@ -617,7 +617,8 @@ async function getHomeworkEntry(className, dateStr) {
   if (!path) return null;
 
   try {
-    const res  = await fetch(path);
+    const cacheBuster = Date.now();
+    const res  = await fetch(`${path}?v=${cacheBuster}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
     const entry = (json.homework && json.homework[0]) || null;
@@ -639,7 +640,8 @@ async function getLessonEntries(className) {
   if (entryCache[cacheKey]) return entryCache[cacheKey];
 
   try {
-    const res  = await fetch(`data/${className}/${className}-lessons.json`);
+    const cacheBuster = Date.now();
+    const res  = await fetch(`data/${className}/${className}-lessons.json?v=${cacheBuster}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
     const entries = json.lesson || [];
