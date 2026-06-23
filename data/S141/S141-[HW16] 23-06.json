@@ -1,0 +1,88 @@
+{
+  "homework": [
+    {
+      "date": "[HW16] 23/06",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Welcome to Ryan's Gym Talk and I am your host, Ryan Hayes. Did you know that how we bend, rotate and walk subconsciously everyday could help us build more muscle and strength. Today, we're going to talk about primal movement workout and how you could apply it to your daily workout routine."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Do you need a caffeine kick to get through the rest of the day? Come to Benny's Coffee House for a cup of coffee that is going to save your afternoon. For this week only, we are offering a special deal on all orders including coffee, tea and cold beverages. Come by for the best coffee in town!"
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2023-05-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2023-05-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "When was the last time you went on a vacation? Where did you go for your vacation?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you like to stay at one location when you go on vacation? Why or Why not?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What would be the best thing about traveling abroad during your vacation?\n- Eat new kinds of food\n- Meeting other travelers\n- Visiting museums"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2023-05-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/drjmeeLYTaI?enablejsapi=1",
+            "question": "Question 8: What are the exact date of the conference and where will it take place?\n\nQuestion 9: I was told that there will be a discussion on making budgets for short films. Will it be held on the second day?\n\nQuestion 10: During which sessions do I get to hear from Edgar Boyce at the conference?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Do you agree or disagree that household chores should be equally shared by all members of a family? Why or Why not?"
+          }
+        }
+      ]
+    }
+  ]
+}
