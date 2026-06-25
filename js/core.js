@@ -130,6 +130,11 @@ function formatMarkdown(text) {
 function getCurrentTaskKey() {
   const activeDate = activeType === 'homework' ? dateBadge.textContent : lessonDateBadge.textContent;
   if (!activeClass || !activeType || !activeDate || currentParts[currentPart] === undefined) return '';
+  const part = currentParts[currentPart];
+  if (part.type === 'respond-info-q') {
+    const subQ = getActiveRespondInfoSubQuestionNumber(currentPart, part);
+    return `${activeClass}::${activeType}::${activeDate}::${currentPart}::q${subQ}`;
+  }
   return `${activeClass}::${activeType}::${activeDate}::${currentPart}`;
 }
 

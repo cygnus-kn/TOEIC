@@ -216,6 +216,10 @@ window.setActiveBookmark = function (btn, index) {
   const dots = container.querySelectorAll('.bookmark-dot:not(.out-link-icon)');
   dots.forEach(d => d.classList.remove('active-bookmark'));
   btn.classList.add('active-bookmark');
+
+  // Reset recorder state when switching between sub-questions (Q8/Q9/Q10)
+  stopPlaybackPreview();
+  updateBottomNavState();
 };
 
 // ============================
