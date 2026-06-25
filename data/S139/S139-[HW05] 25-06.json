@@ -1,0 +1,77 @@
+{
+  "homework": [
+    {
+      "date": "[HW05] 25/06",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Question 1-2",
+          "content": {
+            "passage": "Good evening and welcome to our performance. On behalf of the Woodson Dance Company, I'd like to thank you for supporting the arts. Tonight's program will feature the folk music, traditional costumes, and visual art of the Caribbean. Because this is the final show of our season, there will be a reception in the lobby after our program."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/HW Day 05-pic3.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/HW Day 05-pic6.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/HW Day 05-pic7.webp",
+            "imagePlaceholder": "🖼️ Picture 3",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/HW Day 05-pic12.webp",
+            "imagePlaceholder": "🖼️ Picture 4",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/HW Day 05-pic19.webp",
+            "imagePlaceholder": "🖼️ Picture 5",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/HW Day 06-pic1.webp",
+            "imagePlaceholder": "🖼️ Picture 6",
+            "prompt": "Describe the picture in as much detail as you can."
+          },
+          "questionLabel": "Question 3-4"
+        }
+      ]
+    }
+  ]
+}
