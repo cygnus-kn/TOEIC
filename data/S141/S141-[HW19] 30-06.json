@@ -1,0 +1,181 @@
+{
+  "homework": [
+    {
+      "date": "[HW19] 30/06",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Attention, students. This Friday night, the Maytown School's yearly fund-raising dinner will be held in the cafeteria. Tickets are ten dollars per person. All money raised will benefit programs like sports, performing arts, and student government. To enjoy a delicious dinner and support our schools, purchase your tickets today!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Are you looking for a place to live? Green Meadows is a new apartment complex that can meet your needs. Our homes feature modern kitchens, hardwood floors, and spacious bedrooms. Additionally, our apartments are conveniently located near several restaurants and shops. If you're interested in visiting our properties, call Green Meadows today!"
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 1",
+          "content": {
+            "imageUrl": "assets/pictures (writing)/HW19-workbook-p39-pic-1.webp",
+            "wordPairs": [
+              [
+                "picture",
+                "between"
+              ],
+              [
+                "table",
+                "front"
+              ],
+              [
+                "Vase",
+                "on"
+              ],
+              [
+                "Picture",
+                "on"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 2",
+          "content": {
+            "imageUrl": "assets/pictures (writing)/HW19-workbook-p39-pic-2.webp",
+            "wordPairs": [
+              [
+                "table",
+                "on"
+              ],
+              [
+                "board",
+                "on"
+              ],
+              [
+                "chair",
+                "under"
+              ],
+              [
+                "Clock",
+                "on"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 3",
+          "content": {
+            "imageUrl": "assets/pictures (writing)/HW19-workbook-p39-pic-3.webp",
+            "wordPairs": [
+              [
+                "on",
+                "merchandise"
+              ],
+              [
+                "in",
+                "supermarket"
+              ],
+              [
+                "price tag",
+                "on"
+              ],
+              [
+                "front",
+                "booth"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 4",
+          "content": {
+            "imageUrl": "assets/pictures (writing)/HW18-workbook-p40-pic-1.webp",
+            "wordPairs": [
+              [
+                "pedestrian",
+                "pavement"
+              ],
+              [
+                "tree",
+                "along"
+              ],
+              [
+                "streetlights",
+                "be"
+              ],
+              [
+                "man",
+                "look"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 5",
+          "content": {
+            "imageUrl": "assets/pictures (writing)/HW18-workbook-p40-pic-2.webp",
+            "wordPairs": [
+              [
+                "get",
+                "on"
+              ],
+              [
+                "Children",
+                "happy"
+              ],
+              [
+                "students",
+                "board"
+              ],
+              [
+                "Backpack",
+                "wear"
+              ]
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Question 6",
+          "content": {
+            "imageUrl": "assets/pictures (writing)/HW18-workbook-p40-pic-3.webp",
+            "wordPairs": [
+              [
+                "Play",
+                "on"
+              ],
+              [
+                "Sit",
+                "on"
+              ],
+              [
+                "Look",
+                "at"
+              ],
+              [
+                "Talk",
+                "to"
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
