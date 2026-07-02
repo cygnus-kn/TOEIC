@@ -1,0 +1,54 @@
+{
+  "homework": [
+    {
+      "date": "[HW08] 02/07",
+      "parts": [
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "Do you prefer to live in the city or the countryside? Why?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "What are the important things you would consider when moving to a new place?\n- Low rent\n- Convenient location\n- Services offered"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "What are the advantages of watching TV?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "Do you think that eating at a restaurant is more expensive than eating fast food?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "prepTime": 30,
+          "content": {
+            "question": "If you are planning a trip with some of your friends, what is the best way to plan a vacation?\n- Making a list of activities to do\n- Asking others for recommendations\n- Reading travel books"
+          }
+        }
+      ]
+    }
+  ]
+}
