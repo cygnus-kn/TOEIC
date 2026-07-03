@@ -1,0 +1,93 @@
+{
+  "homework": [
+    {
+      "date": "[HW40] 03/07",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Welcome to the Eleventh Annual Art Marathon Tour! Today, we'll explore an inspiring collection of artworks, paintings, and sculptures. Beginning at the iconic Smith Gallery, you'll experience masterpieces that celebrate creativity and innovation. Let's make this journey as memorable as possible!"
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Welcome to today's episode of The Green Thumb Podcast! We're thrilled to have a very special guest, Deborah Lawrence, a renowned expert in all things gardening. Whether you're a seasoned gardener, a hobbyist, or just starting out, Deborah's stories are sure to inspire. So, grab your gloves, and let's dive into the world of gardening!"
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2025-01-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2025-01-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you enjoy eating desserts after every meal?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Are there any bakeries near your home? Which one do you visit most often?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Would you prefer to bake bread for friends visiting your house or buy it from a bakery? Why?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2025-01-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/YkykTDCWxlQ?start=613&enablejsapi=1",
+            "timestamps": {
+              "q8": 613,
+              "q9": 655,
+              "q10": 684
+            },
+            "question": "Question 8: When will the festival be held? What is the exact address of the venue?\n\nQuestion 9: I will be bringing some friends from out of town. Would ticket prices be $20 for everyone?\n\nQuestion 10: We all enjoy jazz music. Could you recommend performances we shouldn't miss?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Do you agree or disagree that it should be mandatory for high school students to learn more about history at school?"
+          }
+        }
+      ]
+    }
+  ]
+}
