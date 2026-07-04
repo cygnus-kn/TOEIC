@@ -1,0 +1,93 @@
+{
+  "homework": [
+    {
+      "date": "[HW09] 04/07",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Thank you for calling Health First Pharmacy, your trusted partner in health and wellness. For prescription refills and medication inquiries, press 1. To speak with a pharmacist, press 2. For store hours, location, or general information, press 3. We appreciate your call and look forward to serving you with care."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Welcome to the Manhattan Central Park Walking Tour! I'm David Taylor, your guide for today. Before we begin, please secure your belongings, stay hydrated, and wear comfortable shoes, as we'll be walking for about two hours. Let's enjoy a fantastic walk through New York's most iconic park!"
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2025-02-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2025-02-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "How often do you buy clothes? Do you have a store where you regularly shop for clothes?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "What are some advantages of buying clothes online?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What is the most important feature you consider when buying new clothes?\n- Design\n- Comfort\n- Quality"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What are some advantages of working in a busy city rather than working in a quiet area?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What are some disadvantages of attending a school located far from your hometown?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What is the most important thing that you would consider when buying new shoes?\n- Comfort\n- Durability\n- Appearance"
+          }
+        }
+      ]
+    }
+  ]
+}
