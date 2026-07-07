@@ -1,0 +1,35 @@
+{
+  "homework": [
+    {
+      "date": "[HW22] 07/07",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "John Dembo, TMR Industries",
+            "to": "Susan Hoffman, TMR Industries",
+            "subject": "Employee awards dinner",
+            "sent": "April 5th, 6:00 P.M.",
+            "body": "Hi Susan,\n\nI'm coordinating the employee awards dinner this year. I know you've done this in the past. Can you tell about your experience planning previous dinners? Also, I'd appreciate any suggestions that you may have.\n\nJohn Dembo",
+            "instruction": "Respond to the e-mail. In your e-mail, give TWO pieces of information and make ONE suggestion."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Jason Vornas, Best Vacation Rentals",
+            "to": "Pearl Seine",
+            "subject": "Vacation Rental Inquiry",
+            "sent": "March 4th, 10:01 A.M.",
+            "body": "Thank you for expressing interest in our vacation rental houses. If you provide details about what you're looking for, we can suggest rental houses that would fit your needs. We're happy to answer any questions.",
+            "instruction": "Respond to the e-mail as if you are looking for a vacation rental house. In your e-mail, ask THREE questions."
+          }
+        }
+      ]
+    }
+  ]
+}

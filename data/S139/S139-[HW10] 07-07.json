@@ -1,0 +1,69 @@
+{
+  "homework": [
+    {
+      "date": "[HW10] 07/07",
+      "parts": [
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures & audio (Part 4)/Part 4 - Practice 1.webp",
+            "audioUrls": [
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 1/Practice 1-q8.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 1/Practice 1-q9.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 1/Practice 1-q10.webm"
+            ],
+            "questionLabels": ["8", "9", "10"],
+            "question": "Question 8: What date is the orientation scheduled, and what time will it be over?\n\nQuestion 9: I think we need more time for the resort tour. Do you think it is possible to extend the time?\n\nQuestion 10: I can't stay for the whole orientation. Can you give me all the details of what is scheduled after lunch?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures & audio (Part 4)/Part 4 - Practice 2.webp",
+            "audioUrls": [
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 2/Practice 2-q8.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 2/Practice 2-q9.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Practice 2/Practice 2-q10.webm"
+            ],
+            "questionLabels": ["8", "9", "10"],
+            "question": "Question 8: When does the first meeting start? And who will I meet?\n\nQuestion 9: I'm aware that I'm having lunch at noon with Andrew Simmons. Is that right?\n\nQuestion 10: I know I have things to do in the afternoon. Can you tell me the schedule after lunch?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures & audio (Part 4)/Part 4-Test 01.webp",
+            "audioUrls": [
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 01/T01_Q_07.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 01/T01_Q_08.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 01/T01_Q_09.webm"
+            ],
+            "questionLabels": ["8", "9", "10"],
+            "question": "Question 8: What is the date of the lecture about early farming practices and what time does it start?\n\nQuestion 9: I'm really excited about the Food History Festival on August 27th. That starts at 11 o'clock in the morning, right?\n\nQuestion 10: Events that take place in the morning are especially convenient for me. Can you give me all the details about the events that take place in the morning?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures & audio (Part 4)/Part 4-Test 02.webp",
+            "audioUrls": [
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 02/T02_Q_07.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 02/T02_Q_08.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 02/T02_Q_09.webm"
+            ],
+            "questionLabels": ["8", "9", "10"],
+            "question": "Question 8: When is the dinner and who is giving the closing remarks?\n\nQuestion 9: I need to make a phone call at 2 o'clock. Will that be a problem?\n\nQuestion 10: I'm really looking forward to participating in some competitions. Can you give me all the details of the competitions that are scheduled?"
+          }
+        }
+      ]
+    }
+  ]
+}
