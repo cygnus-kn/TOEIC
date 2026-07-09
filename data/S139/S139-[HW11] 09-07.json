@@ -1,0 +1,111 @@
+{
+  "homework": [
+    {
+      "date": "[HW11] 09/07",
+      "parts": [
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-03-2023-picture-1.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-03-2023-picture-2.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you prefer to take morning classes or evening classes? Why?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you prefer to have a short break or a long break between classes? Why?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What are some disadvantages of attending a school located far from your hometown?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 8-10: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures & audio (Part 4)/Part 4-Test 05.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 05 Picture",
+            "audioUrls": [
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 05/T05_Q_07.webm#t=76.02",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 05/T05_Q_08.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 05/T05_Q_09.webm"
+            ],
+            "questionLabels": [
+              "8",
+              "9",
+              "10"
+            ],
+            "question": "Question 8: Hi, I'm attending the corporate retreat this week, but I left the schedule in my office. I was hoping you could give me some information. Can you tell me what time the first event starts and what the topic is?\n\nQuestion 10: Someone in my department said that I need to bring my own lunch. Is that right?\n\nQuestion 10: I believe the schedule said that there are going to be some workshops. Can you give me all the details about any workshops at the retreat?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 8-10: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures & audio (Part 4)/Part 4-Test 06.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 06 Picture",
+            "audioUrls": [
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 06/T06_Q_07.webm#t=76.02",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 06/T06_Q_08.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 06/T06_Q_09.webm"
+            ],
+            "questionLabels": [
+              "8",
+              "9",
+              "10"
+            ],
+            "question": "Question 8: Hi, I like to attend events at your community center, but I don't think I received a copy of the October schedule. I'm hoping you can answer my questions. I really like your monthly folk music event. On what date will folk music night take place in October and what time will it start?\n\nQuestion 10: I heard you're having a poetry competition this month. If I want to participate, I can just sign up when I arrive that night, right?\n\nQuestion 10: My friend is coming to visit at the beginning of the month, and I'd like to bring him to some events while he's here. Can you give me all the details of any events taking place before October 10th?"
+          }
+        },
+        {
+          "type": "respond-info-q",
+          "label": "Questions 8-10: Respond to Information",
+          "questionLabel": "Question 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures & audio (Part 4)/Part 4-Test 07.webp",
+            "imagePlaceholder": "\ud83d\uddbc\ufe0f Test 07 Picture",
+            "audioUrls": [
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 07/T07_Q_07.webm#t=76.16",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 07/T07_Q_08.webm",
+              "assets/pictures (speaking)/pictures & audio (Part 4)/Audio/Test 07/T07_Q_09.webm"
+            ],
+            "questionLabels": [
+              "8",
+              "9",
+              "10"
+            ],
+            "question": "Question 8: Hello, I know you're working on the schedule for the monthly staff meeting and I have some questions for you. What is the date of the meeting and where will it be held?\n\nQuestion 10: I know we have some new staff members that will be introduced at this meeting. Mary Irwin will be making those introductions, right?\n\nQuestion 10: A colleague said she might need my help preparing for the meeting. Could you give me all the details of sessions that she will be leading?"
+          }
+        }
+      ]
+    }
+  ]
+}
