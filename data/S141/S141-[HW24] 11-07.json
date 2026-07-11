@@ -1,0 +1,35 @@
+{
+  "homework": [
+    {
+      "date": "[HW24] 11/07",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "American Airways",
+            "to": "Ross Cather",
+            "subject": "Problem with your flight",
+            "sent": "August 12th",
+            "body": "Dear Ms. Ross Cather,\nI have received your email yesterday regarding some problems you have encountered on the flight from New York to Tokyo. We sincerely apologize for any inconvenience we may cause. To handle the problem properly, please tell us more about what you have experienced during the trip. \nThank you,",
+            "instruction": "Respond to this email as if you are Ross Cather. In your email, provide at least TWO problems you have met."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "S.Ramsey@lindco.com.au",
+            "to": "E.Mayer@lindco.com.au",
+            "subject": "Employee training session",
+            "sent": "June 4, 11:21 A.M.",
+            "body": "Dear Ms. Mayer,\nI received a memo telling me to attend a customer service training session next Saturday. That is outside my normal working hours. As you are my manager, could you please tell me more about this training and why I'm being asked to take it?\nThanks,\nSheila Ramsey",
+            "instruction": "Respond to the e-mail as if you are Sheila Ramsey's manager. In your e-mail, give TWO pieces of information and ONE reason."
+          }
+        }
+      ]
+    }
+  ]
+}
