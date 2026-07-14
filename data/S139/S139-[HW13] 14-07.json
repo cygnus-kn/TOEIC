@@ -1,0 +1,36 @@
+{
+  "homework": [
+    {
+      "date": "[HW13] 14/07",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Is laptop or tablet better for your daily tasks and enjoyment?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "What advantages can a company receive when it collects online reviews from its customers?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "What are the advantages of using public transportation?"
+          }
+        }
+      ]
+    }
+  ]
+}
