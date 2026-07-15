@@ -585,5 +585,12 @@ A standard writing session typically follows this order (individual parts or mix
 | Bullet list in questions | Use `\n- Item` in the question string                                                                   |
 | Speaking opinion label   | `"Express an Opinion"`                                                                                  |
 | Writing opinion label    | `"Write an Opinion Essay"`                                                                              |
-| `topic-prep` placement   | Can appear **anywhere** in the `parts` array                                                            |
 | `topic-prep` questions   | Any count works; one string per array entry — stacked into separate cards                               |
+
+---
+
+## 5. Cache Busting
+
+You do **not** need to manually clear your browser cache or update version numbers when adding new homework. 
+- **`data.js`**: `index.html` dynamically loads this file with a `Date.now()` timestamp, ensuring the sidebar menu always fetches the latest version.
+- **Split JSON files**: The application's fetch requests automatically append a `cacheBuster` query parameter when loading homework content.
