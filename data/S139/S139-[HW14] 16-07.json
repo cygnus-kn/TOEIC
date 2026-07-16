@@ -1,0 +1,36 @@
+{
+  "homework": [
+    {
+      "date": "[HW14] 16/07",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "Is traveling by car or airplane better for vacation in your opinion?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "What are the disadvantages of playing video games regularly?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Express an Opinion",
+          "questionLabel": "Question 11",
+          "responseTime": 60,
+          "content": {
+            "prompt": "What is the most important factor for you when purchasing a computer?\n- Processing speed\n- Storage capacity\n- Price"
+          }
+        }
+      ]
+    }
+  ]
+}

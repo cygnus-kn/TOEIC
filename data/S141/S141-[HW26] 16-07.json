@@ -1,0 +1,33 @@
+{
+  "homework": [
+    {
+      "date": "[HW26] 16/07",
+      "parts": [
+        {
+          "type": "respond-info-q",
+          "label": "Respond to Information",
+          "questionLabel": "Questions 8-10",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2023-08-picture-3.webp",
+            "videoUrl": "https://www.youtube.com/embed/GA-sxd6_i7s?start=628&enablejsapi=1",
+            "timestamps": {
+              "q8": 628,
+              "q9": 673,
+              "q10": 702
+            },
+            "question": "Question 8: Who will be delivering the first lecture, and what will it cover?\n\nQuestion 9: Are there any opportunities to receive a discount on the registration fee?\n\nQuestion 10: I am very interested in improving my flexibility. Could you recommend any sessions that would be beneficial for someone like me?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Some people like to travel alone. Others like to be with friends. Which view point do you prefer? Give specific reasons and examples to support your answer."
+          }
+        }
+      ]
+    }
+  ]
+}
