@@ -1,0 +1,33 @@
+{
+  "homework": [
+    {
+      "date": "[HW15] 18/07",
+      "parts": [
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What is the most popular transportation in your country?\n- Bike\n- Motorbike\n- Bus"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Do you agree or disagree: “Moving to a foreign country brings us many advantages.”"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Do you prefer to learn world events from newspapers or TV news?"
+          }
+        }
+      ]
+    }
+  ]
+}
