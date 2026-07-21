@@ -1,0 +1,52 @@
+{
+  "homework": [
+    {
+      "date": "[HW28] 21/07",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "This is Angela Higgins with your weekly weather forecast. We are expecting a quick shower on Tuesday, but you will be getting plenty of sunshine throughout the rest of the week. If you are planning to engage in any outdoor activities over the weekend, make sure to stay hydrated, apply sunscreen, and avoid being in the sun too long."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Here is what you've all been waiting for. Today, we have invited Ben Walker, who is the author of the hit series 'Call of the Forest.' His latest release has sold millions of copies all around the world, including America, Europe, and Asia. Without further ado, let's welcome him with a big round of applause."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Some people like taking a long vacation each year. Others enjoy several shorter vacations.\nWhich do you prefer? Give reasons and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Do you prefer to work for a job that pays high salary or one that provides more vacation leaves?\nGive reasons and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Do you prefer to work alone or with team members?\nGive reasons and examples to support your opinion."
+          }
+        }
+      ]
+    }
+  ]
+}
