@@ -5,6 +5,7 @@
 const CLASSES_DATA = {
   S139: {
     homework: [
+      { date: "[HW17] 23/07" },
       { date: "[HW16] 21/07" },
       { date: "[HW15] 18/07" },
       { date: "[HW14] 16/07" },
@@ -26,6 +27,7 @@ const CLASSES_DATA = {
   },
   S141: {
     homework: [
+      { date: "[HW29] 23/07" },
       { date: "[HW28] 21/07" },
       { date: "[HW27] 18/07" },
       { date: "[HW26] 16/07" },
@@ -54,62 +56,6 @@ const CLASSES_DATA = {
       { date: "[HW03] 23/05" },
       { date: "[HW02] 21/05" },
       { date: "[HW01] 19/05" }
-    ],
-    lesson: []
-  },
-  S136: {
-    homework: [
-      { date: "[HW40] 03/07" },
-      { date: "[HW37] 24/06" },
-      { date: "[HW36] 22/06" },
-      { date: "[HW35] 19/06" },
-      { date: "[HW34] 17/06" },
-      { date: "[HW33] 15/06" },
-      { date: "[HW32] 12/06" },
-      { date: "[HW31] 10/06" },
-      { date: "[HW30] 08/06" },
-      { date: "[HW29] 05/06" },
-      { date: "[HW28] 03/06" },
-      { date: "[HW27] 01/06" },
-      { date: "[HW26] 29/05" },
-      { date: "[HW25] 27/05" },
-      { date: "[HW24] 25/05" },
-      { date: "[HW23] 22/05" },
-      { date: "[HW22] 20/05" },
-      { date: "[HW21] 18/05" },
-      { date: "[HW20] 15/05" },
-      { date: "[HW19] 13/05" },
-      { date: "[HW18] 11/05" },
-      { date: "[HW17] 06/05" },
-      { date: "[HW16] 04/05" },
-      { date: "[HW15] 24/04" },
-      { date: "[HW14] 22/04" },
-      { date: "[HW13] 20/04" },
-      { date: "[HW12] 17/04" }
-    ],
-    lesson: []
-  },
-  S133: {
-    homework: [
-      { date: "[HW37] 15/06" },
-      { date: "[HW36] 12/06" },
-      { date: "[HW35] 10/06" },
-      { date: "[HW34] 08/06" },
-      { date: "[HW33] 05/06" },
-      { date: "[HW32] 03/06" },
-      { date: "[HW31] 01/06" },
-      { date: "[HW30] 29/05" },
-      { date: "[HW29] 27/05" },
-      { date: "[HW28] 25/05" },
-      { date: "[HW27] 22/05" },
-      { date: "[HW26] 20/05" },
-      { date: "[HW25] 18/05" },
-      { date: "[HW24] 15/05" },
-      { date: "[HW23] 13/05" },
-      { date: "[HW22] 11/05" },
-      { date: "[HW21] 24/04" },
-      { date: "[HW20] 22/04" },
-      { date: "[HW19] 20/04" }
     ],
     lesson: []
   },

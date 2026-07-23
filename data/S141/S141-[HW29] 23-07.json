@@ -1,0 +1,56 @@
+{
+  "homework": [
+    {
+      "date": "[HW29] 23/07",
+      "parts": [
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2023-09-picture-1.webp",
+            "imagePlaceholder": "🖼️ Picture 1",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "describe-picture",
+          "label": "Describe a Picture",
+          "questionLabel": "Questions 3-4",
+          "content": {
+            "imageUrl": "assets/pictures (speaking)/pictures (GwenTV)/GwenTV-2023-09-picture-2.webp",
+            "imagePlaceholder": "🖼️ Picture 2",
+            "prompt": "Describe the picture in as much detail as you can."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Some companies choose to advertise their products on TV. What do you think are the advantages and disadvantages of advertisment on television? Give reasons and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Some universities require students to complete an internship before graduating.\nWhat are the advantages and disadvantages of having this requirement?\nGive reasons and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "More employees prefer to work from home instead of going to the office. What do you think are the pros and cons of working remotely? Give reasons and examples to support your opinion."
+          }
+        }
+      ]
+    }
+  ]
+}
