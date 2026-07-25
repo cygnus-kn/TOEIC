@@ -1,0 +1,42 @@
+{
+  "homework": [
+    {
+      "date": "[HW30] 25/07",
+      "parts": [
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "When was the last time you went on a picnic? Who did you go with?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "When do you think is the best time of day to go on a picnic? Why?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "What kind of food do you bring on a picnic? Why?"
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Some people find that listening to music help them focus while other find them distracting.\nDo you think music can help people to focus or not? Give reasons and examples to support your opinion."
+          }
+        }
+      ]
+    }
+  ]
+}
