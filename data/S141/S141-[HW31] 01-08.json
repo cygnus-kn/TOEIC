@@ -1,0 +1,41 @@
+{
+  "homework": [
+    {
+      "date": "[HW31] 01/08",
+      "parts": [
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Hello and thank you for calling Harmony Yoga Studio. Your journey to wellness begins here. Our experienced instructors are dedicated to guiding you through a holy yoga experience. Check our class schedule, upcoming events, or visit our website for more information."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Welcome aboard! We're thrilled to have you join us for this incredible adventure to the Grand Canyon. I'm Rick Kirby, your tour guide for today. If you have any questions or need assistance, feel free to ask me anytime. Buckle up, relax, and get ready for breathtaking views and unforgettable memories."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Good evening, everyone! I'm Naomi Sanders, and here's your local weather forecast for tomorrow. It's shaping up to be a spectacular day across the region, with plenty of sunshine and warm temperatures. Make sure to dress comfortably, apply sunscreen, and stay hydrated if you're planning to be outdoors."
+          }
+        },
+        {
+          "type": "read-aloud",
+          "label": "Read a Text Aloud",
+          "questionLabel": "Questions 1-2",
+          "content": {
+            "passage": "Thanks for tuning in to KQMN Radio Channel. I’m your host, Ricky Meyers. Today, we have a very special guest joining us in the studio. He’s a household name in Hollywood, known for his captivating performances in movies, television shows, and dramas alike. Please give a warm welcome to the one and only Gilbert McGuire."
+          }
+        }
+      ]
+    }
+  ]
+}

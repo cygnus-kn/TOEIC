@@ -1,0 +1,35 @@
+{
+  "homework": [
+    {
+      "date": "[HW21] 01/08",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "KTM Service and Repairs",
+            "to": "Pablo Hernandez",
+            "subject": "Service appointment rescheduled",
+            "sent": "August 1, 9:31 A.M.",
+            "body": "Dear Mr. Hernandez,\nWe were scheduled to service your home air-conditioning system on Saturday, August 7. Unfortunately, our repair technician is unable to work next weekend. We have rescheduled your appointment for August 14. If this presents a problem or if you have questions, please contact us.",
+            "instruction": "Respond to the email. In your email, give two pieces of information and ask one question."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "JRichards@timutelectronics.com",
+            "to": "GPeters@timutelectronics.com",
+            "subject": "Exit interview",
+            "sent": "June 12, 7:59 A.M.",
+            "body": "Dear Ms. Peters,\nSince you'll soon be leaving our company for another job, I'd like to meet with you for a brief discussion. To prepare for that meeting, could you send me an e-mail about your experience working here and how the company can improve?\nThanks,\nJessica Richards\nHuman Resources Manager",
+            "instruction": "Respond to the e-mail. In your e-mail, give ONE piece of information and make TWO suggestions."
+          }
+        }
+      ]
+    }
+  ]
+}
