@@ -1,0 +1,35 @@
+{
+  "homework": [
+    {
+      "date": "[HW24] 08/08",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Hazel Irwin, Fashion Today",
+            "to": "Lindsey Monotail",
+            "subject": "Issue with Recent Shirt Delivery",
+            "sent": "February 3rd",
+            "body": "Dear Ms. Monotail,\nI received a report from our Service Department yesterday regarding your recent complaint about the shirt we delivered. Could you please provide us with more details about the issue? This will help us address your concern appropriately.\n\nBest regards,\nHazel Irwin\nFashion Today",
+            "instruction": "Respond to this email as if you are Lindsey Monotail. In your email, provide THREE problems regarding your shirt."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "S.Ramsey@lindco.com.au",
+            "to": "E.Mayer@lindco.com.au",
+            "subject": "Employee training session",
+            "sent": "June 4, 11:21 A.M.",
+            "body": "Dear Ms. Mayer,\nI received a memo telling me to attend a customer service training session next Saturday. That is outside my normal working hours. As you are my manager, could you please tell me more about this training and why I'm being asked to take it?\n\nThanks,\nSheila Ramsey",
+            "instruction": "Respond to the e-mail as if you are Sheila Ramsey's manager. In your e-mail, give TWO pieces of information and ONE reason."
+          }
+        }
+      ]
+    }
+  ]
+}

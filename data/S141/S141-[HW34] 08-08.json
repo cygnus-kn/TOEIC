@@ -1,0 +1,35 @@
+{
+  "homework": [
+    {
+      "date": "[HW34] 08/08",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Susan Tucker",
+            "to": "Potential employee",
+            "subject": "Job posting",
+            "sent": "July 20th, 2:30 P.M.",
+            "body": "Marketing Specialist Americas – USA\nWe are searching for a Marketing Specialist to support a Global Marketing Manager to execute strategies for generating new business leads, while building brand recognition. The Marketing Specialist will be a member of the Global Marketing team with primarily responsibility for North America events, media planning, research and analysis of data. Thank you.\n\nYours truly,\nSusan Tucker\nHuman Resources Manager",
+            "instruction": "Respond to the e-mail as if you are a job candidate. In your e-mail, describe TWO of your job qualifications and ask ONE question."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Kangaroo Travel Agency",
+            "to": "Potential traveler",
+            "subject": "It's time to travel!!!",
+            "sent": "November 3rd, 10:05 A.M.",
+            "body": "We do Australia because we know Australia. Now it's time to talk to the Australia specialist and book your Christmas and New Year's holidays. Also, we're offering special deals to Sydney, Melbourne, and many more tourist attractions in Australia. Call 24 hours a day, 7 days a week. Please visit our Web site www.kangaroo.co.au. We hope to hear from you soon!",
+            "instruction": "Respond to the e-mail as if you are a customer. In your e-mail, ask TWO questions about the travel packages and make ONE request."
+          }
+        }
+      ]
+    }
+  ]
+}
