@@ -1,0 +1,95 @@
+{
+  "homework": [
+    {
+      "date": "[HW25] 11/08",
+      "parts": [
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Questions 1-5",
+          "content": {
+            "imageUrl": "assets/pictures (writing)/Mock-Test-02/Mock-Test-02-pic-1.webp",
+            "words": [
+              "mechanic",
+              "teach"
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Questions 1-5",
+          "content": {
+            "imageUrl": "assets/pictures (writing)/Mock-Test-02/Mock-Test-02-pic-2.webp",
+            "words": [
+              "fix",
+              "bicycle"
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Questions 1-5",
+          "content": {
+            "imageUrl": "assets/pictures (writing)/Mock-Test-02/Mock-Test-02-pic-3.webp",
+            "words": [
+              "Sit",
+              "at"
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Questions 1-5",
+          "content": {
+            "imageUrl": "assets/pictures (writing)/Mock-Test-02/Mock-Test-02-pic-4.webp",
+            "words": [
+              "Woman",
+              "suit"
+            ]
+          }
+        },
+        {
+          "type": "sentence-picture",
+          "label": "Write a Sentence Based on a Picture",
+          "questionLabel": "Questions 1-5",
+          "content": {
+            "imageUrl": "assets/pictures (writing)/Mock-Test-02/Mock-Test-02-pic-5.webp",
+            "words": [
+              "barefoot",
+              "although"
+            ]
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Journal of Business News",
+            "to": "Business professionals",
+            "subject": "Subscribe",
+            "sent": "December 2, 20-",
+            "body": "Dear Business Professional,\n\nThe Journal Of Business News brings you all the latest news about important developments in the international business world. It is read by thousands of business people just like you in over 40 countries around the world. Subscribe today and receive a 30% discount off the regular price.",
+            "instruction": "Respond to the e-mail as if you are a businessperson interested in subscribing to the Journal of Business News. In your e-mail, ask THREE questions."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "George Pinkney",
+            "to": "Social Committee members",
+            "subject": "Meeting",
+            "sent": "April 12",
+            "body": "It is time for a meeting of the Social Committee. We need to start planning the annual year-end party. I would like all members of the committee to meet next Friday morning from 9 to 11 in Conference Room A. Please let me know as soon as possible if you are available to attend this meeting.\n\nThank you.\nGeorge Pinkney\nSocial Committee Chair",
+            "instruction": "Respond to the e-mail as if you are a member of the Social Committee. In your e-mail, explain ONE problem and make TWO suggestions."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "homework": [
+    {
+      "date": "[HW35] 11/08",
+      "parts": [
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Where do you purchase your exercise clothes, and why do you prefer to make your purchases there?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "What kind of exercises would you recommend to your friends and close relatives?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "Which of the following factors concerns you the most when planning your exercise routine:\n- Exercising time\n- Weather\n- Physical condition"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "When was the last time you attended a party, and who did you go there with?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you enjoy attending parties? Why or why not?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "When deciding whether to join a party, which of the following factors is the most important to you:\n- Location\n- Participants\n- Food choices"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you usually have free time in the morning or the afternoon?"
+          }
+        },
+        {
+          "type": "respond-questions-15",
+          "label": "Respond to Questions",
+          "questionLabel": "Questions 5-6",
+          "content": {
+            "question": "Do you still enjoy the same free time activities as you did 5 years ago?"
+          }
+        },
+        {
+          "type": "respond-questions-30",
+          "label": "Respond to Questions",
+          "questionLabel": "Question 7",
+          "content": {
+            "question": "If you were to spend your free time with friends, would you prefer to spend time with just one friend or several friends? Why?"
+          }
+        }
+      ]
+    }
+  ]
+}
