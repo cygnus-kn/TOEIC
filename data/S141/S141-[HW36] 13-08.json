@@ -1,0 +1,44 @@
+{
+  "homework": [
+    {
+      "date": "[HW36] 13/08",
+      "parts": [
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Golden Smith bookshop [golden_smith_customer@goldensmith.com]",
+            "to": "Regular customers",
+            "subject": "Joyful Reader",
+            "sent": "Dec 1st, 13:10",
+            "body": "Dear Loyal Customer,\nThanks for your purchase at Golden Smith bookshop. We hope that all the books bought and any customized services received at our store were satisfactory. From the current year, when customers turn in their completed registration cards, the date of purchase and personal information will be automatically recorded and used to sign up for a membership in our Joyful Reader program. If you have further inquires about membership, please let us know by phone, fax, letter or e-mail. Thank you for shopping with us.",
+            "instruction": "Respond to the e-mail as if you are a customer of the Golden Smith bookshop. In your e-mail, describe ONE problem that you have experienced so far and make TWO requests for information about the Joyful Reader program."
+          }
+        },
+        {
+          "type": "email-response",
+          "label": "Respond to a Written Request",
+          "questionLabel": "Questions 6-7",
+          "content": {
+            "from": "Pam Hadis",
+            "to": "James Carter, Human Resources Department",
+            "subject": "Job request",
+            "sent": "October 10, 9:53 A.M.",
+            "body": "Dear Mr. Carter,\nMy name is Pam Hadis, and I am very much interested in applying for a job at Golden Tree Enterprises. I understand that your company usually posts job openings at the end of the year, but I would really appreciate it if you would send me information about upcoming jobs before making it public. I am available for an interview at any time. An early reply would be greatly appreciated.\n\nSincerely,\nPam Hadis",
+            "instruction": "Respond as if you work for Golden Tree Enterprises where you are the director of the Human Resources Department. In your e-mail, tell her at least ONE reason why you refuse to comply with her request and give TWO pieces of information."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "When considering a change of career, do you think it is important to get advice from other people? Why or why not? Support your opinion with reasons and examples."
+          }
+        }
+      ]
+    }
+  ]
+}

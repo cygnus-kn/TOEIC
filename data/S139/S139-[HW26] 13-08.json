@@ -1,0 +1,18 @@
+{
+  "homework": [
+    {
+      "date": "[HW26] 13/08",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Some people like to travel alone. Others like to be with friends. Which view point do you prefer? Give specific reasons and examples to support your answer."
+          }
+        }
+      ]
+    }
+  ]
+}
