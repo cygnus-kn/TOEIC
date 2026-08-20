@@ -1,0 +1,36 @@
+{
+  "homework": [
+    {
+      "date": "[HW28] 18/08",
+      "parts": [
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Some people like taking a long vacation each year. Others enjoy several shorter vacations.\nWhich do you prefer? Give reasons and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Do you prefer to work for a job that pays high salary or one that provides more vacation leaves?\nGive reasons and examples to support your opinion."
+          }
+        },
+        {
+          "type": "opinion",
+          "label": "Write an Opinion Essay",
+          "questionLabel": "Question 8",
+          "responseTime": 1800,
+          "content": {
+            "prompt": "Do you prefer to work alone or with team members?\nGive reasons and examples to support your opinion."
+          }
+        }
+      ]
+    }
+  ]
+}
