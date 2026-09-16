@@ -1162,7 +1162,7 @@ document.body.addEventListener('click', (e) => {
 });
 
 // ============================
-//  Part Card Screenshot (left-click)
+//  Part Card Screenshot (right-click context menu)
 // ============================
 function getCardScreenshotFilename() {
   // Mirror the naming logic from saveCurrentRecording() in core.js
@@ -1193,18 +1193,16 @@ function getCardScreenshotFilename() {
   return `${dayStamp}-Q${qNumber}${subSuffix}.png`;
 }
 
-// Screenshot modal elements
-const screenshotSaveModal    = document.getElementById('screenshotSaveModal');
+// ── Screenshot save modal ─────────────────────────────────────────────────────
+const screenshotSaveModal     = document.getElementById('screenshotSaveModal');
 const screenshotFileNameInput = document.getElementById('screenshotFileName');
-const cancelScreenshotSaveBtn = document.getElementById('cancelScreenshotSave');
+const cancelScreenshotSaveBtn  = document.getElementById('cancelScreenshotSave');
 const confirmScreenshotSaveBtn = document.getElementById('confirmScreenshotSave');
 
-// Holds the pending canvas while the user confirms
 let pendingScreenshotCanvas = null;
 
 function openScreenshotModal(filename) {
   if (!screenshotSaveModal || !screenshotFileNameInput) return;
-  // Strip .png for the editable field (extension is shown separately)
   screenshotFileNameInput.value = filename.replace(/\.png$/i, '');
   screenshotSaveModal.classList.add('active');
   setTimeout(() => {
@@ -1231,49 +1229,93 @@ function commitScreenshotSave() {
   closeScreenshotModal();
 }
 
-// Modal button listeners
-if (cancelScreenshotSaveBtn) {
-  cancelScreenshotSaveBtn.addEventListener('click', closeScreenshotModal);
-}
-if (confirmScreenshotSaveBtn) {
-  confirmScreenshotSaveBtn.addEventListener('click', commitScreenshotSave);
-}
+if (cancelScreenshotSaveBtn)  cancelScreenshotSaveBtn.addEventListener('click', closeScreenshotModal);
+if (confirmScreenshotSaveBtn) confirmScreenshotSaveBtn.addEventListener('click', commitScreenshotSave);
 if (screenshotFileNameInput) {
   screenshotFileNameInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') { e.preventDefault(); commitScreenshotSave(); }
-    else if (e.key === 'Escape') { closeScreenshotModal(); }
+    if (e.key === 'Enter')  { e.preventDefault(); commitScreenshotSave(); }
+    if (e.key === 'Escape') { closeScreenshotModal(); }
   });
 }
-// Close on backdrop click
 if (screenshotSaveModal) {
   screenshotSaveModal.addEventListener('click', (e) => {
     if (e.target === screenshotSaveModal) closeScreenshotModal();
   });
 }
 
+// ── Right-click context menu ──────────────────────────────────────────────────
+const cardContextMenu = (() => {
+  const el = document.createElement('div');
+  el.className = 'card-context-menu';
+  el.innerHTML = `
+    <div class="card-context-menu-item" id="ctxMenuSavePng">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+      Save as PNG
+    </div>
+  `;
+  document.body.appendChild(el);
+  return el;
+})();
+
+let contextMenuTargetCard = null;
+
+function showCardContextMenu(x, y, card) {
+  contextMenuTargetCard = card;
+  const menuW = 200, menuH = 48;
+  const left = (x + menuW > window.innerWidth  - 8) ? x - menuW : x;
+  const top  = (y + menuH > window.innerHeight - 8) ? y - menuH : y;
+  cardContextMenu.style.left = `${left}px`;
+  cardContextMenu.style.top  = `${top}px`;
+  cardContextMenu.classList.add('visible');
+}
+
+function hideCardContextMenu() {
+  cardContextMenu.classList.remove('visible');
+  contextMenuTargetCard = null;
+}
+
+document.getElementById('ctxMenuSavePng')?.addEventListener('click', () => {
+  const card = contextMenuTargetCard;
+  hideCardContextMenu();
+  if (card) capturePartCard(card);
+});
+
+document.addEventListener('click',   (e) => { if (!cardContextMenu.contains(e.target)) hideCardContextMenu(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideCardContextMenu(); });
+
+// ── Capture logic ─────────────────────────────────────────────────────────────
 function capturePartCard(cardEl) {
   if (typeof html2canvas !== 'function') {
     console.warn('html2canvas not loaded — cannot capture card.');
     return;
   }
 
-  // Brief visual flash to signal capture
-  cardEl.style.transition = 'opacity 0.08s';
-  cardEl.style.opacity = '0.7';
-  setTimeout(() => {
-    cardEl.style.opacity = '';
-    setTimeout(() => { cardEl.style.transition = ''; }, 120);
-  }, 80);
-
   const filename = getCardScreenshotFilename();
-  const isDark = document.body.classList.contains('dark-theme');
+  const isDark   = document.body.classList.contains('dark-theme');
+  const bgColor  = isDark ? '#181C26' : '#ffffff';
 
   html2canvas(cardEl, {
-    backgroundColor: isDark ? '#1a1a2e' : '#ffffff',
+    backgroundColor: bgColor,
     scale: window.devicePixelRatio || 2,
     useCORS: true,
     allowTaint: true,
-    logging: false
+    logging: false,
+    // onclone: bake computed colours into the clone so html2canvas never has to
+    // resolve CSS custom properties itself — this fixes faded text in light mode.
+    onclone: (_doc, clonedEl) => {
+      clonedEl.querySelectorAll('*').forEach(node => {
+        const cs    = window.getComputedStyle(node);
+        const color = cs.color;
+        const bg    = cs.backgroundColor;
+        if (color) node.style.setProperty('color', color, 'important');
+        if (bg && bg !== 'rgba(0, 0, 0, 0)') {
+          node.style.setProperty('background-color', bg, 'important');
+        }
+      });
+    }
   }).then(canvas => {
     pendingScreenshotCanvas = canvas;
     openScreenshotModal(filename);
@@ -1282,34 +1324,19 @@ function capturePartCard(cardEl) {
   });
 }
 
-// Attach left-click screenshot listener to card track (event delegation)
+// Right-click on any part-card → show context menu
 if (cardTrack) {
-  cardTrack.addEventListener('click', (e) => {
-    // Only left-clicks, no modifier keys
-    if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
-
-    // Ignore clicks on interactive / content elements so existing behaviour is preserved
-    const interactive = e.target.closest(
-      'button, a, input, textarea, select, label, ' +
-      '.response-timer, .audio-standalone, .audio-seeker, ' +
-      '.audio-toggle-btn, .bookmark-dot, .reveal-btn, ' +
-      '.reveal-content, .out-link-icon, img'
-    );
-    if (interactive) return;
-
+  cardTrack.addEventListener('contextmenu', (e) => {
     const card = e.target.closest('.part-card');
-    if (!card) return;
-
-    // Skip during window drag
-    if (isDraggingCardWindow) return;
-
-    capturePartCard(card);
+    if (!card || isDraggingCardWindow) return;
+    e.preventDefault();
+    showCardContextMenu(e.clientX, e.clientY, card);
   });
 }
 
-
 initCardWindowDragging();
 window.addEventListener('resize', updateActiveCardFrame);
+
 
 // ============================
 //  Lesson Rendering
