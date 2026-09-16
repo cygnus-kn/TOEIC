@@ -1161,6 +1161,98 @@ document.body.addEventListener('click', (e) => {
   }
 });
 
+// ============================
+//  Part Card Screenshot (left-click)
+// ============================
+function getCardScreenshotFilename() {
+  // Mirror the naming logic from saveCurrentRecording() in core.js
+  const activeDate = typeof activeType !== 'undefined' && activeType === 'homework'
+    ? (dateBadge ? dateBadge.textContent : '')
+    : (lessonDateBadge ? lessonDateBadge.textContent : '');
+
+  // Extract day stamp, e.g. "[HW28]" → "Day-28"
+  let dayStamp = 'Day-00';
+  const dayMatch = activeDate.match(/(?:HW|Lesson)-?(\d+)/i);
+  if (dayMatch) {
+    dayStamp = `Day-${dayMatch[1].padStart(2, '0')}`;
+  }
+
+  // Question number (1-based index)
+  const qNumber = (typeof currentPart !== 'undefined' ? currentPart : 0) + 1;
+
+  // Sub-question suffix for respond-info-q parts
+  let subSuffix = '';
+  if (typeof currentParts !== 'undefined' && typeof currentPart !== 'undefined') {
+    const part = currentParts[currentPart];
+    if (part && part.type === 'respond-info-q' && typeof getActiveRespondInfoSubQuestionNumber === 'function') {
+      const subQ = getActiveRespondInfoSubQuestionNumber(currentPart, part);
+      if (subQ != null) subSuffix = ` (${subQ})`;
+    }
+  }
+
+  return `${dayStamp}-Q${qNumber}${subSuffix}.png`;
+}
+
+function capturePartCard(cardEl) {
+  if (typeof html2canvas !== 'function') {
+    console.warn('html2canvas not loaded — cannot capture card.');
+    return;
+  }
+
+  // Brief visual flash to signal capture
+  cardEl.style.transition = 'opacity 0.08s';
+  cardEl.style.opacity = '0.7';
+  setTimeout(() => {
+    cardEl.style.opacity = '';
+    setTimeout(() => { cardEl.style.transition = ''; }, 120);
+  }, 80);
+
+  const filename = getCardScreenshotFilename();
+  const isDark = document.body.classList.contains('dark-theme');
+
+  html2canvas(cardEl, {
+    backgroundColor: isDark ? '#1a1a2e' : '#ffffff',
+    scale: window.devicePixelRatio || 2,
+    useCORS: true,
+    allowTaint: true,
+    logging: false
+  }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = canvas.toDataURL('image/png');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }).catch(err => {
+    console.error('Card screenshot failed:', err);
+  });
+}
+
+// Attach left-click screenshot listener to card track (event delegation)
+if (cardTrack) {
+  cardTrack.addEventListener('click', (e) => {
+    // Only left-clicks, no modifier keys
+    if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+
+    // Ignore clicks on interactive / content elements so existing behaviour is preserved
+    const interactive = e.target.closest(
+      'button, a, input, textarea, select, label, ' +
+      '.response-timer, .audio-standalone, .audio-seeker, ' +
+      '.audio-toggle-btn, .bookmark-dot, .reveal-btn, ' +
+      '.reveal-content, .out-link-icon, img'
+    );
+    if (interactive) return;
+
+    const card = e.target.closest('.part-card');
+    if (!card) return;
+
+    // Skip during window drag
+    if (isDraggingCardWindow) return;
+
+    capturePartCard(card);
+  });
+}
+
 initCardWindowDragging();
 window.addEventListener('resize', updateActiveCardFrame);
 
