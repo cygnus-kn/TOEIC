@@ -1193,6 +1193,64 @@ function getCardScreenshotFilename() {
   return `${dayStamp}-Q${qNumber}${subSuffix}.png`;
 }
 
+// Screenshot modal elements
+const screenshotSaveModal    = document.getElementById('screenshotSaveModal');
+const screenshotFileNameInput = document.getElementById('screenshotFileName');
+const cancelScreenshotSaveBtn = document.getElementById('cancelScreenshotSave');
+const confirmScreenshotSaveBtn = document.getElementById('confirmScreenshotSave');
+
+// Holds the pending canvas while the user confirms
+let pendingScreenshotCanvas = null;
+
+function openScreenshotModal(filename) {
+  if (!screenshotSaveModal || !screenshotFileNameInput) return;
+  // Strip .png for the editable field (extension is shown separately)
+  screenshotFileNameInput.value = filename.replace(/\.png$/i, '');
+  screenshotSaveModal.classList.add('active');
+  setTimeout(() => {
+    screenshotFileNameInput.focus();
+    screenshotFileNameInput.select();
+  }, 50);
+}
+
+function closeScreenshotModal() {
+  if (!screenshotSaveModal) return;
+  screenshotSaveModal.classList.remove('active');
+  pendingScreenshotCanvas = null;
+}
+
+function commitScreenshotSave() {
+  if (!pendingScreenshotCanvas) return;
+  const name = (screenshotFileNameInput?.value.trim() || 'screenshot') + '.png';
+  const link = document.createElement('a');
+  link.download = name;
+  link.href = pendingScreenshotCanvas.toDataURL('image/png');
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  closeScreenshotModal();
+}
+
+// Modal button listeners
+if (cancelScreenshotSaveBtn) {
+  cancelScreenshotSaveBtn.addEventListener('click', closeScreenshotModal);
+}
+if (confirmScreenshotSaveBtn) {
+  confirmScreenshotSaveBtn.addEventListener('click', commitScreenshotSave);
+}
+if (screenshotFileNameInput) {
+  screenshotFileNameInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); commitScreenshotSave(); }
+    else if (e.key === 'Escape') { closeScreenshotModal(); }
+  });
+}
+// Close on backdrop click
+if (screenshotSaveModal) {
+  screenshotSaveModal.addEventListener('click', (e) => {
+    if (e.target === screenshotSaveModal) closeScreenshotModal();
+  });
+}
+
 function capturePartCard(cardEl) {
   if (typeof html2canvas !== 'function') {
     console.warn('html2canvas not loaded — cannot capture card.');
@@ -1217,12 +1275,8 @@ function capturePartCard(cardEl) {
     allowTaint: true,
     logging: false
   }).then(canvas => {
-    const link = document.createElement('a');
-    link.download = filename;
-    link.href = canvas.toDataURL('image/png');
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
+    pendingScreenshotCanvas = canvas;
+    openScreenshotModal(filename);
   }).catch(err => {
     console.error('Card screenshot failed:', err);
   });
@@ -1252,6 +1306,7 @@ if (cardTrack) {
     capturePartCard(card);
   });
 }
+
 
 initCardWindowDragging();
 window.addEventListener('resize', updateActiveCardFrame);
