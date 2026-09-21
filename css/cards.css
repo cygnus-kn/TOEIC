@@ -173,10 +173,13 @@ body.dark-theme .card-drag-handle-bar {
   }
 }
 
+/* Left label: plain text "TOEIC SPEAKING" */
 .card-header-left {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  opacity: 0.9;
 }
 
 .card-header-right {
