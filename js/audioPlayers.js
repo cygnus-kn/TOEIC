@@ -84,11 +84,20 @@ async function initAudioPlayers() {
   currentParts.forEach((part, index) => {
     if (part.type === 'respond-info-q' && part.content.audioUrls) {
       // Local audio: load first file (Q7) by default
-      const audio = new Audio(part.content.audioUrls[0]);
+      const firstUrl = part.content.audioUrls[0];
+      const audio = new Audio(stripFragment(firstUrl));
       audio.preload = 'metadata';
       audio._urls = part.content.audioUrls;
       audio._currentTrack = 0;
       localAudioPlayers[index] = audio;
+
+      // Apply #t= start time once metadata is ready
+      const startTime = extractFragmentTime(firstUrl);
+      if (startTime !== null) {
+        audio.addEventListener('loadedmetadata', () => {
+          audio.currentTime = startTime;
+        }, { once: true });
+      }
 
       audio.addEventListener('ended', () => {
         setLocalAudioPlayingState(index, false);
@@ -172,6 +181,17 @@ function extractStartTime(url) {
   return match ? parseInt(match[1]) : 0;
 }
 
+// Extracts the #t= fragment from a local audio URL (e.g. "file.webm#t=76.04")
+function extractFragmentTime(url) {
+  const match = url.match(/#t=([\d.]+)/);
+  return match ? parseFloat(match[1]) : null;
+}
+
+// Strips the #t= fragment from a URL so it can be used as a valid src
+function stripFragment(url) {
+  return url.split('#')[0];
+}
+
 function getRespondInfoTimestamps(part) {
   const baseTime = extractStartTime(part.content.videoUrl) || 0;
   const timestamps = part.content.timestamps || {};
@@ -232,8 +252,16 @@ window.seekAudioToTime = async function (index, trackIndex) {
     if (!urls || trackIndex >= urls.length) return;
     local.pause();
     local._currentTrack = trackIndex;
-    local.src = urls[trackIndex];
+    const rawUrl = urls[trackIndex];
+    local.src = stripFragment(rawUrl);
     local.load();
+    // Apply #t= start time once metadata is ready
+    const startTime = extractFragmentTime(rawUrl);
+    if (startTime !== null) {
+      local.addEventListener('loadedmetadata', () => {
+        local.currentTime = startTime;
+      }, { once: true });
+    }
     // Also play immediately when a bookmark is tapped (mirrors YouTube UX).
     await playLocalAudio(index, local);
     return;

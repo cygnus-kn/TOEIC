@@ -3,7 +3,12 @@
    ============================ */
 
 const CLASSES_DATA = {
-
+  S40: {
+    homework: [
+      { date: "[HW11]" }
+    ],
+    lesson: []
+  },
 
   "S001": {
     homework: [
